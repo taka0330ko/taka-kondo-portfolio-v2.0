@@ -1,0 +1,26 @@
+---
+import "../styles/global.css";
+import GridBackGround from "../components/layout/GridBackGround.astro";
+import SiteHeader from "../components/layout/SiteHeader.astro";
+import { ClientRouter } from "astro:transitions";
+---
+
+
+<!doctype html>
+<html lang="en" class="">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro Basics</title>
+	</head>
+	<body>
+		<ClientRouter />
+		<GridBackGround />
+		<SiteHeader />
+		<slot />
+	</body>
+</html>
+

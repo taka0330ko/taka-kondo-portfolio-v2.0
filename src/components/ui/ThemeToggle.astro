@@ -1,0 +1,52 @@
+---
+import darkIcon from "../../assets/images/icons/dark.svg";
+import lightIcon from "../../assets/images/icons/light.svg";
+---
+
+<button
+id="theme-toggle"
+type="button"
+aria-label="Toggle theme"
+data-dark={darkIcon.src}
+data-light={lightIcon.src}>
+<img 
+id="theme-icon"
+src={darkIcon.src} 
+alt="">
+<span class="sr-only">Toggle theme</span>
+</button>
+
+<script is:inline>
+function initThemeToggle(){
+    const btn = document.getElementById("theme-toggle");
+    const icon = document.getElementById("theme-icon");
+
+    if (!btn || !icon) return;
+
+    const darkIcon = btn.getAttribute("data-dark");
+    const lightIcon = btn.getAttribute("data-light");
+
+    function applyTheme(theme){
+        const isLight = theme === "light";
+        document.documentElement.classList.toggle("light", isLight);
+        localStorage.setItem("theme", theme);
+        icon.setAttribute("src", isLight? lightIcon : darkIcon);
+    }
+
+    const savedTheme = localStorage.getItem("theme");
+    const initialTheme = savedTheme === "light" ? "light" : "dark";
+    applyTheme(initialTheme);
+
+    if (btn.dataset.bound === "true") return;
+
+    btn.addEventListener("click", ()=>{
+        const nextTheme = document.documentElement.classList.contains("light")
+        ? "dark" : "light";
+        applyTheme(nextTheme)
+    });
+     btn.dataset.bound = "true";
+}
+
+  document.addEventListener("astro:page-load", initThemeToggle);
+  initThemeToggle();
+</script>
