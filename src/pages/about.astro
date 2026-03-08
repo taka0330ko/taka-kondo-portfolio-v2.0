@@ -1,7 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import RippleEffectMyPic from '../components/webGL/RippleEffectMyPic';
 ---
 
 <Layout>
+
+    <div class="grid grid-cols-12 grid-container mt-40 items-center">
+          <div class='col-start-2 col-end-6'>
+            <h1 class='text-heading-default text-4xl text-nowrap'>Hello, I&apos;m Taka</h1>
+            <div class='text-body-default mt-4'>
+              <p>I&apos;m currently studying New Media Design and Web Development at BCIT.</p>
+              <p>As I learn both design and front-end development, I&apos;ve become particularly interested in UI/UX that values not only visual appeal, but also how ideas are formed and how interfaces function.</p>
+              <p>I enjoy learning new things and find the most satisfaction in applying what I&apos;ve learned through hands-on practice</p>
+              <p>When I&apos;m not in front of a computer screen, you&apos;ll likely find me painting or enjoying calligraphy.</p>
+            </div>
+          </div>
+          <div class='col-start-7 col-end-12'>
+            <RippleEffectMyPic client:visible/>
+          </div>
+        </div>
 	
 </Layout>
