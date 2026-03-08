@@ -1,22 +1,18 @@
 ---
 import ThemeToggle from "../ui/ThemeToggle.astro";
+import Logo from "../../assets/images/common/kondo-logo-md.svg"
 const pathname = Astro.url.pathname;
 ---
 
 <header class="px-8 py-2 fixed top-0 w-full z-99 bg-linear-to-br bg-theme-gradient backdrop-blur-sm ">
       <nav class='flex items-center justify-between mx-auto max-w-360'>
         <a href="/">
-              <img
-    src="src/assets/images/common/kondo-logo-md.svg"
-    alt="Kondo logo"
-    width="80"
-    height="80"
-  />
+              <Logo class="w-24 h-auto"/>
         </a>
           <div class='flex gap-4 md:gap-16 lg:gap-32 items-center'>
               <div class='flex gap-8 md:gap-16'>
                 <a href="/" class={`flex items-center gap-2 ${pathname ==='/' ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${pathname ==='/' ? 'bg-accent' : 'invisible'}`}></span>Projects</a>
-                <a href="/about" class={`flex items-center gap-2 ${pathname ==='/about' ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${pathname ==='/about' ? 'bg-accent' : 'invisible'}`}></span>About</a>
+                <a href="/about" class={`flex items-center gap-2 ${pathname === '/about' || pathname === '/about/' ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${pathname === '/about' || pathname === '/about/' ? 'bg-accent' : 'invisible'}`}></span>About</a>
               </div>
               <ThemeToggle />
           </div>
