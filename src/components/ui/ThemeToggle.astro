@@ -25,9 +25,9 @@ function initThemeToggle(){
 
     const darkIcon = btn.getAttribute("data-dark");
     const lightIcon = btn.getAttribute("data-light");
-
     function applyTheme(theme){
         const isLight = theme === "light";
+        //document.documentElement = <html>
         document.documentElement.classList.toggle("light", isLight);
         localStorage.setItem("theme", theme);
         icon.setAttribute("src", isLight? lightIcon : darkIcon);

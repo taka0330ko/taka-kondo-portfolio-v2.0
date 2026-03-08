@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import GridBackGround from "../components/layout/GridBackGround.astro";
 import SiteHeader from "../components/layout/SiteHeader.astro";
+import SiteFooter from "../components/layout/SiteFooter.astro";
 import { ClientRouter } from "astro:transitions";
 ---
 
@@ -16,11 +17,12 @@ import { ClientRouter } from "astro:transitions";
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
 	</head>
-	<body>
+	<body class="min-h-dvh">
 		<ClientRouter />
 		<GridBackGround />
 		<SiteHeader />
 		<slot />
+       <SiteFooter/>
 	</body>
 </html>
 
