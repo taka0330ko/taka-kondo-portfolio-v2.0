@@ -25,12 +25,11 @@ import { projects } from '../data/projects';
      return (
         <div class={project.gridClass}>
           <Card 
+          href={project.href}
           cover={project.cover} 
           title={project.title} 
           description={project.description} 
-          tag={project.tag}
-          class={project.gridClass}
-          />
+          tag={project.tag}          />
         </div>
       )
 
