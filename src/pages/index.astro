@@ -4,39 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import HeroTextBlock from '../components/features/HeroTextBlock.astro';
 import Card from '../components/ui/Card.astro'
 import CopyEmail from '../components/ui/CopyEmail.astro';
-
-
-const projects = [
-  {
-    cover: "src/assets/images/projects/tastebuds/tastebuds-thumbnail.jpg",
-    title: "Tastebuds - Food Blog Site",
-    description:
-      "A food blog project built as a Vanilla JavaScript MVP and later redesigned with React and Next.js.",
-      tag:"Web dev",
-    gridClass: "col-start-1 col-end-7 row-start-1 row-end-2",
-  },
-  {
-    cover: "src/assets/images/projects/billow/billow-thumbnail.jpg",
-    title: "Billow",
-    description: "Subscription dashboard project.",
-    tag:"Web dev",
-    gridClass: "col-start-7 col-end-13 row-start-1 row-end-2",
-  },
-  {
-    cover: "src/assets/images/projects/tastebuds/tastebuds-thumbnail.jpg",
-    title: "Nexfit",
-    description: "Fitness branding project.",
-    tag:"UI/UX",
-    gridClass: "col-start-1 col-end-7 row-start-2 row-end-3",
-  },
-  {
-    cover: "src/assets/images/projects/billow/billow-thumbnail.jpg",
-    title: "Stone & Honey",
-    description: "Butter nuts project",
-    tag:"UI/UX",
-    gridClass: "col-start-7 col-end-13 row-start-2 row-end-3",
-  },
-];
+import { projects } from '../data/projects';
 
 ---
 
