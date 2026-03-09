@@ -1,0 +1,58 @@
+---
+import { Github, Linkedin, Mail } from "@lucide/astro";
+---
+  <div class="col-span-6">
+    <h1 class="hero-title text-4xl font-satoshi text-heading-default">
+      Taka is a <span class="text-accent">front-end engineer</span> who develops with a focus on{' '}
+      <span class="text-accent">UX experience.</span>
+    </h1>
+
+    <div class="icons flex items-center gap-10 mt-4">
+      <Github class="text-heading-default" />
+      <Linkedin class="text-heading-default" />
+      <Mail class="text-heading-default" />
+    </div>
+  </div>
+
+  <script>
+  import { gsap } from "gsap";
+
+  const runHeroAnimation = () => {
+    const textEl = document.querySelector(".hero-title");
+    const iconsEl = document.querySelector(".icons");
+
+    if (!textEl) return;
+
+    gsap.killTweensOf(textEl);
+    if (iconsEl) gsap.killTweensOf(iconsEl);
+
+    gsap.fromTo(
+      textEl,
+      { opacity: 0, y: 25 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        clearProps: "opacity,transform",
+      }
+    );
+
+    if (iconsEl) {
+      gsap.fromTo(
+        iconsEl,
+        { opacity: 0, y: 25 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.3,
+          ease: "power2.out",
+          clearProps: "opacity,transform",
+        }
+      );
+    }
+  };
+
+  document.addEventListener("astro:page-load", runHeroAnimation);
+</script>

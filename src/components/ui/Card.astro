@@ -1,0 +1,27 @@
+---
+type Props = {
+    cover: string
+    title: string
+    description: string
+    tag: string
+}
+
+const {cover, title, description, tag} = Astro.props as Props
+---
+
+<article class='flex flex-col bg-card-gradient backdrop-blur-lg  rounded-lg border border-white/20 shadow-lg '>
+        <figure class ='relative'>
+            <img src={cover}
+            alt='tastebuds logo'
+            width={400}
+            height={100}
+            class='rounded-t-lg w-full '/>
+            <div class='absolute top-4 left-4 bg-linear-to-br from-white/30 to-white/0 backdrop-blur-lg  rounded-full px-4 py-1 border border-white/20 shadow-lg'>
+                <p class='text-gray-50 text-sm font-g-sans'>{tag}</p>
+            </div>
+        </figure>
+        <div class='flex flex-col gap-3 p-6'>
+            <h3 class='text-heading-default text-2xl'>{title}</h3>
+            <p class='text-body-default font-g-sans'>{description}</p>
+        </div>
+ </article>
