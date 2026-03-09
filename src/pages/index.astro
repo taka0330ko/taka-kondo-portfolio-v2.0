@@ -3,6 +3,7 @@ import RippleEffectRings from '../components/webGL/RippleEffectRings';
 import Layout from '../layouts/Layout.astro';
 import HeroTextBlock from '../components/features/HeroTextBlock.astro';
 import Card from '../components/ui/Card.astro'
+import CopyEmail from '../components/ui/CopyEmail.astro';
 
 
 const projects = [
@@ -65,8 +66,11 @@ const projects = [
         </div>
       )
 
-    })};
+    })}
   </section>
+          <section class="flex justify-center items-center h-100">
+          <CopyEmail/>
+        </section>
 </main>
 </Layout>
 

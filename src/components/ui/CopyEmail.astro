@@ -1,0 +1,40 @@
+---
+import { Copy } from "@lucide/astro"
+const email = "gtakanari0330@gmail.com";
+---
+
+          <button
+          id="copy-button"
+          type="button"
+          data-email={email}
+          class="cursor-pointer px-4 py-2 bg-linear-to-br from-white/30 to-white/0 backdrop-blur-lg  border border-white/20 shadow-lg rounded-full text-hea flex gap-4">
+             <span id="copy-button-text" class='text-heading-default'>{email}</span>
+             <Copy 
+             aria-hidden="true" 
+             focusable="false"
+             class='text-heading-default'/>
+          </button>
+
+<script is:inline>
+
+    function setCopyButton(){
+        const copyEmailBtn = document.getElementById("copy-button");
+        const emailText = document.getElementById("copy-button-text");
+    
+        if(copyEmailBtn && emailText) {
+            const email = copyEmailBtn.getAttribute("data-email");
+    
+            copyEmailBtn.addEventListener("click", async() =>{
+            await navigator.clipboard.writeText(email);
+            emailText.textContent = "Copied!"
+            setTimeout(()=> {
+                emailText.textContent = email;
+            }, 1500)
+        });
+        }
+    }
+
+    document.addEventListener("astro:page-load", setCopyButton);
+    setCopyButton();
+
+</script>
