@@ -11,8 +11,8 @@ const pathname = Astro.url.pathname;
         </a>
           <div class='flex gap-4 md:gap-16 lg:gap-32 items-center'>
               <div class='flex gap-8 md:gap-16'>
-                <a href="/" class={`flex items-center gap-2 ${pathname ==='/' ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${pathname ==='/' ? 'bg-accent' : 'invisible'}`}></span>Projects</a>
-                <a href="/about" class={`flex items-center gap-2 ${pathname === '/about' || pathname === '/about/' ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${pathname === '/about' || pathname === '/about/' ? 'bg-accent' : 'invisible'}`}></span>About</a>
+                <a href="/" class={`flex items-center gap-2 ${pathname ==='/' || pathname === '/tastebuds' ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${pathname ==='/' || pathname === '/tastebuds' ? 'bg-accent' : 'invisible'}`}></span>Projects</a>
+                <a href="/about" class={`flex items-center gap-2 ${pathname === '/about' ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${pathname === '/about' ? 'bg-accent' : 'invisible'}`}></span>About</a>
               </div>
               <ThemeToggle />
           </div>
