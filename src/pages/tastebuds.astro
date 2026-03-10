@@ -5,48 +5,65 @@ import Js_Icon from "../assets/images/projects/tastebuds/icons/js-logo.svg";
 import Next_Js_Icon from "../assets/images/projects/tastebuds/icons/nextjs-svgrepo-com.svg"
 import Arrow from "../assets/images/icons/card-arrow.svg";
 import { Github, ArrowUpRight} from "@lucide/astro";
+import GlassPill from "../components/ui/GlassPill.astro"
+
 
 ---
 
 <Layout>
     <main>
+        <section aria-labelledby="tastebuds-overview">
       <div class="grid grid-cols-12 grid-container mt-30 md:mt-40 items-start">
         <!-- Text Block -->
         <div class="md:col-start-1 md:col-span-6">
-            <h1 class="text-4xl text-center">“TASTEBUDS” Food Blog Site</h1>
+            <h1
+             id="tastebuds-overview"
+             class="text-4xl text-center">“TASTEBUDS” Food Blog Site</h1>
             <p class="text-2xl pt-16 ">A learning journey from MVP development with <span class="text-accent"> vanilla JavaScript </span>to redeveloping with <span class="text-accent">React and Next.js.</span></p>
 
         <!-- Vanilla to Next -->
-        <div class="flex gap-8 lg:gap-12 p-16 justify-center">
-            <Js_Icon class="w-24 h-24" />
-            <Arrow  class="text-icons w-24 h-24" />
-            <Next_Js_Icon class="w-24  h-24 text-icons"/>
+        <div 
+        role="img"
+        aria-label="Technology transition from JavaScript to Next.js" 
+        class="flex gap-8 lg:gap-12 p-16 justify-center">
+            <Js_Icon class="w-24 h-24" aria-hidden="true" focusable="false"/>
+            <Arrow  class="text-icons w-24 h-24" aria-hidden="true" focusable="false"/>
+            <Next_Js_Icon class="w-24  h-24 text-icons" aria-hidden="true" focusable="false"/>
         </div>
 
         <!-- link pills -->
-        <div class="flex gap-8 justify-center">
-                <a href="https://tastebuds-mbh7.vercel.app/" 
+         <div class="flex justify-center gap-4">
+             <GlassPill
+             target="_blank" 
+             rel="noopener noreferrer"
+             aria-label="Open Tastebuds live site in a new tab"
+             href="https://tastebuds-mbh7.vercel.app/"
+             >
+             <ArrowUpRight slot="after" aria-hidden="true" focusable="false"/>
+             Live Site
+             <span class="sr-only">(opens in a new tab)</span>
+             </GlassPill>
+             <GlassPill
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Open Tastebuds GitHub repository in a new tab"
+             href="https://github.com/Taka0330-jp/Tastebuds.git"
+             >
+             <Github slot="after" aria-hidden="true" focusable="false"/>
+             GitHub
+             <span class="sr-only">(opens in a new tab)</span>
+             </GlassPill>
+         </div>
 
-                class="flex items-center gap-1  bg-linear-to-br from-white/30 to-white/0 backdrop-blur-lg  
-                rounded-full px-4 py-1 border border-white/20 shadow-lg text-icons hover:text-accent">
-
-                Live site<ArrowUpRight class="w-4 h-4" /></a>
-                <a href="https://github.com/Taka0330-jp/Tastebuds.git" 
-
-                class="flex items-center gap-1 bg-linear-to-br from-white/30 to-white/0 backdrop-blur-lg  
-                rounded-full px-4 py-1 border border-white/20 shadow-lg text-icons hover:text-accent">
-
-                Git hub<Github class="w-4 h-4"/></a>
-        </div>
     </div>
 
        <div class="md:col-start-7 md:col-span-6 flex justify-center">
         <img 
         class="mask-b-from-70% mask-b-to-100%"
         src={Tastebuds_Website_Pic.src} 
-        alt="Tastebuds website screenshot">
+        alt="Screenshot of the Tastebuds food blog homepage">
        </div>
     </div>
-
+</section>
     </main>
 </Layout>
