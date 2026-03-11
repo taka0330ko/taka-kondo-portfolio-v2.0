@@ -1,7 +1,10 @@
 ---
 import ThemeToggle from "../ui/ThemeToggle.astro";
 import Logo from "../../assets/images/common/kondo-logo-md.svg"
-const pathname = Astro.url.pathname;
+
+const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const isAboutPage = pathname === "/about";
+const isProjectsPage = ["/", "/tastebuds", "/billow", "/nexfit", "/stone-and-honey"].includes(pathname);
 ---
 
 <header class="px-8 py-2 fixed top-0 w-full z-99 bg-linear-to-br bg-theme-gradient backdrop-blur-sm ">
@@ -11,8 +14,8 @@ const pathname = Astro.url.pathname;
         </a>
           <div class='flex gap-4 md:gap-16 lg:gap-32 items-center'>
               <div class='flex gap-8 md:gap-16'>
-                <a href="/" class={`flex items-center gap-2 ${pathname ==='/' || pathname === '/tastebuds' ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${pathname ==='/' || pathname === '/tastebuds' ? 'bg-accent' : 'invisible'}`}></span>Projects</a>
-                <a href="/about" class={`flex items-center gap-2 ${pathname === '/about' ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${pathname === '/about' ? 'bg-accent' : 'invisible'}`}></span>About</a>
+                <a href="/" class={`flex items-center gap-2 ${isProjectsPage ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${isProjectsPage ? 'bg-accent' : 'invisible'}`}></span>Projects</a>
+                <a href="/about" class={`flex items-center gap-2 ${isAboutPage ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${isAboutPage ? 'bg-accent' : 'invisible'}`}></span>About</a>
               </div>
               <ThemeToggle />
           </div>

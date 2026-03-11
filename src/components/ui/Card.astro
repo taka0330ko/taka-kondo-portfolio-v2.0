@@ -1,10 +1,11 @@
 ---
+import type { ImageMetadata } from "astro";
 import Arrow from "../../assets/images/icons/card-arrow.svg";
 import GlassPill from "./GlassPill.astro"
 
 type Props = {
     href: string
-    cover: string
+    cover: ImageMetadata
     title: string
     description: string
     tag: string
@@ -16,10 +17,10 @@ const {href, cover, title, description, tag } = Astro.props as Props
     
     <article class="grid grid-rows-subgrid row-span-3 bg-card-gradient backdrop-blur-lg rounded-lg border border-white/20 shadow-lg">
             <figure class="relative row-start-1">
-                <img src={cover}
+                <img src={cover.src}
                 alt={title}
-                width={400}
-                height={100}
+                width={cover.width}
+                height={cover.height}
                 class='rounded-t-lg w-full '/>
                 <div class='absolute top-4 left-4'>
                 <GlassPill class="text-white"
