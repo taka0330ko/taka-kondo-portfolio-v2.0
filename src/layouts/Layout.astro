@@ -14,8 +14,20 @@ import { ClientRouter } from "astro:transitions";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		<link rel="canonical" href="https://takanari-kondo.com/">
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Takanari Kondo | Frontend Developer & UI/UX Designer</title>
+		<meta name= "description" content="Portfolio of Takanari Kondo, a frontend developer and UI/UX designer focused on building fast, accessible, and visually refined web experiences." />
+		<meta name="author" content="Takanari Kondo" />
+
+
+		<!-- Open Graph / Social -->
+		<meta property="og:title" content="Takanari Kondo | Frontend Developer & UI/UX Designer" />
+		<meta property="og:description" content="Explore projects, web development work and UI/UX case studies by Takanari Kondo." />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://takanari-kondo.com/" />
+		<!-- 画像未設定 -->
+		<meta property="og:image" content="/og-image.png" />
 	</head>
 	<body class="min-h-dvh">
 		<ClientRouter />
@@ -25,4 +37,5 @@ import { ClientRouter } from "astro:transitions";
        <SiteFooter/>
 	</body>
 </html>
+
 
