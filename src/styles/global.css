@@ -71,7 +71,7 @@
   --header-gradient-to: rgba(0,0,0,0);
   --card-gradient-from: rgba(255,255,255,0.3);
   --card-gradient-to: rgba(255,255,255,0);
-  --icons-color: var(--brand-white);
+  --foreground-color: var(--brand-white);
   --footer-bg:var(--brand-gray-800);
 }
 .light {
@@ -85,7 +85,7 @@
   --header-gradient-to: rgba(255,255,255,0);
   --card-gradient-from: rgba(255,255,255,0.8);
   --card-gradient-to: rgba(255,255,255,0);
-  --icons-color: var(--brand-black);
+  --foreground-color: var(--brand-black);
   --footer-bg:var(--brand-gray-50);
 }
 
@@ -98,7 +98,7 @@
   --color-body-default:var(--text-body-default);
   --color-accent:var(--text-accent);
   --color-five-lines:var(--five-lines);
-  --color-icons:var(--icons-color);
+  --color-foreground:var(--foreground-color);
   --color-footer:var(--footer-bg);
   
   /* Font */
@@ -125,6 +125,22 @@
   .animation-lines-pulse {
     animation: lines-pulse 6s ease-in-out infinite alternate;
   }
+}
+
+@layer components {
+  .icon-link-hover{
+   @apply relative flex size-12 items-center justify-center overflow-hidden rounded-full text-heading-default 
+          transition-colors duration-300 hover:text-accent focus-visible:text-black after:absolute after:inset-0 
+          after:-translate-y-full after:content-[''] after:bg-linear-to-br after:from-white/30 after:to-white/0 
+          after:backdrop-blur-lg after:transition-transform 
+          after:duration-300
+          group-hover:after:translate-y-0
+  }
+    .icon-tooltip {
+    @apply pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 
+    whitespace-nowrap rounded bg-linear-to-br from-white/30 to-white/0 backdrop-blur-lg 
+    border border-white/20 shadow-lg px-2 py-1 text-xs text-accent opacity-0 transition-all 
+    duration-400 ease-[cubic-bezier(0.47,2,0.41,1.5)] group-hover:translate-y-1 group-hover:opacity-100}
 }
 
 html {
@@ -182,6 +198,5 @@ textarea,
 select {
   font: inherit;
 }
-
 
 
