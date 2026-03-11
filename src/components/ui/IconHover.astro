@@ -1,0 +1,43 @@
+---
+import type { HTMLAttributes } from "astro/types";
+interface Props extends HTMLAttributes<"a"> {
+    label: string
+    href: string
+} 
+
+const {href, label, ...rest} = Astro.props
+---
+
+<div class="group relative flex flex-col items-center">
+        <a
+        target="_blank"
+        href={href}
+        rel="noopener noreferrer"
+        {...rest}
+          class="icon-link-hover"
+        >
+          <span class="relative z-10 [&>svg]:size-5">
+              <slot />
+          </span>
+        </a>
+        <span class="icon-tooltip">
+          {label}
+        </span>
+ </div>
+
+<!-- global.css  -->
+<!-- @layer components {
+  .icon-link-hover{
+   @apply relative flex size-12 items-center justify-center overflow-hidden rounded-full text-heading-default 
+          transition-colors duration-300 hover:text-accent focus-visible:text-black after:absolute after:inset-0 
+          after:-translate-y-full after:content-[''] after:bg-linear-to-br after:from-white/30 after:to-white/0 
+          after:backdrop-blur-lg after:transition-transform 
+          after:duration-300
+          group-hover:after:translate-y-0
+  }
+    .icon-tooltip {
+    @apply pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 
+    whitespace-nowrap rounded bg-linear-to-br from-white/30 to-white/0 backdrop-blur-lg 
+    border border-white/20 shadow-lg px-2 py-1 text-xs text-accent opacity-0 transition-all 
+    duration-400 ease-[cubic-bezier(0.47,2,0.41,1.5)] group-hover:translate-y-1 group-hover:opacity-100}
+} -->

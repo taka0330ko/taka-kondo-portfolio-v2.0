@@ -1,5 +1,6 @@
 ---
 import { Github, Linkedin, Mail } from "@lucide/astro";
+import IconHover from "../ui/IconHover.astro";
 ---
   <div class="col-span-6">
     <h1 class="hero-title text-4xl font-satoshi text-heading-default">
@@ -8,48 +9,28 @@ import { Github, Linkedin, Mail } from "@lucide/astro";
     </h1>
 
     <div class="icons flex items-center gap-10 mt-4">
-      <div class="group relative flex flex-col items-center">
-        <a
-          aria-label="GitHub profile"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/Taka0330-jp"
-          class="icon-link-hover"
-        >
-          <Github class="relative z-10 size-5" />
-        </a>
-        <span class="icon-tooltip">
-          GitHub
-        </span>
-      </div>
+      
+      <IconHover
+      href="https://github.com/Taka0330-jp"
+      aria-label="GitHub profile"
+      label="GitHub">
+        <Github />
+      </IconHover>
 
-      <div class="group relative flex flex-col items-center">
-        <a
-          aria-label="LinkedIn profile"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.linkedin.com/in/takanarikondo/"
-          class="icon-link-hover"
-        >
-          <Linkedin class="relative z-10 size-5"/>
-        </a>
-        <span class="icon-tooltip">
-          LinkedIn
-        </span>
-      </div>
+      <IconHover
+      href="https://www.linkedin.com/in/takanarikondo/"
+      aria-label="LinkedIn profile"
+      label="LinkedIn">
+        <Linkedin />
+      </IconHover>
 
-      <div class="group relative flex flex-col items-center">
-        <a
-          href="mailto:gtakanari0330@gmail.com"
-          aria-label="Send email"
-          class="icon-link-hover"
-        >
-          <Mail class="relative z-10 size-5" />
-        </a>
-                  <span class="icon-tooltip">
-            Email
-          </span>
-      </div>
+ 
+      <IconHover
+      href="mailto:gtakanari0330@gmail.com"
+      aria-label="Send email"
+      label="Email">
+        <Mail />
+      </IconHover>
     </div>
   </div>
 
