@@ -59,6 +59,7 @@
 
   --brand-black:oklch(0 0 0);
   --brand-white:oklch(1 0 0);
+  --glass-ring:color-mix(in oklab, var(--brand-white) 20%, transparent);
 
   
   /* Semantic Dark token */
@@ -73,6 +74,9 @@
   --card-gradient-to: rgba(255,255,255,0);
   --foreground-color: var(--brand-white);
   --footer-bg:var(--brand-gray-800);
+  --frame-bg-color:var(--brand-gray-950);
+  
+  --frame-ring:var(--glass-ring);
 }
 .light {
   /* Semantic Light token */
@@ -87,6 +91,7 @@
   --card-gradient-to: rgba(255,255,255,0);
   --foreground-color: var(--brand-black);
   --footer-bg:var(--brand-gray-50);
+  --frame-bg-color:var(--brand-gray-300);
 }
 
 @theme inline {
@@ -100,6 +105,8 @@
   --color-five-lines:var(--five-lines);
   --color-foreground:var(--foreground-color);
   --color-footer:var(--footer-bg);
+  --color-frame:var(--frame-bg-color);
+  --color-frame-ring:var(--frame-ring);
   
   /* Font */
   --font-heading: var(--font-satoshi);
