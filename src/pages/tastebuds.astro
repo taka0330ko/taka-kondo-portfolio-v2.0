@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
 import Tastebuds_Website_Pic from "../assets/images/projects/tastebuds/teast-buds-website.png";
 import Js_Icon from "../assets/images/projects/tastebuds/icons/js-logo.svg";
 import Next_Js_Icon from "../assets/images/projects/tastebuds/icons/nextjs-svgrepo-com.svg"
@@ -7,12 +8,16 @@ import Arrow from "../assets/images/icons/card-arrow.svg";
 import { Github, ArrowUpRight} from "@lucide/astro";
 import GlassPill from "../components/ui/GlassPill.astro"
 
-
+export const tastebudsSections = [
+  { label: "Overview", href: "#Overview" },
+  { label: "MVP", href: "#MVP" },
+  { label: "Redevelopment", href: "#Redevelopment" },
+  { label: "Reflection", href: "#Reflection" }
+]
 ---
-
 <Layout>
     <main>
-        <section aria-labelledby="tastebuds-overview">
+        <section id="hero" aria-labelledby="tastebuds-overview">
       <div class="grid grid-cols-12 grid-container mt-30 md:mt-40 items-start">
         <!-- Text Block -->
         <div class="md:col-start-1 md:col-span-6">
@@ -33,16 +38,16 @@ import GlassPill from "../components/ui/GlassPill.astro"
             </nav>
             <h1
              id="tastebuds-overview"
-             class="text-4xl text-center p-6">“TASTEBUDS” Food Blog Site</h1>
-            <p class="text-2xl pt-6 text-center">A learning journey from MVP development with <span class="text-accent"> vanilla JavaScript </span>to redeveloping with <span class="text-accent">React and Next.js.</span></p>
+             class="text-4xl text-center p-6 font-semibold">“TASTEBUDS” Food Blog Site</h1>
+            <p class="text-xl pt-6 text-center font-medium">A learning journey from MVP development with <span class="text-accent"> vanilla JavaScript </span>to redeveloping with <span class="text-accent">React and Next.js.</span></p>
 
         <!-- Vanilla to Next -->
         <div 
         role="img"
         aria-label="Technology transition from JavaScript to Next.js" 
-        class="flex gap-8 lg:gap-12 p-16 justify-center">
+        class="flex items-end gap-8 lg:gap-12 p-16 justify-center">
             <Js_Icon class="w-24 h-24" aria-hidden="true" focusable="false"/>
-            <Arrow  class="text-foreground w-24 h-24" aria-hidden="true" focusable="false"/>
+            <Arrow  class="text-foreground w-14 h-14" aria-hidden="true" focusable="false"/>
             <Next_Js_Icon class="w-24  h-24 text-foreground" aria-hidden="true" focusable="false"/>
         </div>
 
@@ -72,6 +77,7 @@ import GlassPill from "../components/ui/GlassPill.astro"
 
     </div>
 
+    <!-- Homepage Screenshot -->
        <div class="md:col-start-7 md:col-span-6 flex justify-center">
         <img 
         class="mask-b-from-70% mask-b-to-100%"
@@ -80,5 +86,58 @@ import GlassPill from "../components/ui/GlassPill.astro"
        </div>
     </div>
 </section>
+
+<section>
+    <div class="grid grid-cols-12">
+        <aside 
+        aria-label="Project section navigation"
+        class="col-start-1 col-span-2 p-4 sticky top-24 h-fit">
+
+        <CaseStudySidebar
+        items={tastebudsSections}
+        className="col-start-1 col-span-2"
+        />
+
+        </aside>
+        <div>
+            <div id="Overview" class="h-screen">
+                <h2>Overview</h2>
+            </div>
+            <div id="MVP" class="h-screen">
+                <h2>MVP</h2>
+            </div>
+            <div id="Redevelopment" class="h-screen">
+                <h2>Redevelopment</h2>
+            </div>
+            <div id="Reflection" class="h-screen">
+                <h2>Reflection</h2>
+            </div>
+        </div>
+    </div>
+</section>
     </main>
 </Layout>
+
+<script>
+    import gsap from "gsap"
+    import { ScrollTrigger } from "gsap/ScrollTrigger"
+    gsap.registerPlugin(ScrollTrigger)
+
+    document.addEventListener("astro:page-load", ()=>{
+gsap.fromTo(
+  "#case-study-sidebar",
+  { x: -40, opacity: 0 },
+  {
+    x: 0,
+    opacity: 1,
+    duration: 0.6,
+    scrollTrigger: {
+      trigger: "#hero",
+      start: "bottom 40%",
+      toggleActions: "play none none reverse",
+    }
+  }
+)
+
+    })
+</script>

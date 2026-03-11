@@ -144,6 +144,7 @@
 }
 
 html {
+    scroll-padding-top: 6rem;
     color-scheme: dark;
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;

@@ -1,0 +1,82 @@
+---
+
+type SidebarItem ={
+    label: string
+    href: string
+}
+
+interface Props {
+    items : SidebarItem[]
+    className?: string
+}
+
+const { items, className } = Astro.props
+---
+        
+        <aside 
+        id="case-study-sidebar"
+        aria-label="Project section navigation"
+        class:list={["hidden lg:block p-4 sticky top-24 h-fit", className]}>
+            <nav>
+                <ul class="flex flex-col gap-12">
+                    {items.map((item) =>(
+                        <li>
+                            {/* getElementByIdでDOMを取得するために#を削る必要がある
+                            ex) href: "#intro" → <a href="#intro" data-target="intro">Intro</a>
+                            */}
+                            <a 
+                            href={item.href} 
+                            class="hover:text-accent transition-colors"
+                            data-section-link
+                            data-target={item.href.replace('#','')}
+                            >{item.label}</a>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+        </aside>
+
+
+<script>
+let observer: IntersectionObserver
+document.addEventListener("astro:page-load",()=>{
+    const sidebar = document.getElementById("case-study-sidebar");
+    //querySelectorAll() はデフォルトでNodeListOf<Element>を返すが、ElementにはdatasetプロパティがないのでHTMLAnchorElement として型指定する必要がある。
+      const links = sidebar?.querySelectorAll('[data-section-link]') as NodeListOf<HTMLAnchorElement>
+    
+        //NodeList → Array
+      const sections = Array.from(links)
+        .map(link => document.getElementById(link.dataset.target!))
+        // ! は non-null assertion でTSに必ず存在すると伝えるもの
+        .filter(Boolean)
+    
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.id
+    
+              links.forEach(link => {
+                link.classList.remove('text-accent')
+                link.removeAttribute('aria-current')
+    
+                if (link.dataset.target === id) {
+                  link.classList.add('text-accent')
+                  link.setAttribute('aria-current','location')
+                }
+              })
+            }
+          })
+        },
+        {
+          rootMargin: '-40% 0px -50% 0px'
+        }
+      )
+    
+      sections.forEach(section => observer.observe(section!))
+})
+
+document.addEventListener("astro:before-swap", ()=>{
+    observer?.disconnect()
+})
+</script>
