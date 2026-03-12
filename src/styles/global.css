@@ -91,7 +91,7 @@
   --card-gradient-to: rgba(255,255,255,0);
   --foreground-color: var(--brand-black);
   --footer-bg:var(--brand-gray-50);
-  --frame-bg-color:var(--brand-gray-300);
+  --frame-bg-color:var(--brand-gray-50);
 }
 
 @theme inline {
@@ -153,6 +153,11 @@
       @apply relative inline-block pl-3 before:absolute before:left-0 before:top-0  
              before:w-1 before:h-full before:bg-accent
     }
+    .timeline-number{
+  @apply flex items-center justify-center left-0
+  w-8 h-8 rounded-full  border border-frame-ring
+  bg-frame text-sm font-medium;
+}
 }
 
 html {
