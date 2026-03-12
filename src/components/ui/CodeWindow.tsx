@@ -17,7 +17,7 @@ export default function CodeWindow({collapsedHeight = 160, code}:CodeWindowProps
       }
     }, [code]);
   return (
-    <figure className="bg-frame overflow-hidden rounded-2xl">
+    <figure className="bg-frame overflow-hidden rounded-lg">
         {/* Header */}
       <div className="border-b border-black/10 px-4 py-3">
         <button
