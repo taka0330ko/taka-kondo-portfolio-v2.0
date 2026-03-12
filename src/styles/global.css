@@ -148,6 +148,11 @@
     whitespace-nowrap rounded bg-linear-to-br from-white/30 to-white/0 backdrop-blur-lg 
     border border-white/20 shadow-lg px-2 py-1 text-xs text-accent opacity-0 transition-all 
     duration-400 ease-[cubic-bezier(0.47,2,0.41,1.5)] group-hover:translate-y-1 group-hover:opacity-100}
+  
+    .heading-accent-bar{
+      @apply relative inline-block pl-3 before:absolute before:left-0 before:top-0  
+             before:w-1 before:h-full before:bg-accent
+    }
 }
 
 html {
