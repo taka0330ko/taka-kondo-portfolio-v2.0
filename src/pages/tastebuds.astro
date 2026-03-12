@@ -119,48 +119,54 @@ export const tastebudsSections = [
             <!-- MVP Section -->
         <article id="MVP">
                 <h2 class="text-3xl"><span class="heading-accent-bar">MVP</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
                     <div class="col-span-1 flex flex-col justify-between">
-                        <p class="pt-32 text-xl">For the MVP, I first explored how to create a structure that allows posts to be added using JavaScript.
+                        <p class="pt-16 text-xl place-items-center">For the MVP, I first explored how to create a structure that allows posts to be added using JavaScript.
                             Instead of manually adding more static HTML, I designed the system so that <span class="text-accent"> cards are generated from data using JavaScript.</span></p>
-            <div class="flex justify-center gap-4">
-             <GlassPill
-             target="_blank" 
-             rel="noopener noreferrer"
-             aria-label="Open Tastebuds MVP live site in a new tab"
-             href="https://tastebuds-website.vercel.app/pages/home.html"
-             >
-             <ArrowUpRight slot="after" aria-hidden="true" focusable="false"/>
-             Live Site
-             <span class="sr-only">(opens in a new tab)</span>
-             </GlassPill>
-             <GlassPill
-             target="_blank"
-             rel="noopener noreferrer"
-             aria-label="Open Tastebuds MVP GitHub repository in a new tab"
-             href="https://github.com/Taka0330-jp/tastebuds-website.git"
-             >
-             <Github slot="after" aria-hidden="true" focusable="false"/>
-             GitHub
-             <span class="sr-only">(opens in a new tab)</span>
-             </GlassPill>
-         </div>
+            
                     </div>
-                    <div class="bg-card-gradient border border-frame-ring rounded-lg shadow-lg">
-                        <video
-                        class="p-4"
-                        src={MVPVideo}
-                        autoplay
-                        loop
-                        muted
-                        playsinline ></video>
-                        <div class="flex justify-end items-center gap-2 p-4">
+                    <div class="flex flex-col gap-4">
+                        <div class="flex gap-4">
+                                     <GlassPill
+                                     target="_blank" 
+                                     rel="noopener noreferrer"
+                                     aria-label="Open Tastebuds MVP live site in a new tab"
+                                     href="https://tastebuds-website.vercel.app/pages/home.html"
+                                     >
+                                     <ArrowUpRight slot="after" aria-hidden="true" focusable="false"/>
+                                     Live Site
+                                     <span class="sr-only">(opens in a new tab)</span>
+                                     </GlassPill>
+                                     <GlassPill
+                                     target="_blank"
+                                     rel="noopener noreferrer"
+                                     aria-label="Open Tastebuds MVP GitHub repository in a new tab"
+                                     href="https://github.com/Taka0330-jp/tastebuds-website.git"
+                                     >
+                                     <Github slot="after" aria-hidden="true" focusable="false"/>
+                                     GitHub
+                                     <span class="sr-only">(opens in a new tab)</span>
+                                     </GlassPill>
+                        </div>
+                        <div class="bg-card-gradient border border-frame-ring rounded-lg shadow-lg">
+                            <video
+                            class="p-4"
+                            src={MVPVideo}
+                            autoplay
+                            loop
+                            muted
+                            playsinline ></video>
+                        </div>
+                        
+
+                        <div class="flex justify-end items-center gap-2">
                             <HTMLLogo class="w-6 h-6"/>
                             <CssLogo class="w-6 h-6"/>
                             <SassLogo class="w-6 h-6"/>
                             <Js_Icon class="w-6 h-6"/>
                         </div>
                     </div>
+
                 </div>
                 <!-- My approach -->
                 <div class="mt-32">
