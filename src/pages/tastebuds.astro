@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
+import CodeWindow from "../components/ui/CodeWindow.tsx";
+import { postsDataCode, templateTagCode, renderPostCode } from "../data/tastebudsCode.ts"
 import Tastebuds_Website_Pic from "../assets/images/projects/tastebuds/teast-buds-website.png";
 import Js_Icon from "../assets/images/projects/tastebuds/icons/js-logo.svg";
 import Next_Js_Icon from "../assets/images/projects/tastebuds/icons/nextjs-svgrepo-com.svg";
@@ -161,27 +163,52 @@ export const tastebudsSections = [
                     </div>
                 </div>
                 <!-- My approach -->
-                <div class="h-screen mt-32">
+                <div class="mt-32">
                     <h3 class="text-2xl">My approach</h3>
                 <p class="p-16 text-xl">Using Vanilla JavaScript and the &lt;template&gt; element, I built a reusable card component.</p>
-                <ol>
-                    <li class="flex items-center gap-4"><span class="timeline-number">1</span><p>Create a data structure for posts</p></li>
-                    <li class="flex items-center gap-4"><span class="timeline-number">2</span><p>Use the <code>&lt;template&gt;</code> element</p></li>
-                    <li class="flex items-center gap-4"><span class="timeline-number">3</span><p>Generate cards dynamically with JavaScript</p></li>
-                </ol>
+                
+                    <div class="steps">
+                       
+                            <div class="step">
+                                <div class="step-content">
+                                    <h4 class="text-xl pb-8 pt-2">Create a data structure for posts</h4>
+                                    <CodeWindow
+                                    code={postsDataCode}
+                                    client:visible
+                                    />
+                                </div>
+                            </div>
+                            <div class="step">
+                                <h4 class="text-xl pb-8 pt-2">Use the <code>&lt;template&gt;</code> element</h4>
+                                <CodeWindow
+                                code={templateTagCode}
+                                client:visible
+                                />
+                            </div>
+                            <div class="step">
+                                <h4 class="text-xl pb-8 pt-2">Generate cards dynamically with JavaScript</h4>
+                                <CodeWindow
+                                code={renderPostCode}
+                                client:visible
+                                />
+                            </div>
+                        
+                    </div>
+
+                
                 </div>
 
             </article>
 
             <!-- Redevelopment Section -->
-            <div id="Redevelopment" class="h-screen">
-                <h2>Redevelopment</h2>
-            </div>
+            <article id="Redevelopment" class="h-screen mt-32">
+                <h2 class="text-3xl"><span class="heading-accent-bar">Redevelopment</span></h2>
+            </article>
 
             <!-- Reflection Section -->
-            <div id="Reflection" class="h-screen">
-                <h2>Reflection</h2>
-            </div>
+            <article id="Reflection" class="h-screen mt-32">
+                <h2 class="text-3xl"><span class="heading-accent-bar">Reflection</span></h2>
+            </article>
         </div>
     </div>
 </section>

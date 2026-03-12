@@ -154,10 +154,38 @@
              before:w-1 before:h-full before:bg-accent
     }
     .timeline-number{
-  @apply flex items-center justify-center left-0
-  w-8 h-8 rounded-full  border border-frame-ring
-  bg-frame text-sm font-medium;
-}
+      @apply flex items-center justify-center left-0
+              w-8 h-8 rounded-full  border border-frame-ring
+              bg-frame text-sm font-medium;
+      }
+    .steps {
+      @apply relative mt-12 space-y-12;
+      counter-reset: step;
+    }
+    
+    .step {
+      @apply relative pl-16 md:pl-20
+    }
+
+    .step::before{
+      @apply absolute left-0 top-0 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-frame-ring bg-frame text-sm font-medium text-heading-default;
+      counter-increment: step;
+      content: counter(step);
+    }
+
+    .step::after {
+      content: "";
+      @apply absolute left-4 top-10 -bottom-12 w-px bg-frame-ring/70;
+    }
+
+    .step:last-child::after {
+      content: none;
+    }
+
+    .step-content {
+      @apply space-y-6 pb-2;
+    }
+    
 }
 
 html {
