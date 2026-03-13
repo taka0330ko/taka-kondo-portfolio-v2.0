@@ -12,7 +12,8 @@ import SassLogo from "../assets/images/projects/tastebuds/icons/sass-logo.svg"
 import Arrow from "../assets/images/icons/card-arrow.svg";
 import { Github, ArrowUpRight} from "@lucide/astro";
 import GlassPill from "../components/ui/GlassPill.astro";
-import MVPVideo from "../assets/images/projects/tastebuds/videos/mvp-record.mp4"
+import MVPVideo from "../assets/images/projects/tastebuds/videos/mvp-record.mp4";
+import MVPFolders from "../assets/images/projects/tastebuds/mvp-folders.png"
 
 export const tastebudsSections = [
   { label: "Overview", href: "#Overview" },
@@ -86,7 +87,7 @@ export const tastebudsSections = [
     </div>
 
     <!-- Homepage Screenshot -->
-       <div class="md:col-start-7 md:col-span-6 flex justify-center">
+       <div class="md:col-start-7 md:col-span-6 max-w-150 m-auto">
         <img 
         class="mask-b-from-70% mask-b-to-100%"
         src={Tastebuds_Website_Pic.src} 
@@ -107,10 +108,10 @@ export const tastebudsSections = [
         />
 
         </aside>
-        <div class="px-8 md:col-star-3 col-span-10">
+        <div class="px-8 md:col-start-3 col-span-10">
 
         <!-- Overview Section -->
-        <article id="Overview" class="h-screen">
+        <section id="Overview" class="h-screen">
                 <h2 class="text-3xl"><span class="heading-accent-bar">Overview</span></h2>
                 <p class="pt-32 text-xl">TASTEBUDS began as a social media marketing project with my classmates, 
                     <span class="text-accent text-2xl"> a food blog featuring restaurants and cafés in Vancouver.</span></p>
@@ -118,18 +119,19 @@ export const tastebudsSections = [
                     HTML, CSS (Sass), and vanilla JavaScript.</span> As development progressed, I wanted a more efficient workflow, 
                     which led me to learn <span class="text-accent text-xl">React and Next.js.</span>
                     I also redesigned the UI in Figma and rebuilt the project from the ground up.</p>
-        </article>
+        </section>
 
         <!-- MVP Section -->
-        <article id="MVP">
+        <section id="MVP">
                 <h2 class="text-3xl"><span class="heading-accent-bar">MVP</span></h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
                     <div class="col-span-1 flex flex-col justify-between">
                         <p class="pt-16 text-xl place-items-center">For the MVP, I first explored how to create a structure that allows posts to be added using JavaScript.
-                            Instead of manually adding more static HTML, I designed the system so that <span class="text-accent"> cards are generated from data using JavaScript.</span></p>
+                            Instead of manually dding more static HTML, I designed the system so that <span class="text-accent"> cards are generated from data using JavaScript.</span></p>
             
                     </div>
                     <div class="flex flex-col gap-4">
+                        <!-- MVP Live Site & GitHub -->
                         <div class="flex gap-4">
 
                                      <GlassPill
@@ -155,6 +157,7 @@ export const tastebudsSections = [
                                      </GlassPill>
 
                         </div>
+                        <!-- MVP Video -->
                         <div class="bg-card-gradient border border-frame-ring rounded-lg shadow-lg">
                             <video
                             class="p-4"
@@ -165,7 +168,7 @@ export const tastebudsSections = [
                             playsinline ></video>
                         </div>
                         
-
+                        <!-- MVP Stacks -->
                         <div class="flex justify-end items-center gap-2">
                             <HTMLLogo class="w-6 h-6"/>
                             <CssLogo class="w-6 h-6"/>
@@ -176,13 +179,13 @@ export const tastebudsSections = [
 
                 </div>
                 <!-- My approach -->
-                <div class="mt-32">
+                <section class="mt-32">
                     <h3 class="text-2xl">My approach</h3>
-                <p class="p-16 text-xl">Using Vanilla JavaScript and the &lt;template&gt; element, I built a reusable card component.</p>
+                <p class="py-16 text-xl">Using Vanilla JavaScript and the &lt;template&gt; element, I built a reusable card component.</p>
                 
                 <!-- Code Steps -->
-                    <div class="steps">
-                            <div class="step relative">
+                    <ol class="steps">
+                            <li class="step relative">
                                 <div class="timeline-number hidden md:flex ">
                                     <span>1</span>
                                 </div>
@@ -198,8 +201,8 @@ export const tastebudsSections = [
                                             />
                                         </div>
                                     </div>
-                            </div>
-                            <div class="step relative">
+                            </li>
+                            <li class="step relative">
                                 <div class="timeline-number hidden md:flex ">
                                     <span>2</span>
                                 </div>
@@ -215,8 +218,8 @@ export const tastebudsSections = [
                                             />
                                         </div>
                                     </div>
-                            </div>
-                            <div class="step">
+                            </li>
+                            <li class="step">
                                 <div class="timeline-number hidden md:flex ">
                                     <span>3</span>
                                 </div>
@@ -232,23 +235,43 @@ export const tastebudsSections = [
                                             />
                                         </div>
                                     </div>
-                            </div>
+                            </li>
                         
+                    </ol>
+
+                </section>
+                <!-- Code Steps end // -->
+            </section>
+            <!-- My approach end // -->
+
+            <section class="mt-32">
+                <h3 class="text-2xl">Learning and Challenges</h3>
+                <p class="py-16 text-xl">Through the MVP, I learned the basics of DOM manipulation, reusable UI design, and separating structure, data, and styles.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="col-start-1 my-auto">
+                        <p>At the same time, state management became complex, routing was hard to maintain, and the architecture didn’t scale well.</p>
+                        <p class="pt-8">This led me to rebuild the project with Next.js.</p>
+                    </div>
+                    <div class="bg-frame border border-frame-ring rounded-lg max-w-100 mx-auto">
+                        <img
+                        class="p-4 rounded-lg w-full"
+                        src={MVPFolders.src}
+                        alt="">
                     </div>
 
                 </div>
-
-            </article>
+            </section>
 
             <!-- Redevelopment Section -->
-            <article id="Redevelopment" class="h-screen mt-32">
+            <section id="Redevelopment" class="h-screen mt-32">
                 <h2 class="text-3xl"><span class="heading-accent-bar">Redevelopment</span></h2>
-            </article>
+            </section>
 
             <!-- Reflection Section -->
-            <article id="Reflection" class="h-screen mt-32">
+            <section id="Reflection" class="h-screen mt-32">
                 <h2 class="text-3xl"><span class="heading-accent-bar">Reflection</span></h2>
-            </article>
+            </section>
         </div>
     </div>
 </section>
