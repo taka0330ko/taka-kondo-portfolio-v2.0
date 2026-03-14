@@ -5,14 +5,18 @@ import CodeWindow from "../components/ui/CodeWindow.tsx";
 import { postsDataCode, templateTagCode, renderPostCode } from "../data/tastebudsCode.ts"
 import Tastebuds_Website_Pic from "../assets/images/projects/tastebuds/teast-buds-website.png";
 import Js_Icon from "../assets/images/projects/tastebuds/icons/js-logo.svg";
-import Next_Js_Icon from "../assets/images/projects/tastebuds/icons/nextjs-svgrepo-com.svg";
+import NextJsIcon from "../assets/images/projects/tastebuds/icons/nextjs-svgrepo-com.svg";
 import CssLogo from "../assets/images/projects/tastebuds/icons/css-3.svg";
 import HTMLLogo from "../assets/images/projects/tastebuds/icons/html-1.svg";
-import SassLogo from "../assets/images/projects/tastebuds/icons/sass-logo.svg"
+import SassLogo from "../assets/images/projects/tastebuds/icons/sass-logo.svg";
+import ReactLogo from "../assets/images/icons/stacks/reactjs-icon.svg";
+import TailwindLogo from "../assets/images/icons/stacks/tailwindcss-mark.svg"
+import SupabaseLogo from "../assets/images/icons/stacks/supabase-icon.svg";
 import Arrow from "../assets/images/icons/card-arrow.svg";
 import { Github, ArrowUpRight} from "@lucide/astro";
 import GlassPill from "../components/ui/GlassPill.astro";
 import MVPVideo from "../assets/images/projects/tastebuds/videos/mvp-record.mp4";
+import ReDevVideo from "../assets/images/projects/tastebuds/videos/redesign-record.mp4";
 import MVPFolders from "../assets/images/projects/tastebuds/mvp-folders.png"
 
 export const tastebudsSections = [
@@ -57,7 +61,7 @@ export const tastebudsSections = [
         class="flex items-end gap-8 lg:gap-12 p-16 justify-center">
             <Js_Icon class="w-24 h-24" aria-hidden="true" focusable="false"/>
             <Arrow  class="text-foreground w-14 h-14" aria-hidden="true" focusable="false"/>
-            <Next_Js_Icon class="w-24  h-24 text-foreground" aria-hidden="true" focusable="false"/>
+            <NextJsIcon class="w-24  h-24 text-foreground" aria-hidden="true" focusable="false"/>
         </div>
 
         <!-- link pills -->
@@ -266,6 +270,59 @@ export const tastebudsSections = [
             <!-- Redevelopment Section -->
             <section id="Redevelopment" class="h-screen mt-32">
                 <h2 class="text-3xl"><span class="heading-accent-bar">Redevelopment</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
+                    <div class="col-span-1 flex flex-col justify-between">
+                        <p class="pt-16 text-xl place-items-center">To improve the scalability of the project, I redesigned the application using <span class="text-accent">React and Next.js.</span> 
+                        </br>The UI was rebuilt as React components, allowing the interface to be generated declaratively from data.
+                        </br>I also introduced Next.js to better organize the page structure and implement routing for individual posts, resulting in a more <span class="text-accent"> maintainable and extensible architecture.</span></p>
+            
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <!-- MVP Live Site & GitHub -->
+                        <div class="flex gap-4">
+
+                                     <GlassPill
+                                     target="_blank" 
+                                     rel="noopener noreferrer"
+                                     aria-label="Open Tastebuds MVP live site in a new tab"
+                                     href="https://tastebuds-mbh7.vercel.app/"
+                                     >
+                                     <ArrowUpRight slot="after" aria-hidden="true" focusable="false"/>
+                                     Live Site
+                                     <span class="sr-only">(opens in a new tab)</span>
+                                     </GlassPill>
+
+                                     <GlassPill
+                                     target="_blank"
+                                     rel="noopener noreferrer"
+                                     aria-label="Open Tastebuds MVP GitHub repository in a new tab"
+                                     href="https://github.com/Taka0330-jp/Tastebuds.git"
+                                     >
+                                     <Github slot="after" aria-hidden="true" focusable="false"/>
+                                     GitHub
+                                     <span class="sr-only">(opens in a new tab)</span>
+                                     </GlassPill>
+
+                        </div>
+                        <!-- MVP Video -->
+                        <div class="bg-card-gradient border border-frame-ring rounded-lg shadow-lg">
+                            <video
+                            class="p-4"
+                            src={ReDevVideo}
+                            autoplay
+                            loop
+                            muted
+                            playsinline ></video>
+                        </div>
+                        
+                        <!-- MVP Stacks -->
+                        <div class="flex justify-end items-center gap-2">
+                            <ReactLogo class="w-6 h-6"/>
+                            <TailwindLogo class="w-6 h-6"/>
+                            <NextJsIcon class="w-6 h-6 text-foreground"/>
+                            <SupabaseLogo class="w-6 h-6"/>
+                        </div>
+                    </div>
             </section>
 
             <!-- Reflection Section -->
