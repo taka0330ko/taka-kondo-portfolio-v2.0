@@ -1,23 +1,38 @@
 ---
+// Layout
 import Layout from "../layouts/Layout.astro";
-import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
-import CodeWindow from "../components/ui/CodeWindow.tsx";
-import { postsDataCode, templateTagCode, renderPostCode } from "../data/tastebudsCode.ts"
-import Tastebuds_Website_Pic from "../assets/images/projects/tastebuds/teast-buds-website.png";
-import Js_Icon from "../assets/images/projects/tastebuds/icons/js-logo.svg";
-import NextJsIcon from "../assets/images/projects/tastebuds/icons/nextjs-svgrepo-com.svg";
-import CssLogo from "../assets/images/projects/tastebuds/icons/css-3.svg";
-import HTMLLogo from "../assets/images/projects/tastebuds/icons/html-1.svg";
-import SassLogo from "../assets/images/projects/tastebuds/icons/sass-logo.svg";
-import ReactLogo from "../assets/images/icons/stacks/reactjs-icon.svg";
-import TailwindLogo from "../assets/images/icons/stacks/tailwindcss-mark.svg"
-import SupabaseLogo from "../assets/images/icons/stacks/supabase-icon.svg";
+
+// Icons
 import Arrow from "../assets/images/icons/card-arrow.svg";
 import { Github, ArrowUpRight} from "@lucide/astro";
+
+// UI
+import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
+import CodeWindow from "../components/ui/CodeWindow.tsx";
+import { postsDataCode, templateTagCode, renderPostCode } from "../data/tastebudsCode.ts";
 import GlassPill from "../components/ui/GlassPill.astro";
+
+// Videos
 import MVPVideo from "../assets/images/projects/tastebuds/videos/mvp-record.mp4";
 import ReDevVideo from "../assets/images/projects/tastebuds/videos/redesign-record.mp4";
-import MVPFolders from "../assets/images/projects/tastebuds/mvp-folders.png"
+
+// Images
+import MVPFolders from "../assets/images/projects/tastebuds/mvp-folders.png";
+import Tastebuds_Website_Pic from "../assets/images/projects/tastebuds/teast-buds-website.png";
+
+
+// Stack Logo assets
+import {
+    CSS,
+    HTML,
+    JS,
+    NextJS,
+    ReactLogo,
+    SASS,
+    Supabase,
+    Tailwind
+} from "../data/icons.ts"
+
 
 export const tastebudsSections = [
   { label: "Overview", href: "#Overview" },
@@ -59,9 +74,9 @@ export const tastebudsSections = [
         role="img"
         aria-label="Technology transition from JavaScript to Next.js" 
         class="flex items-end gap-8 lg:gap-12 p-16 justify-center">
-            <Js_Icon class="w-24 h-24" aria-hidden="true" focusable="false"/>
+            <JS class="w-24 h-24" aria-hidden="true" focusable="false"/>
             <Arrow  class="text-foreground w-14 h-14" aria-hidden="true" focusable="false"/>
-            <NextJsIcon class="w-24  h-24 text-foreground" aria-hidden="true" focusable="false"/>
+            <NextJS class="w-24  h-24 text-foreground" aria-hidden="true" focusable="false"/>
         </div>
 
         <!-- link pills -->
@@ -174,10 +189,10 @@ export const tastebudsSections = [
                         
                         <!-- MVP Stacks -->
                         <div class="flex justify-end items-center gap-2">
-                            <HTMLLogo class="w-6 h-6"/>
-                            <CssLogo class="w-6 h-6"/>
-                            <SassLogo class="w-6 h-6"/>
-                            <Js_Icon class="w-6 h-6"/>
+                            <HTML class="w-6 h-6"/>
+                            <CSS class="w-6 h-6"/>
+                            <SASS class="w-6 h-6"/>
+                            <JS class="w-6 h-6"/>
                         </div>
                     </div>
 
@@ -318,9 +333,9 @@ export const tastebudsSections = [
                         <!-- MVP Stacks -->
                         <div class="flex justify-end items-center gap-2">
                             <ReactLogo class="w-6 h-6"/>
-                            <TailwindLogo class="w-6 h-6"/>
-                            <NextJsIcon class="w-6 h-6 text-foreground"/>
-                            <SupabaseLogo class="w-6 h-6"/>
+                            <Tailwind class="w-6 h-6"/>
+                            <NextJS class="w-6 h-6 text-foreground"/>
+                            <Supabase class="w-6 h-6"/>
                         </div>
                     </div>
             </section>
