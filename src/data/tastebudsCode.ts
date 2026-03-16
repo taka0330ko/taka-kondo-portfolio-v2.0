@@ -73,3 +73,30 @@ posts.forEach(post => {
 });
 
 `
+
+export const postDataType = `
+export type PostCard = {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string | null;
+  published_at: string | null;
+  cover_image_path: string | null;
+};
+`
+
+export const fetchData = `
+export async function getAllPosts(): Promise<PostCard[]> {
+  const { data, error } = await supabase
+    .from("posts")
+    .select("id, slug, title, excerpt, published_at, cover_image_path")
+    .order("published_at", { ascending: false });
+
+  if (error) {
+    console.error("Failed to fetch posts", error);
+    return [];
+  }
+
+  return data ?? [];
+}
+`

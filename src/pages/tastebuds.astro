@@ -9,7 +9,7 @@ import { Github, ArrowUpRight} from "@lucide/astro";
 // UI
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
 import CodeWindow from "../components/ui/CodeWindow.tsx";
-import { postsDataCode, templateTagCode, renderPostCode } from "../data/tastebudsCode.ts";
+import { postsDataCode, templateTagCode, renderPostCode, postDataType, fetchData } from "../data/tastebudsCode.ts";
 import GlassPill from "../components/ui/GlassPill.astro";
 
 // Videos
@@ -283,7 +283,7 @@ export const tastebudsSections = [
             </section>
 
             <!-- Redevelopment Section -->
-            <section id="Redevelopment" class="h-screen mt-32">
+            <section id="Redevelopment" class="mt-32">
                 <h2 class="text-3xl"><span class="heading-accent-bar">Redevelopment</span></h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
                     <div class="col-span-1 flex flex-col justify-between">
@@ -338,6 +338,52 @@ export const tastebudsSections = [
                             <Supabase class="w-6 h-6"/>
                         </div>
                     </div>
+            </section>
+            <section  class="mt-32">
+                <h3 class="text-xl">Structured Content Management</h3>
+                <p class="pt-16">In the MVP, blog content was stored as a front-end data array.
+While this worked for an early prototype, it required manual updates whenever a new post was added, which made content management less efficient as the project expanded.</p>
+                <p class="py-8">This led me to rethink how post data should be handled.
+To create a more scalable structure, I separated content from the application code and migrated post management to Supabase.
+This made the workflow easier to maintain and created a foundation that could later evolve into a CMS-like system.</p>
+<!-- Code Steps -->
+                    <ol class="steps mt-24">
+                            <li class="step relative">
+                                <div class="timeline-number hidden md:flex ">
+                                    <span>1</span>
+                                </div>
+                                    <div class="step-content">
+                                        <div class="step-title flex items-center gap-4 md:pt-2">
+                                            <span class="timeline-number md:hidden">1</span>
+                                            <h4>Design the post data structure</h4>
+                                        </div>
+                                        <div class="code-view pt-8 mb-8">
+                                            <CodeWindow
+                                            code={postDataType}
+                                            client:visible
+                                            />
+                                        </div>
+                                    </div>
+                            </li>
+                            <li class="step relative">
+                                <div class="timeline-number hidden md:flex ">
+                                    <span>2</span>
+                                </div>
+                                    <div class="step-content">
+                                        <div class="step-title flex items-center gap-4 md:pt-2">
+                                            <span class="timeline-number md:hidden">2</span>
+                                            <h4>Retrieve posts from Supabase</h4>
+                                        </div>
+                                        <div class="code-view pt-8 mb-8">
+                                            <CodeWindow
+                                            code={fetchData}
+                                            client:visible
+                                            />
+                                        </div>
+                                    </div>
+                            </li>
+                        
+                    </ol>
             </section>
 
             <!-- Reflection Section -->
