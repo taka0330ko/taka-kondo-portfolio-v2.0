@@ -1,5 +1,5 @@
-export const postsDataCode =`
-  export const posts = [
+export const postsDataCode =
+`  export const posts = [
   {
     img: "https://picsum.photos/200/300",
     imgAlt: "City night view",
@@ -31,8 +31,8 @@ export const postsDataCode =`
   },`
 
 
-export const templateTagCode = `
-    <template id="tpl-card">
+export const templateTagCode = 
+`    <template id="tpl-card">
         <article class="card">
             <figure>
                 <img class="tpl-img" src="" alt="">
@@ -51,11 +51,10 @@ export const templateTagCode = `
                 </div>
             </footer>
         </article>
-    </template>
-`
+    </template>`
 
-export const renderPostCode = `
-import {posts} from "/data.js";
+export const renderPostCode = 
+`import {posts} from "/data.js";
 
 posts.forEach(post => {
     const tplCard = document.getElementById("tpl-card");
@@ -70,23 +69,20 @@ posts.forEach(post => {
     content.querySelector(".tpl-url").href = post.url;
 
     document.body.appendChild(content)
-});
+});`
 
-`
-
-export const postDataType = `
-export type PostCard = {
+export const postDataType = 
+`export type PostCard = {
   id: string;
   slug: string;
   title: string;
   excerpt: string | null;
   published_at: string | null;
   cover_image_path: string | null;
-};
-`
+};`
 
-export const fetchData = `
-export async function getAllPosts(): Promise<PostCard[]> {
+export const fetchData = 
+`export async function getAllPosts(): Promise<PostCard[]> {
   const { data, error } = await supabase
     .from("posts")
     .select("id, slug, title, excerpt, published_at, cover_image_path")
@@ -98,5 +94,14 @@ export async function getAllPosts(): Promise<PostCard[]> {
   }
 
   return data ?? [];
-}
-`
+}`
+export const CardRenderA = 
+`{posts[0] && <CardL posts={posts[0]} />}
+{posts[1] && <CardM posts={posts[1]} />}
+{posts[2] && <CardM posts={posts[2]} />}
+{posts[3] && <CardM posts={posts[3]} />}`
+
+export const CardRenderB = 
+`{filteredPosts.map((post) => (
+  <CardM key={post.id} posts={post} />
+))}`
