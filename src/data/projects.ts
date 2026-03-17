@@ -10,7 +10,6 @@ type Project = {
   title: string;
   description: string;
   tag: string;
-  gridClass: string;
 };
 
 export const projects: Project[] = [
@@ -21,15 +20,13 @@ export const projects: Project[] = [
     description:
       "Food blog project documenting my JavaScript journey from a Vanilla JS MVP to React and Next.js.",
       tag:"Web dev",
-    gridClass: "col-start-1 col-end-7 row-start-1 row-end-2",
   },
   {
     href: "/billow",
     cover: BillowThumbnail,
-    title: "Billow ",
+    title: "Billow",
     description: "AI chat–based dashboard built with Next.js, focusing on conversational UI and chat interaction design.",
     tag:"Web dev",
-    gridClass: "col-start-7 col-end-13 row-start-1 row-end-2",
   },
   {
     href: "/nexfit",
@@ -37,7 +34,6 @@ export const projects: Project[] = [
     title: "Nexfit",
     description: "Fitness branding project.",
     tag:"UI/UX",
-    gridClass: "col-start-1 col-end-7 row-start-2 row-end-3",
   },
   {
     href: "/stone-and-honey",
@@ -45,6 +41,5 @@ export const projects: Project[] = [
     title: "Stone & Honey",
     description: "Butter nuts project",
     tag:"UI/UX",
-    gridClass: "col-start-7 col-end-13 row-start-2 row-end-3",
   },
 ]

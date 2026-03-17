@@ -13,10 +13,10 @@ type Props = {
 
 const {href, cover, title, description, tag } = Astro.props as Props
 ---
-<a href={href}>
+<a href={href} class="grid grid-rows-subgrid row-span-4 h-full">
     
-    <article class="grid grid-rows-subgrid row-span-3 bg-card-gradient backdrop-blur-lg rounded-lg border border-white/20 shadow-lg">
-            <figure class="relative row-start-1">
+    <article class="grid grid-rows-subgrid row-span-4 gap-0 h-full bg-card-gradient backdrop-blur-lg rounded-lg border border-white/20 shadow-lg ">
+            <figure class="relative ">
                 <img src={cover.src}
                 alt={title}
                 width={cover.width}
@@ -27,12 +27,10 @@ const {href, cover, title, description, tag } = Astro.props as Props
                 >{tag}</GlassPill>
                 </div>
             </figure>
-            <div class="flex flex-col gap-3 p-6 row-start-2">
-                <h3 class='text-heading-default text-2xl'>{title}</h3>
-                <p class='text-body-default font-g-sans'>{description}</p>
-                    <div class="flex justify-end">
-                        <Arrow class="text-foreground w-12 " />
-                    </div>
+            <h3 class='text-heading-default text-2xl p-4 '>{title}</h3>
+            <p class='text-body-default font-g-sans px-4 '>{description}</p>
+            <div class="flex justify-end px-6 pb-6 self-end">
+                <Arrow class="text-foreground w-12 " />
             </div>
      </article>
 </a>
