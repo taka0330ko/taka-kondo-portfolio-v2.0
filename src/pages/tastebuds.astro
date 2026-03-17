@@ -11,6 +11,7 @@ import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
 import CodeWindow from "../components/ui/CodeWindow.tsx";
 import { postsDataCode, templateTagCode, renderPostCode, postDataType, fetchData, CardRenderA, CardRenderB, Folders} from "../data/tastebudsCode.ts";
 import GlassPill from "../components/ui/GlassPill.astro";
+import Card from "../components/ui/Card.astro";
 
 // Videos
 import MVPVideo from "../assets/images/projects/tastebuds/videos/mvp-record.mp4";
@@ -22,6 +23,9 @@ import Tastebuds_Website_Pic from "../assets/images/projects/tastebuds/teast-bud
 import CardUI from "../assets/images/projects/tastebuds/card-ui.png";
 import PatternA from "../assets/images/projects/tastebuds/render-pattern-a.png";
 import PatternB from "../assets/images/projects/tastebuds/render-pattern-b.png";
+import CMSScreen from "../assets/images/projects/tastebuds/cms-screen.png";
+
+import { projects } from "../data/projects";
 
 
 
@@ -118,7 +122,7 @@ export const tastebudsSections = [
        </div>
     </div>
 </section>
-
+<!-- ====================== Case Study Start ====================== -->
 <section class="mt-32">
     <div class="flex flex-col lg:grid grid-cols-12">
         <aside 
@@ -136,9 +140,9 @@ export const tastebudsSections = [
         <!-- Overview Section -->
         <section id="Overview" class="h-screen">
                 <h2 class="text-3xl"><span class="heading-accent-bar">Overview</span></h2>
-                <p class="pt-32 text-xl">TASTEBUDS began as a social media marketing project with my classmates, 
-                    <span class="text-accent text-2xl"> a food blog featuring restaurants and cafés in Vancouver.</span></p>
-                <p class="pt-16">At first, I had not learned React yet, so I built the site using <span class="text-accent text-xl"> 
+                <p class="pt-32 text-lg">TASTEBUDS began as a social media marketing project with my classmates, 
+                    <span class="text-accent text-xl"> a food blog featuring restaurants and cafés in Vancouver.</span></p>
+                <p class="pt-16 text-xl">At first, I had not learned React yet, so I built the site using <span class="text-accent text-xl"> 
                     HTML, CSS (Sass), and vanilla JavaScript.</span> As development progressed, I wanted a more efficient workflow, 
                     which led me to learn <span class="text-accent text-xl">React and Next.js.</span>
                     I also redesigned the UI in Figma and rebuilt the project from the ground up.</p>
@@ -150,7 +154,7 @@ export const tastebudsSections = [
                 <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
                     <div class="col-span-1 flex flex-col justify-between">
                         <p class="pt-16 text-xl place-items-center">For the MVP, I first explored how to create a structure that allows posts to be added using JavaScript.
-                            Instead of manually dding more static HTML, I designed the system so that <span class="text-accent"> cards are generated from data using JavaScript.</span></p>
+                            Instead of manually doing more static HTML, I designed the system so that <span class="text-accent"> cards are generated from data using JavaScript.</span></p>
             
                     </div>
                     <div class="flex flex-col gap-4">
@@ -287,7 +291,7 @@ export const tastebudsSections = [
             </section>
 
             <!-- Redevelopment Section -->
-            <section id="Redevelopment" class="mt-32">
+        <section id="Redevelopment" class="mt-32">
                 <h2 class="text-3xl"><span class="heading-accent-bar">Redevelopment</span></h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
                     <div class="col-span-1 flex flex-col justify-between">
@@ -342,15 +346,16 @@ export const tastebudsSections = [
                             <Supabase class="w-6 h-6"/>
                         </div>
                     </div>
-            </section>
+                </div>
+
             <section  class="mt-32">
                 <h3 class="text-xl">Structured Content Management</h3>
                 <p class="pt-16">In the MVP, blog content was stored as a front-end data array.
-While this worked for an early prototype, it required manual updates whenever a new post was added, which made content management less efficient as the project expanded.</p>
+                                While this worked for an early prototype, it required manual updates whenever a new post was added, which made content management less efficient as the project expanded.</p>
                 <p class="py-8">This led me to rethink how post data should be handled.
-To create a more scalable structure, I separated content from the application code and migrated post management to Supabase.
-This made the workflow easier to maintain and created a foundation that could later evolve into a CMS-like system.</p>
-<!-- Code Steps -->
+                                To create a more scalable structure, I separated content from the application code and migrated post management to Supabase.
+                                This made the workflow easier to maintain and created a foundation that could later evolve into a CMS-like system.</p>
+                    <!-- Code Steps -->
                     <ol class="steps mt-24">
                             <li class="step relative">
                                 <div class="timeline-number hidden md:flex ">
@@ -391,9 +396,9 @@ This made the workflow easier to maintain and created a foundation that could la
                     <p>Based on this structured data, UI components can dynamically generate blog cards and article pages.</p>
             </section>
             <section class="mt-16">
+                
             <h3 class="text-xl">Rendering Architecture</h3>
-
- <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="col-start-1 my-auto">
                         <p>The UI was rebuilt using reusable React components.
                             Post data is passed into card components to generate article cards, creating a structure that can easily scale as more content is added.</p>
@@ -404,10 +409,9 @@ This made the workflow easier to maintain and created a foundation that could la
                         src={CardUI.src}
                         alt="">
                     </div>
-
                 </div>
-<!-- Code Views -->
-<ol class="steps mt-24">
+                    <!-- Code Views -->
+                    <ol class="steps mt-24">
                         <!-- PatternA -->
                             <li class="">
                                             <div class="flex flex-col py-16">
@@ -453,25 +457,61 @@ This made the workflow easier to maintain and created a foundation that could la
                     </ol>
             </section>
             <section>
-                <h3 class="text-xl py-12">Dynamic Routing</h3>
-                <h4 class="py-8">Problem</h4>
+                <h3 class=" py-12">Dynamic Routing</h3>
+                <h4 class="py-8 ">Problem</h4>
                 <p>In the MVP, each article was managed as a separate page, making the structure difficult to scale as content grew.</p>
-                <h4 class="py-8">Solution</h4>
+                <h4 class="py-8 ">Solution</h4>
                 <p>I implemented Next.js Dynamic Routing using the /blog/[slug] route structure, allowing pages to be generated from a single shared template.</p>
                 <div class="py-16">
                     <CodeWindow
                     code={Folders}
                     client:visible/>
                 </div>
-                <h4 class="py-8">Result</h4>
+                <h4 class="py-8 ">Result</h4>
                 <p>By fetching content based on the slug, new articles can be added without creating new pages, improving scalability and maintainability.</p>
             </section>
-
+        </section>
             <!-- Reflection Section -->
-            <section id="Reflection" class="h-screen mt-32">
+            <section id="Reflection" class="mt-32">
                 <h2 class="text-3xl"><span class="heading-accent-bar">Reflection</span></h2>
+                <div class="py-8">
+                    <h3 class="">Learning Through Iteration</h3>
+                    <p class="pt-4">Through this project, I started from the fundamentals of JavaScript and continuously explored better ways to build features. I iterated through researching, experimenting, and refining my approach, and found the process of trial and error itself both engaging and rewarding as my understanding gradually deepened.</p>
+                </div>
+                <div class="py-8 flex flex-col md:grid grid-cols-5 gap-4">
+                    <div class="col-start-1 col-span-2 my-auto">
+                        <h3 class="">Understanding the Limits of AI-Assisted Development</h3>
+                        <p class="pt-4">I also experimented with building admin and CMS-like features using AI. However, this experience made me realize that being able to implement functionality is not the same as fully understanding the underlying architecture. In parts of the CMS, multiple features ended up being combined into a single component, which made the structure harder to maintain and scale. This highlighted the importance of component design and separation of concerns.</p>
+                    </div>
+                    <div class="col-start-3 col-span-3 bg-frame border border-frame-ring rounded-lg max-w-120 mx-auto">
+                        <img src={CMSScreen.src} alt="" class="p-4">
+                    </div>
+                </div>
+                <div class="py-8">
+                    <h3 class="">Moving Forward</h3>
+                    <p class="pt-4">Moving forward, I aim to deepen my understanding of architecture while using AI more intentionally, with the goal of building more scalable and maintainable systems.</p>
+                </div>
             </section>
         </div>
+    </div>
+</section>
+<!-- Other Projects -->
+<section class="p-4 md:p-16">
+    <h2 class="text-center p-16">Other Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-4 max-w-400 mx-auto">
+        {projects.filter((project) =>
+        project.href !== "/tastebuds"
+        && project.href !== "/stone-and-honey")
+        .map((project) => {
+        return(
+                  <Card
+                  href={project.href}
+                  cover={project.cover}
+                  title={project.title}
+                  description={project.description}
+                  tag={project.tag}          />
+        )
+        })}
     </div>
 </section>
     </main>

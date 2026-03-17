@@ -208,9 +208,23 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
+h2 {
+  @apply text-2xl
+}
+
+h3{
+  @apply text-xl
+}
+
+h4 {
+  @apply text-lg
+}
+
 p {
   text-wrap: pretty;
   font-family: var(--font-body);
+  line-height: 1.5;
+  @apply text-base
 }
 
 img,
