@@ -9,7 +9,7 @@ import { Github, ArrowUpRight} from "@lucide/astro";
 // UI
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
 import CodeWindow from "../components/ui/CodeWindow.tsx";
-import { postsDataCode, templateTagCode, renderPostCode, postDataType, fetchData, CardRenderA, CardRenderB } from "../data/tastebudsCode.ts";
+import { postsDataCode, templateTagCode, renderPostCode, postDataType, fetchData, CardRenderA, CardRenderB, Folders} from "../data/tastebudsCode.ts";
 import GlassPill from "../components/ui/GlassPill.astro";
 
 // Videos
@@ -451,6 +451,20 @@ This made the workflow easier to maintain and created a foundation that could la
                             </li>
                         
                     </ol>
+            </section>
+            <section>
+                <h3 class="text-xl py-12">Dynamic Routing</h3>
+                <h4 class="py-8">Problem</h4>
+                <p>In the MVP, each article was managed as a separate page, making the structure difficult to scale as content grew.</p>
+                <h4 class="py-8">Solution</h4>
+                <p>I implemented Next.js Dynamic Routing using the /blog/[slug] route structure, allowing pages to be generated from a single shared template.</p>
+                <div class="py-16">
+                    <CodeWindow
+                    code={Folders}
+                    client:visible/>
+                </div>
+                <h4 class="py-8">Result</h4>
+                <p>By fetching content based on the slug, new articles can be added without creating new pages, improving scalability and maintainability.</p>
             </section>
 
             <!-- Reflection Section -->

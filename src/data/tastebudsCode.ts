@@ -105,3 +105,19 @@ export const CardRenderB =
 `{filteredPosts.map((post) => (
   <CardM key={post.id} posts={post} />
 ))}`
+
+export const Folders = 
+`// Static pages (MVP)          // Dynamic routing
+pages/                          app/
+  └── posts/                     └── blog/
+      ├── post-1/                    └── [slug]/
+      │     └── index.html             └── page.tsx
+      ├── post-2/                         
+      │     └── index.html        
+      ├── post-3/                                   
+      │     └── index.html
+      .
+      .
+      . `
+
+              
