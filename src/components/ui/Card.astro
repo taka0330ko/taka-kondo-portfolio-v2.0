@@ -13,9 +13,11 @@ type Props = {
 
 const {href, cover, title, description, tag } = Astro.props as Props
 ---
-<a href={href} class="grid grid-rows-subgrid row-span-4 h-full">
+<a href={href} class="grid grid-rows-subgrid row-span-4 h-full group">
     
-    <article class="grid grid-rows-subgrid row-span-4 gap-0 h-full bg-card-gradient backdrop-blur-lg rounded-lg border border-white/20 shadow-lg ">
+    <article class="grid grid-rows-subgrid row-span-4 gap-0 h-full bg-card-gradient backdrop-blur-lg 
+                    rounded-lg border border-white/20 shadow-lg mouse-track-card content transition duration-300 group-hover:scale-101">
+        <div class="glow-effect"></div>
             <figure class="relative ">
                 <img src={cover.src}
                 alt={title}
@@ -30,7 +32,68 @@ const {href, cover, title, description, tag } = Astro.props as Props
             <h3 class='text-heading-default text-2xl p-4 '>{title}</h3>
             <p class='text-body-default font-g-sans px-4 '>{description}</p>
             <div class="flex justify-end px-6 pb-6 self-end">
-                <Arrow class="text-foreground w-12 " />
+                <Arrow class="text-foreground w-16" />
             </div>
      </article>
 </a>
+
+<style>
+  .mouse-track-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glow-effect {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle 250px at var(--x, 0px) var(--y, 0px),
+      var(--five-lines),
+      transparent 80%
+    );
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .mouse-track-card:hover .glow-effect {
+    opacity: 1;
+  }
+
+  .content { position: relative; z-index: 10; }
+
+:global(.arrow-base),
+:global(.arrow-head) {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 0.4s ease;
+}
+.group:hover :global(.arrow-base) {
+  stroke-dashoffset: 0;
+}
+
+.group:hover :global(.arrow-head) {
+  stroke-dashoffset: 0;
+  transition-delay: 0.2s;
+}
+</style>
+
+<script>
+    function trackingHover(){
+  const cards = document.querySelectorAll<HTMLElement>('.mouse-track-card');
+  
+  cards.forEach((card) => {
+    card.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      // Update CSS Variables
+      card.style.setProperty('--x', `${x}px`);
+      card.style.setProperty('--y', `${y}px`);
+    });
+  });}
+document.addEventListener("astro:page-load", trackingHover);
+trackingHover();
+
+</script>
