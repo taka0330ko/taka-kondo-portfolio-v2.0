@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 
 // Icons
 import Arrow from "../assets/images/icons/card-arrow.svg";
-import { Github, ArrowUpRight} from "@lucide/astro";
+import { Github, ArrowUpRight, ChevronRight} from "@lucide/astro";
 
 // UI
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
@@ -81,9 +81,9 @@ export const tastebudsSections = [
         <div 
         role="img"
         aria-label="Technology transition from JavaScript to Next.js" 
-        class="flex items-end gap-8 lg:gap-12 p-16 justify-center">
+        class="flex items-center gap-8 lg:gap-12 p-16 justify-center">
             <JS class="w-24 h-24" aria-hidden="true" focusable="false"/>
-            <Arrow  class="text-foreground w-14 h-14" aria-hidden="true" focusable="false"/>
+            <ChevronRight  class="text-foreground w-14 h-14" aria-hidden="true" focusable="false"/>
             <NextJS class="w-24  h-24 text-foreground" aria-hidden="true" focusable="false"/>
         </div>
 

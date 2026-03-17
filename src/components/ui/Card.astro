@@ -62,14 +62,21 @@ const {href, cover, title, description, tag } = Astro.props as Props
 
   .content { position: relative; z-index: 10; }
 
-:global(.arrow-base),
+:global(.arrow-base) {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 0.4s ease 0.3s;
+}
+
 :global(.arrow-head) {
   stroke-dasharray: 100;
   stroke-dashoffset: 100;
-  transition: stroke-dashoffset 0.4s ease;
+  transition: stroke-dashoffset 0.4s ease 0s;
 }
+
 .group:hover :global(.arrow-base) {
   stroke-dashoffset: 0;
+  transition-delay: 0s;
 }
 
 .group:hover :global(.arrow-head) {
