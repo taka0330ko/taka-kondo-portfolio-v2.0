@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
-/* Fonts */
+
+/* ========================================
+   Fonts
+======================================== */
 @font-face{
   font-family: "Satoshi";
   src: url("../assets/fonts/Satoshi-Variable.woff2") format("woff2");
@@ -15,6 +18,10 @@
   font-display: swap;
 }
 
+
+/* ========================================
+   Design Tokens
+======================================== */
 :root {
 
   --font-satoshi: "Satoshi";
@@ -94,10 +101,11 @@
   --frame-bg-color:var(--brand-gray-50);
 }
 
+/* ========================================
+   Tailwind Theme Mapping
+======================================== */
+
 @theme inline {
-
-/* =================== Tailwind Theme ===================*/
-
   --color-background:var(--bg-default);
   --color-heading-default:var(--text-heading-default);
   --color-body-default:var(--text-body-default);
@@ -113,6 +121,149 @@
   --font-body: var(--font-general-sans);
 }
 
+/* ========================================
+   Base Layer
+======================================== */
+
+
+@layer base {
+
+    /* Document */
+  html {
+    scroll-padding-top: 6rem;
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background-color: var(--bg-default);
+    color: var(--text-body-default);
+    font-family: var(--font-satoshi), sans-serif;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+  }
+
+    /* Reset */
+
+  h1, h2, h3, h4, h5, h6,
+  p,
+  figure,
+  blockquote {
+    margin: 0;
+  }
+
+    /* Typography */
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-heading-default);
+    line-height: 1.1;
+    text-wrap: balance;
+    font-family: var(--font-heading);
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  h4 {
+    @apply text-lg;
+  }
+
+  p {
+    text-wrap: pretty;
+    font-family: var(--font-body);
+    line-height: 1.5;
+    @apply text-base;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+}
+
+/* ========================================
+   Components Layer
+======================================== */
+
+@layer components {
+  /* Icon */
+.icon-link-hover {
+  /* layout + visual + state + pseudo */
+  @apply relative flex size-12 items-center justify-center overflow-hidden rounded-full
+         text-heading-default transition-colors duration-300
+         hover:text-accent focus-visible:text-black
+         after:absolute after:inset-0 after:-translate-y-full after:content-['']
+         after:bg-linear-to-br after:from-white/30 after:to-white/0
+         after:backdrop-blur-lg after:transition-transform after:duration-300
+         group-hover:after:translate-y-0;
+}
+
+.icon-tooltip {
+  /* tooltip positioning + appearance + animation */
+  @apply pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 whitespace-nowrap
+         rounded bg-linear-to-br from-white/30 to-white/0 backdrop-blur-lg
+         border border-white/20 shadow-lg px-2 py-1 text-xs text-accent
+         opacity-0 transition-all duration-400 ease-[cubic-bezier(0.47,2,0.41,1.5)]
+         group-hover:translate-y-1 group-hover:opacity-100;
+}
+  
+  /* Heading on project pages */
+.heading-accent-bar {
+    /* heading with left accent bar */
+    @apply relative inline-block pl-3
+           before:absolute before:left-0 before:top-0
+           before:w-1 before:h-full before:bg-accent;
+}
+
+/* Timeline on project pages */
+.timeline-number{
+  @apply flex items-center justify-center left-0
+          w-8 h-8 rounded-full  border border-frame-ring
+          bg-frame text-sm font-medium
+  }
+
+.step {
+    @apply grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-[3rem_minmax(0,1fr)]
+  }
+
+.step::after {
+  content: "";
+  @apply hidden md:block absolute h-full border border-frame-ring w-0.5 -z-10 left-4
+
+}
+.step:last-child::after {
+  content: none;
+}
+
+}
+
+/* ========================================
+   Utilities Layer
+======================================== */
 
 @layer utilities {
   .grid-container{
@@ -128,123 +279,8 @@
     from { opacity: 1}
     to {opacity: 0.2;}
   }
-
   .animation-lines-pulse {
     animation: lines-pulse 6s ease-in-out infinite alternate;
   }
 }
-
-@layer components {
-  .icon-link-hover{
-   @apply relative flex size-12 items-center justify-center overflow-hidden rounded-full text-heading-default 
-          transition-colors duration-300 hover:text-accent focus-visible:text-black after:absolute after:inset-0 
-          after:-translate-y-full after:content-[''] after:bg-linear-to-br after:from-white/30 after:to-white/0 
-          after:backdrop-blur-lg after:transition-transform 
-          after:duration-300
-          group-hover:after:translate-y-0
-  }
-    .icon-tooltip {
-    @apply pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 
-    whitespace-nowrap rounded bg-linear-to-br from-white/30 to-white/0 backdrop-blur-lg 
-    border border-white/20 shadow-lg px-2 py-1 text-xs text-accent opacity-0 transition-all 
-    duration-400 ease-[cubic-bezier(0.47,2,0.41,1.5)] group-hover:translate-y-1 group-hover:opacity-100}
-  
-    .heading-accent-bar{
-      @apply relative inline-block pl-3 before:absolute before:left-0 before:top-0  
-             before:w-1 before:h-full before:bg-accent
-    }
-    .timeline-number{
-      @apply flex items-center justify-center left-0
-              w-8 h-8 rounded-full  border border-frame-ring
-              bg-frame text-sm font-medium
-      }
-      
-    .step {
-        @apply grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-[3rem_minmax(0,1fr)]
-      }
-    .step::after {
-      content: "";
-      @apply hidden md:block absolute h-full border border-frame-ring w-0.5 -z-10 left-4
-
-    }
-    .step:last-child::after {
-      content: none;
-
-    }
-
-
-    
-}
-
-html {
-    scroll-padding-top: 6rem;
-    color-scheme: dark;
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-}
-
-body{
-    margin: 0;
-    min-width: 320px;
-    min-height: 100vh;
-    background-color: var(--bg-default);
-    color: var(--text-body-default);
-    font-family: var(--font-satoshi), sans-serif;
-    line-height: 1.5;
-    text-rendering: optimizeLegibility;
-}
-
-h1, h2, h3, h4, h5, h6,
-p,
-figure,
-blockquote {
-  margin: 0;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: var(--text-heading-default);
-  line-height: 1.1;
-  text-wrap: balance;
-  font-family: var(--font-heading);
-}
-
-h2 {
-  @apply text-2xl
-}
-
-h3{
-  @apply text-xl
-}
-
-h4 {
-  @apply text-lg
-}
-
-p {
-  text-wrap: pretty;
-  font-family: var(--font-body);
-  line-height: 1.5;
-  @apply text-base
-}
-
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
-a {
-  text-decoration: none;
-}
-
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
-
 
