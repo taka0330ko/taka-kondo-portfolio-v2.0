@@ -119,6 +119,22 @@
   /* Font */
   --font-heading: var(--font-satoshi);
   --font-body: var(--font-general-sans);
+
+  /* type tokens */
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.2rem;
+  --text-caption--letter-spacing: 0.02em;
+
+  --text-title: 1.5rem;
+  --text-title--line-height: 1.4;
+
+  --text-display: clamp(1.75rem, 3vw, 2.5rem);
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.02em;
+
+  --text-hero: clamp(2.5rem, 5vw, 3.75rem);
+  --text-hero--line-height: 1;
+  --text-hero--letter-spacing: -0.03em;
 }
 
 /* ========================================
@@ -161,16 +177,19 @@
   h1, h2, h3, h4, h5, h6 {
     color: var(--text-heading-default);
     line-height: 1.1;
-    text-wrap: balance;
+    /* text-wrap: balance; */
     font-family: var(--font-heading);
+  }
+  h1{
+    @apply text-hero ;
   }
 
   h2 {
-    @apply text-2xl;
+    @apply text-display;
   }
 
   h3 {
-    @apply text-xl;
+    @apply text-title;
   }
 
   h4 {

@@ -29,9 +29,9 @@ const {href, cover, title, description, tag } = Astro.props as Props
                 >{tag}</GlassPill>
                 </div>
             </figure>
-            <h3 class='text-heading-default text-2xl p-4 '>{title}</h3>
-            <p class='text-body-default font-g-sans px-4 '>{description}</p>
-            <div class="flex justify-end px-6 pb-6 self-end">
+            <h3 class='p-4'>{title}</h3>
+            <p class='px-4'>{description}</p>
+            <div class="flex justify-end px-6 pb-6 transition-all duration-300 self-end opacity-0 group-hover:translate-x-1 group-hover:opacity-100">
                 <Arrow class="text-foreground w-16" />
             </div>
      </article>
@@ -61,28 +61,6 @@ const {href, cover, title, description, tag } = Astro.props as Props
   }
 
   .content { position: relative; z-index: 10; }
-
-:global(.arrow-base) {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  transition: stroke-dashoffset 0.4s ease 0.3s;
-}
-
-:global(.arrow-head) {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  transition: stroke-dashoffset 0.4s ease 0s;
-}
-
-.group:hover :global(.arrow-base) {
-  stroke-dashoffset: 0;
-  transition-delay: 0s;
-}
-
-.group:hover :global(.arrow-head) {
-  stroke-dashoffset: 0;
-  transition-delay: 0.2s;
-}
 </style>
 
 <script>
