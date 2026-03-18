@@ -138,7 +138,7 @@ export const tastebudsSections = [
         <div class="px-8 md:col-start-3 col-span-10">
 
         <!-- Overview Section -->
-        <section id="Overview" class="h-screen">
+        <section id="Overview">
                 <h2 class="text-3xl"><span class="heading-accent-bar">Overview</span></h2>
                 <p class="pt-32 text-lg">TASTEBUDS began as a social media marketing project with my classmates, 
                     <span class="text-accent text-xl"> a food blog featuring restaurants and cafés in Vancouver.</span></p>
@@ -149,14 +149,14 @@ export const tastebudsSections = [
         </section>
 
         <!-- MVP Section -->
-        <section id="MVP">
-                <h2 class="text-3xl"><span class="heading-accent-bar">MVP</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
-                    <div class="col-span-1 flex flex-col justify-between">
-                        <p class="pt-16 text-xl place-items-center">For the MVP, I first explored how to create a structure that allows posts to be added using JavaScript.
-                            Instead of manually doing more static HTML, I designed the system so that <span class="text-accent"> cards are generated from data using JavaScript.</span></p>
-            
-                    </div>
+        <section id="MVP" >
+                <section id="MVP-intro" class="mt-64">
+                    <h2 class="text-3xl"><span class="heading-accent-bar">MVP</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
+                        <div class="col-span-1 flex flex-col justify-between">
+                            <p class="pt-16 text-xl place-items-center">For the MVP, I first explored how to create a structure that allows posts to be added using JavaScript.
+                                Instead of manually doing more static HTML, I designed the system so that <span class="text-accent"> cards are generated from data using JavaScript.</span></p>
+                        </div>
                     <div class="flex flex-col gap-4">
                         <!-- MVP Live Site & GitHub -->
                         <div class="flex gap-4">
@@ -205,8 +205,9 @@ export const tastebudsSections = [
                     </div>
 
                 </div>
+                </section>
                 <!-- My approach -->
-                <section class="mt-32">
+                <section id="my-approach" class="mt-64">
                     <h3 class="text-2xl">My approach</h3>
                 <p class="py-16 text-xl">Using Vanilla JavaScript and the &lt;template&gt; element, I built a reusable card component.</p>
                 
@@ -271,7 +272,7 @@ export const tastebudsSections = [
             </section>
             <!-- My approach end // -->
 
-            <section class="mt-32">
+            <section id="learning" class="mt-64">
                 <h3 class="text-2xl">Learning and Challenges</h3>
                 <p class="py-16 text-xl">Through the MVP, I learned the basics of DOM manipulation, reusable UI design, and separating structure, data, and styles.</p>
 
@@ -291,64 +292,62 @@ export const tastebudsSections = [
             </section>
 
             <!-- Redevelopment Section -->
-        <section id="Redevelopment" class="mt-32">
-                <h2 class="text-3xl"><span class="heading-accent-bar">Redevelopment</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
-                    <div class="col-span-1 flex flex-col justify-between">
-                        <p class="pt-16 text-xl place-items-center">To improve the scalability of the project, I redesigned the application using <span class="text-accent">React and Next.js.</span> 
-                        </br>The UI was rebuilt as React components, allowing the interface to be generated declaratively from data.
-                        </br>I also introduced Next.js to better organize the page structure and implement routing for individual posts, resulting in a more <span class="text-accent"> maintainable and extensible architecture.</span></p>
-            
-                    </div>
-                    <div class="flex flex-col gap-4">
-                        <!-- MVP Live Site & GitHub -->
-                        <div class="flex gap-4">
-
-                                     <GlassPill
-                                     target="_blank" 
-                                     rel="noopener noreferrer"
-                                     aria-label="Open Tastebuds MVP live site in a new tab"
-                                     href="https://tastebuds-mbh7.vercel.app/"
-                                     >
-                                     <ArrowUpRight slot="after" aria-hidden="true" focusable="false"/>
-                                     Live Site
-                                     <span class="sr-only">(opens in a new tab)</span>
-                                     </GlassPill>
-
-                                     <GlassPill
-                                     target="_blank"
-                                     rel="noopener noreferrer"
-                                     aria-label="Open Tastebuds MVP GitHub repository in a new tab"
-                                     href="https://github.com/Taka0330-jp/Tastebuds.git"
-                                     >
-                                     <Github slot="after" aria-hidden="true" focusable="false"/>
-                                     GitHub
-                                     <span class="sr-only">(opens in a new tab)</span>
-                                     </GlassPill>
-
+        <section id="Redevelopment" class="mt-64">
+                <section id="redevelopment-intro">
+                    <h2 class="text-3xl"><span class="heading-accent-bar">Redevelopment</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
+                        <div class="col-span-1 flex flex-col justify-between">
+                            <p class="pt-16 text-xl place-items-center">To improve the scalability of the project, I redesigned the application using <span class="text-accent">React and Next.js.</span>
+                            </br>The UI was rebuilt as React components, allowing the interface to be generated declaratively from data.
+                            </br>I also introduced Next.js to better organize the page structure and implement routing for individual posts, resulting in a more <span class="text-accent"> maintainable and extensible architecture.</span></p>
                         </div>
-                        <!-- MVP Video -->
-                        <div class="bg-card-gradient border border-frame-ring rounded-lg shadow-lg">
-                            <video
-                            class="p-4"
-                            src={ReDevVideo}
-                            autoplay
-                            loop
-                            muted
-                            playsinline ></video>
-                        </div>
-                        
-                        <!-- MVP Stacks -->
-                        <div class="flex justify-end items-center gap-2">
-                            <ReactLogo class="w-6 h-6"/>
-                            <Tailwind class="w-6 h-6"/>
-                            <NextJS class="w-6 h-6 text-foreground"/>
-                            <Supabase class="w-6 h-6"/>
+                        <div class="flex flex-col gap-4">
+                            <!-- MVP Live Site & GitHub -->
+                            <div class="flex gap-4">
+                                         <GlassPill
+                                         target="_blank"
+                                         rel="noopener noreferrer"
+                                         aria-label="Open Tastebuds MVP live site in a new tab"
+                                         href="https://tastebuds-mbh7.vercel.app/"
+                                         >
+                                         <ArrowUpRight slot="after" aria-hidden="true" focusable="false"/>
+                                         Live Site
+                                         <span class="sr-only">(opens in a new tab)</span>
+                                         </GlassPill>
+                                         <GlassPill
+                                         target="_blank"
+                                         rel="noopener noreferrer"
+                                         aria-label="Open Tastebuds MVP GitHub repository in a new tab"
+                                         href="https://github.com/Taka0330-jp/Tastebuds.git"
+                                         >
+                                         <Github slot="after" aria-hidden="true" focusable="false"/>
+                                         GitHub
+                                         <span class="sr-only">(opens in a new tab)</span>
+                                         </GlassPill>
+                            </div>
+                            <!-- MVP Video -->
+                            <div class="bg-card-gradient border border-frame-ring rounded-lg shadow-lg">
+                                <video
+                                class="p-4"
+                                src={ReDevVideo}
+                                autoplay
+                                loop
+                                muted
+                                playsinline ></video>
+                            </div>
+                    
+                            <!-- MVP Stacks -->
+                            <div class="flex justify-end items-center gap-2">
+                                <ReactLogo class="w-6 h-6"/>
+                                <Tailwind class="w-6 h-6"/>
+                                <NextJS class="w-6 h-6 text-foreground"/>
+                                <Supabase class="w-6 h-6"/>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
-            <section  class="mt-32">
+            <section id="structured-content-management" class="mt-64">
                 <h3 class="text-xl">Structured Content Management</h3>
                 <p class="pt-16">In the MVP, blog content was stored as a front-end data array.
                                 While this worked for an early prototype, it required manual updates whenever a new post was added, which made content management less efficient as the project expanded.</p>
@@ -395,7 +394,7 @@ export const tastebudsSections = [
                     </ol>
                     <p>Based on this structured data, UI components can dynamically generate blog cards and article pages.</p>
             </section>
-            <section class="mt-16">
+            <section id="rendering" class="mt-64">
                 
             <h3 class="text-xl">Rendering Architecture</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -456,7 +455,7 @@ export const tastebudsSections = [
                         
                     </ol>
             </section>
-            <section>
+            <section id="dynamic-routing" class="mt-48">
                 <h3 class=" py-12">Dynamic Routing</h3>
                 <h4 class="py-8 ">Problem</h4>
                 <p>In the MVP, each article was managed as a separate page, making the structure difficult to scale as content grew.</p>
@@ -472,7 +471,7 @@ export const tastebudsSections = [
             </section>
         </section>
             <!-- Reflection Section -->
-            <section id="Reflection" class="mt-32">
+            <section id="Reflection" class="mt-48">
                 <h2 class="text-3xl"><span class="heading-accent-bar">Reflection</span></h2>
                 <div class="py-8">
                     <h3 class="">Learning Through Iteration</h3>
@@ -528,21 +527,84 @@ export const tastebudsSections = [
     import { ScrollTrigger } from "gsap/ScrollTrigger"
     gsap.registerPlugin(ScrollTrigger)
 
-    document.addEventListener("astro:page-load", ()=>{
-gsap.fromTo(
-  "#case-study-sidebar",
-  { x: -40, opacity: 0 },
-  {
-    x: 0,
-    opacity: 1,
-    duration: 0.6,
-    scrollTrigger: {
-      trigger: "#hero",
-      start: "bottom 30%",
-      toggleActions: "play none none reverse",
-    }
-  }
-)
+    document.addEventListener("astro:page-load", () => {
+
+        const refresh = () => requestAnimationFrame(()=> ScrollTrigger.refresh())
+
+      const fadeUp = (target: string, trigger:string, start = "top 70%") => {
+        
+        gsap.fromTo(
+          target,
+          {
+            y: 56,
+            opacity: 0,
+            scale: 0.98,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger,
+              start,
+              toggleActions: "play none none reverse",
+              invalidateOnRefresh: true,
+            },
+          }
+        )
+      }
+
+      gsap.fromTo(
+        "#case-study-sidebar",
+        { x: -32, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "#hero",
+            start: "bottom 30%",
+            toggleActions: "play none none reverse",
+            invalidateOnRefresh: true,
+          }
+        }
+      )
+
+      fadeUp("#Overview", "#Overview");
+      fadeUp("#MVP-intro", "#MVP-intro");
+      fadeUp("#my-approach", "#my-approach");
+      fadeUp("#learning", "#learning");
+      fadeUp("#redevelopment-intro", "#redevelopment-intro");
+      fadeUp("#structured-content-management", "#structured-content-management");
+      fadeUp("#rendering", "#rendering");
+      fadeUp("#dynamic-routing", "#dynamic-routing");
+      fadeUp("#Reflection", "#Reflection");
+
+    // requestAnimationFrame(() => ScrollTrigger.refresh());
+    // setTimeout(() => ScrollTrigger.refresh(), 300);
+    refresh()
+    setTimeout(refresh, 300)
+
+    const resizeObserver = new ResizeObserver(()=>{
+        refresh()
+    })
+
+    //get code view element for observing 
+    document.querySelectorAll(".code-view").forEach((el)=> {
+        resizeObserver.observe(el)
+    })
+
+    // "astro:before-swap" -> because of Astro View Transitions, need to cleanup before moving other page 
+    document.addEventListener(
+        "astro:before-swap",
+        ()=> {
+            //resizeObserver.disconnect() -> cleanup observer
+            resizeObserver.disconnect()
+        },{ once: true }
+    )
 
     })
 </script>

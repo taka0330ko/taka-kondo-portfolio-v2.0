@@ -78,5 +78,5 @@ document.addEventListener("astro:page-load",()=>{
 
 document.addEventListener("astro:before-swap", ()=>{
     observer?.disconnect()
-})
+},{ once: true })
 </script>
