@@ -14,7 +14,7 @@ const isProjectsPage = ["/", "/tastebuds", "/billow", "/nexfit", "/stone-and-hon
         </a>
           <div class='flex gap-4 md:gap-16 lg:gap-32 items-center'>
               <div class='flex gap-8 md:gap-16'>
-                <a href="/#projects" class={`flex items-center gap-2 ${isProjectsPage ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${isProjectsPage ? 'bg-accent' : 'invisible'}`}></span>Projects</a>
+                <a href="/#projects" data-astro-reload class={`flex items-center gap-2 ${isProjectsPage ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${isProjectsPage ? 'bg-accent' : 'invisible'}`}></span>Projects</a>
                 <a href="/about" class={`flex items-center gap-2 ${isAboutPage ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${isAboutPage ? 'bg-accent' : 'invisible'}`}></span>About</a>
               </div>
               <ThemeToggle />

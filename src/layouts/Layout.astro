@@ -38,4 +38,28 @@ import { ClientRouter } from "astro:transitions";
 	</body>
 </html>
 
+<!-- <script>
+	const scrollToHash = () => {
+		const hash = window.location.hash;
+		if(!hash) return;
+
+		const runScroll = () => {
+			const target = document.querySelector(hash);
+			if(!target) return;
+
+			target.scrollIntoView({
+				behavior:"auto",
+				block:"start"
+			});
+		};
+
+		requestAnimationFrame(() => {
+			runScroll();
+			setTimeout(runScroll, 50);
+		});
+	}
+
+	document.addEventListener("astro:page-load", scrollToHash);
+	document.addEventListener("astro:after-swap", scrollToHash);
+</script> -->
 

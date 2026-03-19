@@ -1,6 +1,4 @@
-import { useState, useEffect, useRef } from "react"
-import hljs from "highlight.js"
-import "highlight.js/styles/github-dark.css"
+import { useState } from "react"
 
 type CodeWindowProps = {
     collapsedHeight?: number;
@@ -10,13 +8,6 @@ type CodeWindowProps = {
 
 export default function CodeWindow({collapsedHeight = 160, code, showExpand = true}:CodeWindowProps) {
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
-    const codeRef = useRef<HTMLElement>(null);
-
-    useEffect(() => {
-      if (codeRef.current) {
-        hljs.highlightElement(codeRef.current);
-      }
-    }, [code]);
   return (
     <figure className="bg-frame overflow-hidden rounded-lg">
         {/* Header */}
@@ -38,7 +29,7 @@ export default function CodeWindow({collapsedHeight = 160, code, showExpand = tr
             maxHeight: isExpanded? "1000px" : `${collapsedHeight}px`,
         }}>
             <pre className="overflow-x-auto bg-[#0d1117] px-4 text-sm leading-6 text-gray-100">
-          <code ref={codeRef} className="language-js">{code}</code>
+          <code>{code}</code>
            {!isExpanded && (
           <div className={showExpand ? "pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-[#0d1117] to-transparent" : ""} />
         )}
