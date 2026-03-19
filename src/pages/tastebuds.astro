@@ -8,10 +8,11 @@ import { Github, ArrowUpRight} from "@lucide/astro";
 
 // UI
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
-import CodeWindow from "../components/ui/CodeWindow.tsx";
+// import CodeWindow from "../components/ui/CodeWindow.tsx";
 import { postsDataCode, templateTagCode, renderPostCode, postDataType, fetchData, CardRenderA, CardRenderB, Folders} from "../data/tastebudsCode.ts";
 import GlassPill from "../components/ui/GlassPill.astro";
 import Card from "../components/ui/Card.astro";
+import CodeWindow from "../components/ui/CodeWindow.astro";
 
 // Videos
 import MVPVideo from "../assets/images/projects/tastebuds/videos/mvp-record.mp4";
@@ -229,7 +230,7 @@ export const tastebudsSections = [
                                         <div class="code-view pt-8 mb-8">
                                             <CodeWindow
                                             code={postsDataCode}
-                                            client:load
+                                            lang="js"
                                             />
                                         </div>
                                     </div>
@@ -246,7 +247,7 @@ export const tastebudsSections = [
                                         <div class="code-view pt-8 mb-8">
                                             <CodeWindow
                                             code={templateTagCode}
-                                            client:load
+                                            lang="html"
                                             />
                                         </div>
                                     </div>
@@ -263,7 +264,7 @@ export const tastebudsSections = [
                                         <div class="code-view pt-8">
                                             <CodeWindow
                                             code={renderPostCode}
-                                            client:load
+                                            lang="js"
                                             />
                                         </div>
                                     </div>
@@ -373,7 +374,7 @@ export const tastebudsSections = [
                                         <div class="code-view pt-8 mb-8">
                                             <CodeWindow
                                             code={postDataType}
-                                            client:load
+                                            lang="ts"
                                             />
                                         </div>
                                     </div>
@@ -390,7 +391,7 @@ export const tastebudsSections = [
                                         <div class="code-view pt-8 mb-8">
                                             <CodeWindow
                                             code={fetchData}
-                                            client:load
+                                            lang="ts"
                                             />
                                         </div>
                                     </div>
@@ -427,7 +428,7 @@ export const tastebudsSections = [
                                                 <CodeWindow
                                                 showExpand= {false}
                                                 code={CardRenderA}
-                                                client:load
+                                                lang="ts"
                                                 />
                                             </div>
                                             <div class="bg-black border border-frame-ring rounded-lg max-w-150 mx-auto p-4">
@@ -448,7 +449,7 @@ export const tastebudsSections = [
                                                 <CodeWindow
                                                 showExpand= {false}
                                                 code={CardRenderB}
-                                                client:load
+                                                lang="ts"
                                                 />
                                             </div>
                                             <div class="bg-black border border-frame-ring rounded-lg max-w-150 mx-auto p-4">
@@ -468,7 +469,7 @@ export const tastebudsSections = [
                 <div class="py-16">
                     <CodeWindow
                     code={Folders}
-                    client:load/>
+                    lang="html"/>
                 </div>
 
                 <p><span class="text-heading-default">Result: </span>By fetching content based on the slug, new articles can be added without creating new pages, improving scalability and maintainability.</p>

@@ -1,0 +1,89 @@
+---
+import { Code } from "astro:components";
+import type { ComponentProps } from "astro/types";
+
+type CodeLang = ComponentProps<typeof Code>["lang"];
+
+interface Props {
+    code: string;
+    lang?: CodeLang;
+    showExpand?: boolean;
+}
+
+const { code, lang = "ts", showExpand = true } = Astro.props;
+---
+
+
+<figure data-codeview class="bg-frame overflow-hidden rounded-lg">
+  {showExpand && (
+    <div class="border-b border-black/10 px-4 py-3">
+      <button
+        data-toggle
+        type="button"
+        class="cursor-pointer rounded-sm bg-background px-2 py-1 text-sm text-heading-default transition hover:text-accent"
+        aria-expanded="false"
+      >
+        Expand
+      </button>
+    </div>
+  )}
+
+  <div
+    data-panel
+    class="relative overflow-hidden transition-all duration-300 ease-in-out"
+  >
+    <!-- <pre class="overflow-x-auto bg-[#0d1117] px-4 text-sm leading-6 text-gray-100"> -->
+      <Code code={code} lang={lang} class="p-4"/>
+    <!-- </pre> -->
+
+    {showExpand && (
+      <div
+        data-fade
+        class="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-[#0d1117] to-transparent transition-opacity duration-300"
+      />
+    )}
+  </div>
+</figure>
+
+<script>
+
+    function showCodePanel(){
+  document.querySelectorAll('[data-codeview]').forEach((root) => {
+// 1回目 → 初期化して data-bound="true" を付ける
+// 2回目 → もう初期化済みだからスキップ
+    if (!(root instanceof HTMLElement)) return;
+    if (root.dataset.bound === 'true') return;
+    root.dataset.bound = 'true';
+
+    const button = root.querySelector('[data-toggle]');
+    const panel = root.querySelector('[data-panel]');
+    const fade = root.querySelector('[data-fade]');
+
+    if (!(panel instanceof HTMLElement)) return;
+
+    const collapsedHeight = 200;
+    let isExpanded = false;
+
+    panel.style.maxHeight = `${collapsedHeight}px`;
+
+    if (!(button instanceof HTMLButtonElement)) return;
+
+    button.addEventListener('click', () => {
+      isExpanded = !isExpanded;
+
+      button.textContent = isExpanded ? 'Collapse' : 'Expand';
+      button.setAttribute('aria-expanded', String(isExpanded));
+
+      panel.style.maxHeight = isExpanded
+        ? `${panel.scrollHeight}px`
+        : `${collapsedHeight}px`;
+
+      if (fade instanceof HTMLElement) {
+        fade.style.opacity = isExpanded ? '0' : '1';
+      }
+    });
+  });
+}
+
+document.addEventListener("astro:page-load", showCodePanel);
+</script>
