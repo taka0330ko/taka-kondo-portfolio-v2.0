@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 
 // Icons
 import Arrow from "../assets/images/icons/card-arrow.svg";
-import { Github, ArrowUpRight, ChevronRight} from "@lucide/astro";
+import { Github, ArrowUpRight} from "@lucide/astro";
 
 // UI
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
@@ -57,7 +57,7 @@ export const tastebudsSections = [
         <div class="md:col-start-1 md:col-span-6">
 
          <!-- Breadcrumb -->
-            <nav aria-label="Breadcrumb" class="text-sm mb-6">
+            <nav aria-label="Breadcrumb" class="text-caption mb-6">
                 <ol class="flex items-center gap-2 text-muted-foreground">
                     <li>
                         <a href="/" class="hover:text-accent">Home</a>
@@ -74,16 +74,16 @@ export const tastebudsSections = [
             </nav>
             <h1
              id="tastebuds-overview"
-             class="text-4xl text-center p-6 font-semibold">“TASTEBUDS” Food Blog Site</h1>
-            <p class="text-xl pt-6 text-center font-medium">A learning journey from MVP development with <span class="text-accent"> vanilla JavaScript </span>to redeveloping with <span class="text-accent">React and Next.js.</span></p>
+             class="text-display text-center py-12 font-semibold">“TASTEBUDS” Food Blog Site</h1>
+            <p class="text-subtitle pt-6 text-center ">A learning journey from MVP development with <span class="text-accent"> vanilla JavaScript </span>to redeveloping with <span class="text-accent">React and Next.js.</span></p>
 
         <!-- Vanilla to Next -->
         <div 
         role="img"
         aria-label="Technology transition from JavaScript to Next.js" 
-        class="flex items-center gap-8 lg:gap-12 p-16 justify-center">
+        class="flex items-center mx-auto max-w-100 gap-8 md:justify-end lg:gap-12 p-16 ">
             <JS class="w-24 h-24" aria-hidden="true" focusable="false"/>
-            <ChevronRight  class="text-foreground w-14 h-14" aria-hidden="true" focusable="false"/>
+            <Arrow  class="text-foreground w-14 h-14" aria-hidden="true" focusable="false"/>
             <NextJS class="w-24  h-24 text-foreground" aria-hidden="true" focusable="false"/>
         </div>
 
@@ -139,10 +139,11 @@ export const tastebudsSections = [
 
         <!-- Overview Section -->
         <section id="Overview">
-                <h2 class="text-3xl"><span class="heading-accent-bar">Overview</span></h2>
-                <p class="pt-32 text-lg">TASTEBUDS began as a social media marketing project with my classmates, 
+                <h2 class="font-semibold"><span class="heading-accent-bar">Overview</span></h2>
+                <h3 class="pt-32 ">From Class Project to Rebuild</h3>
+                <p class="pt-24">TASTEBUDS began as a social media marketing project with my classmates, 
                     <span class="text-accent text-xl"> a food blog featuring restaurants and cafés in Vancouver.</span></p>
-                <p class="pt-16 text-xl">At first, I had not learned React yet, so I built the site using <span class="text-accent text-xl"> 
+                <p class="pt-16">At first, I had not learned React yet, so I built the site using <span class="text-accent text-xl"> 
                     HTML, CSS (Sass), and vanilla JavaScript.</span> As development progressed, I wanted a more efficient workflow, 
                     which led me to learn <span class="text-accent text-xl">React and Next.js.</span>
                     I also redesigned the UI in Figma and rebuilt the project from the ground up.</p>
@@ -151,11 +152,14 @@ export const tastebudsSections = [
         <!-- MVP Section -->
         <section id="MVP" >
                 <section id="MVP-intro" class="mt-64">
-                    <h2 class="text-3xl"><span class="heading-accent-bar">MVP</span></h2>
+                    <h2 class="font-semibold"><span class="heading-accent-bar">MVP</span></h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
-                        <div class="col-span-1 flex flex-col justify-between">
-                            <p class="pt-16 text-xl place-items-center">For the MVP, I first explored how to create a structure that allows posts to be added using JavaScript.
-                                Instead of manually doing more static HTML, I designed the system so that <span class="text-accent"> cards are generated from data using JavaScript.</span></p>
+                        <div class="col-span-1 flex flex-col justify-between m-auto">
+                            <h3 class="pt-16 ">Built on Fundamentals</h3>
+                            <p class="pt-8 ">For the MVP, I built the project using fundamental web technologies. 
+                                              As I manually created blog cards with static HTML, I started to wonder, “Is there a more efficient way to replicate these?” 
+                                              This question led me to explore building a reusable structure using built-in browser features to dynamically generate content. 
+                                              This approach reduced repetition and improved scalability.</p>
                         </div>
                     <div class="flex flex-col gap-4">
                         <!-- MVP Live Site & GitHub -->
@@ -208,8 +212,8 @@ export const tastebudsSections = [
                 </section>
                 <!-- My approach -->
                 <section id="my-approach" class="mt-64">
-                    <h3 class="text-2xl">My approach</h3>
-                <p class="py-16 text-xl">Using Vanilla JavaScript and the &lt;template&gt; element, I built a reusable card component.</p>
+                    <h3 >My approach</h3>
+                <p class="py-16 text-subtitle">Using Vanilla JavaScript and the &lt;template&gt; element, I built a reusable card component.</p>
                 
                 <!-- Code Steps -->
                     <ol class="steps">
@@ -220,7 +224,7 @@ export const tastebudsSections = [
                                     <div class="step-content">
                                         <div class="step-title flex items-center gap-4 md:pt-2">
                                             <span class="timeline-number md:hidden">1</span>
-                                            <h4>Create a data structure for posts</h4>
+                                            <h4 class="leading-none">Create a data structure for posts</h4>
                                         </div>
                                         <div class="code-view pt-8 mb-8">
                                             <CodeWindow
@@ -237,7 +241,7 @@ export const tastebudsSections = [
                                     <div class="step-content">
                                         <div class="step-title flex items-center gap-4 md:pt-2">
                                             <span class="timeline-number md:hidden">2</span>
-                                            <h4>Use the <code>&lt;template&gt;</code> element</h4>
+                                            <h4 class="leading-none">Use the <code>&lt;template&gt;</code> element</h4>
                                         </div>
                                         <div class="code-view pt-8 mb-8">
                                             <CodeWindow
@@ -254,7 +258,7 @@ export const tastebudsSections = [
                                     <div class="step-content">
                                         <div class="step-title flex items-center gap-4 md:pt-2">
                                             <span class="timeline-number md:hidden">3</span>
-                                            <h4 >Generate cards dynamically with JavaScript</h4>
+                                            <h4 class="leading-none">Generate cards dynamically with JavaScript</h4>
                                         </div>
                                         <div class="code-view pt-8">
                                             <CodeWindow
@@ -273,11 +277,11 @@ export const tastebudsSections = [
             <!-- My approach end // -->
 
             <section id="learning" class="mt-64">
-                <h3 class="text-2xl">Learning and Challenges</h3>
-                <p class="py-16 text-xl">Through the MVP, I learned the basics of DOM manipulation, reusable UI design, and separating structure, data, and styles.</p>
+                <h3>Learning and Challenges</h3>
+                <p class="py-16">Through the MVP, I learned the basics of DOM manipulation, reusable UI design, and separating structure, data, and styles.</p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="col-start-1 my-auto">
+                    <div class="col-start-1">
                         <p>At the same time, state management became complex, routing was hard to maintain, and the architecture didn’t scale well.</p>
                         <p class="pt-8">This led me to rebuild the project with Next.js.</p>
                     </div>
@@ -294,10 +298,11 @@ export const tastebudsSections = [
             <!-- Redevelopment Section -->
         <section id="Redevelopment" class="mt-64">
                 <section id="redevelopment-intro">
-                    <h2 class="text-3xl"><span class="heading-accent-bar">Redevelopment</span></h2>
+                    <h2 class="font-semibold"><span class="heading-accent-bar">Redevelopment</span></h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
-                        <div class="col-span-1 flex flex-col justify-between">
-                            <p class="pt-16 text-xl place-items-center">To improve the scalability of the project, I redesigned the application using <span class="text-accent">React and Next.js.</span>
+                        <div class="col-span-1 flex flex-col">
+                            <h3 class="pt-16">Scaling the Architecture</h3>
+                            <p class="pt-8">To improve the scalability of the project, I redesigned the application using <span class="text-accent">React and Next.js.</span>
                             </br>The UI was rebuilt as React components, allowing the interface to be generated declaratively from data.
                             </br>I also introduced Next.js to better organize the page structure and implement routing for individual posts, resulting in a more <span class="text-accent"> maintainable and extensible architecture.</span></p>
                         </div>
@@ -348,7 +353,7 @@ export const tastebudsSections = [
                 </section>
 
             <section id="structured-content-management" class="mt-64">
-                <h3 class="text-xl">Structured Content Management</h3>
+                <h3>Structured Content Management</h3>
                 <p class="pt-16">In the MVP, blog content was stored as a front-end data array.
                                 While this worked for an early prototype, it required manual updates whenever a new post was added, which made content management less efficient as the project expanded.</p>
                 <p class="py-8">This led me to rethink how post data should be handled.
@@ -363,7 +368,7 @@ export const tastebudsSections = [
                                     <div class="step-content">
                                         <div class="step-title flex items-center gap-4 md:pt-2">
                                             <span class="timeline-number md:hidden">1</span>
-                                            <h4>Design the post data structure</h4>
+                                            <h4 class="leading-none">Design the post data structure</h4>
                                         </div>
                                         <div class="code-view pt-8 mb-8">
                                             <CodeWindow
@@ -380,7 +385,7 @@ export const tastebudsSections = [
                                     <div class="step-content">
                                         <div class="step-title flex items-center gap-4 md:pt-2">
                                             <span class="timeline-number md:hidden">2</span>
-                                            <h4>Retrieve posts from Supabase</h4>
+                                            <h4 class="leading-none">Retrieve posts from Supabase</h4>
                                         </div>
                                         <div class="code-view pt-8 mb-8">
                                             <CodeWindow
@@ -396,7 +401,7 @@ export const tastebudsSections = [
             </section>
             <section id="rendering" class="mt-64">
                 
-            <h3 class="text-xl">Rendering Architecture</h3>
+            <h3>Rendering Architecture</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="col-start-1 my-auto">
                         <p>The UI was rebuilt using reusable React components.
@@ -457,22 +462,21 @@ export const tastebudsSections = [
             </section>
             <section id="dynamic-routing" class="mt-48">
                 <h3 class=" py-12">Dynamic Routing</h3>
-                <h4 class="py-8 ">Problem</h4>
-                <p>In the MVP, each article was managed as a separate page, making the structure difficult to scale as content grew.</p>
-                <h4 class="py-8 ">Solution</h4>
-                <p>I implemented Next.js Dynamic Routing using the /blog/[slug] route structure, allowing pages to be generated from a single shared template.</p>
+
+                <p><span class="text-heading-default">Previous Problem:</span> In the MVP, each article was managed as a separate page, making the structure difficult to scale as content grew.</p>
+                <p class="pt-8"><span class="text-heading-default">Solution:</span> I implemented Next.js Dynamic Routing using the /blog/[slug] route structure, allowing pages to be generated from a single shared template.</p>
                 <div class="py-16">
                     <CodeWindow
                     code={Folders}
                     client:visible/>
                 </div>
-                <h4 class="py-8 ">Result</h4>
-                <p>By fetching content based on the slug, new articles can be added without creating new pages, improving scalability and maintainability.</p>
+
+                <p><span class="text-heading-default">Result: </span>By fetching content based on the slug, new articles can be added without creating new pages, improving scalability and maintainability.</p>
             </section>
         </section>
             <!-- Reflection Section -->
             <section id="Reflection" class="mt-48">
-                <h2 class="text-3xl"><span class="heading-accent-bar">Reflection</span></h2>
+                <h2 class="font-semibold"><span class="heading-accent-bar">Reflection</span></h2>
                 <div class="py-8">
                     <h3 class="">Learning Through Iteration</h3>
                     <p class="pt-4">Through this project, I started from the fundamentals of JavaScript and continuously explored better ways to build features. I iterated through researching, experimenting, and refining my approach, and found the process of trial and error itself both engaging and rewarding as my understanding gradually deepened.</p>
