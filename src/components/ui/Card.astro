@@ -2,6 +2,7 @@
 import type { ImageMetadata } from "astro";
 import Arrow from "../../assets/images/icons/card-arrow.svg";
 import GlassPill from "./GlassPill.astro"
+import { Image } from "astro:assets";
 
 type Props = {
     href: string
@@ -19,7 +20,7 @@ const {href, cover, title, description, tag } = Astro.props as Props
                     rounded-lg border border-white/20 shadow-lg mouse-track-card content transition duration-300 group-hover:scale-101">
         <div class="glow-effect"></div>
             <figure class="relative ">
-                <img src={cover.src}
+                <Image src={cover}
                 alt={title}
                 width={cover.width}
                 height={cover.height}

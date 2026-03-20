@@ -2,6 +2,7 @@
 import { Code } from "astro:components";
 import type { ComponentProps } from "astro/types";
 
+//Restrict usage to only the languages supported by Astro's Code component
 type CodeLang = ComponentProps<typeof Code>["lang"];
 
 interface Props {
@@ -32,9 +33,7 @@ const { code, lang = "ts", showExpand = true } = Astro.props;
     data-panel
     class="relative overflow-hidden transition-all duration-300 ease-in-out"
   >
-    <!-- <pre class="overflow-x-auto bg-[#0d1117] px-4 text-sm leading-6 text-gray-100"> -->
       <Code code={code} lang={lang} class="p-4"/>
-    <!-- </pre> -->
 
     {showExpand && (
       <div
@@ -46,6 +45,13 @@ const { code, lang = "ts", showExpand = true } = Astro.props;
 </figure>
 
 <script>
+// idではなくdata属性でDOMを取得する。
+// このコンポーネントは複数回使われるため、idだと衝突する。
+// data属性とrootスコープで、各インスタンスごとに安全に制御する。
+
+// Use data attributes for DOM selection instead of id.
+// This component can be rendered multiple times, so id would cause conflicts.
+// data-* + root.querySelector ensures scoped selection per component instance.
 
     function showCodePanel(){
   document.querySelectorAll('[data-codeview]').forEach((root) => {

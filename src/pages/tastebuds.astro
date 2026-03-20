@@ -39,8 +39,10 @@ import {
     ReactLogo,
     SASS,
     Supabase,
-    Tailwind
+    Tailwind,
+    TypeScript,
 } from "../data/icons.ts"
+import Image from "astro/components/Image.astro";
 
 
 export const tastebudsSections = [
@@ -69,7 +71,7 @@ export const tastebudsSections = [
                     </li>
                     <li aria-hidden="true">/</li>
                     <li>
-                        <a aria-current="page" class="text-accent">Tastebuds</a>
+                        <span aria-current="page" class="text-accent">Tastebuds</span>
                     </li>
                 </ol>
             </nav>
@@ -116,9 +118,10 @@ export const tastebudsSections = [
 
     <!-- Homepage Screenshot -->
        <div class="md:col-start-7 md:col-span-6 max-w-150 m-auto">
-        <img 
+        <Image
         class="mask-b-from-70% mask-b-to-100%"
-        src={Tastebuds_Website_Pic.src} 
+        src={Tastebuds_Website_Pic} 
+        loading="eager"
         alt="Screenshot of the Tastebuds food blog homepage">
        </div>
     </div>
@@ -287,9 +290,9 @@ export const tastebudsSections = [
                         <p class="pt-8">This led me to rebuild the project with Next.js.</p>
                     </div>
                     <div class="bg-frame border border-frame-ring rounded-lg max-w-100 mx-auto">
-                        <img
+                        <Image
                         class="p-4 rounded-lg w-full"
-                        src={MVPFolders.src}
+                        src={MVPFolders}
                         alt="">
                     </div>
 
@@ -342,9 +345,10 @@ export const tastebudsSections = [
                                 playsinline ></video>
                             </div>
                     
-                            <!-- MVP Stacks -->
+                            <!-- Redevelopment Stacks -->
                             <div class="flex justify-end items-center gap-2">
                                 <ReactLogo class="w-6 h-6"/>
+                                <TypeScript class="w-6 h-6"/>
                                 <Tailwind class="w-6 h-6"/>
                                 <NextJS class="w-6 h-6 text-foreground"/>
                                 <Supabase class="w-6 h-6"/>
@@ -355,11 +359,14 @@ export const tastebudsSections = [
 
             <section id="structured-content-management" class="mt-64">
                 <h3>Structured Content Management</h3>
-                <p class="pt-16">In the MVP, blog content was stored as a front-end data array.
+                    <p class="pt-16">In the MVP, blog content was stored as a front-end data array.
                                 While this worked for an early prototype, it required manual updates whenever a new post was added, which made content management less efficient as the project expanded.</p>
-                <p class="py-8">This led me to rethink how post data should be handled.
-                                To create a more scalable structure, I separated content from the application code and migrated post management to Supabase.
-                                This made the workflow easier to maintain and created a foundation that could later evolve into a CMS-like system.</p>
+                <div class="grid grid-cols-3 items-center">
+                    <p class="py-8 col-start-1 col-span-2">This led me to rethink how post data should be handled.
+                                    To create a more scalable structure, I separated content from the application code and migrated post management to Supabase.</p>
+                                    <Supabase class="w-12 h-12 col-start-3 mx-auto"/>
+                </div>
+                    <p class="py-8">This made the workflow easier to maintain and created a foundation that could later evolve into a CMS-like system.</p>
                     <!-- Code Steps -->
                     <ol class="steps mt-24">
                             <li class="step relative">
@@ -409,9 +416,9 @@ export const tastebudsSections = [
                             Post data is passed into card components to generate article cards, creating a structure that can easily scale as more content is added.</p>
                     </div>
                     <div class="bg-frame border border-frame-ring rounded-lg max-w-300 mx-auto">
-                        <img
+                        <Image
                         class="p-4 rounded-lg w-full"
-                        src={CardUI.src}
+                        src={CardUI}
                         alt="">
                     </div>
                 </div>
@@ -432,7 +439,7 @@ export const tastebudsSections = [
                                                 />
                                             </div>
                                             <div class="bg-black border border-frame-ring rounded-lg max-w-150 mx-auto p-4">
-                                                <img src={PatternA.src} alt="">
+                                                <Image src={PatternA} alt="">
                                             </div>
                                         </div>
 
@@ -453,7 +460,7 @@ export const tastebudsSections = [
                                                 />
                                             </div>
                                             <div class="bg-black border border-frame-ring rounded-lg max-w-150 mx-auto p-4">
-                                                <img src={PatternB.src} alt="">
+                                                <Image src={PatternB} alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -488,7 +495,7 @@ export const tastebudsSections = [
                         <p class="pt-4">I also experimented with building admin and CMS-like features using AI. However, this experience made me realize that being able to implement functionality is not the same as fully understanding the underlying architecture. In parts of the CMS, multiple features ended up being combined into a single component, which made the structure harder to maintain and scale. This highlighted the importance of component design and separation of concerns.</p>
                     </div>
                     <div class="col-start-3 col-span-3 bg-frame border border-frame-ring rounded-lg max-w-120 mx-auto">
-                        <img src={CMSScreen.src} alt="" class="p-4">
+                        <Image src={CMSScreen} alt="" class="p-4">
                     </div>
                 </div>
                 <div class="py-8">

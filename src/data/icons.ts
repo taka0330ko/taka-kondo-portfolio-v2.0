@@ -6,6 +6,7 @@ import ReactLogo from "../assets/images/icons/stacks/reactjs-icon.svg";
 import SASS from "../assets/images/icons/stacks/sass-logo.svg";
 import Supabase from "../assets/images/icons/stacks/supabase-icon.svg";
 import Tailwind from "../assets/images/icons/stacks/tailwindcss-mark.svg";
+import TypeScript from "../assets/images/icons/stacks/typescript.svg"
 
 export {
     CSS,
@@ -15,5 +16,6 @@ export {
     ReactLogo,
     SASS,
     Supabase,
-    Tailwind
+    Tailwind,
+    TypeScript,
 }
