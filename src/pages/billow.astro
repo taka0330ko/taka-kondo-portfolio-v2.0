@@ -1,0 +1,55 @@
+---
+// Layout
+import Layout from "../layouts/Layout.astro";
+
+//UI
+import BreadCrumb from "../components/ui/BreadCrumb.astro";
+import GlassPill from "../components/ui/GlassPill.astro";
+
+
+// Images
+import Image from "astro/components/Image.astro";
+import ChatPage from "../assets/images/projects/billow/chat-page.png";
+import { ArrowUpRight, Github } from "@lucide/astro";
+---
+
+<Layout>
+    <section id="hero" aria-labelledby="billow-overview">
+        <div class="grid grid-cols-12 grid-container mt-30 md:mt-40 items-start">
+            <div class="md:col-start-1 md:col-span-6">
+                <BreadCrumb>Billow</BreadCrumb>
+                <h1
+                 id="tastebuds-overview"
+                 class="text-display text-center py-12 font-semibold">Billow </br>AI Chat Base Subscription Management Dashboard </h1>
+                 <p class="text-subtitle pt-6 text-center ">Initially built during a hackathon, this project was later rebuilt to focus on scalable front-end architecture, structured state management, and maintainable design.</span></p>
+                 <div class="flex justify-center gap-4">
+             <div class="mt-16">
+                 <GlassPill
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 aria-label="Open Tastebuds live site in a new tab"
+                 href="https://billow-tau.vercel.app/"
+                 >
+                 <ArrowUpRight slot="after" aria-hidden="true" focusable="false"/>
+                 Live Site
+                 <span class="sr-only">(opens in a new tab)</span>
+                 </GlassPill>
+                 <GlassPill
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 aria-label="Open Tastebuds GitHub repository in a new tab"
+                 href="https://github.com/Taka0330-jp/billow.git"
+                 >
+                 <Github slot="after" aria-hidden="true" focusable="false"/>
+                 GitHub
+                 <span class="sr-only">(opens in a new tab)</span>
+                 </GlassPill>
+             </div>
+         </div>
+            </div>
+            <div class="md:col-start-7 md:col-span-6 max-w-150 m-auto">
+                <Image src={ChatPage} alt="">
+            </div>
+        </div>
+    </section>
+</Layout>

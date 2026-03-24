@@ -13,6 +13,7 @@ import { postsDataCode, templateTagCode, renderPostCode, postDataType, fetchData
 import GlassPill from "../components/ui/GlassPill.astro";
 import Card from "../components/ui/Card.astro";
 import CodeWindow from "../components/ui/CodeWindow.astro";
+import BreadCrumb from "../components/ui/BreadCrumb.astro";
 
 // Videos
 import MVPVideo from "../assets/images/projects/tastebuds/videos/mvp-record.mp4";
@@ -60,21 +61,7 @@ export const tastebudsSections = [
         <div class="md:col-start-1 md:col-span-6">
 
          <!-- Breadcrumb -->
-            <nav aria-label="Breadcrumb" class="text-caption mb-6">
-                <ol class="flex items-center gap-2 text-muted-foreground">
-                    <li>
-                        <a href="/" class="hover:text-accent">Home</a>
-                    </li>
-                    <li aria-hidden="true">/</li>
-                    <li>
-                        <a href="/#projects" data-astro-reload class="hover:text-accent">Projects</a>
-                    </li>
-                    <li aria-hidden="true">/</li>
-                    <li>
-                        <span aria-current="page" class="text-accent">Tastebuds</span>
-                    </li>
-                </ol>
-            </nav>
+          <BreadCrumb>Tastebuds</BreadCrumb>
             <h1
              id="tastebuds-overview"
              class="text-display text-center py-12 font-semibold">“TASTEBUDS” Food Blog Site</h1>

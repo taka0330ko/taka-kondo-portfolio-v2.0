@@ -1,0 +1,15 @@
+<nav aria-label="Breadcrumb" class="text-caption mb-6">
+        <ol class="flex items-center gap-2 text-muted-foreground">
+            <li>
+                <a href="/" class="hover:text-accent">Home</a>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li>
+                <a href="/#projects" data-astro-reload class="hover:text-accent">Projects</a>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li>
+                <span aria-current="page" class="text-accent"><slot/></span>
+            </li>
+        </ol>
+</nav>
