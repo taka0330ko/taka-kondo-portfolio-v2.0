@@ -5,12 +5,22 @@ import Layout from "../layouts/Layout.astro";
 //UI
 import BreadCrumb from "../components/ui/BreadCrumb.astro";
 import GlassPill from "../components/ui/GlassPill.astro";
+import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
 
 
 // Images
 import Image from "astro/components/Image.astro";
 import ChatPage from "../assets/images/projects/billow/chat-page.png";
 import { ArrowUpRight, Github } from "@lucide/astro";
+
+
+export const billowSections = [
+  { label: "Overview", href: "#Overview" },
+  { label: "Problem", href: "#Problem" },
+  { label: "Approach", href: "#Approach" },
+  { label: "Additional features", href: "#Additional-features" },
+  { label: "Reflection", href: "#Reflection" }
+]
 ---
 
 <Layout>
@@ -23,7 +33,7 @@ import { ArrowUpRight, Github } from "@lucide/astro";
                  class="text-display text-center py-12 font-semibold">Billow </br>AI Chat Base Subscription Management Dashboard </h1>
                  <p class="text-subtitle pt-6 text-center ">Initially built during a hackathon, this project was later rebuilt to focus on scalable front-end architecture, structured state management, and maintainable design.</span></p>
                  <div class="flex justify-center gap-4">
-             <div class="mt-16">
+             <div class="mt-16 flex gap-4">
                  <GlassPill
                  target="_blank"
                  rel="noopener noreferrer"
@@ -52,4 +62,119 @@ import { ArrowUpRight, Github } from "@lucide/astro";
             </div>
         </div>
     </section>
+    <!-- ====================== Case Study Start ====================== -->
+     <section class="mt-32">
+        <div class="flex flex-col lg:grid grid-cols-12">
+            <aside
+            aria-label="Project section navigation"
+            class="col-start-1 col-span-2 p-4 sticky top-24 h-fit">
+
+                <CaseStudySidebar
+                items={billowSections}
+                className="cols-start-1 col-span-2"
+                />
+            </aside>
+            <div class="px-8 md:col-start-3 col-span-10">
+                <section id="Overview" class="h-screen">
+                    <h2 class="font-semibold"><span class="heading-accent-bar">Overview</span></h2>
+                </section>
+                <section id="Problem" class="h-screen">
+                    <h2 class="font-semibold"><span class="heading-accent-bar">Problem</span></h2>
+                </section>
+                <section id="Approach" class="h-screen">
+                    <h2 class="font-semibold"><span class="heading-accent-bar">Approach</span></h2>
+                </section>
+                <section id="Additional-features" class="h-screen">
+                    <h2 class="font-semibold"><span class="heading-accent-bar">Additional features</span></h2>
+                </section>
+                <section id="Reflection" class="h-screen">
+                    <h2 class="font-semibold"><span class="heading-accent-bar">Reflection</span></h2>
+                </section>
+            </div>
+        </div>
+     </section>
 </Layout>
+
+<script>
+    import gsap from "gsap"
+    import { ScrollTrigger } from "gsap/ScrollTrigger"
+    gsap.registerPlugin(ScrollTrigger)
+
+    document.addEventListener("astro:page-load", () => {
+
+    const refresh = () => requestAnimationFrame(()=> ScrollTrigger.refresh())
+
+    const fadeUp = (target: string, trigger:string, start = "top 70%") => {
+        
+        gsap.fromTo(
+          target,
+          {
+            y: 56,
+            opacity: 0,
+            scale: 0.98,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger,
+              start,
+              toggleActions: "play none none reverse",
+              invalidateOnRefresh: true,
+            },
+          }
+        )
+      }
+
+      gsap.fromTo(
+        "#case-study-sidebar",
+        { x: -32, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "#hero",
+            start: "bottom 30%",
+            toggleActions: "play none none reverse",
+            invalidateOnRefresh: true,
+          }
+        }
+      )
+
+
+      fadeUp("#Overview", "#Overview");
+      fadeUp("#Problem", "#Problem");
+      fadeUp("#Approach", "#Approach");
+      fadeUp("#Additional-features", "#Additional-features");
+      fadeUp("#Reflection", "#Reflection");
+
+    // requestAnimationFrame(() => ScrollTrigger.refresh());
+    // setTimeout(() => ScrollTrigger.refresh(), 300);
+    refresh()
+    setTimeout(refresh, 300)
+
+    const resizeObserver = new ResizeObserver(()=>{
+        refresh()
+    })
+
+    //get code view element for observing 
+    document.querySelectorAll(".code-view").forEach((el)=> {
+        resizeObserver.observe(el)
+    })
+
+    // "astro:before-swap" -> because of Astro View Transitions, need to cleanup before moving other page 
+    document.addEventListener(
+        "astro:before-swap",
+        ()=> {
+            //resizeObserver.disconnect() -> cleanup observer
+            resizeObserver.disconnect()
+        },{ once: true }
+    )
+
+    })
+</script>
