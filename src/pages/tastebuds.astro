@@ -4,16 +4,25 @@ import Layout from "../layouts/Layout.astro";
 
 // Icons
 import Arrow from "../assets/images/icons/card-arrow.svg";
-import { Github, ArrowUpRight} from "@lucide/astro";
+import { ArrowUpRight, Github } from "@lucide/astro";
 
 // UI
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
 // import CodeWindow from "../components/ui/CodeWindow.tsx";
-import { postsDataCode, templateTagCode, renderPostCode, postDataType, fetchData, CardRenderA, CardRenderB, Folders} from "../data/tastebudsCode.ts";
-import GlassPill from "../components/ui/GlassPill.astro";
+import BreadCrumb from "../components/ui/BreadCrumb.astro";
 import Card from "../components/ui/Card.astro";
 import CodeWindow from "../components/ui/CodeWindow.astro";
-import BreadCrumb from "../components/ui/BreadCrumb.astro";
+import GlassPill from "../components/ui/GlassPill.astro";
+import {
+  CardRenderA,
+  CardRenderB,
+  fetchData,
+  Folders,
+  postDataType,
+  postsDataCode,
+  renderPostCode,
+  templateTagCode,
+} from "../data/tastebudsCode.ts";
 
 // Videos
 import MVPVideo from "../assets/images/projects/tastebuds/videos/mvp-record.mp4";
@@ -29,29 +38,26 @@ import CMSScreen from "../assets/images/projects/tastebuds/cms-screen.png";
 
 import { projects } from "../data/projects";
 
-
-
 // Stack Logo assets
 import {
-    CSS,
-    HTML,
-    JS,
-    NextJS,
-    ReactLogo,
-    SASS,
-    Supabase,
-    Tailwind,
-    TypeScript,
-} from "../data/icons.ts"
+  CSS,
+  HTML,
+  JS,
+  NextJS,
+  ReactLogo,
+  SASS,
+  Supabase,
+  Tailwind,
+  TypeScript,
+} from "../data/icons.ts";
 import Image from "astro/components/Image.astro";
-
 
 export const tastebudsSections = [
   { label: "Overview", href: "#Overview" },
   { label: "MVP", href: "#MVP" },
   { label: "Redevelopment", href: "#Redevelopment" },
-  { label: "Reflection", href: "#Reflection" }
-]
+  { label: "Reflection", href: "#Reflection" },
+];
 ---
 <Layout>
     <main>
@@ -293,9 +299,13 @@ export const tastebudsSections = [
                     <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
                         <div class="col-span-1 flex flex-col">
                             <h3 class="pt-16">Scaling the Architecture</h3>
-                            <p class="pt-8">To improve the scalability of the project, I redesigned the application using <span class="text-accent">React and Next.js.</span>
-                            </br>The UI was rebuilt as React components, allowing the interface to be generated declaratively from data.
-                            </br>I also introduced Next.js to better organize the page structure and implement routing for individual posts, resulting in a more <span class="text-accent"> maintainable and extensible architecture.</span></p>
+                            <p class="pt-8">
+                                To improve the scalability of the project, I redesigned the application using <span class="text-accent">React and Next.js.</span>
+                                <br />
+                                The UI was rebuilt as React components, allowing the interface to be generated declaratively from data.
+                                <br />
+                                I also introduced Next.js to better organize the page structure and implement routing for individual posts, resulting in a more <span class="text-accent"> maintainable and extensible architecture.</span>
+                            </p>
                         </div>
                         <div class="flex flex-col gap-4">
                             <!-- MVP Live Site & GitHub -->
@@ -419,8 +429,8 @@ export const tastebudsSections = [
                                             </div>
                                        <div class="flex flex-col md:flex-row gap-8 items-center">
                                             <div class="code-view pt-8 mb-8">
-                                                <CodeWindow
-                                                showExpand= {false}
+                                            <CodeWindow
+                                                showExpand={false}
                                                 code={CardRenderA}
                                                 lang="ts"
                                                 />
@@ -433,22 +443,20 @@ export const tastebudsSections = [
                             </li>
                         <!-- PatternB -->
                             <li class="mt-8 ">
-                                    <div class="">
-                                            <div class="flex flex-col py-16">
-                                                <h4>PatternB: Dynamic rendering for the blog archive</h4>
-                                                <p class="pt-4">On the blog page, filtered post data is mapped into card components to dynamically generate the article list.</p>
-                                            </div>
-                                        <div class="flex flex-col md:flex-row gap-8 items-center">
-                                            <div class="code-view pt-8 mb-8">
-                                                <CodeWindow
-                                                showExpand= {false}
-                                                code={CardRenderB}
-                                                lang="ts"
-                                                />
-                                            </div>
-                                            <div class="bg-black border border-frame-ring rounded-lg max-w-150 mx-auto p-4">
-                                                <Image src={PatternB} alt="">
-                                            </div>
+                                    <div class="flex flex-col py-16">
+                                        <h4>PatternB: Dynamic rendering for the blog archive</h4>
+                                        <p class="pt-4">On the blog page, filtered post data is mapped into card components to dynamically generate the article list.</p>
+                                    </div>
+                                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                                        <div class="code-view pt-8 mb-8">
+                                            <CodeWindow
+                                            showExpand={false}
+                                            code={CardRenderB}
+                                            lang="ts"
+                                            />
+                                        </div>
+                                        <div class="bg-black border border-frame-ring rounded-lg max-w-150 mx-auto p-4">
+                                            <Image src={PatternB} alt="">
                                         </div>
                                     </div>
                             </li>
@@ -514,12 +522,6 @@ export const tastebudsSections = [
 </section>
     </main>
 </Layout>
-
-    <!-- global css @layer components -->
-    <!-- .heading-accent-bar{
-      @apply relative inline-block pl-3 before:absolute before:left-0 before:top-0  
-             before:w-1 before:h-full before:bg-accent
-    } -->
 
 <script>
     import gsap from "gsap"
