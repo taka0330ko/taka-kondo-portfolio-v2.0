@@ -301,7 +301,7 @@
     background-image: linear-gradient(to bottom right, var(--card-gradient-from), var(--card-gradient-to));
   }
   .text-box  {
-    @apply my-32
+    @apply mt-16 mb-32
   }
   @keyframes lines-pulse {
     from { opacity: 1}

@@ -14,6 +14,7 @@ import ChatPage from "../assets/images/projects/billow/chat-page.png";
 import Hackathon from "../assets/images/projects/billow/hackathon.png";
 import Billow_MVP from "../assets/images/projects/billow/bilow-mvp.png";
 import FileStructure from "../assets/images/projects/billow/file-structure.png";
+import Diagram from "../assets/images/projects/billow/diagram.png"
 
 //Videos
 import MVPVideo from "../assets/images/projects/billow/videos/billow-mvp.mp4";
@@ -144,7 +145,7 @@ export const billowSections = [
                             </p>
                         </div>
                     </section>
-                    <section id="Problem" class="">
+                    <section id="Problem">
                         <h2 class="font-semibold">
                             <span class="heading-accent-bar">Problem</span>
                         </h2>
@@ -157,16 +158,25 @@ export const billowSections = [
                                 logic, and API communication were all
                                 concentrated within a single component.
                             </p>
-                            <div>
-                                <video
-                                    class="py-16 w-150 mx-auto"
-                                    src={MVPVideo}
-                                    autoplay
-                                    loop
-                                    muted
-                                    playsinline></video>
-                                <div class="grid grid-cols-5 items-center py-16">
-                                    <div class="col-start-1 col-span-3">
+                                <div class="lg:flex items-center gap-16 justify-center py-8">
+                                    <div  class="flex justify-center">
+                                        <video
+                                            class="py-16 w-150"
+                                            src={MVPVideo}
+                                            autoplay
+                                            loop
+                                            muted
+                                            playsinline />
+                                    </div>
+                                    <div class="flex flex-col gap-4 items-center">
+                                        <h4>Everything in One Component</h4>
+                                        <Image
+                                        class="max-w-80 max-h-80"
+                                        src={Diagram}
+                                        alt="diagram"
+                                        />
+                                    </div>
+                                </div>
                                         <p>
                                             While this structure was sufficient for a
                                             prototype, the boundaries between
@@ -177,20 +187,15 @@ export const billowSections = [
                                             made the code difficult to read, maintain,
                                             and scale.
                                         </p>
-                                    </div>
-                                        <div class="col-start-4 col-span-2 bg-frame border border-frame-ring rounded-lg max-w-300 mx-auto">
-                                            <Image src={FileStructure} alt="" class="p-4" />
-                                        </div>
-                                </div>
                                     <div class="max-w-200 mx-auto">
-                                        <p class="pb-4">Simplified version of the original code ↓</p>
+                                        <p class="py-4">Simplified version of the original code ↓</p>
                                         <CodeWindow
                                             code={summaryCodeMVP}
                                             lang="js"
                                         />
                                     </div>
                                
-                            </div>
+
                         </div>
                         <section id="Approach" class="h-screen">
                             <h2 class="font-semibold">
