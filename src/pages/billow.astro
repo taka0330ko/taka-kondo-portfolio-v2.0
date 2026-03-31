@@ -6,15 +6,23 @@ import Layout from "../layouts/Layout.astro";
 import BreadCrumb from "../components/ui/BreadCrumb.astro";
 import GlassPill from "../components/ui/GlassPill.astro";
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
+import CodeWindow from "../components/ui/CodeWindow.astro";
 
 // Images
 import Image from "astro/components/Image.astro";
 import ChatPage from "../assets/images/projects/billow/chat-page.png";
 import Hackathon from "../assets/images/projects/billow/hackathon.png";
 import Billow_MVP from "../assets/images/projects/billow/bilow-mvp.png";
+import FileStructure from "../assets/images/projects/billow/file-structure.png";
+
+//Videos
+import MVPVideo from "../assets/images/projects/billow/videos/billow-mvp.mp4";
 
 // Icon
 import { ArrowUpRight, Github } from "@lucide/astro";
+
+import { summaryCodeMVP } from "../data/billowCode.ts";
+import { js } from "three/tsl";
 
 export const billowSections = [
     { label: "Overview", href: "#Overview" },
@@ -57,7 +65,8 @@ export const billowSections = [
                                     focusable="false"
                                 />
                                 Live Site
-                                <span class="sr-only">(opens in a new tab)</span>
+                                <span class="sr-only">(opens in a new tab)</span
+                                >
                             </GlassPill>
                             <GlassPill
                                 target="_blank"
@@ -71,7 +80,8 @@ export const billowSections = [
                                     focusable="false"
                                 />
                                 GitHub
-                                <span class="sr-only">(opens in a new tab)</span>
+                                <span class="sr-only">(opens in a new tab)</span
+                                >
                             </GlassPill>
                         </div>
                     </div>
@@ -81,64 +91,107 @@ export const billowSections = [
                 </div>
             </div>
         </section>
-            <!-- ====================== Case Study Start ====================== -->
-            <section class="mt-32">
-                <div class="flex flex-col lg:grid grid-cols-12">
-                    <aside
-                        aria-label="Project section navigation"
-                        class="col-start-1 col-span-2 p-4 sticky top-24 h-fit"
-                    >
-                        <CaseStudySidebar
-                            items={billowSections}
-                            className="col-start-1 col-span-2"
-                        />
-                    </aside>
-                    <div class="px-8 md:col-start-3 col-span-10">
-                        <section id="Overview" class="">
-                            <h2 class="font-semibold">
-                                <span class="heading-accent-bar">Overview</span>
-                            </h2>
-                            <div class="text-box">
-                                <h3 class="pb-16">
-                                    From Hackathon Prototype to Scalable
-                                    Architecture
-                                </h3>
-                                <p>
-                                    This project was originally developed during a
-                                    hackathon in collaboration with a designer
-                                    partner. Due to the speed-focused nature of the
-                                    development, the initial implementation revealed
-                                    limitations in structure and state management.
-                                </p>
-                                <div
-                                    class="overflow-auto flex md:justify-center gap-4 mx-auto pt-8"
-                                >
-                                    <Image
-                                        class="w-100"
-                                        src={Hackathon}
-                                        alt="Hackathon setup with two laptops displaying a subscription management dashboard, as developers collaborate side by side."
-                                    />
-                                    <Image
-                                        class="w-100"
-                                        src={Billow_MVP}
-                                        alt="Billow prototype landing page"
-                                    />
-                                </div>
-                                <p class="pt-8">
-                                    I later revisited the project from both a design
-                                    and architectural perspective. Rather than
-                                    simply replicating the UI, I restructured the
-                                    system around managing complex state and
-                                    interactions, rebuilding it into a scalable
-                                    front-end architecture.
-                                </p>
+        <!-- ====================== Case Study Start ====================== -->
+        <section class="mt-32">
+            <div class="flex flex-col lg:grid grid-cols-12">
+                <aside
+                    aria-label="Project section navigation"
+                    class="col-start-1 col-span-2 p-4 sticky top-24 h-fit"
+                >
+                    <CaseStudySidebar
+                        items={billowSections}
+                        className="col-start-1 col-span-2"
+                    />
+                </aside>
+                <div class="px-8 md:col-start-3 col-span-10">
+                    <section id="Overview" class="">
+                        <h2 class="font-semibold">
+                            <span class="heading-accent-bar">Overview</span>
+                        </h2>
+                        <div class="text-box">
+                            <h3 class="pb-16">
+                                From Hackathon Prototype to Scalable
+                                Architecture
+                            </h3>
+                            <p>
+                                This project was originally developed during a
+                                hackathon in collaboration with a designer
+                                partner. Due to the speed-focused nature of the
+                                development, the initial implementation revealed
+                                limitations in structure and state management.
+                            </p>
+                            <div
+                                class="overflow-auto flex md:justify-center gap-4 mx-auto pt-8"
+                            >
+                                <Image
+                                    class="w-100"
+                                    src={Hackathon}
+                                    alt="Hackathon setup with two laptops displaying a subscription management dashboard, as developers collaborate side by side."
+                                />
+                                <Image
+                                    class="w-100"
+                                    src={Billow_MVP}
+                                    alt="Billow prototype landing page"
+                                />
                             </div>
-                        </section>
-                        <section id="Problem" class="h-screen">
-                            <h2 class="font-semibold">
-                                <span class="heading-accent-bar">Problem</span>
-                            </h2>
-                        </section>
+                            <p class="pt-8">
+                                I later revisited the project from both a design
+                                and architectural perspective. Rather than
+                                simply replicating the UI, I restructured the
+                                system around managing complex state and
+                                interactions, rebuilding it into a scalable
+                                front-end architecture.
+                            </p>
+                        </div>
+                    </section>
+                    <section id="Problem" class="">
+                        <h2 class="font-semibold">
+                            <span class="heading-accent-bar">Problem</span>
+                        </h2>
+                        <div class="text-box">
+                            <h3>Works, but Not Scalable</h3>
+                            <p>
+                                In the hackathon version, the priority was to
+                                quickly deliver a working AI chat experience. As
+                                a result, UI rendering, state management, send
+                                logic, and API communication were all
+                                concentrated within a single component.
+                            </p>
+                            <div>
+                                <video
+                                    class="py-16 w-150 mx-auto"
+                                    src={MVPVideo}
+                                    autoplay
+                                    loop
+                                    muted
+                                    playsinline></video>
+                                <div class="grid grid-cols-5 items-center py-16">
+                                    <div class="col-start-1 col-span-3">
+                                        <p>
+                                            While this structure was sufficient for a
+                                            prototype, the boundaries between
+                                            responsibilities were unclear, and
+                                            separation of concerns was lacking. API
+                                            communication, local state, event handling,
+                                            and UI rendering were tightly coupled, which
+                                            made the code difficult to read, maintain,
+                                            and scale.
+                                        </p>
+                                    </div>
+                                        <div class="col-start-4 col-span-2 bg-frame border border-frame-ring rounded-lg max-w-300 mx-auto">
+                                            <Image src={FileStructure} alt="" class="p-4" />
+                                        </div>
+                                </div>
+                                    <div class="max-w-200 mx-auto">
+                                        <p class="pb-4">Simplified version of the original code ↓</p>
+                                        <CodeWindow
+                                            code={summaryCodeMVP}
+                                            lang="js"
+                                        />
+                                    </div>
+                               
+                            </div>
+                        </div>
                         <section id="Approach" class="h-screen">
                             <h2 class="font-semibold">
                                 <span class="heading-accent-bar">Approach</span>
@@ -147,103 +200,106 @@ export const billowSections = [
                         <section id="Additional-features" class="h-screen">
                             <h2 class="font-semibold">
                                 <span class="heading-accent-bar"
-                                    >Additional features</span>
+                                    >Additional features</span
+                                >
                             </h2>
                         </section>
                         <section id="Reflection" class="h-screen">
                             <h2 class="font-semibold">
-                                <span class="heading-accent-bar">Reflection</span>
+                                <span class="heading-accent-bar"
+                                    >Reflection</span
+                                >
                             </h2>
                         </section>
-                    </div>
+                    </section>
                 </div>
-            </section>
-        
-    </main>
+            </div>
+        </section>
 
-    <script>
-        import gsap from "gsap";
-        import { ScrollTrigger } from "gsap/ScrollTrigger";
-        gsap.registerPlugin(ScrollTrigger);
+        <script>
+            import gsap from "gsap";
+            import { ScrollTrigger } from "gsap/ScrollTrigger";
+            gsap.registerPlugin(ScrollTrigger);
 
-        document.addEventListener("astro:page-load", () => {
-            const refresh = () =>
-                requestAnimationFrame(() => ScrollTrigger.refresh());
+            document.addEventListener("astro:page-load", () => {
+                const refresh = () =>
+                    requestAnimationFrame(() => ScrollTrigger.refresh());
 
-            const fadeUp = (
-                target: string,
-                trigger: string,
-                start = "top 70%",
-            ) => {
+                const fadeUp = (
+                    target: string,
+                    trigger: string,
+                    start = "top 70%",
+                ) => {
+                    gsap.fromTo(
+                        target,
+                        {
+                            y: 56,
+                            opacity: 0,
+                            scale: 0.98,
+                        },
+                        {
+                            y: 0,
+                            opacity: 1,
+                            scale: 1,
+                            duration: 1,
+                            ease: "power3.out",
+                            scrollTrigger: {
+                                trigger,
+                                start,
+                                toggleActions: "play none none reverse",
+                                invalidateOnRefresh: true,
+                            },
+                        },
+                    );
+                };
+
                 gsap.fromTo(
-                    target,
+                    "#case-study-sidebar",
+                    { x: -32, opacity: 0 },
                     {
-                        y: 56,
-                        opacity: 0,
-                        scale: 0.98,
-                    },
-                    {
-                        y: 0,
+                        x: 0,
                         opacity: 1,
-                        scale: 1,
-                        duration: 1,
+                        duration: 0.8,
                         ease: "power3.out",
                         scrollTrigger: {
-                            trigger,
-                            start,
+                            trigger: "#hero",
+                            start: "bottom 30%",
                             toggleActions: "play none none reverse",
                             invalidateOnRefresh: true,
                         },
                     },
                 );
-            };
 
-            gsap.fromTo(
-                "#case-study-sidebar",
-                { x: -32, opacity: 0 },
-                {
-                    x: 0,
-                    opacity: 1,
-                    duration: 0.8,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: "#hero",
-                        start: "bottom 30%",
-                        toggleActions: "play none none reverse",
-                        invalidateOnRefresh: true,
-                    },
-                },
-            );
+                fadeUp("#Overview", "#Overview");
+                fadeUp("#Problem", "#Problem");
+                fadeUp("#Approach", "#Approach");
+                fadeUp("#Additional-features", "#Additional-features");
+                fadeUp("#Reflection", "#Reflection");
 
-            fadeUp("#Overview", "#Overview");
-            fadeUp("#Problem", "#Problem");
-            fadeUp("#Approach", "#Approach");
-            fadeUp("#Additional-features", "#Additional-features");
-            fadeUp("#Reflection", "#Reflection");
-
-            // requestAnimationFrame(() => ScrollTrigger.refresh());
-            // setTimeout(() => ScrollTrigger.refresh(), 300);
-            refresh();
-            setTimeout(refresh, 300);
-
-            const resizeObserver = new ResizeObserver(() => {
+                // requestAnimationFrame(() => ScrollTrigger.refresh());
+                // setTimeout(() => ScrollTrigger.refresh(), 300);
                 refresh();
-            });
+                setTimeout(refresh, 300);
 
-            //get code view element for observing
-            document.querySelectorAll(".code-view").forEach((el) => {
-                resizeObserver.observe(el);
-            });
+                const resizeObserver = new ResizeObserver(() => {
+                    refresh();
+                });
 
-            // "astro:before-swap" -> because of Astro View Transitions, need to cleanup before moving other page
-            document.addEventListener(
-                "astro:before-swap",
-                () => {
-                    //resizeObserver.disconnect() -> cleanup observer
-                    resizeObserver.disconnect();
-                },
-                { once: true },
-            );
-        });
-    </script>
+                //get code view element for observing
+                document.querySelectorAll(".code-view").forEach((el) => {
+                    resizeObserver.observe(el);
+                });
+
+                // "astro:before-swap" -> because of Astro View Transitions, need to cleanup before moving other page
+                document.addEventListener(
+                    "astro:before-swap",
+                    () => {
+                        //resizeObserver.disconnect() -> cleanup observer
+                        resizeObserver.disconnect();
+                    },
+                    { once: true },
+                );
+            });
+        </script>
+    </main>
 </Layout>
