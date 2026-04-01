@@ -255,7 +255,6 @@
          opacity-0 transition-all duration-400 ease-[cubic-bezier(0.47,2,0.41,1.5)]
          group-hover:translate-y-1 group-hover:opacity-100;
 }
-  
   /* Heading on project pages */
 .heading-accent-bar {
     /* heading with left accent bar */
@@ -282,6 +281,11 @@
 }
 .step:last-child::after {
   content: none;
+}
+
+.glass-card{
+  background-image: linear-gradient(to bottom right, var(--card-gradient-from), var(--card-gradient-to));
+  @apply border border-frame-ring rounded-lg shadow-lg p-4
 }
 
 }

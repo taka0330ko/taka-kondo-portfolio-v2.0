@@ -14,13 +14,14 @@ import ChatPage from "../assets/images/projects/billow/chat-page.png";
 import Hackathon from "../assets/images/projects/billow/hackathon.png";
 import Billow_MVP from "../assets/images/projects/billow/bilow-mvp.png";
 import FileStructure from "../assets/images/projects/billow/file-structure.png";
-import Diagram from "../assets/images/projects/billow/diagram.png"
+import Diagram from "../assets/images/projects/billow/diagram.png";
+import Diagram_SoC from "../assets/images/projects/billow/diagram-soc.png";
 
 //Videos
 import MVPVideo from "../assets/images/projects/billow/videos/billow-mvp.mp4";
 
 // Icon
-import { ArrowUpRight, Github } from "@lucide/astro";
+import { ArrowUpRight, Github, TriangleAlert } from "@lucide/astro";
 
 import { summaryCodeMVP } from "../data/billowCode.ts";
 import { js } from "three/tsl";
@@ -158,49 +159,166 @@ export const billowSections = [
                                 logic, and API communication were all
                                 concentrated within a single component.
                             </p>
-                                <div class="lg:flex items-center gap-16 justify-center py-8">
-                                    <div  class="flex justify-center">
-                                        <video
-                                            class="py-16 w-150"
-                                            src={MVPVideo}
-                                            autoplay
-                                            loop
-                                            muted
-                                            playsinline />
-                                    </div>
-                                    <div class="flex flex-col gap-4 items-center">
+                            <div
+                                class="lg:flex items-center gap-16 justify-center py-8"
+                            >
+                                <div class="flex justify-center">
+                                    <video
+                                        class="py-16 w-150"
+                                        src={MVPVideo}
+                                        autoplay
+                                        loop
+                                        muted
+                                        playsinline></video>
+                                </div>
+                                <div class="flex flex-col gap-4 items-center">
+                                    <span class="flex items-center gap-2">
+                                        <TriangleAlert
+                                            class="text-heading-default"
+                                        />
                                         <h4>Everything in One Component</h4>
-                                        <Image
+                                    </span>
+                                    <Image
                                         class="max-w-80 max-h-80"
                                         src={Diagram}
                                         alt="diagram"
-                                        />
-                                    </div>
+                                    />
                                 </div>
-                                        <p>
-                                            While this structure was sufficient for a
-                                            prototype, the boundaries between
-                                            responsibilities were unclear, and
-                                            separation of concerns was lacking. API
-                                            communication, local state, event handling,
-                                            and UI rendering were tightly coupled, which
-                                            made the code difficult to read, maintain,
-                                            and scale.
-                                        </p>
-                                    <div class="max-w-200 mx-auto">
-                                        <p class="py-4">Simplified version of the original code ↓</p>
-                                        <CodeWindow
-                                            code={summaryCodeMVP}
-                                            lang="js"
-                                        />
-                                    </div>
-                               
-
+                            </div>
+                            <p>
+                                While this structure was sufficient for a
+                                prototype, the boundaries between
+                                responsibilities were unclear, and separation of
+                                concerns was lacking. API communication, local
+                                state, event handling, and UI rendering were
+                                tightly coupled, which made the code difficult
+                                to read, maintain, and scale.
+                            </p>
+                            <div class="max-w-200 mx-auto">
+                                <p class="py-4">
+                                    Simplified version of the original code ↓
+                                </p>
+                                <CodeWindow code={summaryCodeMVP} lang="js" />
+                            </div>
                         </div>
-                        <section id="Approach" class="h-screen">
+                        <section id="Approach" class="">
                             <h2 class="font-semibold">
                                 <span class="heading-accent-bar">Approach</span>
                             </h2>
+                            <div class="text-box">
+                                <section>
+                                    <h3>Architecture Decision</h3>
+                                    <p>
+                                        To make the chat feature scalable, I
+                                        first defined clear responsibility
+                                        boundaries for the architecture. Instead
+                                        of separating code by file size or UI
+                                        sections, I reorganized it by concern:
+                                        View, Logic, Service, and State.
+                                    </p>
+                                </section>
+                                <section
+                                    class="mt-16 flex flex-col lg:grid lg:grid-cols-5 gap-8"
+                                >
+                                    <div
+                                        class="order-1 lg:order-2 max-w-100 mx-auto lg:max-w-200 place-content-center lg:col-span-3 col-start-3"
+                                    >
+                                        <Image src={Diagram_SoC} alt="" />
+                                    </div>
+                                    <div
+                                        class="order-2 lg:order-1 lg:col-span-2 lg:col-start-1"
+                                    >
+                                        <!-- title and carousel box -->
+                                        <div>
+                                            <h3 class="mb-4">Definition</h3>
+                                            <!-- carousel box -->
+                                            <div
+                                                class="flex gap-4 overflow-x-auto lg:flex-col lg:overflow-visible"
+                                            >
+                                                <section
+                                                    class="relative glass-card min-w-72 shrink-0 basis-72 lg:min-w-0 lg:basis-auto"
+                                                >
+                                                    <span
+                                                        class="absolute right-4 bg-blue-300 w-4 h-4 rounded-full"
+                                                    ></span><h4>View</h4>
+                                                    <p>
+                                                        Responsible for
+                                                        rendering the UI and
+                                                        layout, with no business
+                                                        logic
+                                                    </p>
+                                                    <p class="text-sm">
+                                                        e.g. message list, chat
+                                                        input form, loading
+                                                        indicator
+                                                    </p>
+                                                </section>
+                                                <section
+                                                    class="relative glass-card min-w-72 shrink-0 basis-72 lg:min-w-0 lg:basis-auto"
+                                                >
+                                                    <span
+                                                        class="absolute right-4 bg-green-300 w-4 h-4 rounded-full"
+                                                    ></span><h4>Logic</h4>
+                                                    <p>
+                                                        Manages chat flow, side
+                                                        effects, and user
+                                                        interactions
+                                                    </p>
+                                                    <p class="text-sm">
+                                                        e.g. handling message
+                                                        submission, managing
+                                                        loading state,
+                                                        triggering AI responses
+                                                    </p>
+                                                </section>
+                                                <section
+                                                    class="relative glass-card min-w-72 shrink-0 basis-72 lg:min-w-0 lg:basis-auto"
+                                                >
+                                                    <span
+                                                        class="absolute right-4 bg-yellow-200 w-4 h-4 rounded-full"
+                                                    ></span><h4>Service</h4>
+                                                    <p>
+                                                        Encapsulates AI
+                                                        communication and
+                                                        external API calls
+                                                    </p>
+                                                    <p class="text-sm">
+                                                        e.g. calling AI API,
+                                                        formatting requests,
+                                                        parsing responses
+                                                    </p>
+                                                </section>
+                                                <section
+                                                    class="relative glass-card min-w-72 shrink-0 basis-72 lg:min-w-0 lg:basis-auto"
+                                                >
+                                                    <span
+                                                        class="absolute right-4 bg-red-300 w-4 h-4 rounded-full"
+                                                    ></span><h4>State</h4>
+                                                    <p>
+                                                        Manages shared
+                                                        conversation data across
+                                                        components
+                                                    </p>
+                                                    <p class="text-sm">
+                                                        e.g. chat messages
+                                                        store, current chat room
+                                                        state, global state
+                                                        (Zustand)
+                                                    </p>
+                                                </section>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <p class="mt-16">
+                                    As the feature evolved to support multiple
+                                    chat rooms, conversation data needed to be
+                                    shared beyond a single component. This made
+                                    local state insufficient, so shared
+                                    conversation data was moved into a
+                                    centralized Zustand store.
+                                </p>
+                            </div>
                         </section>
                         <section id="Additional-features" class="h-screen">
                             <h2 class="font-semibold">
