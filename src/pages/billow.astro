@@ -6,6 +6,7 @@ import Layout from "../layouts/Layout.astro";
 import BreadCrumb from "../components/ui/BreadCrumb.astro";
 import GlassPill from "../components/ui/GlassPill.astro";
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
+import Card from "../components/ui/Card.astro";
 import CodeWindow from "../components/ui/CodeWindow.astro";
 
 // Images
@@ -22,6 +23,8 @@ import MVPVideo from "../assets/images/projects/billow/videos/billow-mvp.mp4";
 // Icon
 import { ArrowUpRight, Github, TriangleAlert } from "@lucide/astro";
 
+import { projects } from "../data/projects";
+
 import {
     summaryCodeMVP,
     viewCode,
@@ -34,7 +37,7 @@ export const billowSections = [
     { label: "Overview", href: "#Overview" },
     { label: "Problem", href: "#Problem" },
     { label: "Approach", href: "#Approach" },
-    { label: "Additional features", href: "#Additional-features" },
+    // { label: "Additional features", href: "#Additional-features" },
     { label: "Reflection", href: "#Reflection" },
 ];
 ---
@@ -211,16 +214,21 @@ export const billowSections = [
                             </h2>
                             <div class="text-box">
                                 <section>
-                                    <div class="flex flex-col md:grid grid-cols-4 gap-4 place-items-center">
+                                    <div
+                                        class="flex flex-col md:grid grid-cols-4 gap-4 place-items-center"
+                                    >
                                         <div class="col-span-2">
-                                            <h3 class="mb-4">Architecture Decision</h3>
+                                            <h3 class="mb-4">
+                                                Architecture Decision
+                                            </h3>
                                             <p>
-                                                To make the chat feature scalable, I
-                                                first defined clear responsibility
-                                                boundaries for the architecture.
-                                                Instead of separating code by file
-                                                size or UI sections, I reorganized
-                                                it by concern: View, Logic, Service,
+                                                To make the chat feature
+                                                scalable, I first defined clear
+                                                responsibility boundaries for
+                                                the architecture. Instead of
+                                                separating code by file size or
+                                                UI sections, I reorganized it by
+                                                concern: View, Logic, Service,
                                                 and State.
                                             </p>
                                         </div>
@@ -232,125 +240,134 @@ export const billowSections = [
                                     </div>
                                 </section>
                                 <section class="mt-16">
-                                        <!-- title and carousel box -->
-                                        <div>
-                                            <h3 class="mb-4">Definition</h3>
-                                            <!-- carousel box -->
-                                            <div
-                                                class="flex gap-4 overflow-x-auto lg:grid grid-cols-2 grid-rows-2 lg:overflow-visible"
+                                    <!-- title and carousel box -->
+                                    <div>
+                                        <h3 class="mb-4">Definition</h3>
+                                        <!-- carousel box -->
+                                        <div
+                                            class="flex gap-4 overflow-x-auto lg:grid grid-cols-2 grid-rows-2 lg:overflow-visible"
+                                        >
+                                            <!-- View -->
+                                            <button
+                                                type="button"
+                                                data-tab="view"
+                                                class="relative panel-button"
                                             >
-                                                <!-- View -->
-                                                <button
-                                                    type="button"
-                                                    data-tab="view"
-                                                    class="relative panel-button"
-                                                >
-                                                    <span
-                                                        class="absolute right-4 bg-blue-300 w-4 h-4 rounded-full"
-                                                    ></span><h4>View</h4>
-                                                    <p>
-                                                        Responsible for
-                                                        rendering the UI and
-                                                        layout, with no business
-                                                        logic
-                                                    </p>
-                                                    <p class="text-sm">
-                                                        e.g. message list, chat
-                                                        input form, loading
-                                                        indicator
-                                                    </p>
-                                                </button>
+                                                <span
+                                                    class="absolute right-4 bg-blue-300 w-4 h-4 rounded-full"
+                                                ></span><h4>View</h4>
+                                                <p>
+                                                    Responsible for rendering
+                                                    the UI and layout, with no
+                                                    business logic
+                                                </p>
+                                                <p class="text-sm">
+                                                    e.g. message list, chat
+                                                    input form, loading
+                                                    indicator
+                                                </p>
+                                            </button>
 
-                                                <!-- Logic -->
-                                                <button
-                                                    type="button"
-                                                    data-tab="logic"
-                                                    class="relative panel-button"
-                                                >
-                                                    <span
-                                                        class="absolute right-4 bg-green-300 w-4 h-4 rounded-full"
-                                                    ></span><h4>Logic</h4>
-                                                    <p>
-                                                        Manages chat flow, side
-                                                        effects, and user
-                                                        interactions
-                                                    </p>
-                                                    <p class="text-sm">
-                                                        e.g. handling message
-                                                        submission, managing
-                                                        loading state,
-                                                        triggering AI responses
-                                                    </p>
-                                                </button>
-                                                <!-- Service -->
-                                                <button
-                                                    type="button"
-                                                    data-tab="service"
-                                                    class="relative panel-button"
-                                                >
-                                                    <span
-                                                        class="absolute right-4 bg-yellow-200 w-4 h-4 rounded-full"
-                                                    ></span><h4>Service</h4>
-                                                    <p>
-                                                        Encapsulates AI
-                                                        communication and
-                                                        external API calls
-                                                    </p>
-                                                    <p class="text-sm">
-                                                        e.g. calling AI API,
-                                                        formatting requests,
-                                                        parsing responses
-                                                    </p>
-                                                </button>
+                                            <!-- Logic -->
+                                            <button
+                                                type="button"
+                                                data-tab="logic"
+                                                class="relative panel-button"
+                                            >
+                                                <span
+                                                    class="absolute right-4 bg-green-300 w-4 h-4 rounded-full"
+                                                ></span><h4>Logic</h4>
+                                                <p>
+                                                    Manages chat flow, side
+                                                    effects, and user
+                                                    interactions
+                                                </p>
+                                                <p class="text-sm">
+                                                    e.g. handling message
+                                                    submission, managing loading
+                                                    state, triggering AI
+                                                    responses
+                                                </p>
+                                            </button>
+                                            <!-- Service -->
+                                            <button
+                                                type="button"
+                                                data-tab="service"
+                                                class="relative panel-button"
+                                            >
+                                                <span
+                                                    class="absolute right-4 bg-yellow-200 w-4 h-4 rounded-full"
+                                                ></span><h4>Service</h4>
+                                                <p>
+                                                    Encapsulates AI
+                                                    communication and external
+                                                    API calls
+                                                </p>
+                                                <p class="text-sm">
+                                                    e.g. calling AI API,
+                                                    formatting requests, parsing
+                                                    responses
+                                                </p>
+                                            </button>
 
-                                                <!-- State -->
-                                                <button
-                                                    type="button"
-                                                    data-tab="state"
-                                                    class="relative panel-button"
-                                                >
-                                                    <span
-                                                        class="absolute right-4 bg-red-300 w-4 h-4 rounded-full"
-                                                    ></span><h4>State</h4>
-                                                    <p>
-                                                        Manages shared
-                                                        conversation data across
-                                                        components
-                                                    </p>
-                                                    <p class="text-sm">
-                                                        e.g. chat messages
-                                                        store, current chat room
-                                                        state, global state
-                                                        (Zustand)
-                                                    </p>
-                                                </button>
-                                            </div>
+                                            <!-- State -->
+                                            <button
+                                                type="button"
+                                                data-tab="state"
+                                                class="relative panel-button"
+                                            >
+                                                <span
+                                                    class="absolute right-4 bg-red-300 w-4 h-4 rounded-full"
+                                                ></span><h4>State</h4>
+                                                <p>
+                                                    Manages shared conversation
+                                                    data across components
+                                                </p>
+                                                <p class="text-sm">
+                                                    e.g. chat messages store,
+                                                    current chat room state,
+                                                    global state (Zustand)
+                                                </p>
+                                            </button>
                                         </div>
+                                    </div>
 
                                     <div class="w-full mt-8">
                                         <div data-panel="view">
-                                            <h4 class="mb-4">View Code</h4>
+                                            <h4 class="mb-4">
+                                                View: Assembles and renders the
+                                                UI
+                                            </h4>
                                             <CodeWindow
                                                 code={viewCode}
                                                 lang="tsx"
                                             />
                                         </div>
                                         <div data-panel="logic">
-                                            <h4 class="mb-4">Logic Code</h4>
+                                            <h4 class="mb-4">
+                                                Logic: Controls message
+                                                submission and side effects
+                                            </h4>
                                             <CodeWindow
                                                 code={logicCode}
                                                 lang="tsx"
                                             />
                                         </div>
                                         <div data-panel="service">
-                                            <h4 class="mb-4">Service Code</h4>
+                                            <h4 class="mb-4">
+                                                Service: Abstracts AI
+                                                communication
+                                            </h4>
                                             <CodeWindow
                                                 code={serviceCode}
                                                 lang="tsx"
                                             />
                                         </div>
                                         <div data-panel="state">
-                                            <h4 class="mb-4">State Code</h4>
+                                            <h4 class="mb-4">
+                                                State: Shares conversation data
+                                                across components
+                                            </h4>
                                             <CodeWindow
                                                 code={stateCode}
                                                 lang="tsx"
@@ -368,26 +385,92 @@ export const billowSections = [
                                 </p>
                             </div>
                         </section>
-                        <section id="Additional-features" class="h-screen">
+                        <!-- <section id="Additional-features" class="h-screen">
                             <h2 class="font-semibold">
                                 <span class="heading-accent-bar"
                                     >Additional features</span
                                 >
                             </h2>
-                        </section>
-                        <section id="Reflection" class="h-screen">
+                        </section> -->
+                        <section id="Reflection" >
                             <h2 class="font-semibold">
                                 <span class="heading-accent-bar"
                                     >Reflection</span
                                 >
                             </h2>
+                            <section class="text-box">
+                                <h3>Reevaluating the Development Process</h3>
+                                <p class="mt-4">
+                                    When I was developing the application during
+                                    the hackathon, I prioritized getting it up
+                                    and running so much that I didn’t fully
+                                    grasp the importance of structural design.
+                                    As I revisited this project, my
+                                    understanding of the importance of design,
+                                    and my approach to AI changed significantly.
+                                    Rather than simply letting AI create
+                                    “something that sort of works,” I’ve started
+                                    using it as a tool to assist my
+                                    decision-making, guided by a clear design
+                                    intent. While AI tools can quickly generate
+                                    working code, I’ve come to realize that
+                                    understanding the underlying architecture is
+                                    essential for writing code that is
+                                    maintainable, readable, and scalable. I’ve
+                                    also come to find the process of designing
+                                    while organizing the structure itself to be
+                                    quite engaging.
+                                </p>
+                                <h3 class="mt-8">
+                                    The Gap Between Design and Implementation
+                                </h3>
+                                <p class="mt-4">
+                                    This project also gave me an opportunity to
+                                    reconsider the gap between design and
+                                    implementation. Even when wireframes and
+                                    style guides are well-organized in Figma,
+                                    reproducing them accurately as a consistent
+                                    UI requires careful implementation
+                                    decisions. I was reminded that the process
+                                    of bridging design and implementation cannot
+                                    yet be fully automated; adjustments and
+                                    judgments made by human eyes remain
+                                    indispensable and continue to play a vital
+                                    role. This project went beyond mere
+                                    refactoring; it served as an opportunity to
+                                    reevaluate how we utilize AI and how we
+                                    translate design intent into implementation.
+                                </p>
+                            </section>
                         </section>
                     </section>
                 </div>
             </div>
         </section>
 
-        <script>
+        <!-- Other Projects -->
+<section class="p-4 md:p-16">
+    <h2 class="text-center p-16">Other Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-4 max-w-400 mx-auto">
+        {projects.filter((project) =>
+        project.href !== "/billow"
+        && project.href !== "/stone-and-honey")
+        .map((project) => {
+        return(
+                  <Card
+                  href={project.href}
+                  cover={project.cover}
+                  title={project.title}
+                  description={project.description}
+                  tag={project.tag}          />
+        )
+        })}
+    </div>
+</section>
+    </main>
+</Layout>
+
+<script>
             import gsap from "gsap";
             import { ScrollTrigger } from "gsap/ScrollTrigger";
             gsap.registerPlugin(ScrollTrigger);
@@ -444,7 +527,7 @@ export const billowSections = [
                 fadeUp("#Overview", "#Overview");
                 fadeUp("#Problem", "#Problem");
                 fadeUp("#Approach", "#Approach");
-                fadeUp("#Additional-features", "#Additional-features");
+                // fadeUp("#Additional-features", "#Additional-features");
                 fadeUp("#Reflection", "#Reflection");
 
                 // requestAnimationFrame(() => ScrollTrigger.refresh());
@@ -508,5 +591,3 @@ export const billowSections = [
                 );
             });
         </script>
-    </main>
-</Layout>
