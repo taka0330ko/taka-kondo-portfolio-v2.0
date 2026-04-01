@@ -15,7 +15,7 @@ const { code, lang = "ts", showExpand = true } = Astro.props;
 ---
 
 
-<figure data-codeview class="bg-frame overflow-hidden rounded-lg">
+<figure data-code-window class="bg-frame overflow-hidden rounded-lg">
   {showExpand && (
     <div class="border-b border-black/10 px-4 py-3">
       <button
@@ -30,7 +30,7 @@ const { code, lang = "ts", showExpand = true } = Astro.props;
   )}
 
   <div
-    data-panel
+    data-window-panel
     class="relative overflow-hidden transition-all duration-300 ease-in-out"
   >
       <Code code={code} lang={lang} class="p-4"/>
@@ -54,7 +54,7 @@ const { code, lang = "ts", showExpand = true } = Astro.props;
 // data-* + root.querySelector ensures scoped selection per component instance.
 
     function showCodePanel(){
-  document.querySelectorAll('[data-codeview]').forEach((root) => {
+  document.querySelectorAll('[data-code-window]').forEach((root) => {
 // 1回目 → 初期化して data-bound="true" を付ける
 // 2回目 → もう初期化済みだからスキップ
     if (!(root instanceof HTMLElement)) return;
@@ -62,7 +62,7 @@ const { code, lang = "ts", showExpand = true } = Astro.props;
     root.dataset.bound = 'true';
 
     const button = root.querySelector('[data-toggle]');
-    const panel = root.querySelector('[data-panel]');
+    const panel = root.querySelector('[data-window-panel]');
     const fade = root.querySelector('[data-fade]');
 
     if (!(panel instanceof HTMLElement)) return;

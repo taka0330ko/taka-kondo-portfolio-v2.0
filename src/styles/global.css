@@ -79,6 +79,8 @@
   --header-gradient-to: rgba(0,0,0,0);
   --card-gradient-from: rgba(255,255,255,0.3);
   --card-gradient-to: rgba(255,255,255,0);
+  --card-active-gradient-from: oklch(75.327% 0.11592 198.573 / 0.5);
+  --card-active-gradient-to: rgba(255,255,255,0);
   --foreground-color: var(--brand-white);
   --footer-bg:var(--brand-gray-800);
   --frame-bg-color:var(--brand-gray-950);
@@ -96,6 +98,8 @@
   --header-gradient-to: rgba(255,255,255,0);
   --card-gradient-from: rgba(255,255,255,0.8);
   --card-gradient-to: rgba(255,255,255,0);
+  --card-active-gradient-from: oklch(58.031% 0.16717 269.973 / 0.5);
+  --card-active-gradient-to: rgba(255,255,255,0);
   --foreground-color: var(--brand-black);
   --footer-bg:var(--brand-gray-50);
   --frame-bg-color:var(--brand-gray-50);
@@ -286,6 +290,45 @@
 .glass-card{
   background-image: linear-gradient(to bottom right, var(--card-gradient-from), var(--card-gradient-to));
   @apply border border-frame-ring rounded-lg shadow-lg p-4
+}
+
+.panel-button {
+  position: relative;
+  isolation: isolate;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--card-gradient-from),
+    var(--card-gradient-to)
+  );
+  @apply min-w-72 shrink-0 basis-72 lg:min-w-0 lg:basis-auto w-full text-left appearance-none
+  border border-frame-ring rounded-lg shadow-lg p-4 cursor-pointer;
+}
+
+.panel-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--card-active-gradient-from),
+    var(--card-active-gradient-to)
+  );
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.panel-button:hover::before {
+  opacity: 1;
+}
+
+.panel-button.is-active{
+    background-image: linear-gradient(
+    to bottom right,
+    var(--card-active-gradient-from),
+    var(--card-active-gradient-to)
+  );
 }
 
 }

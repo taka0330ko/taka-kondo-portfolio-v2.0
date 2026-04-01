@@ -13,7 +13,6 @@ import Image from "astro/components/Image.astro";
 import ChatPage from "../assets/images/projects/billow/chat-page.png";
 import Hackathon from "../assets/images/projects/billow/hackathon.png";
 import Billow_MVP from "../assets/images/projects/billow/bilow-mvp.png";
-import FileStructure from "../assets/images/projects/billow/file-structure.png";
 import Diagram from "../assets/images/projects/billow/diagram.png";
 import Diagram_SoC from "../assets/images/projects/billow/diagram-soc.png";
 
@@ -23,8 +22,13 @@ import MVPVideo from "../assets/images/projects/billow/videos/billow-mvp.mp4";
 // Icon
 import { ArrowUpRight, Github, TriangleAlert } from "@lucide/astro";
 
-import { summaryCodeMVP } from "../data/billowCode.ts";
-import { js } from "three/tsl";
+import {
+    summaryCodeMVP,
+    viewCode,
+    logicCode,
+    serviceCode,
+    stateCode,
+} from "../data/billowCode.ts";
 
 export const billowSections = [
     { label: "Overview", href: "#Overview" },
@@ -194,8 +198,8 @@ export const billowSections = [
                                 tightly coupled, which made the code difficult
                                 to read, maintain, and scale.
                             </p>
-                            <div class="max-w-200 mx-auto">
-                                <p class="py-4">
+                            <div class="max-w-200 mx-auto mt-16">
+                                <p class="py-4 text-center">
                                     Simplified version of the original code ↓
                                 </p>
                                 <CodeWindow code={summaryCodeMVP} lang="js" />
@@ -207,36 +211,39 @@ export const billowSections = [
                             </h2>
                             <div class="text-box">
                                 <section>
-                                    <h3>Architecture Decision</h3>
-                                    <p>
-                                        To make the chat feature scalable, I
-                                        first defined clear responsibility
-                                        boundaries for the architecture. Instead
-                                        of separating code by file size or UI
-                                        sections, I reorganized it by concern:
-                                        View, Logic, Service, and State.
-                                    </p>
-                                </section>
-                                <section
-                                    class="mt-16 flex flex-col lg:grid lg:grid-cols-5 gap-8"
-                                >
-                                    <div
-                                        class="order-1 lg:order-2 max-w-100 mx-auto lg:max-w-200 place-content-center lg:col-span-3 col-start-3"
-                                    >
-                                        <Image src={Diagram_SoC} alt="" />
+                                    <div class="flex flex-col md:grid grid-cols-4 gap-4 place-items-center">
+                                        <div class="col-span-2">
+                                            <h3 class="mb-4">Architecture Decision</h3>
+                                            <p>
+                                                To make the chat feature scalable, I
+                                                first defined clear responsibility
+                                                boundaries for the architecture.
+                                                Instead of separating code by file
+                                                size or UI sections, I reorganized
+                                                it by concern: View, Logic, Service,
+                                                and State.
+                                            </p>
+                                        </div>
+                                        <Image
+                                            src={Diagram_SoC}
+                                            alt=""
+                                            class="lg:max-w-130 col-span-2 col-start-3"
+                                        />
                                     </div>
-                                    <div
-                                        class="order-2 lg:order-1 lg:col-span-2 lg:col-start-1"
-                                    >
+                                </section>
+                                <section class="mt-16">
                                         <!-- title and carousel box -->
                                         <div>
                                             <h3 class="mb-4">Definition</h3>
                                             <!-- carousel box -->
                                             <div
-                                                class="flex gap-4 overflow-x-auto lg:flex-col lg:overflow-visible"
+                                                class="flex gap-4 overflow-x-auto lg:grid grid-cols-2 grid-rows-2 lg:overflow-visible"
                                             >
-                                                <section
-                                                    class="relative glass-card min-w-72 shrink-0 basis-72 lg:min-w-0 lg:basis-auto"
+                                                <!-- View -->
+                                                <button
+                                                    type="button"
+                                                    data-tab="view"
+                                                    class="relative panel-button"
                                                 >
                                                     <span
                                                         class="absolute right-4 bg-blue-300 w-4 h-4 rounded-full"
@@ -252,9 +259,13 @@ export const billowSections = [
                                                         input form, loading
                                                         indicator
                                                     </p>
-                                                </section>
-                                                <section
-                                                    class="relative glass-card min-w-72 shrink-0 basis-72 lg:min-w-0 lg:basis-auto"
+                                                </button>
+
+                                                <!-- Logic -->
+                                                <button
+                                                    type="button"
+                                                    data-tab="logic"
+                                                    class="relative panel-button"
                                                 >
                                                     <span
                                                         class="absolute right-4 bg-green-300 w-4 h-4 rounded-full"
@@ -270,9 +281,12 @@ export const billowSections = [
                                                         loading state,
                                                         triggering AI responses
                                                     </p>
-                                                </section>
-                                                <section
-                                                    class="relative glass-card min-w-72 shrink-0 basis-72 lg:min-w-0 lg:basis-auto"
+                                                </button>
+                                                <!-- Service -->
+                                                <button
+                                                    type="button"
+                                                    data-tab="service"
+                                                    class="relative panel-button"
                                                 >
                                                     <span
                                                         class="absolute right-4 bg-yellow-200 w-4 h-4 rounded-full"
@@ -287,9 +301,13 @@ export const billowSections = [
                                                         formatting requests,
                                                         parsing responses
                                                     </p>
-                                                </section>
-                                                <section
-                                                    class="relative glass-card min-w-72 shrink-0 basis-72 lg:min-w-0 lg:basis-auto"
+                                                </button>
+
+                                                <!-- State -->
+                                                <button
+                                                    type="button"
+                                                    data-tab="state"
+                                                    class="relative panel-button"
                                                 >
                                                     <span
                                                         class="absolute right-4 bg-red-300 w-4 h-4 rounded-full"
@@ -305,8 +323,38 @@ export const billowSections = [
                                                         state, global state
                                                         (Zustand)
                                                     </p>
-                                                </section>
+                                                </button>
                                             </div>
+                                        </div>
+
+                                    <div class="w-full mt-8">
+                                        <div data-panel="view">
+                                            <h4 class="mb-4">View Code</h4>
+                                            <CodeWindow
+                                                code={viewCode}
+                                                lang="tsx"
+                                            />
+                                        </div>
+                                        <div data-panel="logic">
+                                            <h4 class="mb-4">Logic Code</h4>
+                                            <CodeWindow
+                                                code={logicCode}
+                                                lang="tsx"
+                                            />
+                                        </div>
+                                        <div data-panel="service">
+                                            <h4 class="mb-4">Service Code</h4>
+                                            <CodeWindow
+                                                code={serviceCode}
+                                                lang="tsx"
+                                            />
+                                        </div>
+                                        <div data-panel="state">
+                                            <h4 class="mb-4">State Code</h4>
+                                            <CodeWindow
+                                                code={stateCode}
+                                                lang="tsx"
+                                            />
                                         </div>
                                     </div>
                                 </section>
@@ -403,6 +451,42 @@ export const billowSections = [
                 // setTimeout(() => ScrollTrigger.refresh(), 300);
                 refresh();
                 setTimeout(refresh, 300);
+                const tabs =
+                    document.querySelectorAll<HTMLElement>("[data-tab]");
+                const panels =
+                    document.querySelectorAll<HTMLElement>("[data-panel]");
+
+                // ✅ 初期状態（View）
+                const initial = "view";
+
+                panels.forEach((panel) => {
+                    panel.hidden = panel.dataset.panel !== initial;
+                });
+
+                tabs.forEach((tab) => {
+                    tab.classList.toggle(
+                        "is-active",
+                        tab.dataset.tab === initial,
+                    );
+                });
+
+                // ✅ クリック時
+                tabs.forEach((tab) => {
+                    tab.addEventListener("click", () => {
+                        const target = tab.dataset.tab;
+                        if (!target) return;
+
+                        // activeボタン切り替え
+                        tabs.forEach((item) => {
+                            item.classList.toggle("is-active", item === tab);
+                        });
+
+                        // パネル切り替え
+                        panels.forEach((panel) => {
+                            panel.hidden = panel.dataset.panel !== target;
+                        });
+                    });
+                });
 
                 const resizeObserver = new ResizeObserver(() => {
                     refresh();
