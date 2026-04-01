@@ -1,0 +1,100 @@
+---
+import Calligraphy from "../../assets/images/about/calligraphy.jpg";
+import FanLandscapeInkPainting from "../../assets/images/about/fan-landscape-ink-painting.jpg";
+import PaintingLake from "../../assets/images/about/painting-lake.jpg";
+import PaintingMarket from "../../assets/images/about/painting-market.jpg";
+import PaintingToronto from "../../assets/images/about/painting-toronto.jpg";
+
+const galleryItems = [
+  {
+    src: PaintingToronto,
+    alt: "Toronto cityscape painting",
+    className:
+      "col-start-4 col-end-6 row-start-1 row-end-2 md:col-start-10 md:col-end-13 md:row-start-1 md:row-end-2",
+  },
+  {
+    src: Calligraphy,
+    alt: "Calligraphy artwork",
+    className:
+      "col-start-1 col-end-4 row-start-2 row-end-3 md:col-start-3 md:col-end-6 md:row-start-2 md:row-end-3",
+  },
+  {
+    src: PaintingLake,
+    alt: "Lake painting",
+    className:
+      "col-start-4 col-end-6 row-start-3 row-end-4 md:col-start-5 md:col-end-8 md:row-start-1 md:row-end-2",
+  },
+  {
+    src: FanLandscapeInkPainting,
+    alt: "Fan landscape ink painting",
+    className:
+      "col-start-1 col-end-4 row-start-4 row-end-5 md:col-start-5 md:col-end-8 md:row-start-3 md:row-end-4",
+  },
+  {
+    src: PaintingMarket,
+    alt: "Market painting",
+    className:
+      "col-start-2 mb-16 col-end-6 row-start-5 row-end-6 md:col-start-10 md:col-end-13 md:row-start-3 md:row-end-4",
+  },
+];
+---
+
+<section
+  class="grid grid-cols-5 grid-rows-[auto_repeat(5,minmax(88px,1fr))] px-5 py-6 md:grid-cols-14 md:grid-rows-3  md:h-screen"
+>
+  <p
+    class="col-start-1 col-end-5 row-start-1 row-end-2 max-w-[18ch] text-pretty text-body-base leading-[1.15] md:col-start-7 md:col-end-11 md:row-start-2 md:row-end-3 md:max-w-[24ch]"
+  >
+    When I&apos;m not in front of a computer screen, you&apos;ll likely find me
+    painting or practicing calligraphy.
+  </p>
+
+  {
+    galleryItems.map((item) => (
+      <div class={`group flex items-center ${item.className}`}>
+        <div class="max-w-30 aspect-[248/71 ]">
+          <svg
+            viewBox="0 0 248 71"
+            class="block h-auto w-full overflow-visible"
+            aria-label={item.alt}
+            role="img"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <defs>
+              <pattern
+                id={`gallery-pattern-${item.alt.toLowerCase().replaceAll(" ", "-")}`}
+                patternUnits="userSpaceOnUse"
+                width="248"
+                height="71"
+              >
+                <image
+                  href={item.src.src}
+                  width="248"
+                  height="71"
+                  preserveAspectRatio="xMidYMid slice"
+                />
+              </pattern>
+            </defs>
+            <path
+              d="M123.84 0.682617C157.993 0.682617 188.887 4.61275 211.222 10.9521C222.393 14.1231 231.385 17.8863 237.567 22.0352C243.775 26.2006 246.997 30.6459 246.997 35.1504C246.997 39.655 243.775 44.1 237.567 48.2656C231.385 52.4146 222.394 56.1786 211.222 59.3496C188.887 65.689 157.993 69.6191 123.84 69.6191C89.6871 69.6191 58.7924 65.689 36.458 59.3496C25.2862 56.1786 16.2949 52.4146 10.1123 48.2656C3.90518 44.1001 0.682617 39.6549 0.682617 35.1504C0.68283 30.6459 3.90515 26.2006 10.1123 22.0352C16.2949 17.8862 25.2863 14.1232 36.458 10.9521C58.7924 4.61273 89.6871 0.682637 123.84 0.682617Z"
+              fill={`url(#gallery-pattern-${item.alt.toLowerCase().replaceAll(" ", "-")})`}
+              class="transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+            ></path>
+            <path
+              d="M123.84 0.682617C157.993 0.682617 188.887 4.61275 211.222 10.9521C222.393 14.1231 231.385 17.8863 237.567 22.0352C243.775 26.2006 246.997 30.6459 246.997 35.1504C246.997 39.655 243.775 44.1 237.567 48.2656C231.385 52.4146 222.394 56.1786 211.222 59.3496C188.887 65.689 157.993 69.6191 123.84 69.6191C89.6871 69.6191 58.7924 65.689 36.458 59.3496C25.2862 56.1786 16.2949 52.4146 10.1123 48.2656C3.90518 44.1001 0.682617 39.6549 0.682617 35.1504C0.68283 30.6459 3.90515 26.2006 10.1123 22.0352C16.2949 17.8862 25.2863 14.1232 36.458 10.9521C58.7924 4.61273 89.6871 0.682637 123.84 0.682617Z"
+              fill="black"
+              fill-opacity="0.55"
+              class="transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+            ></path>
+            <path
+              d="M123.84 0.682617C157.993 0.682617 188.887 4.61275 211.222 10.9521C222.393 14.1231 231.385 17.8863 237.567 22.0352C243.775 26.2006 246.997 30.6459 246.997 35.1504C246.997 39.655 243.775 44.1 237.567 48.2656C231.385 52.4146 222.394 56.1786 211.222 59.3496C188.887 65.689 157.993 69.6191 123.84 69.6191C89.6871 69.6191 58.7924 65.689 36.458 59.3496C25.2862 56.1786 16.2949 52.4146 10.1123 48.2656C3.90518 44.1001 0.682617 39.6549 0.682617 35.1504C0.68283 30.6459 3.90515 26.2006 10.1123 22.0352C16.2949 17.8862 25.2863 14.1232 36.458 10.9521C58.7924 4.61273 89.6871 0.682637 123.84 0.682617Z"
+              stroke="#1B979D"
+              stroke-width="1.5"
+              fill="none"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    ))
+  }
+</section>
