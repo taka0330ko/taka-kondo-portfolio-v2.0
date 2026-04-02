@@ -12,38 +12,43 @@ const galleryItems = [
     src: PaintingToronto,
     alt: "Toronto cityscape painting",
     className: "gallery-card-tall",
+    id: "painting-toronto"
   },
   {
     src: Calligraphy,
     alt: "Calligraphy artwork",
     className: "gallery-card-top-small",
+    id: "calligraphy"
   },
   {
     src: PaintingLake,
     alt: "Lake painting",
     className: "gallery-card-middle-small",
+    id: "painting-lake"
   },
   {
     src: FanLandscapeInkPainting,
     alt: "Fan landscape ink painting",
     className: "gallery-card-left-bottom",
+    id: "fan-painting"
   },
   {
     src: PaintingMarket,
     alt: "Market painting",
     className: "gallery-card-right-bottom",
+    id:"market"
   },
   {
     src: Bike,
     alt: "A motorcycle drawn with a mechanical pencil",
     className: "gallery-card-bottom-tall",
+    id: "bike"
   },
 ];
 ---
-
 <section class="gallery-wrap max-w-150">
   <div 
-       class="gallery-viewport overflow-hidden h-100" 
+       class="gallery-viewport  overflow-hidden h-100" 
        data-gallery-viewport>
     <div 
          class="gallery-track flex flex-col gap-4 will-change-transform" 
@@ -52,7 +57,10 @@ const galleryItems = [
           class="gallery-grid" 
           data-gallery-set>
         {galleryItems.map((item) => (
-          <div class={`gallery-card ${item.className}`}>
+          <div
+            class={`gallery-card ${item.className}`}
+            data-gallery-item={item.id}
+          >
             <Image src={item.src} alt={item.alt} />
           </div>
         ))}
@@ -60,7 +68,10 @@ const galleryItems = [
 
       <div class="gallery-grid gallery-grid-clone" aria-hidden="true">
         {galleryItems.map((item) => (
-          <div class={`gallery-card ${item.className}`}>
+          <div
+            class={`gallery-card ${item.className}`}
+            data-gallery-item={item.id}
+          >
             <Image src={item.src} alt="" />
           </div>
         ))}
@@ -119,7 +130,9 @@ const galleryItems = [
     display: block;
     width: 100%;
     height: 100%;
-    pointer-events: none;
+    &:hover{
+      opacity: 0.5;
+    }
   }
 
   .gallery-card :global(img) {
@@ -225,7 +238,61 @@ function scrollGallery(){
   }
 }
 
-    document.addEventListener("astro:page-load", scrollGallery);
-    scrollGallery();
+function modalOpen() {
+  const track = document.querySelector<HTMLElement>("[data-gallery-track]");
+  const shell = document.querySelector<HTMLElement>("[data-gallery-shell]");
+  const modal = shell?.querySelector<HTMLElement>("[data-gallery-modal]");
+  const modalImage = shell?.querySelector<HTMLImageElement>("[data-gallery-modal-image]");
+  const closeButton = shell?.querySelector<HTMLElement>("[data-gallery-modal-close]");
 
+  if (!track || track.dataset.modalInitialized === "true") return;
+
+  track.dataset.modalInitialized = "true";
+
+  const openModal = (image: HTMLImageElement, fallbackAlt: string) => {
+    if (!modal || !modalImage) return;
+
+    modalImage.src = image.currentSrc || image.src;
+    modalImage.alt = image.alt || fallbackAlt;
+    modal.hidden = false;
+
+    window.requestAnimationFrame(() => {
+      modal.classList.add("is-visible");
+    });
+  };
+
+  const closeModal = () => {
+    if (!modal || !modalImage) return;
+
+    modal.classList.remove("is-visible");
+
+    window.setTimeout(() => {
+      modal.hidden = true;
+      modalImage.removeAttribute("src");
+      modalImage.alt = "";
+    }, 220);
+  };
+
+  track.addEventListener("click", (e) => {
+    const card = (e.target as HTMLElement).closest<HTMLElement>("[data-gallery-item]");
+    const image = card?.querySelector<HTMLImageElement>("img");
+    if (!card || !image || !modal || !modalImage) return;
+
+    openModal(image, card.dataset.galleryItem || "");
+  });
+
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  closeButton?.addEventListener("click", () => {
+    closeModal();
+  });
+}
+
+    document.addEventListener("astro:page-load",()=> {scrollGallery() , modalOpen()});
+    scrollGallery();
+    modalOpen();
 </script>

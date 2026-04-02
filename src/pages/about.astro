@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import RippleEffectMyPic from "../components/webGL/RippleEffectMyPic";
 import CopyEmail from "../components/ui/CopyEmail.astro";
 import Gallery from "../components/ui/Gallery.astro";
+import { X } from "@lucide/astro"
 ---
 
 <Layout>
@@ -31,12 +32,29 @@ import Gallery from "../components/ui/Gallery.astro";
         </div>
       </section>
       <section class="flex items-center">
-        <div>
+        <div class="flex flex-col gap-4">
           <p>
             When I&apos;m not in front of a computer screen, you&apos;ll likely find
             me painting or practicing calligraphy.
           </p>
-          <div>
+          <div class="gallery-shell" data-gallery-shell>
+            <div class="gallery-modal" data-gallery-modal hidden>
+              <div class="gallery-modal__panel glass-card">
+                <button
+                  class="gallery-modal__close text-heading-default  p-1 hover:bg-accent/50 rounded-full"
+                  type="button"
+                  data-gallery-modal-close
+                  aria-label="Close gallery modal"
+                >
+                  <X />
+                </button>
+                <img
+                  class="gallery-modal__image"
+                  data-gallery-modal-image
+                  alt=""
+                />
+              </div>
+            </div>
             <Gallery />
           </div>
         </div>
@@ -52,3 +70,68 @@ import Gallery from "../components/ui/Gallery.astro";
     <CopyEmail />
   </div>
 </Layout>
+
+<style>
+  .gallery-shell {
+    position: relative;
+  }
+
+  .gallery-modal {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    display: grid;
+    place-items: center;
+    background: #0000009f;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 220ms ease,
+      visibility 220ms ease;
+  }
+
+  .gallery-modal[hidden] {
+    display: none;
+  }
+
+  .gallery-modal.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .gallery-modal__panel {
+    display: flex;
+    flex-direction: column;
+    width: min(100%, 28rem);
+    max-height: calc(100% - 2rem);
+    overflow: auto;
+    border-radius: 8px;
+    padding: 1rem;
+    transform: translateY(12px);
+    opacity: 0;
+    transition:
+      transform 220ms ease,
+      opacity 220ms ease;
+  }
+
+  .gallery-modal.is-visible .gallery-modal__panel {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .gallery-modal__close {
+    cursor: pointer;
+    display: inline-flex;
+    align-self: flex-end;
+    margin-left: auto;
+    margin-bottom: 1rem;
+  }
+
+  .gallery-modal__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+</style>
