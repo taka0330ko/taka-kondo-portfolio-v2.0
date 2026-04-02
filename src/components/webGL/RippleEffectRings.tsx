@@ -15,6 +15,8 @@ function RippleEffectRings() {
       typeof window !== "undefined" &&
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
     if (prefersReduced) return
+    const supportsHoverPointer =
+      window.matchMedia?.("(hover: hover) and (pointer: fine)").matches ?? false
 
     // --- Renderer ---
     const renderer = new THREE.WebGLRenderer({
@@ -27,7 +29,7 @@ function RippleEffectRings() {
     renderer.domElement.style.width = "100%"
     renderer.domElement.style.height = "100%"
     renderer.domElement.style.display = "block"
-    renderer.domElement.style.pointerEvents = "auto"
+    renderer.domElement.style.pointerEvents = supportsHoverPointer ? "auto" : "none"
     host.appendChild(renderer.domElement)
 
     // --- Camera + full-screen plane ---
@@ -303,9 +305,11 @@ function RippleEffectRings() {
       hoverTarget = 0
     }
 
-    renderer.domElement.addEventListener("pointermove", onMove)
-    renderer.domElement.addEventListener("pointerleave", onLeave)
-    renderer.domElement.addEventListener("pointercancel", onLeave)
+    if (supportsHoverPointer) {
+      renderer.domElement.addEventListener("pointermove", onMove)
+      renderer.domElement.addEventListener("pointerleave", onLeave)
+      renderer.domElement.addEventListener("pointercancel", onLeave)
+    }
 
     // Animation
     let raf = 0
@@ -350,9 +354,11 @@ function RippleEffectRings() {
       ro.disconnect()
       mo.disconnect()
 
-      renderer.domElement.removeEventListener("pointermove", onMove)
-      renderer.domElement.removeEventListener("pointerleave", onLeave)
-      renderer.domElement.removeEventListener("pointercancel", onLeave)
+      if (supportsHoverPointer) {
+        renderer.domElement.removeEventListener("pointermove", onMove)
+        renderer.domElement.removeEventListener("pointerleave", onLeave)
+        renderer.domElement.removeEventListener("pointercancel", onLeave)
+      }
 
       simScene.remove(simMesh)
       renderScene.remove(renderMesh)
@@ -376,7 +382,7 @@ function RippleEffectRings() {
       <div
         ref={threeHostRef}
         className="relative w-82.5 md:w-100 lg:w-112.5 aspect-3/1
-         select-none touch-none
+         select-none
     [-webkit-touch-callout:none] [-webkit-tap-highlight-color:transparent]"
         aria-label="hero rings"
       />

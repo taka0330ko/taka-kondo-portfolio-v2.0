@@ -14,6 +14,8 @@ function RippleEffectMyPic() {
       typeof window !== "undefined" &&
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
     if (prefersReduced) return
+    const supportsHoverPointer =
+      window.matchMedia?.("(hover: hover) and (pointer: fine)").matches ?? false
 
     // Renderer
     const renderer = new THREE.WebGLRenderer({
@@ -26,7 +28,7 @@ function RippleEffectMyPic() {
     renderer.domElement.style.width = "100%"
     renderer.domElement.style.height = "100%"
     renderer.domElement.style.display = "block"
-    renderer.domElement.style.pointerEvents = "auto"
+    renderer.domElement.style.pointerEvents = supportsHoverPointer ? "auto" : "none"
     host.appendChild(renderer.domElement)
 
     // Camera and full-screen plane
@@ -283,9 +285,11 @@ function RippleEffectMyPic() {
       hoverTarget = 0
     }
 
-    renderer.domElement.addEventListener("pointermove", onMove)
-    renderer.domElement.addEventListener("pointerleave", onLeave)
-    renderer.domElement.addEventListener("pointercancel", onLeave)
+    if (supportsHoverPointer) {
+      renderer.domElement.addEventListener("pointermove", onMove)
+      renderer.domElement.addEventListener("pointerleave", onLeave)
+      renderer.domElement.addEventListener("pointercancel", onLeave)
+    }
 
     // Animation
     let raf = 0
@@ -333,9 +337,11 @@ function RippleEffectMyPic() {
       cancelAnimationFrame(raf)
       ro.disconnect()
 
-      renderer.domElement.removeEventListener("pointermove", onMove)
-      renderer.domElement.removeEventListener("pointerleave", onLeave)
-      renderer.domElement.removeEventListener("pointercancel", onLeave)
+      if (supportsHoverPointer) {
+        renderer.domElement.removeEventListener("pointermove", onMove)
+        renderer.domElement.removeEventListener("pointerleave", onLeave)
+        renderer.domElement.removeEventListener("pointercancel", onLeave)
+      }
 
       simScene.remove(simMesh)
       renderScene.remove(renderMesh)
@@ -359,7 +365,7 @@ function RippleEffectMyPic() {
       <div
         ref={threeHostRef}
         className="relative w-75 md:w-90 lg:w-112.5 aspect-square overflow-hidden rounded-b-lg
-    select-none touch-none
+    select-none
     [-webkit-touch-callout:none] [-webkit-tap-highlight-color:transparent]"
         aria-label="hero rings"
       />
