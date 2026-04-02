@@ -145,51 +145,60 @@ const galleryItems = [
 </style>
 
 <script>
+
+function scrollGallery(){
+
+  
   const viewport = document.querySelector<HTMLElement>("[data-gallery-viewport]");
   const track = document.querySelector<HTMLElement>("[data-gallery-track]");
   const firstSet = document.querySelector<HTMLElement>("[data-gallery-set]");
-
+  
   if (viewport && track && firstSet) {
     let currentY = 0;
     let targetY = 0;
     let setHeight = 0;
     let gap = 12;
     let rafId = 0;
-
+  
     const normalize = (value: number, size: number): number => {
       if (size <= 0) return 0;
       return ((value % size) + size) % size;
     };
-
+  
     const measure = () => {
       const styles = window.getComputedStyle(track);
       gap = parseFloat(styles.rowGap || styles.gap || "0") || 0;
       setHeight = firstSet.offsetHeight + gap;
     };
-
+  
     const render = () => {
       if (!setHeight) return;
-
+  
       currentY += (targetY - currentY) * 0.08;
-
+  
       const loopedY = normalize(currentY, setHeight);
       track.style.transform = `translate3d(0, ${-loopedY}px, 0)`;
       rafId = window.requestAnimationFrame(render);
     };
-
+  
     const start = () => {
       if (rafId) window.cancelAnimationFrame(rafId);
       measure();
       render();
     };
-
+  
     start();
-
+  
     viewport.addEventListener("wheel", (event) => {
       event.preventDefault();
       targetY += event.deltaY;
     }, { passive: false });
-
+  
     window.addEventListener("resize", measure);
   }
+}
+
+    document.addEventListener("astro:page-load", scrollGallery);
+    scrollGallery();
+
 </script>
