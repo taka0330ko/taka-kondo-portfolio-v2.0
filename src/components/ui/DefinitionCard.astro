@@ -15,8 +15,8 @@ const { contents } = Astro.props
 ---
 
     {contents.map((content: cardItem) => (
-        <button type="button" data-tab={content.data} class="relative panel-button">
-        <span class={`${content.className} absolute right-4 w-4 h-4 rounded-full`}></span>
+    <button type="button" data-tab={content.data} class="relative panel-button grid ">
+        <span class={`${content.className} absolute top-6 right-4 w-4 h-4 rounded-full`}></span>
         <h4>
             {content.title}
         </h4>
