@@ -1,0 +1,26 @@
+---
+type cardItem = {
+    title: string
+    body: string
+    ex: string
+    className: string
+    data: string
+}
+
+interface Props  {
+    contents : cardItem[]
+}
+
+const { contents } = Astro.props
+---
+
+    {contents.map((content: cardItem) => (
+        <button type="button" data-tab={content.data} class="relative panel-button">
+        <span class={`${content.className} absolute right-4 w-4 h-4 rounded-full`}></span>
+        <h4>
+            {content.title}
+        </h4>
+        <p>{content.body}</p>
+        <p class="text-sm">{content.ex}</p>
+    </button>
+    ))}

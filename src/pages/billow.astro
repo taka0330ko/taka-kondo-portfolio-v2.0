@@ -32,14 +32,46 @@ import {
     serviceCode,
     stateCode,
 } from "../data/billowCode.ts";
+import DefinitionCard from "../components/ui/DefinitionCard.astro";
 
 export const billowSections = [
     { label: "Overview", href: "#Overview" },
     { label: "Problem", href: "#Problem" },
     { label: "Approach", href: "#Approach" },
-    // { label: "Additional features", href: "#Additional-features" },
     { label: "Reflection", href: "#Reflection" },
 ];
+
+// Definition card content
+export const cardContents = [
+    {
+        title: "View",
+        body: "Responsible for rendering the UI and layout, with no business logic",
+        ex:  "e.g. message list, chat input form, loading indicator",
+        className: "bg-blue-300",
+        data: "view"
+    },
+    {
+        title: "Logic",
+        body: "Manages chat flow, side effects, and user interactions",
+        ex:  "e.g. handling message submission, managing loading state, triggering AI responses",
+        className: "bg-green-300",
+        data: "logic"
+    },
+    {
+        title: "Service",
+        body: "Encapsulates AI communication and external API calls",
+        ex:  "e.g. calling AI API, formatting requests, parsing responses",
+        className: "bg-yellow-300",
+        data: "service"
+    },
+    {
+        title: "State",
+        body: "Manages shared conversation data across components",
+        ex:  "e.g. chat messages store, current chat room state, global state (Zustand)",
+        className: "bg-red-300",
+        data: "state"
+    },
+]
 ---
 
 <Layout>
@@ -232,11 +264,12 @@ export const billowSections = [
                                                 and State.
                                             </p>
                                         </div>
-                                        <Image
-                                            src={Diagram_SoC}
-                                            alt=""
-                                            class="lg:max-w-130 col-span-2 col-start-3"
-                                        />
+                                        <div class="col-span-2 col-start-3 lg:max-w-130 ">
+                                            <Image
+                                                src={Diagram_SoC}
+                                                alt=""
+                                            />
+                                        </div>
                                     </div>
                                 </section>
                                 <section class="mt-16">
@@ -245,90 +278,12 @@ export const billowSections = [
                                         <h3 class="mb-4">Definition</h3>
                                         <!-- carousel box -->
                                         <div
+                                            data-definition-card-group
                                             class="flex gap-4 overflow-x-auto lg:grid grid-cols-2 grid-rows-2 lg:overflow-visible"
                                         >
-                                            <!-- View -->
-                                            <button
-                                                type="button"
-                                                data-tab="view"
-                                                class="relative panel-button"
-                                            >
-                                                <span
-                                                    class="absolute right-4 bg-blue-300 w-4 h-4 rounded-full"
-                                                ></span><h4>View</h4>
-                                                <p>
-                                                    Responsible for rendering
-                                                    the UI and layout, with no
-                                                    business logic
-                                                </p>
-                                                <p class="text-sm">
-                                                    e.g. message list, chat
-                                                    input form, loading
-                                                    indicator
-                                                </p>
-                                            </button>
-
-                                            <!-- Logic -->
-                                            <button
-                                                type="button"
-                                                data-tab="logic"
-                                                class="relative panel-button"
-                                            >
-                                                <span
-                                                    class="absolute right-4 bg-green-300 w-4 h-4 rounded-full"
-                                                ></span><h4>Logic</h4>
-                                                <p>
-                                                    Manages chat flow, side
-                                                    effects, and user
-                                                    interactions
-                                                </p>
-                                                <p class="text-sm">
-                                                    e.g. handling message
-                                                    submission, managing loading
-                                                    state, triggering AI
-                                                    responses
-                                                </p>
-                                            </button>
-                                            <!-- Service -->
-                                            <button
-                                                type="button"
-                                                data-tab="service"
-                                                class="relative panel-button"
-                                            >
-                                                <span
-                                                    class="absolute right-4 bg-yellow-200 w-4 h-4 rounded-full"
-                                                ></span><h4>Service</h4>
-                                                <p>
-                                                    Encapsulates AI
-                                                    communication and external
-                                                    API calls
-                                                </p>
-                                                <p class="text-sm">
-                                                    e.g. calling AI API,
-                                                    formatting requests, parsing
-                                                    responses
-                                                </p>
-                                            </button>
-
-                                            <!-- State -->
-                                            <button
-                                                type="button"
-                                                data-tab="state"
-                                                class="relative panel-button"
-                                            >
-                                                <span
-                                                    class="absolute right-4 bg-red-300 w-4 h-4 rounded-full"
-                                                ></span><h4>State</h4>
-                                                <p>
-                                                    Manages shared conversation
-                                                    data across components
-                                                </p>
-                                                <p class="text-sm">
-                                                    e.g. chat messages store,
-                                                    current chat room state,
-                                                    global state (Zustand)
-                                                </p>
-                                            </button>
+                                            <DefinitionCard
+                                            contents={cardContents}
+                                            />
                                         </div>
                                     </div>
 
@@ -385,13 +340,6 @@ export const billowSections = [
                                 </p>
                             </div>
                         </section>
-                        <!-- <section id="Additional-features" class="h-screen">
-                            <h2 class="font-semibold">
-                                <span class="heading-accent-bar"
-                                    >Additional features</span
-                                >
-                            </h2>
-                        </section> -->
                         <section id="Reflection" >
                             <h2 class="font-semibold">
                                 <span class="heading-accent-bar"
@@ -527,19 +475,23 @@ export const billowSections = [
                 fadeUp("#Overview", "#Overview");
                 fadeUp("#Problem", "#Problem");
                 fadeUp("#Approach", "#Approach");
-                // fadeUp("#Additional-features", "#Additional-features");
                 fadeUp("#Reflection", "#Reflection");
 
-                // requestAnimationFrame(() => ScrollTrigger.refresh());
-                // setTimeout(() => ScrollTrigger.refresh(), 300);
                 refresh();
                 setTimeout(refresh, 300);
+
+                const root = document.querySelector<HTMLElement>(
+                    "[data-definition-card-group]",
+                );
                 const tabs =
-                    document.querySelectorAll<HTMLElement>("[data-tab]");
+                    root?.querySelectorAll<HTMLElement>("[data-tab]") ?? [];
+
                 const panels =
                     document.querySelectorAll<HTMLElement>("[data-panel]");
 
-                // ✅ 初期状態（View）
+                if (tabs.length === 0 || panels.length === 0) return;
+
+                //  initial state（View）
                 const initial = "view";
 
                 panels.forEach((panel) => {
@@ -553,18 +505,18 @@ export const billowSections = [
                     );
                 });
 
-                // ✅ クリック時
+                // click
                 tabs.forEach((tab) => {
                     tab.addEventListener("click", () => {
                         const target = tab.dataset.tab;
                         if (!target) return;
 
-                        // activeボタン切り替え
+                        // switch active
                         tabs.forEach((item) => {
                             item.classList.toggle("is-active", item === tab);
                         });
 
-                        // パネル切り替え
+                        // switch panel
                         panels.forEach((panel) => {
                             panel.hidden = panel.dataset.panel !== target;
                         });
