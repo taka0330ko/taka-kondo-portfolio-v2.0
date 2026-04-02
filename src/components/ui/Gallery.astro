@@ -127,38 +127,42 @@ const galleryItems = [
   }
 
   .gallery-viewport {
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 20%,
-    black 80%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 20%,
-    black 80%,
-    transparent
-  );
-}
+    touch-action: none;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 20%,
+      black 80%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 20%,
+      black 80%,
+      transparent
+    );
+  }
 </style>
 
 <script>
 
 function scrollGallery(){
-
-  
   const viewport = document.querySelector<HTMLElement>("[data-gallery-viewport]");
   const track = document.querySelector<HTMLElement>("[data-gallery-track]");
   const firstSet = document.querySelector<HTMLElement>("[data-gallery-set]");
   
   if (viewport && track && firstSet) {
+    if (viewport.dataset.galleryInitialized === "true") return;
+    viewport.dataset.galleryInitialized = "true";
+
     let currentY = 0;
     let targetY = 0;
     let setHeight = 0;
     let gap = 12;
     let rafId = 0;
+    let lastTouchY = 0;
+    let isTouching = false;
   
     const normalize = (value: number, size: number): number => {
       if (size <= 0) return 0;
@@ -193,6 +197,29 @@ function scrollGallery(){
       event.preventDefault();
       targetY += event.deltaY;
     }, { passive: false });
+
+    viewport.addEventListener("touchstart", (event) => {
+      if (event.touches.length !== 1) return;
+      isTouching = true;
+      lastTouchY = event.touches[0].clientY;
+    }, { passive: true });
+
+    viewport.addEventListener("touchmove", (event) => {
+      if (!isTouching || event.touches.length !== 1) return;
+      const touchY = event.touches[0].clientY;
+      const deltaY = lastTouchY - touchY;
+
+      lastTouchY = touchY;
+      targetY += deltaY;
+      event.preventDefault();
+    }, { passive: false });
+
+    const endTouch = () => {
+      isTouching = false;
+    };
+
+    viewport.addEventListener("touchend", endTouch);
+    viewport.addEventListener("touchcancel", endTouch);
   
     window.addEventListener("resize", measure);
   }
