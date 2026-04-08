@@ -46,32 +46,32 @@ export const cardContents = [
     {
         title: "View",
         body: "Responsible for rendering the UI and layout, with no business logic",
-        ex:  "e.g. message list, chat input form, loading indicator",
+        ex: "e.g. message list, chat input form, loading indicator",
         className: "bg-blue-300",
-        data: "view"
+        data: "view",
     },
     {
         title: "Logic",
         body: "Manages chat flow, side effects, and user interactions",
-        ex:  "e.g. handling message submission, managing loading state, triggering AI responses",
+        ex: "e.g. handling message submission, managing loading state, triggering AI responses",
         className: "bg-green-300",
-        data: "logic"
+        data: "logic",
     },
     {
         title: "Service",
         body: "Encapsulates AI communication and external API calls",
-        ex:  "e.g. calling AI API, formatting requests, parsing responses",
+        ex: "e.g. calling AI API, formatting requests, parsing responses",
         className: "bg-yellow-300",
-        data: "service"
+        data: "service",
     },
     {
         title: "State",
         body: "Manages shared conversation data across components",
-        ex:  "e.g. chat messages store, current chat room state, global state (Zustand)",
+        ex: "e.g. chat messages store, current chat room state, global state (Zustand)",
         className: "bg-red-300",
-        data: "state"
+        data: "state",
     },
-]
+];
 ---
 
 <Layout>
@@ -134,7 +134,7 @@ export const cardContents = [
         </section>
         <!-- ====================== Case Study Start ====================== -->
         <section class="mt-32">
-            <div class="flex flex-col lg:grid grid-cols-12">
+            <div class="flex flex-col max-w-360 mx-auto lg:grid grid-cols-12">
                 <aside
                     aria-label="Project section navigation"
                     class="col-start-1 col-span-2 p-4 sticky top-24 h-fit"
@@ -264,11 +264,10 @@ export const cardContents = [
                                                 and State.
                                             </p>
                                         </div>
-                                        <div class="col-span-2 col-start-3 lg:max-w-130 ">
-                                            <Image
-                                                src={Diagram_SoC}
-                                                alt=""
-                                            />
+                                        <div
+                                            class="col-span-2 col-start-3 lg:max-w-130"
+                                        >
+                                            <Image src={Diagram_SoC} alt="" />
                                         </div>
                                     </div>
                                 </section>
@@ -282,7 +281,7 @@ export const cardContents = [
                                             class="flex gap-4 overflow-x-auto lg:grid grid-cols-2 grid-rows-2 lg:overflow-visible"
                                         >
                                             <DefinitionCard
-                                            contents={cardContents}
+                                                contents={cardContents}
                                             />
                                         </div>
                                     </div>
@@ -340,7 +339,7 @@ export const cardContents = [
                                 </p>
                             </div>
                         </section>
-                        <section id="Reflection" >
+                        <section id="Reflection">
                             <h2 class="font-semibold">
                                 <span class="heading-accent-bar"
                                     >Reflection</span
@@ -397,149 +396,148 @@ export const cardContents = [
         </section>
 
         <!-- Other Projects -->
-<section class="p-4 md:p-16">
-    <h2 class="text-center p-16">Other Projects</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-4 max-w-400 mx-auto">
-        {projects.filter((project) =>
-        project.href !== "/billow"
-        && project.href !== "/stone-and-honey")
-        .map((project) => {
-        return(
-                  <Card
-                  href={project.href}
-                  cover={project.cover}
-                  title={project.title}
-                  description={project.description}
-                  tag={project.tag}          />
-        )
-        })}
-    </div>
-</section>
+        <section class="p-4 md:p-16">
+            <h2 class="text-center p-16">Other Projects</h2>
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-4 max-w-400 mx-auto"
+            >
+                {
+                    projects
+                        .filter(
+                            (project) =>
+                                project.href !== "/billow" &&
+                                project.href !== "/stone-and-honey",
+                        )
+                        .map((project) => {
+                            return (
+                                <Card
+                                    href={project.href}
+                                    cover={project.cover}
+                                    title={project.title}
+                                    description={project.description}
+                                    tag={project.tag}
+                                />
+                            );
+                        })
+                }
+            </div>
+        </section>
     </main>
 </Layout>
 
 <script>
-            import gsap from "gsap";
-            import { ScrollTrigger } from "gsap/ScrollTrigger";
-            gsap.registerPlugin(ScrollTrigger);
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger);
 
-            document.addEventListener("astro:page-load", () => {
-                const refresh = () =>
-                    requestAnimationFrame(() => ScrollTrigger.refresh());
+    document.addEventListener("astro:page-load", () => {
+        const refresh = () =>
+            requestAnimationFrame(() => ScrollTrigger.refresh());
 
-                const fadeUp = (
-                    target: string,
-                    trigger: string,
-                    start = "top 70%",
-                ) => {
-                    gsap.fromTo(
-                        target,
-                        {
-                            y: 56,
-                            opacity: 0,
-                            scale: 0.98,
-                        },
-                        {
-                            y: 0,
-                            opacity: 1,
-                            scale: 1,
-                            duration: 1,
-                            ease: "power3.out",
-                            scrollTrigger: {
-                                trigger,
-                                start,
-                                toggleActions: "play none none reverse",
-                                invalidateOnRefresh: true,
-                            },
-                        },
-                    );
-                };
-
-                gsap.fromTo(
-                    "#case-study-sidebar",
-                    { x: -32, opacity: 0 },
-                    {
-                        x: 0,
-                        opacity: 1,
-                        duration: 0.8,
-                        ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: "#hero",
-                            start: "bottom 30%",
-                            toggleActions: "play none none reverse",
-                            invalidateOnRefresh: true,
-                        },
+        const fadeUp = (target: string, trigger: string, start = "top 70%") => {
+            gsap.fromTo(
+                target,
+                {
+                    y: 56,
+                    opacity: 0,
+                    scale: 0.98,
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger,
+                        start,
+                        toggleActions: "play none none reverse",
+                        invalidateOnRefresh: true,
                     },
-                );
+                },
+            );
+        };
 
-                fadeUp("#Overview", "#Overview");
-                fadeUp("#Problem", "#Problem");
-                fadeUp("#Approach", "#Approach");
-                fadeUp("#Reflection", "#Reflection");
+        gsap.fromTo(
+            "#case-study-sidebar",
+            { x: -32, opacity: 0 },
+            {
+                x: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: "#hero",
+                    start: "bottom 30%",
+                    toggleActions: "play none none reverse",
+                    invalidateOnRefresh: true,
+                },
+            },
+        );
 
-                refresh();
-                setTimeout(refresh, 300);
+        fadeUp("#Overview", "#Overview");
+        fadeUp("#Problem", "#Problem");
+        fadeUp("#Approach", "#Approach");
+        fadeUp("#Reflection", "#Reflection");
 
-                const root = document.querySelector<HTMLElement>(
-                    "[data-definition-card-group]",
-                );
-                const tabs =
-                    root?.querySelectorAll<HTMLElement>("[data-tab]") ?? [];
+        refresh();
+        setTimeout(refresh, 300);
 
-                const panels =
-                    document.querySelectorAll<HTMLElement>("[data-panel]");
+        const root = document.querySelector<HTMLElement>(
+            "[data-definition-card-group]",
+        );
+        const tabs = root?.querySelectorAll<HTMLElement>("[data-tab]") ?? [];
 
-                if (tabs.length === 0 || panels.length === 0) return;
+        const panels = document.querySelectorAll<HTMLElement>("[data-panel]");
 
-                //  initial state（View）
-                const initial = "view";
+        if (tabs.length === 0 || panels.length === 0) return;
 
+        //  initial state（View）
+        const initial = "view";
+
+        panels.forEach((panel) => {
+            panel.hidden = panel.dataset.panel !== initial;
+        });
+
+        tabs.forEach((tab) => {
+            tab.classList.toggle("is-active", tab.dataset.tab === initial);
+        });
+
+        // click
+        tabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                const target = tab.dataset.tab;
+                if (!target) return;
+
+                // switch active
+                tabs.forEach((item) => {
+                    item.classList.toggle("is-active", item === tab);
+                });
+
+                // switch panel
                 panels.forEach((panel) => {
-                    panel.hidden = panel.dataset.panel !== initial;
+                    panel.hidden = panel.dataset.panel !== target;
                 });
-
-                tabs.forEach((tab) => {
-                    tab.classList.toggle(
-                        "is-active",
-                        tab.dataset.tab === initial,
-                    );
-                });
-
-                // click
-                tabs.forEach((tab) => {
-                    tab.addEventListener("click", () => {
-                        const target = tab.dataset.tab;
-                        if (!target) return;
-
-                        // switch active
-                        tabs.forEach((item) => {
-                            item.classList.toggle("is-active", item === tab);
-                        });
-
-                        // switch panel
-                        panels.forEach((panel) => {
-                            panel.hidden = panel.dataset.panel !== target;
-                        });
-                    });
-                });
-
-                const resizeObserver = new ResizeObserver(() => {
-                    refresh();
-                });
-
-                //get code view element for observing
-                document.querySelectorAll(".code-view").forEach((el) => {
-                    resizeObserver.observe(el);
-                });
-
-                // "astro:before-swap" -> because of Astro View Transitions, need to cleanup before moving other page
-                document.addEventListener(
-                    "astro:before-swap",
-                    () => {
-                        //resizeObserver.disconnect() -> cleanup observer
-                        resizeObserver.disconnect();
-                    },
-                    { once: true },
-                );
             });
-        </script>
+        });
+
+        const resizeObserver = new ResizeObserver(() => {
+            refresh();
+        });
+
+        //get code view element for observing
+        document.querySelectorAll(".code-view").forEach((el) => {
+            resizeObserver.observe(el);
+        });
+
+        // "astro:before-swap" -> because of Astro View Transitions, need to cleanup before moving other page
+        document.addEventListener(
+            "astro:before-swap",
+            () => {
+                //resizeObserver.disconnect() -> cleanup observer
+                resizeObserver.disconnect();
+            },
+            { once: true },
+        );
+    });
+</script>

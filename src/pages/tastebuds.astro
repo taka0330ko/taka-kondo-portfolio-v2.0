@@ -14,14 +14,14 @@ import Card from "../components/ui/Card.astro";
 import CodeWindow from "../components/ui/CodeWindow.astro";
 import GlassPill from "../components/ui/GlassPill.astro";
 import {
-  CardRenderA,
-  CardRenderB,
-  fetchData,
-  Folders,
-  postDataType,
-  postsDataCode,
-  renderPostCode,
-  templateTagCode,
+    CardRenderA,
+    CardRenderB,
+    fetchData,
+    Folders,
+    postDataType,
+    postsDataCode,
+    renderPostCode,
+    templateTagCode,
 } from "../data/tastebudsCode.ts";
 
 // Videos
@@ -40,572 +40,872 @@ import { projects } from "../data/projects";
 
 // Stack Logo assets
 import {
-  CSS,
-  HTML,
-  JS,
-  NextJS,
-  ReactLogo,
-  SASS,
-  Supabase,
-  Tailwind,
-  TypeScript,
+    CSS,
+    HTML,
+    JS,
+    NextJS,
+    ReactLogo,
+    SASS,
+    Supabase,
+    Tailwind,
+    TypeScript,
 } from "../data/icons.ts";
 import Image from "astro/components/Image.astro";
 
 export const tastebudsSections = [
-  { label: "Overview", href: "#Overview" },
-  { label: "MVP", href: "#MVP" },
-  { label: "Redevelopment", href: "#Redevelopment" },
-  { label: "Reflection", href: "#Reflection" },
+    { label: "Overview", href: "#Overview" },
+    { label: "MVP", href: "#MVP" },
+    { label: "Redevelopment", href: "#Redevelopment" },
+    { label: "Reflection", href: "#Reflection" },
 ];
 ---
+
 <Layout>
     <main>
         <section id="hero" aria-labelledby="tastebuds-overview">
-      <div class="grid grid-cols-12 grid-container mt-30 md:mt-40 items-start">
-    <!-- Text Block -->
-        <div class="md:col-start-1 md:col-span-6">
+            <div
+                class="grid grid-cols-12 grid-container mt-30 md:mt-40 items-start"
+            >
+                <!-- Text Block -->
+                <div class="md:col-start-1 md:col-span-6">
+                    <!-- Breadcrumb -->
+                    <BreadCrumb>Tastebuds</BreadCrumb>
+                    <h1
+                        id="tastebuds-overview"
+                        class="text-display text-center py-12 font-semibold"
+                    >
+                        “TASTEBUDS” Food Blog Site
+                    </h1>
+                    <p class="text-subtitle pt-6 text-center">
+                        A learning journey from MVP development with <span
+                            class="text-accent"
+                        >
+                            vanilla JavaScript
+                        </span>to redeveloping with <span class="text-accent"
+                            >React and Next.js.</span
+                        >
+                    </p>
 
-         <!-- Breadcrumb -->
-          <BreadCrumb>Tastebuds</BreadCrumb>
-            <h1
-             id="tastebuds-overview"
-             class="text-display text-center py-12 font-semibold">“TASTEBUDS” Food Blog Site</h1>
-            <p class="text-subtitle pt-6 text-center ">A learning journey from MVP development with <span class="text-accent"> vanilla JavaScript </span>to redeveloping with <span class="text-accent">React and Next.js.</span></p>
-
-        <!-- Vanilla to Next -->
-        <div 
-        role="img"
-        aria-label="Technology transition from JavaScript to Next.js" 
-        class="flex items-center mx-auto max-w-100 gap-8 md:justify-end lg:gap-12 p-16 ">
-            <JS class="w-24 h-24" aria-hidden="true" focusable="false"/>
-            <Arrow  class="text-foreground w-14 h-14" aria-hidden="true" focusable="false"/>
-            <NextJS class="w-24  h-24 text-foreground" aria-hidden="true" focusable="false"/>
-        </div>
-
-        <!-- link pills -->
-         <div class="flex justify-center gap-4">
-             <GlassPill
-             target="_blank" 
-             rel="noopener noreferrer"
-             aria-label="Open Tastebuds live site in a new tab"
-             href="https://tastebuds-mbh7.vercel.app/"
-             >
-             <ArrowUpRight slot="after" aria-hidden="true" focusable="false"/>
-             Live Site
-             <span class="sr-only">(opens in a new tab)</span>
-             </GlassPill>
-             <GlassPill
-             target="_blank"
-             rel="noopener noreferrer"
-             aria-label="Open Tastebuds GitHub repository in a new tab"
-             href="https://github.com/Taka0330-jp/Tastebuds.git"
-             >
-             <Github slot="after" aria-hidden="true" focusable="false"/>
-             GitHub
-             <span class="sr-only">(opens in a new tab)</span>
-             </GlassPill>
-         </div>
-
-    </div>
-
-    <!-- Homepage Screenshot -->
-       <div class="md:col-start-7 md:col-span-6 max-w-150 m-auto">
-        <Image
-        class="mask-b-from-70% mask-b-to-100%"
-        src={Tastebuds_Website_Pic} 
-        loading="eager"
-        alt="Screenshot of the Tastebuds food blog homepage">
-       </div>
-    </div>
-</section>
-<!-- ====================== Case Study Start ====================== -->
-<section class="mt-32">
-    <div class="flex flex-col lg:grid grid-cols-12">
-        <aside 
-        aria-label="Project section navigation"
-        class="col-start-1 col-span-2 p-4 sticky top-24 h-fit">
-
-        <CaseStudySidebar
-        items={tastebudsSections}
-        className="col-start-1 col-span-2"
-        />
-
-        </aside>
-        <div class="px-8 md:col-start-3 col-span-10">
-
-        <!-- Overview Section -->
-        <section id="Overview">
-                <h2 class="font-semibold"><span class="heading-accent-bar">Overview</span></h2>
-                <h3 class="pt-32 ">From Class Project to Rebuild</h3>
-                <p class="pt-24">TASTEBUDS began as a social media marketing project with my classmates, 
-                    <span class="text-accent text-xl"> a food blog featuring restaurants and cafés in Vancouver.</span></p>
-                <p class="pt-16">At first, I had not learned React yet, so I built the site using <span class="text-accent text-xl"> 
-                    HTML, CSS (Sass), and vanilla JavaScript.</span> As development progressed, I wanted a more efficient workflow, 
-                    which led me to learn <span class="text-accent text-xl">React and Next.js.</span>
-                    I also redesigned the UI in Figma and rebuilt the project from the ground up.</p>
-        </section>
-
-        <!-- MVP Section -->
-        <section id="MVP" >
-                <section id="MVP-intro" class="mt-64">
-                    <h2 class="font-semibold"><span class="heading-accent-bar">MVP</span></h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
-                        <div class="col-span-1 flex flex-col justify-between m-auto">
-                            <h3 class="pt-16 ">Built on Fundamentals</h3>
-                            <p class="pt-8 ">For the MVP, I built the project using fundamental web technologies. 
-                                              As I manually created blog cards with static HTML, I started to wonder, “Is there a more efficient way to replicate these?” 
-                                              This question led me to explore building a reusable structure using built-in browser features to dynamically generate content. 
-                                              This approach reduced repetition and improved scalability.</p>
-                        </div>
-                    <div class="flex flex-col gap-4">
-                        <!-- MVP Live Site & GitHub -->
-                        <div class="flex gap-4">
-
-                                     <GlassPill
-                                     target="_blank" 
-                                     rel="noopener noreferrer"
-                                     aria-label="Open Tastebuds MVP live site in a new tab"
-                                     href="https://tastebuds-website.vercel.app/pages/home.html"
-                                     >
-                                     <ArrowUpRight slot="after" aria-hidden="true" focusable="false"/>
-                                     Live Site
-                                     <span class="sr-only">(opens in a new tab)</span>
-                                     </GlassPill>
-
-                                     <GlassPill
-                                     target="_blank"
-                                     rel="noopener noreferrer"
-                                     aria-label="Open Tastebuds MVP GitHub repository in a new tab"
-                                     href="https://github.com/Taka0330-jp/tastebuds-website.git"
-                                     >
-                                     <Github slot="after" aria-hidden="true" focusable="false"/>
-                                     GitHub
-                                     <span class="sr-only">(opens in a new tab)</span>
-                                     </GlassPill>
-
-                        </div>
-                        <!-- MVP Video -->
-                        <div class="bg-card-gradient border border-frame-ring rounded-lg shadow-lg">
-                            <video
-                            class="p-4"
-                            src={MVPVideo}
-                            autoplay
-                            loop
-                            muted
-                            playsinline ></video>
-                        </div>
-                        
-                        <!-- MVP Stacks -->
-                        <div class="flex justify-end items-center gap-2">
-                            <HTML class="w-6 h-6"/>
-                            <CSS class="w-6 h-6"/>
-                            <SASS class="w-6 h-6"/>
-                            <JS class="w-6 h-6"/>
-                        </div>
+                    <!-- Vanilla to Next -->
+                    <div
+                        role="img"
+                        aria-label="Technology transition from JavaScript to Next.js"
+                        class="flex items-center mx-auto max-w-100 gap-8 md:justify-end lg:gap-12 p-16"
+                    >
+                        <JS
+                            class="w-24 h-24"
+                            aria-hidden="true"
+                            focusable="false"
+                        />
+                        <Arrow
+                            class="text-foreground w-14 h-14"
+                            aria-hidden="true"
+                            focusable="false"
+                        />
+                        <NextJS
+                            class="w-24 h-24 text-foreground"
+                            aria-hidden="true"
+                            focusable="false"
+                        />
                     </div>
 
+                    <!-- link pills -->
+                    <div class="flex justify-center gap-4">
+                        <GlassPill
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Open Tastebuds live site in a new tab"
+                            href="https://tastebuds-mbh7.vercel.app/"
+                        >
+                            <ArrowUpRight
+                                slot="after"
+                                aria-hidden="true"
+                                focusable="false"
+                            />
+                            Live Site
+                            <span class="sr-only">(opens in a new tab)</span>
+                        </GlassPill>
+                        <GlassPill
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Open Tastebuds GitHub repository in a new tab"
+                            href="https://github.com/Taka0330-jp/Tastebuds.git"
+                        >
+                            <Github
+                                slot="after"
+                                aria-hidden="true"
+                                focusable="false"
+                            />
+                            GitHub
+                            <span class="sr-only">(opens in a new tab)</span>
+                        </GlassPill>
+                    </div>
                 </div>
-                </section>
-                <!-- My approach -->
-                <section id="my-approach" class="mt-64">
-                    <h3 >My approach</h3>
-                <p class="py-16 text-subtitle">Using Vanilla JavaScript and the &lt;template&gt; element, I built a reusable card component.</p>
-                
-                <!-- Code Steps -->
-                    <ol class="steps">
-                            <li class="step relative">
-                                <div class="timeline-number hidden md:flex ">
-                                    <span>1</span>
+
+                <!-- Homepage Screenshot -->
+                <div class="md:col-start-7 md:col-span-6 max-w-150 m-auto">
+                    <Image
+                        class="mask-b-from-70% mask-b-to-100%"
+                        src={Tastebuds_Website_Pic}
+                        loading="eager"
+                        alt="Screenshot of the Tastebuds food blog homepage"
+                    />
+                </div>
+            </div>
+        </section>
+        <!-- ====================== Case Study Start ====================== -->
+        <section class="mt-32">
+            <div class="flex flex-col max-w-360 mx-auto lg:grid grid-cols-12">
+                <aside
+                    aria-label="Project section navigation"
+                    class="col-start-1 col-span-2 p-4 sticky top-24 h-fit"
+                >
+                    <CaseStudySidebar
+                        items={tastebudsSections}
+                        className="col-start-1 col-span-2"
+                    />
+                </aside>
+                <div class="px-8 md:col-start-3 col-span-10">
+                    <!-- Overview Section -->
+                    <section id="Overview">
+                        <h2 class="font-semibold">
+                            <span class="heading-accent-bar">Overview</span>
+                        </h2>
+                        <h3 class="pt-32">From Class Project to Rebuild</h3>
+                        <p class="pt-24">
+                            TASTEBUDS began as a social media marketing project
+                            with my classmates,
+                            <span class="text-accent text-xl">
+                                a food blog featuring restaurants and cafés in
+                                Vancouver.</span
+                            >
+                        </p>
+                        <p class="pt-16">
+                            At first, I had not learned React yet, so I built
+                            the site using <span class="text-accent text-xl">
+                                HTML, CSS (Sass), and vanilla JavaScript.</span
+                            > As development progressed, I wanted a more efficient
+                            workflow, which led me to learn <span
+                                class="text-accent text-xl"
+                                >React and Next.js.</span
+                            >
+                            I also redesigned the UI in Figma and rebuilt the project
+                            from the ground up.
+                        </p>
+                    </section>
+
+                    <!-- MVP Section -->
+                    <section id="MVP">
+                        <section id="MVP-intro" class="mt-64">
+                            <h2 class="font-semibold">
+                                <span class="heading-accent-bar">MVP</span>
+                            </h2>
+                            <div
+                                class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8"
+                            >
+                                <div
+                                    class="col-span-1 flex flex-col justify-between m-auto"
+                                >
+                                    <h3 class="pt-16">Built on Fundamentals</h3>
+                                    <p class="pt-8">
+                                        For the MVP, I built the project using
+                                        fundamental web technologies. As I
+                                        manually created blog cards with static
+                                        HTML, I started to wonder, “Is there a
+                                        more efficient way to replicate these?”
+                                        This question led me to explore building
+                                        a reusable structure using built-in
+                                        browser features to dynamically generate
+                                        content. This approach reduced
+                                        repetition and improved scalability.
+                                    </p>
                                 </div>
+                                <div class="flex flex-col gap-4">
+                                    <!-- MVP Live Site & GitHub -->
+                                    <div class="flex gap-4">
+                                        <GlassPill
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label="Open Tastebuds MVP live site in a new tab"
+                                            href="https://tastebuds-website.vercel.app/pages/home.html"
+                                        >
+                                            <ArrowUpRight
+                                                slot="after"
+                                                aria-hidden="true"
+                                                focusable="false"
+                                            />
+                                            Live Site
+                                            <span class="sr-only"
+                                                >(opens in a new tab)</span
+                                            >
+                                        </GlassPill>
+
+                                        <GlassPill
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label="Open Tastebuds MVP GitHub repository in a new tab"
+                                            href="https://github.com/Taka0330-jp/tastebuds-website.git"
+                                        >
+                                            <Github
+                                                slot="after"
+                                                aria-hidden="true"
+                                                focusable="false"
+                                            />
+                                            GitHub
+                                            <span class="sr-only"
+                                                >(opens in a new tab)</span
+                                            >
+                                        </GlassPill>
+                                    </div>
+                                    <!-- MVP Video -->
+                                    <div
+                                        class="bg-card-gradient border border-frame-ring rounded-lg shadow-lg"
+                                    >
+                                        <video
+                                            class="p-4"
+                                            src={MVPVideo}
+                                            autoplay
+                                            loop
+                                            muted
+                                            playsinline></video>
+                                    </div>
+
+                                    <!-- MVP Stacks -->
+                                    <div
+                                        class="flex justify-end items-center gap-2"
+                                    >
+                                        <HTML class="w-6 h-6" />
+                                        <CSS class="w-6 h-6" />
+                                        <SASS class="w-6 h-6" />
+                                        <JS class="w-6 h-6" />
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- My approach -->
+                        <section id="my-approach" class="mt-64">
+                            <h3>My approach</h3>
+                            <p class="py-16 text-subtitle">
+                                Using Vanilla JavaScript and the
+                                &lt;template&gt; element, I built a reusable
+                                card component.
+                            </p>
+
+                            <!-- Code Steps -->
+                            <ol class="steps">
+                                <li class="step relative">
+                                    <div class="timeline-number hidden md:flex">
+                                        <span>1</span>
+                                    </div>
                                     <div class="step-content">
-                                        <div class="step-title flex items-center gap-4 md:pt-2">
-                                            <span class="timeline-number md:hidden">1</span>
-                                            <h4 class="leading-none">Create a data structure for posts</h4>
+                                        <div
+                                            class="step-title flex items-center gap-4 md:pt-2"
+                                        >
+                                            <span
+                                                class="timeline-number md:hidden"
+                                                >1</span
+                                            >
+                                            <h4 class="leading-none">
+                                                Create a data structure for
+                                                posts
+                                            </h4>
                                         </div>
                                         <div class="code-view pt-8 mb-8">
                                             <CodeWindow
-                                            code={postsDataCode}
-                                            lang="js"
+                                                code={postsDataCode}
+                                                lang="js"
                                             />
                                         </div>
                                     </div>
-                            </li>
-                            <li class="step relative">
-                                <div class="timeline-number hidden md:flex ">
-                                    <span>2</span>
-                                </div>
+                                </li>
+                                <li class="step relative">
+                                    <div class="timeline-number hidden md:flex">
+                                        <span>2</span>
+                                    </div>
                                     <div class="step-content">
-                                        <div class="step-title flex items-center gap-4 md:pt-2">
-                                            <span class="timeline-number md:hidden">2</span>
-                                            <h4 class="leading-none">Use the <code>&lt;template&gt;</code> element</h4>
+                                        <div
+                                            class="step-title flex items-center gap-4 md:pt-2"
+                                        >
+                                            <span
+                                                class="timeline-number md:hidden"
+                                                >2</span
+                                            >
+                                            <h4 class="leading-none">
+                                                Use the <code
+                                                    >&lt;template&gt;</code
+                                                > element
+                                            </h4>
                                         </div>
                                         <div class="code-view pt-8 mb-8">
                                             <CodeWindow
-                                            code={templateTagCode}
-                                            lang="html"
+                                                code={templateTagCode}
+                                                lang="html"
                                             />
                                         </div>
                                     </div>
-                            </li>
-                            <li class="step">
-                                <div class="timeline-number hidden md:flex ">
-                                    <span>3</span>
-                                </div>
+                                </li>
+                                <li class="step">
+                                    <div class="timeline-number hidden md:flex">
+                                        <span>3</span>
+                                    </div>
                                     <div class="step-content">
-                                        <div class="step-title flex items-center gap-4 md:pt-2">
-                                            <span class="timeline-number md:hidden">3</span>
-                                            <h4 class="leading-none">Generate cards dynamically with JavaScript</h4>
+                                        <div
+                                            class="step-title flex items-center gap-4 md:pt-2"
+                                        >
+                                            <span
+                                                class="timeline-number md:hidden"
+                                                >3</span
+                                            >
+                                            <h4 class="leading-none">
+                                                Generate cards dynamically with
+                                                JavaScript
+                                            </h4>
                                         </div>
                                         <div class="code-view pt-8">
                                             <CodeWindow
-                                            code={renderPostCode}
-                                            lang="js"
+                                                code={renderPostCode}
+                                                lang="js"
                                             />
                                         </div>
                                     </div>
-                            </li>
-                        
-                    </ol>
+                                </li>
+                            </ol>
+                        </section>
+                        <!-- Code Steps end // -->
+                    </section>
+                    <!-- My approach end // -->
 
-                </section>
-                <!-- Code Steps end // -->
-            </section>
-            <!-- My approach end // -->
+                    <section id="learning" class="mt-64">
+                        <h3>Learning and Challenges</h3>
+                        <p class="py-16">
+                            Through the MVP, I learned the basics of DOM
+                            manipulation, reusable UI design, and separating
+                            structure, data, and styles.
+                        </p>
 
-            <section id="learning" class="mt-64">
-                <h3>Learning and Challenges</h3>
-                <p class="py-16">Through the MVP, I learned the basics of DOM manipulation, reusable UI design, and separating structure, data, and styles.</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="col-start-1">
-                        <p>At the same time, state management became complex, routing was hard to maintain, and the architecture didn’t scale well.</p>
-                        <p class="pt-8">This led me to rebuild the project with Next.js.</p>
-                    </div>
-                    <div class="bg-frame border border-frame-ring rounded-lg max-w-100 mx-auto">
-                        <Image
-                        class="p-4 rounded-lg w-full"
-                        src={MVPFolders}
-                        alt="">
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- Redevelopment Section -->
-        <section id="Redevelopment" class="mt-64">
-                <section id="redevelopment-intro">
-                    <h2 class="font-semibold"><span class="heading-accent-bar">Redevelopment</span></h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
-                        <div class="col-span-1 flex flex-col">
-                            <h3 class="pt-16">Scaling the Architecture</h3>
-                            <p class="pt-8">
-                                To improve the scalability of the project, I redesigned the application using <span class="text-accent">React and Next.js.</span>
-                                <br />
-                                The UI was rebuilt as React components, allowing the interface to be generated declaratively from data.
-                                <br />
-                                I also introduced Next.js to better organize the page structure and implement routing for individual posts, resulting in a more <span class="text-accent"> maintainable and extensible architecture.</span>
-                            </p>
-                        </div>
-                        <div class="flex flex-col gap-4">
-                            <!-- MVP Live Site & GitHub -->
-                            <div class="flex gap-4">
-                                         <GlassPill
-                                         target="_blank"
-                                         rel="noopener noreferrer"
-                                         aria-label="Open Tastebuds MVP live site in a new tab"
-                                         href="https://tastebuds-mbh7.vercel.app/"
-                                         >
-                                         <ArrowUpRight slot="after" aria-hidden="true" focusable="false"/>
-                                         Live Site
-                                         <span class="sr-only">(opens in a new tab)</span>
-                                         </GlassPill>
-                                         <GlassPill
-                                         target="_blank"
-                                         rel="noopener noreferrer"
-                                         aria-label="Open Tastebuds MVP GitHub repository in a new tab"
-                                         href="https://github.com/Taka0330-jp/Tastebuds.git"
-                                         >
-                                         <Github slot="after" aria-hidden="true" focusable="false"/>
-                                         GitHub
-                                         <span class="sr-only">(opens in a new tab)</span>
-                                         </GlassPill>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="col-start-1">
+                                <p>
+                                    At the same time, state management became
+                                    complex, routing was hard to maintain, and
+                                    the architecture didn’t scale well.
+                                </p>
+                                <p class="pt-8">
+                                    This led me to rebuild the project with
+                                    Next.js.
+                                </p>
                             </div>
-                            <!-- MVP Video -->
-                            <div class="bg-card-gradient border border-frame-ring rounded-lg shadow-lg">
-                                <video
-                                class="p-4"
-                                src={ReDevVideo}
-                                autoplay
-                                loop
-                                muted
-                                playsinline ></video>
-                            </div>
-                    
-                            <!-- Redevelopment Stacks -->
-                            <div class="flex justify-end items-center gap-2">
-                                <ReactLogo class="w-6 h-6"/>
-                                <TypeScript class="w-6 h-6"/>
-                                <Tailwind class="w-6 h-6"/>
-                                <NextJS class="w-6 h-6 text-foreground"/>
-                                <Supabase class="w-6 h-6"/>
+                            <div
+                                class="bg-frame border border-frame-ring rounded-lg max-w-100 mx-auto"
+                            >
+                                <Image
+                                    class="p-4 rounded-lg w-full"
+                                    src={MVPFolders}
+                                    alt=""
+                                />
                             </div>
                         </div>
-                    </div>
-                </section>
 
-            <section id="structured-content-management" class="mt-64">
-                <h3>Structured Content Management</h3>
-                    <p class="pt-16">In the MVP, blog content was stored as a front-end data array.
-                                While this worked for an early prototype, it required manual updates whenever a new post was added, which made content management less efficient as the project expanded.</p>
-                <div class="grid grid-cols-3 items-center">
-                    <p class="py-8 col-start-1 col-span-2">This led me to rethink how post data should be handled.
-                                    To create a more scalable structure, I separated content from the application code and migrated post management to Supabase.</p>
-                                    <Supabase class="w-12 h-12 col-start-3 mx-auto"/>
-                </div>
-                    <p class="py-8">This made the workflow easier to maintain and created a foundation that could later evolve into a CMS-like system.</p>
-                    <!-- Code Steps -->
-                    <ol class="steps mt-24">
-                            <li class="step relative">
-                                <div class="timeline-number hidden md:flex ">
-                                    <span>1</span>
-                                </div>
-                                    <div class="step-content">
-                                        <div class="step-title flex items-center gap-4 md:pt-2">
-                                            <span class="timeline-number md:hidden">1</span>
-                                            <h4 class="leading-none">Design the post data structure</h4>
+                        <!-- Redevelopment Section -->
+                        <section id="Redevelopment" class="mt-64">
+                            <section id="redevelopment-intro">
+                                <h2 class="font-semibold">
+                                    <span class="heading-accent-bar"
+                                        >Redevelopment</span
+                                    >
+                                </h2>
+                                <div
+                                    class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8"
+                                >
+                                    <div class="col-span-1 flex flex-col">
+                                        <h3 class="pt-16">
+                                            Scaling the Architecture
+                                        </h3>
+                                        <p class="pt-8">
+                                            To improve the scalability of the
+                                            project, I redesigned the
+                                            application using <span
+                                                class="text-accent"
+                                                >React and Next.js.</span
+                                            >
+                                            <br />
+                                            The UI was rebuilt as React components,
+                                            allowing the interface to be generated
+                                            declaratively from data.
+                                            <br />
+                                            I also introduced Next.js to better organize
+                                            the page structure and implement routing
+                                            for individual posts, resulting in a more
+                                            <span class="text-accent">
+                                                maintainable and extensible
+                                                architecture.</span
+                                            >
+                                        </p>
+                                    </div>
+                                    <div class="flex flex-col gap-4">
+                                        <!-- MVP Live Site & GitHub -->
+                                        <div class="flex gap-4">
+                                            <GlassPill
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label="Open Tastebuds MVP live site in a new tab"
+                                                href="https://tastebuds-mbh7.vercel.app/"
+                                            >
+                                                <ArrowUpRight
+                                                    slot="after"
+                                                    aria-hidden="true"
+                                                    focusable="false"
+                                                />
+                                                Live Site
+                                                <span class="sr-only"
+                                                    >(opens in a new tab)</span
+                                                >
+                                            </GlassPill>
+                                            <GlassPill
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label="Open Tastebuds MVP GitHub repository in a new tab"
+                                                href="https://github.com/Taka0330-jp/Tastebuds.git"
+                                            >
+                                                <Github
+                                                    slot="after"
+                                                    aria-hidden="true"
+                                                    focusable="false"
+                                                />
+                                                GitHub
+                                                <span class="sr-only"
+                                                    >(opens in a new tab)</span
+                                                >
+                                            </GlassPill>
                                         </div>
-                                        <div class="code-view pt-8 mb-8">
-                                            <CodeWindow
-                                            code={postDataType}
-                                            lang="ts"
+                                        <!-- MVP Video -->
+                                        <div
+                                            class="bg-card-gradient border border-frame-ring rounded-lg shadow-lg"
+                                        >
+                                            <video
+                                                class="p-4"
+                                                src={ReDevVideo}
+                                                autoplay
+                                                loop
+                                                muted
+                                                playsinline></video>
+                                        </div>
+
+                                        <!-- Redevelopment Stacks -->
+                                        <div
+                                            class="flex justify-end items-center gap-2"
+                                        >
+                                            <ReactLogo class="w-6 h-6" />
+                                            <TypeScript class="w-6 h-6" />
+                                            <Tailwind class="w-6 h-6" />
+                                            <NextJS
+                                                class="w-6 h-6 text-foreground"
                                             />
+                                            <Supabase class="w-6 h-6" />
                                         </div>
                                     </div>
-                            </li>
-                            <li class="step relative">
-                                <div class="timeline-number hidden md:flex ">
-                                    <span>2</span>
                                 </div>
-                                    <div class="step-content">
-                                        <div class="step-title flex items-center gap-4 md:pt-2">
-                                            <span class="timeline-number md:hidden">2</span>
-                                            <h4 class="leading-none">Retrieve posts from Supabase</h4>
+                            </section>
+
+                            <section
+                                id="structured-content-management"
+                                class="mt-64"
+                            >
+                                <h3>Structured Content Management</h3>
+                                <p class="pt-16">
+                                    In the MVP, blog content was stored as a
+                                    front-end data array. While this worked for
+                                    an early prototype, it required manual
+                                    updates whenever a new post was added, which
+                                    made content management less efficient as
+                                    the project expanded.
+                                </p>
+                                <div class="grid grid-cols-3 items-center">
+                                    <p class="py-8 col-start-1 col-span-2">
+                                        This led me to rethink how post data
+                                        should be handled. To create a more
+                                        scalable structure, I separated content
+                                        from the application code and migrated
+                                        post management to Supabase.
+                                    </p>
+                                    <Supabase
+                                        class="w-12 h-12 col-start-3 mx-auto"
+                                    />
+                                </div>
+                                <p class="py-8">
+                                    This made the workflow easier to maintain
+                                    and created a foundation that could later
+                                    evolve into a CMS-like system.
+                                </p>
+                                <!-- Code Steps -->
+                                <ol class="steps mt-24">
+                                    <li class="step relative">
+                                        <div
+                                            class="timeline-number hidden md:flex"
+                                        >
+                                            <span>1</span>
                                         </div>
-                                        <div class="code-view pt-8 mb-8">
-                                            <CodeWindow
-                                            code={fetchData}
-                                            lang="ts"
-                                            />
-                                        </div>
-                                    </div>
-                            </li>
-                        
-                    </ol>
-                    <p>Based on this structured data, UI components can dynamically generate blog cards and article pages.</p>
-            </section>
-            <section id="rendering" class="mt-64">
-                
-            <h3>Rendering Architecture</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="col-start-1 my-auto">
-                        <p>The UI was rebuilt using reusable React components.
-                            Post data is passed into card components to generate article cards, creating a structure that can easily scale as more content is added.</p>
-                    </div>
-                    <div class="bg-frame border border-frame-ring rounded-lg max-w-300 mx-auto">
-                        <Image
-                        class="p-4 rounded-lg w-full"
-                        src={CardUI}
-                        alt="">
-                    </div>
-                </div>
-                    <!-- Code Views -->
-                    <ol class="steps mt-24">
-                        <!-- PatternA -->
-                            <li class="">
-                                            <div class="flex flex-col py-16">
-                                                <h4>PatternA: Curated layout for the homepage</h4>
-                                                <p class="pt-4">To highlight the latest articles, the homepage selects specific posts from the dataset and displays them in a curated layout.</p>
+                                        <div class="step-content">
+                                            <div
+                                                class="step-title flex items-center gap-4 md:pt-2"
+                                            >
+                                                <span
+                                                    class="timeline-number md:hidden"
+                                                    >1</span
+                                                >
+                                                <h4 class="leading-none">
+                                                    Design the post data
+                                                    structure
+                                                </h4>
                                             </div>
-                                       <div class="flex flex-col md:flex-row gap-8 items-center">
                                             <div class="code-view pt-8 mb-8">
-                                            <CodeWindow
-                                                showExpand={false}
-                                                code={CardRenderA}
-                                                lang="ts"
+                                                <CodeWindow
+                                                    code={postDataType}
+                                                    lang="ts"
                                                 />
                                             </div>
-                                            <div class="bg-black border border-frame-ring rounded-lg max-w-150 mx-auto p-4">
-                                                <Image src={PatternA} alt="">
+                                        </div>
+                                    </li>
+                                    <li class="step relative">
+                                        <div
+                                            class="timeline-number hidden md:flex"
+                                        >
+                                            <span>2</span>
+                                        </div>
+                                        <div class="step-content">
+                                            <div
+                                                class="step-title flex items-center gap-4 md:pt-2"
+                                            >
+                                                <span
+                                                    class="timeline-number md:hidden"
+                                                    >2</span
+                                                >
+                                                <h4 class="leading-none">
+                                                    Retrieve posts from Supabase
+                                                </h4>
+                                            </div>
+                                            <div class="code-view pt-8 mb-8">
+                                                <CodeWindow
+                                                    code={fetchData}
+                                                    lang="ts"
+                                                />
                                             </div>
                                         </div>
-
-                            </li>
-                        <!-- PatternB -->
-                            <li class="mt-8 ">
-                                    <div class="flex flex-col py-16">
-                                        <h4>PatternB: Dynamic rendering for the blog archive</h4>
-                                        <p class="pt-4">On the blog page, filtered post data is mapped into card components to dynamically generate the article list.</p>
+                                    </li>
+                                </ol>
+                                <p>
+                                    Based on this structured data, UI components
+                                    can dynamically generate blog cards and
+                                    article pages.
+                                </p>
+                            </section>
+                            <section id="rendering" class="mt-64">
+                                <h3>Rendering Architecture</h3>
+                                <div
+                                    class="grid grid-cols-1 md:grid-cols-2 gap-8"
+                                >
+                                    <div class="col-start-1 my-auto">
+                                        <p>
+                                            The UI was rebuilt using reusable
+                                            React components. Post data is
+                                            passed into card components to
+                                            generate article cards, creating a
+                                            structure that can easily scale as
+                                            more content is added.
+                                        </p>
                                     </div>
-                                    <div class="flex flex-col md:flex-row gap-8 items-center">
-                                        <div class="code-view pt-8 mb-8">
-                                            <CodeWindow
-                                            showExpand={false}
-                                            code={CardRenderB}
-                                            lang="ts"
-                                            />
-                                        </div>
-                                        <div class="bg-black border border-frame-ring rounded-lg max-w-150 mx-auto p-4">
-                                            <Image src={PatternB} alt="">
-                                        </div>
+                                    <div
+                                        class="bg-frame border border-frame-ring rounded-lg max-w-300 mx-auto"
+                                    >
+                                        <Image
+                                            class="p-4 rounded-lg w-full"
+                                            src={CardUI}
+                                            alt=""
+                                        />
                                     </div>
-                            </li>
-                        
-                    </ol>
-            </section>
-            <section id="dynamic-routing" class="mt-48">
-                <h3 class=" py-12">Dynamic Routing</h3>
+                                </div>
 
-                <p><span class="text-heading-default">Previous Problem:</span> In the MVP, each article was managed as a separate page, making the structure difficult to scale as content grew.</p>
-                <p class="pt-8"><span class="text-heading-default">Solution:</span> I implemented Next.js Dynamic Routing using the /blog/[slug] route structure, allowing pages to be generated from a single shared template.</p>
-                <div class="py-16">
-                    <CodeWindow
-                    code={Folders}
-                    lang="html"/>
+                                <ol class="steps mt-24">
+                                    <li>
+                                        <div class="flex flex-col py-16">
+                                            <h4>
+                                                PatternA: Curated layout for the
+                                                homepage
+                                            </h4>
+                                            <p class="pt-4">
+                                                To highlight the latest
+                                                articles, the homepage selects
+                                                specific posts from the dataset
+                                                and displays them in a curated
+                                                layout.
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="flex flex-col md:flex-row gap-8 items-center"
+                                        >
+                                            <div class="code-view pt-8 mb-8">
+                                                <CodeWindow
+                                                    showExpand={false}
+                                                    code={CardRenderA}
+                                                    lang="ts"
+                                                />
+                                            </div>
+                                            <div
+                                                class="bg-black border border-frame-ring rounded-lg max-w-150 mx-auto p-4"
+                                            >
+                                                <Image src={PatternA} alt="" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="mt-8">
+                                        <div class="flex flex-col py-16">
+                                            <h4>
+                                                PatternB: Dynamic rendering for
+                                                the blog archive
+                                            </h4>
+                                            <p class="pt-4">
+                                                On the blog page, filtered post
+                                                data is mapped into card
+                                                components to dynamically
+                                                generate the article list.
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="flex flex-col md:flex-row gap-8 items-center"
+                                        >
+                                            <div class="code-view pt-8 mb-8">
+                                                <CodeWindow
+                                                    showExpand={false}
+                                                    code={CardRenderB}
+                                                    lang="ts"
+                                                />
+                                            </div>
+                                            <div
+                                                class="bg-black border border-frame-ring rounded-lg max-w-150 mx-auto p-4"
+                                            >
+                                                <Image src={PatternB} alt="" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </section>
+
+                            <section id="dynamic-routing" class="mt-48">
+                                <h3 class="py-12">Dynamic Routing</h3>
+
+                                <p>
+                                    <span class="text-heading-default"
+                                        >Previous Problem:</span
+                                    > In the MVP, each article was managed as a separate
+                                    page, making the structure difficult to scale
+                                    as content grew.
+                                </p>
+                                <p class="pt-8">
+                                    <span class="text-heading-default"
+                                        >Solution:</span
+                                    > I implemented Next.js Dynamic Routing using
+                                    the /blog/[slug] route structure, allowing pages
+                                    to be generated from a single shared template.
+                                </p>
+                                <div class="py-16">
+                                    <CodeWindow code={Folders} lang="html" />
+                                </div>
+
+                                <p>
+                                    <span class="text-heading-default"
+                                        >Result:</span
+                                    > By fetching content based on the slug, new articles
+                                    can be added without creating new pages, improving
+                                    scalability and maintainability.
+                                </p>
+                            </section>
+
+                            <section id="Reflection" class="mt-64">
+                                <h2 class="font-semibold">
+                                    <span class="heading-accent-bar"
+                                        >Reflection</span
+                                    >
+                                </h2>
+                                <div class="py-8">
+                                    <h3 class="">Learning Through Iteration</h3>
+                                    <p class="pt-4">
+                                        Through this project, I started from the
+                                        fundamentals of JavaScript and
+                                        continuously explored better ways to
+                                        build features. I iterated through
+                                        researching, experimenting, and refining
+                                        my approach, and found the process of
+                                        trial and error itself both engaging and
+                                        rewarding as my understanding gradually
+                                        deepened.
+                                    </p>
+                                </div>
+                                <div
+                                    class="py-8 flex flex-col md:grid grid-cols-5 gap-4"
+                                >
+                                    <div class="col-start-1 col-span-2 my-auto">
+                                        <h3 class="">
+                                            Understanding the Limits of
+                                            AI-Assisted Development
+                                        </h3>
+                                        <p class="pt-4">
+                                            I also experimented with building
+                                            admin and CMS-like features using
+                                            AI. However, this experience made me
+                                            realize that being able to implement
+                                            functionality is not the same as
+                                            fully understanding the underlying
+                                            architecture. In parts of the CMS,
+                                            multiple features ended up being
+                                            combined into a single component,
+                                            which made the structure harder to
+                                            maintain and scale. This highlighted
+                                            the importance of component design
+                                            and separation of concerns.
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="col-start-3 col-span-3 bg-frame border border-frame-ring rounded-lg max-w-120 mx-auto"
+                                    >
+                                        <Image
+                                            src={CMSScreen}
+                                            alt=""
+                                            class="p-4"
+                                        />
+                                    </div>
+                                    <div class="py-8 md:col-span-5">
+                                        <h3 class="">Moving Forward</h3>
+                                        <p class="pt-4">
+                                            Moving forward, I aim to deepen my
+                                            understanding of architecture while
+                                            using AI more intentionally, with
+                                            the goal of building more scalable
+                                            and maintainable systems.
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
+                        </section>
+                    </section>
                 </div>
-
-                <p><span class="text-heading-default">Result: </span>By fetching content based on the slug, new articles can be added without creating new pages, improving scalability and maintainability.</p>
-            </section>
+            </div>
         </section>
-            <!-- Reflection Section -->
-            <section id="Reflection" class="mt-64">
-                <h2 class="font-semibold"><span class="heading-accent-bar">Reflection</span></h2>
-                <div class="py-8">
-                    <h3 class="">Learning Through Iteration</h3>
-                    <p class="pt-4">Through this project, I started from the fundamentals of JavaScript and continuously explored better ways to build features. I iterated through researching, experimenting, and refining my approach, and found the process of trial and error itself both engaging and rewarding as my understanding gradually deepened.</p>
-                </div>
-                <div class="py-8 flex flex-col md:grid grid-cols-5 gap-4">
-                    <div class="col-start-1 col-span-2 my-auto">
-                        <h3 class="">Understanding the Limits of AI-Assisted Development</h3>
-                        <p class="pt-4">I also experimented with building admin and CMS-like features using AI. However, this experience made me realize that being able to implement functionality is not the same as fully understanding the underlying architecture. In parts of the CMS, multiple features ended up being combined into a single component, which made the structure harder to maintain and scale. This highlighted the importance of component design and separation of concerns.</p>
-                    </div>
-                    <div class="col-start-3 col-span-3 bg-frame border border-frame-ring rounded-lg max-w-120 mx-auto">
-                        <Image src={CMSScreen} alt="" class="p-4">
-                    </div>
-                </div>
-                <div class="py-8">
-                    <h3 class="">Moving Forward</h3>
-                    <p class="pt-4">Moving forward, I aim to deepen my understanding of architecture while using AI more intentionally, with the goal of building more scalable and maintainable systems.</p>
-                </div>
-            </section>
-        </div>
-    </div>
-</section>
-<!-- Other Projects -->
-<section class="p-4 md:p-16">
-    <h2 class="text-center p-16">Other Projects</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-4 max-w-400 mx-auto">
-        {projects.filter((project) =>
-        project.href !== "/tastebuds"
-        && project.href !== "/stone-and-honey")
-        .map((project) => {
-        return(
-                  <Card
-                  href={project.href}
-                  cover={project.cover}
-                  title={project.title}
-                  description={project.description}
-                  tag={project.tag}          />
-        )
-        })}
-    </div>
-</section>
+
+        <!-- Other Projects -->
+        <section class="p-4 md:p-16">
+            <h2 class="text-center p-16">Other Projects</h2>
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-4 max-w-400 mx-auto"
+            >
+                {
+                    projects
+                        .filter(
+                            (project) =>
+                                project.href !== "/tastebuds" &&
+                                project.href !== "/stone-and-honey",
+                        )
+                        .map((project) => {
+                            return (
+                                <Card
+                                    href={project.href}
+                                    cover={project.cover}
+                                    title={project.title}
+                                    description={project.description}
+                                    tag={project.tag}
+                                />
+                            );
+                        })
+                }
+            </div>
+        </section>
     </main>
 </Layout>
 
 <script>
-    import gsap from "gsap"
-    import { ScrollTrigger } from "gsap/ScrollTrigger"
-    gsap.registerPlugin(ScrollTrigger)
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger);
 
     document.addEventListener("astro:page-load", () => {
+        const refresh = () =>
+            requestAnimationFrame(() => ScrollTrigger.refresh());
 
-    const refresh = () => requestAnimationFrame(()=> ScrollTrigger.refresh())
+        const fadeUp = (target: string, trigger: string, start = "top 70%") => {
+            gsap.fromTo(
+                target,
+                {
+                    y: 56,
+                    opacity: 0,
+                    scale: 0.98,
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger,
+                        start,
+                        toggleActions: "play none none reverse",
+                        invalidateOnRefresh: true,
+                    },
+                },
+            );
+        };
 
-    const fadeUp = (target: string, trigger:string, start = "top 70%") => {
-        
         gsap.fromTo(
-          target,
-          {
-            y: 56,
-            opacity: 0,
-            scale: 0.98,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger,
-              start,
-              toggleActions: "play none none reverse",
-              invalidateOnRefresh: true,
+            "#case-study-sidebar",
+            { x: -32, opacity: 0 },
+            {
+                x: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: "#hero",
+                    start: "bottom 30%",
+                    toggleActions: "play none none reverse",
+                    invalidateOnRefresh: true,
+                },
             },
-          }
-        )
-      }
+        );
 
-      gsap.fromTo(
-        "#case-study-sidebar",
-        { x: -32, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#hero",
-            start: "bottom 30%",
-            toggleActions: "play none none reverse",
-            invalidateOnRefresh: true,
-          }
-        }
-      )
+        fadeUp("#Overview", "#Overview");
+        fadeUp("#MVP-intro", "#MVP-intro");
+        fadeUp("#my-approach", "#my-approach");
+        fadeUp("#learning", "#learning");
+        fadeUp("#redevelopment-intro", "#redevelopment-intro");
+        fadeUp(
+            "#structured-content-management",
+            "#structured-content-management",
+        );
+        fadeUp("#rendering", "#rendering");
+        fadeUp("#dynamic-routing", "#dynamic-routing");
+        fadeUp("#Reflection", "#Reflection");
 
-      fadeUp("#Overview", "#Overview");
-      fadeUp("#MVP-intro", "#MVP-intro");
-      fadeUp("#my-approach", "#my-approach");
-      fadeUp("#learning", "#learning");
-      fadeUp("#redevelopment-intro", "#redevelopment-intro");
-      fadeUp("#structured-content-management", "#structured-content-management");
-      fadeUp("#rendering", "#rendering");
-      fadeUp("#dynamic-routing", "#dynamic-routing");
-      fadeUp("#Reflection", "#Reflection");
+        // requestAnimationFrame(() => ScrollTrigger.refresh());
+        // setTimeout(() => ScrollTrigger.refresh(), 300);
+        refresh();
+        setTimeout(refresh, 300);
 
-    // requestAnimationFrame(() => ScrollTrigger.refresh());
-    // setTimeout(() => ScrollTrigger.refresh(), 300);
-    refresh()
-    setTimeout(refresh, 300)
+        const resizeObserver = new ResizeObserver(() => {
+            refresh();
+        });
 
-    const resizeObserver = new ResizeObserver(()=>{
-        refresh()
-    })
+        //get code view element for observing
+        document.querySelectorAll(".code-view").forEach((el) => {
+            resizeObserver.observe(el);
+        });
 
-    //get code view element for observing 
-    document.querySelectorAll(".code-view").forEach((el)=> {
-        resizeObserver.observe(el)
-    })
-
-    // "astro:before-swap" -> because of Astro View Transitions, need to cleanup before moving other page 
-    document.addEventListener(
-        "astro:before-swap",
-        ()=> {
-            //resizeObserver.disconnect() -> cleanup observer
-            resizeObserver.disconnect()
-        },{ once: true }
-    )
-
-    })
+        // "astro:before-swap" -> because of Astro View Transitions, need to cleanup before moving other page
+        document.addEventListener(
+            "astro:before-swap",
+            () => {
+                //resizeObserver.disconnect() -> cleanup observer
+                resizeObserver.disconnect();
+            },
+            { once: true },
+        );
+    });
 </script>
