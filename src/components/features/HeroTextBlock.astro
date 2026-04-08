@@ -2,39 +2,40 @@
 import { Github, Linkedin, Mail } from "@lucide/astro";
 import IconHover from "../ui/IconHover.astro";
 ---
-  <div class="col-span-6">
-    <h1 class="hero-title">
-      Taka is a <span class="text-accent">front-end engineer</span> who develops with a focus on{' '}
-      <span class="text-accent">UX experience.</span>
-    </h1>
 
-    <div class="icons flex items-center gap-10 mt-4">
-      
-      <IconHover
+<div class="col-span-6">
+  <h1 class="hero-title">
+    Taka is a <span class="text-accent">UI/UX Designer</span> who bridges <span class="text-accent">design</span> and <span class="text-accent">development.</span>
+  </h1>
+
+  <div class="icons flex items-center gap-10 mt-4">
+    <IconHover
       href="https://github.com/taka0330ko"
       aria-label="GitHub profile"
-      label="GitHub">
-        <Github />
-      </IconHover>
+      label="GitHub"
+    >
+      <Github />
+    </IconHover>
 
-      <IconHover
+    <IconHover
       href="https://www.linkedin.com/in/takanarikondo/"
       aria-label="LinkedIn profile"
-      label="LinkedIn">
-        <Linkedin />
-      </IconHover>
+      label="LinkedIn"
+    >
+      <Linkedin />
+    </IconHover>
 
- 
-      <IconHover
+    <IconHover
       href="mailto:gtakanari0330@gmail.com"
       aria-label="Send email"
-      label="Email">
-        <Mail />
-      </IconHover>
-    </div>
+      label="Email"
+    >
+      <Mail />
+    </IconHover>
   </div>
+</div>
 
-  <script>
+<script>
   import { gsap } from "gsap";
 
   const runHeroAnimation = () => {
@@ -55,7 +56,7 @@ import IconHover from "../ui/IconHover.astro";
         duration: 0.8,
         ease: "power2.out",
         clearProps: "opacity,transform",
-      }
+      },
     );
 
     if (iconsEl) {
@@ -69,7 +70,7 @@ import IconHover from "../ui/IconHover.astro";
           delay: 0.3,
           ease: "power2.out",
           clearProps: "opacity,transform",
-        }
+        },
       );
     }
   };

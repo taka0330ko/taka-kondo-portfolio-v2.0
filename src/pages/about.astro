@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import RippleEffectMyPic from "../components/webGL/RippleEffectMyPic";
 import CopyEmail from "../components/ui/CopyEmail.astro";
 import Gallery from "../components/ui/Gallery.astro";
-import { X, Github, Linkedin, Mail } from "@lucide/astro"
+import { X, Github, Linkedin, Mail } from "@lucide/astro";
 import IconHover from "../components/ui/IconHover.astro";
 ---
 
@@ -17,17 +17,22 @@ import IconHover from "../components/ui/IconHover.astro";
           </h1>
           <div class="text-body-default mt-4">
             <p>
-              I&apos;m currently studying <span class="text-accent">New Media Design and Web Development at
-              BCIT.</span>
+              I&apos;m currently studying New Media Design and Web Development
+              at BCIT.
             </p>
+
             <p>
-              As I learn both <span class="text-accent">design and front-end development </span> , I&apos;ve become
-              particularly interested in UI/UX that values not only visual appeal,
-              but also how ideas are formed and how interfaces function.
+              I design with a <span class="text-accent">user-first mindset</span
+              >, creating <span class="text-accent">intuitive experiences</span>
+              and translating them into <span class="text-accent"
+                >real, functional interfaces</span
+              >.
             </p>
+
             <p>
-              I enjoy learning new things and find the most satisfaction in
-              <span class="text-accent">applying what I&apos;ve learned through hands-on practice.</span>
+              I apply foundational knowledge to real projects, focusing on
+              delivering
+              <span class="text-accent">practical and usable solutions</span>.
             </p>
           </div>
         </div>
@@ -35,14 +40,15 @@ import IconHover from "../components/ui/IconHover.astro";
       <section class="flex items-center">
         <div class="flex flex-col gap-4">
           <p class="text-center mb-4 mt-32 md:mt-0">
-            When I&apos;m not in front of a computer screen,</br> you&apos;ll likely find
-            me <span class="text-accent">painting or practicing calligraphy.</span> ↓ 
+            When I&apos;m not in front of a computer screen,<br />
+            you&apos;ll likely find me
+            <span class="text-accent">painting or practicing calligraphy.</span> ↓
           </p>
           <div class="gallery-shell" data-gallery-shell>
             <div class="gallery-modal" data-gallery-modal hidden>
               <div class="gallery-modal__panel glass-card">
                 <button
-                  class="gallery-modal__close text-heading-default  p-1 hover:bg-accent/50 rounded-full"
+                  class="gallery-modal__close text-heading-default p-1 hover:bg-accent/50 rounded-full"
                   type="button"
                   data-gallery-modal-close
                   aria-label="Close gallery modal"
@@ -69,30 +75,31 @@ import IconHover from "../components/ui/IconHover.astro";
   </div>
   <section class="flex flex-col justify-center items-center my-40">
     <CopyEmail />
-  <div class="icons flex items-center gap-10 mt-4">
-      
+    <div class="icons flex items-center gap-10 mt-4">
       <IconHover
-      href="https://github.com/taka0330ko"
-      aria-label="GitHub profile"
-      label="GitHub">
+        href="https://github.com/taka0330ko"
+        aria-label="GitHub profile"
+        label="GitHub"
+      >
         <Github />
       </IconHover>
 
       <IconHover
-      href="https://www.linkedin.com/in/takanarikondo/"
-      aria-label="LinkedIn profile"
-      label="LinkedIn">
+        href="https://www.linkedin.com/in/takanarikondo/"
+        aria-label="LinkedIn profile"
+        label="LinkedIn"
+      >
         <Linkedin />
       </IconHover>
 
- 
       <IconHover
-      href="mailto:gtakanari0330@gmail.com"
-      aria-label="Send email"
-      label="Email">
+        href="mailto:gtakanari0330@gmail.com"
+        aria-label="Send email"
+        label="Email"
+      >
         <Mail />
       </IconHover>
-  </div>
+    </div>
   </section>
 </Layout>
 
