@@ -5,15 +5,10 @@ import Card from "../components/ui/Card.astro";
 import { projects } from "../data/projects";
 
 //Images
-import HeroImage from "../assets/images/projects/stone-and-honey/Hero-image.jpg";
-import AppMockUp from "../assets/images/projects/stone-and-honey/Mockup-items.jpg";
-import JarMockup from "../assets/images/projects/stone-and-honey/Mockup-jar.jpg";
-import TrackMockup from "../assets/images/projects/stone-and-honey/MOckup-track.jpg";
-import MoodBoard from "../assets/images/projects/stone-and-honey/Moad-board.jpg";
-import LogoSheet from "../assets/images/projects/stone-and-honey/logos.jpg";
-import PackagingSlide from "../assets/images/projects/stone-and-honey/Slide 16_9 - 33.jpg";
-import StoneHoneyThumbnail from "../assets/images/projects/stone-and-honey/stone-honey-thumbnail.jpg";
-import TypoColor from "../assets/images/projects/stone-and-honey/typo-color.jpg";
+import HeroImage from "../assets/images/projects/xeno/Hero-image.jpg";
+import AppMockUp from "../assets/images/projects/xeno/App-Mockup.jpg";
+import TypoColor from "../assets/images/projects/xeno/Typiography-Color.jpg";
+import XenoThumbnail from "../assets/images/projects/xeno/xeno-thumbnail.jpg";
 import { Image } from "astro:assets";
 ---
 
@@ -22,10 +17,10 @@ import { Image } from "astro:assets";
         <section class="mx-auto flex max-w-360 flex-col gap-20 md:gap-28">
             <div class="grid gap-10 md:grid-cols-12 md:items-end">
                 <div class="md:col-span-8">
-                    <BreadCrumb>Stone & Honey</BreadCrumb>
+                    <BreadCrumb>XENO</BreadCrumb>
                     <h1 class="max-w-220">
-                        Stone & Honey crafts clean, transparent nut butters from
-                        pure ingredients.
+                        XENO redefines activewear shopping with AI
+                        personalization and seamless recommendations.
                     </h1>
                 </div>
                 <div class="md:col-span-4 md:flex md:justify-end">
@@ -35,7 +30,7 @@ import { Image } from "astro:assets";
                                 Industry
                             </dt>
                             <dd class="text-title font-medium text-heading-default">
-                                Food & Beverage
+                                Ecommerce
                             </dd>
                         </div>
                         <div class="grid gap-1">
@@ -43,7 +38,7 @@ import { Image } from "astro:assets";
                                 Category
                             </dt>
                             <dd class="text-title font-medium text-heading-default">
-                                Branding
+                                Mobile App
                             </dd>
                         </div>
                     </dl>
@@ -52,71 +47,47 @@ import { Image } from "astro:assets";
 
             <Image
                 src={HeroImage}
-                alt="Stone & Honey brand presentation hero image"
+                alt="XENO activewear ecommerce app hero image"
                 class="w-full rounded-lg"
             />
 
             <div class="grid gap-8 md:grid-cols-2 md:items-start">
                 <div class="flex flex-col gap-6">
-                    <h2>Natural, simple, honest.</h2>
+                    <h2>Designed for smarter movement.</h2>
                     <p>
-                        Made with carefully sourced ingredients and nothing unnecessary, our products focus on purity, transparency, and natural flavor.
+                        Discover, match, and shop activewear through a smarter,
+                        more personalized experience designed to fit your
+                        movement, preferences, and lifestyle.
                     </p>
                 </div>
                 <Image
-                    src={MoodBoard}
-                    alt="Stone & Honey mood board"
+                    src={XenoThumbnail}
+                    alt="XENO project thumbnail"
                     class="w-full rounded-lg"
                 />
             </div>
 
-            <div class="grid gap-8">
-                <Image
-                    src={TypoColor}
-                    alt="Stone & Honey typography and color system"
-                    class="w-full rounded-lg"
-                />
-                <Image
-                    src={LogoSheet}
-                    alt="Stone & Honey logo variations"
-                    class="w-full rounded-lg"
-                />
-            </div>
-
-            <div class="grid gap-8 md:grid-cols-2">
-                <Image
-                    src={JarMockup}
-                    alt="Stone & Honey jar packaging mockup"
-                    class="w-full rounded-lg"
-                />
-                <Image
-                    src={AppMockUp}
-                    alt="Stone & Honey product items mockup"
-                    class="w-full rounded-lg"
-                />
-            </div>
+            <Image
+                src={TypoColor}
+                alt="XENO typography and color system"
+                class="w-full rounded-lg"
+            />
 
             <div class="grid gap-8 md:grid-cols-12 md:items-center">
                 <div class="md:col-span-4">
-                    <h2>Made to feel grounded.</h2>
+                    <h2>Personalized from first tap.</h2>
                     <p class="mt-6">
-                        Designed to bring you back to what matters, with simple ingredients and a naturally honest approach.
+                        From the first tap, XENO understands your preferences
+                        and helps you discover the right activewear through
+                        personalized recommendations and a seamless experience.
                     </p>
                 </div>
-                <div class="grid gap-8 md:col-span-8">
-                    <Image
-                        src={PackagingSlide}
-                        alt="Stone & Honey packaging layout"
-                        class="w-full rounded-lg"
-                    />
-                    <Image
-                        src={TrackMockup}
-                        alt="Stone & Honey brand touchpoint mockup"
-                        class="w-full rounded-lg"
-                    />
-                </div>
+                <Image
+                    src={AppMockUp}
+                    alt="XENO mobile app mockup"
+                    class="w-full rounded-lg md:col-span-8"
+                />
             </div>
-
         </section>
 
         <section class="pt-24 md:pt-32">
@@ -127,8 +98,9 @@ import { Image } from "astro:assets";
                 {
                     projects
                         .filter(
-                            (project) => project.href !== "/stone-and-honey"
-                            && project.href !== "/billow",
+                            (project) =>
+                                project.href !== "/xeno" &&
+                                project.href !== "/tastebuds",
                         )
                         .map((project) => {
                             return (

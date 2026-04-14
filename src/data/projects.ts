@@ -1,6 +1,6 @@
 import type { ImageMetadata } from "astro";
 import BillowThumbnail from "../assets/images/projects/billow/billow-thumbnail.jpg";
-import NexfitThumbnail from "../assets/images/projects/nexfit/nexfit-thumbnail.jpg";
+import XENOThumbnail from "../assets/images/projects/xeno/xeno-thumbnail.jpg";
 import StoneAndHoneyThumbnail from "../assets/images/projects/stone-and-honey/stone-honey-thumbnail.jpg";
 import TastebudsThumbnail from "../assets/images/projects/tastebuds/tastebuds-thumbnail.jpg";
 
@@ -29,17 +29,17 @@ export const projects: Project[] = [
     tag:"Web dev",
   },
   {
-    href: "/nexfit",
-    cover: NexfitThumbnail,
-    title: "Nexfit",
+    href: "/xeno",
+    cover: XENOThumbnail,
+    title: "XENO",
     description: "Fitness branding project.",
-    tag:"UI/UX",
+    tag:"Branding",
   },
   {
     href: "/stone-and-honey",
     cover: StoneAndHoneyThumbnail,
     title: "Stone & Honey",
     description: "Butter nuts project",
-    tag:"UI/UX",
+    tag:"Branding",
   },
 ]
