@@ -1,11 +1,16 @@
 import type { ImageMetadata } from "astro";
-import BillowThumbnail from "../assets/images/projects/billow/billow-thumbnail.jpg";
+import BillowThumbnail from "../assets/images/projects/billow/billow-tumbnail.png";
+import BillowVideo from "../assets/images/projects/billow/videos/billow-cover-video.mp4";
 import XENOThumbnail from "../assets/images/projects/xeno/xeno-thumbnail.jpg";
 import StoneAndHoneyThumbnail from "../assets/images/projects/stone-and-honey/stone-honey-thumbnail.jpg";
-import TastebudsThumbnail from "../assets/images/projects/tastebuds/tastebuds-thumbnail.jpg";
+import TastebudsThumbnail from "../assets/images/projects/tastebuds/foodblog-tumbnail.png";
+import TastebudsVideo from "../assets/images/projects/tastebuds/videos/foodblog-cover-video.mp4"
+import UKGThumbnail from "../assets/images/projects/UKG/UKG-thumbnail.webp"
+import UKGVideo from "../assets/images/projects/UKG/videos/demo_video.mp4"
 
 type Project = {
   href: string;
+  coverVideo: string;
   cover: ImageMetadata;
   title: string;
   description: string;
@@ -14,8 +19,18 @@ type Project = {
 
 export const projects: Project[] = [
     {
+    href:"/UKGRedesign",
+    cover: UKGThumbnail,
+    coverVideo:UKGVideo,
+    title: "UKG UI/UXRedesign",
+    description:
+      "A project where I researched and redesigned the UX of the payroll app UKG, which is actively used at my workplace, based on interviews and feedback from coworkers.",
+      tag:"UI/UX",
+  },
+    {
     href: "/tastebuds",
     cover: TastebudsThumbnail,
+    coverVideo: TastebudsVideo,
     title: "Tastebuds - Food Blog Site",
     description:
       "Food blog project documenting my JavaScript journey from a Vanilla JS MVP to React and Next.js.",
@@ -24,6 +39,7 @@ export const projects: Project[] = [
   {
     href: "/billow",
     cover: BillowThumbnail,
+    coverVideo: BillowVideo,
     title: "Billow",
     description: "AI chat–based dashboard built with Next.js, focusing on conversational UI and chat interaction design.",
     tag:"Web dev",
@@ -31,6 +47,7 @@ export const projects: Project[] = [
   {
     href: "/xeno",
     cover: XENOThumbnail,
+    coverVideo: "",
     title: "XENO",
     description: "Fitness branding project.",
     tag:"Branding",
@@ -38,6 +55,7 @@ export const projects: Project[] = [
   {
     href: "/stone-and-honey",
     cover: StoneAndHoneyThumbnail,
+    coverVideo: "",
     title: "Stone & Honey",
     description: "Butter nuts project",
     tag:"Branding",
