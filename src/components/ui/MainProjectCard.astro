@@ -27,7 +27,7 @@ const { href, cover, coverVideo, title, description, tag } =
     >
         <div class="glow-effect"></div>
         <div class="grid grid-cols-1 md:grid-cols-2">
-            <figure class="relative overflow-hidden rounded-l-lg">
+            <figure class="relative overflow-hidden md:rounded-l-lg">
                 <Image
                     src={cover}
                     alt={title}
@@ -55,7 +55,7 @@ const { href, cover, coverVideo, title, description, tag } =
             <div class="flex flex-col justify-between my-auto">
                 {
                     coverVideo && (
-                        <div class="project-progress-track h-1 bg-gray-400/30 overflow-hidden z-30 mx-4 mb-28 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+                        <div class="project-progress-track h-1 bg-gray-400/30 overflow-hidden z-30 md:mx-4  opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
                             <div class="project-progress-bar h-full bg-accent w-full" />
                         </div>
                     )

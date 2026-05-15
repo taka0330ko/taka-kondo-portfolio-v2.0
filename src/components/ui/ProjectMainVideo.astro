@@ -1,0 +1,54 @@
+---
+import { Pause, Play } from "@lucide/astro";
+
+const { src } = Astro.props;
+---
+
+<div class="relative col-span-12 mt-16">
+                    <video
+                        id="ukg-demo-video"
+                        class="h-auto w-full aspect-video object-cover"
+                        src={src}
+                        autoplay
+                        loop
+                        muted
+                        playsinline></video>
+                    <button
+                        class="absolute cursor-pointer bottom-4 left-4 grid size-12 place-items-center rounded-full border border-white/40 bg-accent text-white backdrop-blur-sm transition hover:bg-accent/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:bottom-8 md:left-8"
+                        type="button"
+                        aria-label="Pause video"
+                        data-video-toggle
+                    >
+                        <Pause class="size-5" data-pause-icon />
+                        <Play class="hidden size-5" data-play-icon />
+                    </button>
+</div>
+
+<script>
+    
+    function initPlayPauseBtn(){
+            const video = document.querySelector<HTMLVideoElement>("#ukg-demo-video");
+            const toggleButton =
+                document.querySelector<HTMLButtonElement>("[data-video-toggle]");
+            const pauseIcon = document.querySelector<SVGElement>("[data-pause-icon]");
+            const playIcon = document.querySelector<SVGElement>("[data-play-icon]");
+            toggleButton?.addEventListener("click", () => {
+                if (!video || !pauseIcon || !playIcon) return;
+        
+                if (video.paused) {
+                    video.play().catch(() => {});
+                    toggleButton.setAttribute("aria-label", "Pause video");
+                    pauseIcon.classList.remove("hidden");
+                    playIcon.classList.add("hidden");
+                    return;
+                }
+        
+                video.pause();
+                toggleButton.setAttribute("aria-label", "Play video");
+                pauseIcon.classList.add("hidden");
+                playIcon.classList.remove("hidden");
+            });
+        }
+
+          document.addEventListener("astro:page-load", initPlayPauseBtn);
+</script>

@@ -1,0 +1,83 @@
+---
+// Layout
+import BreadCrumb from "../components/ui/BreadCrumb.astro";
+import Layout from "../layouts/Layout.astro";
+import UKGVideo from "../assets/images/projects/UKG/videos/demo_video.mp4";
+import ProjectMainVideo from "../components/ui/ProjectMainVideo.astro";
+import GlassPill from "../components/ui/GlassPill.astro";
+import { ArrowUpRight } from "@lucide/astro";
+---
+
+<Layout>
+    <main class="mt-30 md:mt-40">
+        <!-- Breadcrumb -->
+        <div class="ml-8">
+            <BreadCrumb>UKG Redesign Project</BreadCrumb>
+        </div>
+        <section id="hero" aria-labelledby="ukg-redesign-overview">
+            <div class="grid grid-cols-12 grid-container items-start">
+                <div class="col-span-8">
+                    <h1 class="mt-8">
+                        “Are my work hours being calculated correctly...?”
+                    </h1>
+                    <p class="flex justify-end mt-8">
+                        That my coworker’s question inspired this redesign
+                    </p>
+                    <div class="my-8">
+                        <GlassPill
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Open Tastebuds live site in a new tab"
+                                    href="https://ukg-pro-redesign.vercel.app/"
+                                >
+                                    <ArrowUpRight
+                                        slot="after"
+                                        aria-hidden="true"
+                                        focusable="false"
+                                    />
+                                    Prototype
+                                    <span class="sr-only">(opens in a new tab)</span
+                                    >
+                                </GlassPill>
+                    </div>
+                </div>
+                <dl
+                    class="grid gap-4 border-l border-accent pl-6 md:min-w-64 mt-16 md:col-span-4"
+                >
+                    <div class="grid gap-1">
+                        <dt class="text-caption uppercase tracking-wide">
+                            Tool
+                        </dt>
+                        <dd class="font-medium text-body text-heading-default">
+                            Google form / Figma / React & Tailwind
+                        </dd>
+                    </div>
+                    <div class="grid gap-1">
+                        <dt
+                            class="text-caption uppercase tracking-wide text-body-default"
+                        >
+                            Role
+                        </dt>
+                        <dd class="text-body font-medium text-heading-default">
+                            UX Researcher / UI Designer / Front-end Developer
+                        </dd>
+                    </div>
+                    <div class="grid gap-1">
+                        <dt
+                            class="text-caption uppercase tracking-wide text-body-default"
+                        >
+                            Timeline
+                        </dt>
+                        <dd class="text-body font-medium text-heading-default">
+                            One month, Apr-May, 2026ding
+                        </dd>
+                    </div>
+                </dl>
+                <ProjectMainVideo src={UKGVideo} />
+            </div>
+            <!-- ====================== Case Study Start ====================== -->
+            <section></section>
+        </section>
+    </main>
+</Layout>
+

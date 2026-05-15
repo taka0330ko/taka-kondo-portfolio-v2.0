@@ -19,7 +19,7 @@ type Project = {
 
 export const projects: Project[] = [
     {
-    href:"/UKGRedesign",
+    href:"/ukg",
     cover: UKGThumbnail,
     coverVideo:UKGVideo,
     title: "UKG UI/UXRedesign",
