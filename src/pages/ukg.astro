@@ -23,7 +23,7 @@ import { ArrowUpRight } from "@lucide/astro";
                     <p class="flex justify-end mt-8">
                         That my coworker’s question inspired this redesign
                     </p>
-                    <div class="my-8">
+                    <div class="mt-8 md:my-8">
                         <GlassPill
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -42,7 +42,7 @@ import { ArrowUpRight } from "@lucide/astro";
                     </div>
                 </div>
                 <dl
-                    class="grid gap-4 border-l border-accent pl-6 md:min-w-64 mt-16 md:col-span-4"
+                    class="order-3 md:order-2 grid gap-4 border-l border-accent pl-6 md:min-w-64 mt-16 md:col-span-4"
                 >
                     <div class="grid gap-1">
                         <dt class="text-caption uppercase tracking-wide">
@@ -73,11 +73,12 @@ import { ArrowUpRight } from "@lucide/astro";
                         </dd>
                     </div>
                 </dl>
-                <ProjectMainVideo src={UKGVideo} />
+                <div class="order-2 md:order-3 col-span-12">
+                    <ProjectMainVideo src={UKGVideo} />
+                </div>
             </div>
             <!-- ====================== Case Study Start ====================== -->
             <section></section>
         </section>
     </main>
 </Layout>
-
