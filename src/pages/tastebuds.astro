@@ -3,7 +3,6 @@
 import Layout from "../layouts/Layout.astro";
 
 // Icons
-import Arrow from "../assets/images/icons/card-arrow.svg";
 import { ArrowUpRight, Github } from "@lucide/astro";
 
 // UI
@@ -13,6 +12,7 @@ import BreadCrumb from "../components/ui/BreadCrumb.astro";
 import Card from "../components/ui/Card.astro";
 import CodeWindow from "../components/ui/CodeWindow.astro";
 import GlassPill from "../components/ui/GlassPill.astro";
+import ProjectMainVideo from "../components/ui/ProjectMainVideo.astro";
 import {
     CardRenderA,
     CardRenderB,
@@ -25,12 +25,12 @@ import {
 } from "../data/tastebudsCode.ts";
 
 // Videos
+import CoverVideo from "../assets/images/projects/tastebuds/videos/foodblog-cover-video.mp4";
 import MVPVideo from "../assets/images/projects/tastebuds/videos/mvp-record.mp4";
 import ReDevVideo from "../assets/images/projects/tastebuds/videos/redesign-record.mp4";
 
 // Images
 import MVPFolders from "../assets/images/projects/tastebuds/mvp-folders.png";
-import Tastebuds_Website_Pic from "../assets/images/projects/tastebuds/teast-buds-website.png";
 import CardUI from "../assets/images/projects/tastebuds/card-ui.png";
 import PatternA from "../assets/images/projects/tastebuds/render-pattern-a.png";
 import PatternB from "../assets/images/projects/tastebuds/render-pattern-b.png";
@@ -61,56 +61,26 @@ export const tastebudsSections = [
 ---
 
 <Layout>
-    <main>
+    <main class="mt-30 md:mt-40">
+        <div class="ml-8">
+            <BreadCrumb>Tastebuds</BreadCrumb>
+        </div>
         <section id="hero" aria-labelledby="tastebuds-overview">
-            <div
-                class="grid grid-cols-12 grid-container mt-30 md:mt-40 items-start"
-            >
-                <!-- Text Block -->
-                <div class="md:col-start-1 md:col-span-6">
-                    <!-- Breadcrumb -->
-                    <BreadCrumb>Tastebuds</BreadCrumb>
-                    <h1
-                        id="tastebuds-overview"
-                        class="text-display text-center py-12 font-semibold"
-                    >
-                        “TASTEBUDS” Food Blog Site
+            <div class="grid grid-cols-12 grid-container items-start">
+                <div class="col-span-8">
+                    <h1 id="tastebuds-overview" class="mt-8 leading-[1.05]">
+                       “TASTEBUDS" Food Blog </br> My Journey from JavaScript to React
                     </h1>
-                    <p class="text-subtitle pt-6 text-center">
-                        A learning journey from MVP development with <span
+                    <p class="mt-8">
+                        Learning frontend fundamentals by rebuilding a food blog from <span
                             class="text-accent"
                         >
                             vanilla JavaScript
-                        </span>to redeveloping with <span class="text-accent"
-                            >React and Next.js.</span
+                        </span>to<span class="text-accent"
+                            > React and Next.js.</span
                         >
                     </p>
-
-                    <!-- Vanilla to Next -->
-                    <div
-                        role="img"
-                        aria-label="Technology transition from JavaScript to Next.js"
-                        class="flex items-center mx-auto max-w-100 gap-8 md:justify-end lg:gap-12 p-16"
-                    >
-                        <JS
-                            class="w-24 h-24"
-                            aria-hidden="true"
-                            focusable="false"
-                        />
-                        <Arrow
-                            class="text-foreground w-14 h-14"
-                            aria-hidden="true"
-                            focusable="false"
-                        />
-                        <NextJS
-                            class="w-24 h-24 text-foreground"
-                            aria-hidden="true"
-                            focusable="false"
-                        />
-                    </div>
-
-                    <!-- link pills -->
-                    <div class="flex justify-center gap-4">
+                    <div class="mt-8 md:my-8 flex flex-wrap justify-between  items-center gap-10">
                         <GlassPill
                             target="_blank"
                             rel="noopener noreferrer"
@@ -122,34 +92,71 @@ export const tastebudsSections = [
                                 aria-hidden="true"
                                 focusable="false"
                             />
-                            Live Site
+                            Prototype
                             <span class="sr-only">(opens in a new tab)</span>
                         </GlassPill>
-                        <GlassPill
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Open Tastebuds GitHub repository in a new tab"
-                            href="https://github.com/Taka0330-jp/Tastebuds.git"
+
+                        <div
+                            class="flex flex-wrap items-center gap-x-5 gap-y-3"
+                            aria-label="Technologies used in this project"
                         >
-                            <Github
-                                slot="after"
-                                aria-hidden="true"
-                                focusable="false"
-                            />
-                            GitHub
-                            <span class="sr-only">(opens in a new tab)</span>
-                        </GlassPill>
+                            <div class="flex items-center gap-2">
+                                <span class="text-caption uppercase tracking-wide text-body-default border-l-2 border-accent pl-2">
+                                    MVP:
+                                </span>
+                                <HTML class="w-6 h-6" />
+                                <CSS class="w-6 h-6" />
+                                <SASS class="w-6 h-6" />
+                                <JS class="w-6 h-6" />
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <span class="text-caption uppercase tracking-wide text-body-default border-l-2 border-accent pl-2">
+                                    Rebuild:
+                                </span>
+                                <ReactLogo class="w-6 h-6" />
+                                <TypeScript class="w-6 h-6" />
+                                <Tailwind class="w-6 h-6" />
+                                <NextJS class="w-6 h-6 text-foreground" />
+                                <Supabase class="w-6 h-6" />
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Homepage Screenshot -->
-                <div class="md:col-start-7 md:col-span-6 max-w-150 m-auto">
-                    <Image
-                        class="mask-b-from-70% mask-b-to-100%"
-                        src={Tastebuds_Website_Pic}
-                        loading="eager"
-                        alt="Screenshot of the Tastebuds food blog homepage"
-                    />
+                <dl
+                    class="order-3 md:order-2 grid gap-4 border-l-2 border-accent pl-6 mt-16 md:col-start-10 md:col-span-3 mx-auto"
+                >
+                    <div class="grid gap-1">
+                        <!-- <dt class="text-caption uppercase tracking-wide">
+                            Tool
+                        </dt>
+                        <dd class="font-medium text-body text-heading-default">
+                            Figma / React & Tailwind
+                        </dd> -->
+                    </div>
+                    <div class="grid gap-1">
+                        <dt
+                            class="text-caption uppercase tracking-wide text-body-default"
+                        >
+                            Role
+                        </dt>
+                        <dd class="text-body font-medium text-heading-default">
+                            Web Developer / Web Designer
+                        </dd>
+                    </div>
+                    <div class="grid gap-1">
+                        <dt
+                            class="text-caption uppercase tracking-wide text-body-default"
+                        >
+                            Timeline
+                        </dt>
+                        <dd class="text-body font-medium text-heading-default">
+                            Two months, Oct-Dec, 2025
+                        </dd>
+                    </div>
+                </dl>
+                <div class="order-2 md:order-3 col-span-12">
+                    <ProjectMainVideo src={CoverVideo} />
                 </div>
             </div>
         </section>
