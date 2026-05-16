@@ -46,20 +46,17 @@ const { href, cover, coverVideo, title, description, tag } =
                             preload="auto"
                             aria-label={`${title} preview`}
                         />
-                    )
-                }
-                <div class="absolute top-4 left-4 z-20">
-                    <GlassPill class="text-white">{tag}</GlassPill>
-                </div>
-            </figure>
-            <div class="flex flex-col justify-between my-auto">
-                {
-                    coverVideo && (
-                        <div class="project-progress-track h-1 bg-gray-400/30 overflow-hidden z-30 md:mx-4  opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+                        <div class="project-progress-track absolute left-0 right-0 bottom-0 h-1 bg-gray-400/30 overflow-hidden z-30 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
                             <div class="project-progress-bar h-full bg-accent w-full" />
                         </div>
                     )
                 }
+                <div class="absolute top-4 left-4 z-20">
+                    <GlassPill class="text-white">{tag}</GlassPill>
+                    </div>
+  
+            </figure>
+            <div class="flex flex-col justify-between my-auto">
                 <h3 class="p-4">{title}</h3>
                 <div class="flex flex-col gap-16">
                     <p class="px-4">{description}</p>
@@ -105,6 +102,7 @@ const { href, cover, coverVideo, title, description, tag } =
     .project-cover-image,
     .project-cover-video {
         aspect-ratio: 16 / 10;
+        display: block;
     }
 
     .project-progress-bar {
