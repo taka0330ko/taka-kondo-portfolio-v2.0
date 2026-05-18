@@ -4,9 +4,12 @@ import Layout from "../layouts/Layout.astro";
 import UKGVideo from "../assets/images/projects/UKG/videos/demo_video.mp4";
 import UKGIcon from "../assets/images/projects/UKG/ukg-icon.png";
 import MyUKGPage from "../assets/images/projects/UKG/my-ukg-page.webp";
+import Survey01 from "../assets/images/projects/UKG/survey-result-1.webp";
+import Survey02 from "../assets/images/projects/UKG/survey-result-2.webp";
 import UXResearchLayer from "../assets/images/projects/UKG/ux-research-layer.svg";
 import UIDesignLayer from "../assets/images/projects/UKG/uidesign-layer.svg";
 import InterviewLayer from "../assets/images/projects/UKG/interview-layer.svg";
+import FormLayer from "../assets/images/projects/UKG/form-layer.svg";
 import DevLayer from "../assets/images/projects/UKG/dev-layer.svg";
 import TestingLayer from "../assets/images/projects/UKG/testing-layer.svg";
 import Cashier from "../assets/images/projects/UKG/cashier.svg";
@@ -306,8 +309,8 @@ export const ukgSections = [
                                 <p class="text-caption">Grocery Saff</p>
                             </div>
                             <p>
-                                “I can see the total hours worked, but I can’t see
-                                the breakdown.”
+                                “I can see the total hours worked, but I can’t
+                                see the breakdown.”
                             </p>
                         </div>
                         <div
@@ -321,7 +324,9 @@ export const ukgSections = [
                         </div>
                         <div class="flex gap-4 items-center mt-16">
                             <p>
-                                “The punch records should exist somewhere, but I can’t verify them in UKG Pro. The schedule only shows assigned shifts.”
+                                “The punch records should exist somewhere, but I
+                                can’t verify them in UKG Pro. The schedule only
+                                shows assigned shifts.”
                             </p>
                             <div class="flex flex-col items-center">
                                 <Image
@@ -345,9 +350,7 @@ export const ukgSections = [
                         <div class="mt-16">
                             <h3>Existing User Journey Pain Points</h3>
                             <div class="mt-16 grid gap-12">
-                                <div
-                                    class="flex mx-auto gap-8"
-                                >
+                                <div class="flex mx-auto gap-8">
                                     <div
                                         class="relative mx-auto w-56 max-w-full md:mx-0"
                                     >
@@ -360,10 +363,14 @@ export const ukgSections = [
                                         <div
                                             class="absolute inset-0 px-8 py-8 text-heading-default"
                                         >
-                                            <h4 class="text-black text-body font-semibold">
+                                            <h4
+                                                class="text-black text-body font-semibold"
+                                            >
                                                 User Intent
                                             </h4>
-                                            <p class="text-gray-800 mt-2 md:mt-4 text-sm">
+                                            <p
+                                                class="text-gray-800 mt-2 md:mt-4 text-sm"
+                                            >
                                                 Confirm that payroll hours were
                                                 calculated accurately
                                             </p>
@@ -387,10 +394,14 @@ export const ukgSections = [
                                         <div
                                             class="absolute inset-0 px-8 py-8 text-heading-default"
                                         >
-                                            <h4 class="text-black text-body font-semibold">
+                                            <h4
+                                                class="text-black text-body font-semibold"
+                                            >
                                                 Outcome
                                             </h4>
-                                            <p class="text-gray-800 mt-2 md:mt-4 text-sm">
+                                            <p
+                                                class="text-gray-800 mt-2 md:mt-4 text-sm"
+                                            >
                                                 The user leaves without knowing
                                                 the exact payroll calculation
                                             </p>
@@ -404,13 +415,48 @@ export const ukgSections = [
                                         alt="Existing user journey map showing payroll review phases, actions, thoughts, emotions, and friction points"
                                     />
                                 </div>
-                                <p
-                                    class="text-xl"
-                                >
+                                <p class="text-xl">
                                     Users cannot verify how payroll hours are
                                     calculated, forcing them to rely on manual
                                     estimation instead of system transparency.
                                 </p>
+                            </div>
+                            <div>
+                                <div
+                                    class="grid md:flex items-center gap-16 mt-32"
+                                >
+                                    <img
+                                        class="w-40 mx-auto md:mx-0"
+                                        src={FormLayer.src}
+                                        alt="Google form illustration"
+                                        loading="lazy"
+                                    />
+                                    <div class="flex flex-col gap-4">
+                                        <h3 class="text-3xl md:text-4xl">
+                                            Research Findings
+                                        </h3>
+                                        <p>Conducted a survey to further validate existing pain points and identify strong user demand for better visibility into payroll records.</p>
+                                    </div>
+                                </div>
+                                <div  class="grid md:flex justify-between gap-8 items-center mt-16">
+                                    <p>80% of participants said they would not feel confident verifying payroll calculations if an error occurred.</p>
+                                    <div class="bg-black border border-gray-100 p-4 rounded-lg max-w-120 mx-auto mt-8 md:mt-0">
+                                        <Image
+                                        src={Survey01}
+                                        alt=""
+                                        class="w-100">
+                                    </div>
+                                </div>
+                                <div  class="grid md:flex flex-row-reverse justify-between gap-8 items-center">
+                                    <p>90% of participants wanted access to actual clock-in and clock-out records.</p>
+                                    <div class="bg-black border border-gray-100 p-4 rounded-lg max-w-120 mx-auto mt-8 md:mt-0">
+                                        <Image
+                                        src={Survey02}
+                                        alt=""
+                                        class="w-100">
+                                    </div>
+                                </div>
+                                <p class="mt-16 text-xl">Users lacked confidence in payroll calculations because the system did not provide enough visibility into payroll records and actual worked hours.</p>
                             </div>
                         </div>
                         <!-- Goal Section -->
