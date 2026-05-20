@@ -2,9 +2,9 @@
 import RippleEffectRings from '../components/webGL/RippleEffectRings';
 import Layout from '../layouts/Layout.astro';
 import HeroTextBlock from '../components/features/HeroTextBlock.astro';
-import Card from '../components/ui/Card.astro'
 import CopyEmail from '../components/ui/CopyEmail.astro';
 import { projects } from '../data/projects';
+import MainProjectCard from '../components/ui/MainProjectCard.astro';
 
 ---
 
@@ -21,12 +21,13 @@ import { projects } from '../data/projects';
 
   <section id="projects" class="max-w-350 mx-auto px-4" >
     <h2 class="pb-16 sr-only">Projects</h2>
-    <div class="grid grid-cols-1  md:grid-cols-2 gap-10 ">
+    <div class="grid gap-4">
       {projects.map((project) =>{
        return (
-            <Card
+            <MainProjectCard
             href={project.href}
             cover={project.cover}
+            coverVideo={project.coverVideo}
             title={project.title}
             description={project.description}
             tag={project.tag}          />
@@ -39,5 +40,3 @@ import { projects } from '../data/projects';
         </section>
 </main>
 </Layout>
-
-
