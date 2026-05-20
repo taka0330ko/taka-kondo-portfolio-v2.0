@@ -158,9 +158,13 @@
     /* Document */
   html {
     scroll-padding-top: 6rem;
-    color-scheme: dark;
+    color-scheme: light;
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+  }
+
+  html:not(.light) {
+    color-scheme: dark;
   }
 
   body {
@@ -358,4 +362,3 @@
     animation: lines-pulse 6s ease-in-out infinite alternate;
   }
 }
-
