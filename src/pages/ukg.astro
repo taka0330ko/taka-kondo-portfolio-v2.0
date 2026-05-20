@@ -19,6 +19,14 @@ import TotalHours from "../assets/images/projects/UKG/total-hours.webp";
 import StickyNote from "../assets/images/projects/UKG/sticky-note.svg";
 import Arrow from "../assets/images/projects/UKG/arrow.svg";
 import JourneyMap from "../assets/images/projects/UKG/journey-map.webp";
+// import LowFide from "../assets/images/projects/UKG/low-fide.webp";
+import MidFide from "../assets/images/projects/UKG/mid-fide.webp";
+import OldLogo from "../assets/images/projects/UKG/ukg-old-logo.png";
+import NewLogo from "../assets/images/projects/UKG/ukg-new-logo.png";
+import DevTool from "../assets/images/projects/UKG/dev-tool.webp";
+import PrimitiveColors from "../assets/images/projects/UKG/color-primitive.webp";
+import DesignSystem from "../assets/images/projects/UKG/design-system.webp";
+import HighFide from "../assets/images/projects/UKG/high-fide.webp";
 import Image from "astro/components/Image.astro";
 import { ArrowUpRight } from "@lucide/astro";
 
@@ -31,7 +39,6 @@ import GlassPill from "../components/ui/GlassPill.astro";
 export const ukgSections = [
     { label: "Overview", href: "#Overview" },
     { label: "Problem", href: "#Problem" },
-    { label: "Goal", href: "#Goal" },
     { label: "UI Design", href: "#UI-design" },
     { label: "User Feedback", href: "#User-feedback" },
     { label: "Reflection", href: "#Reflection" },
@@ -421,48 +428,217 @@ export const ukgSections = [
                                     estimation instead of system transparency.
                                 </p>
                             </div>
-                            <div>
-                                <div
-                                    class="grid md:flex items-center gap-16 mt-32"
-                                >
-                                    <img
-                                        class="w-40 mx-auto md:mx-0"
-                                        src={FormLayer.src}
-                                        alt="Google form illustration"
-                                        loading="lazy"
-                                    />
-                                    <div class="flex flex-col gap-4">
-                                        <h3 class="text-3xl md:text-4xl">
-                                            Research Findings
-                                        </h3>
-                                        <p>Conducted a survey to further validate existing pain points and identify strong user demand for better visibility into payroll records.</p>
-                                    </div>
+                            <div class="grid md:flex items-center gap-16 mt-32">
+                                <img
+                                    class="w-40 mx-auto md:mx-0"
+                                    src={FormLayer.src}
+                                    alt="Google form illustration"
+                                    loading="lazy"
+                                />
+                                <div class="flex flex-col gap-4">
+                                    <h3 class="text-3xl md:text-4xl">
+                                        Research Findings
+                                    </h3>
+                                    <p>
+                                        Conducted a survey to further validate
+                                        existing pain points and identify strong
+                                        user demand for better visibility into
+                                        payroll records.
+                                    </p>
                                 </div>
-                                <div  class="grid md:flex justify-between gap-8 items-center mt-16">
-                                    <p>80% of participants said they would not feel confident verifying payroll calculations if an error occurred.</p>
-                                    <div class="bg-black border border-gray-100 p-4 rounded-lg max-w-120 mx-auto mt-8 md:mt-0">
-                                        <Image
+                            </div>
+
+                            <div
+                                class="grid md:flex justify-between gap-8 items-center mt-16"
+                            >
+                                <p>
+                                    80% of participants said they would not feel
+                                    confident verifying payroll calculations if
+                                    an error occurred.
+                                </p>
+                                <div
+                                    class="bg-black border border-gray-100 p-4 rounded-lg max-w-120 mx-auto mt-8 md:mt-0"
+                                >
+                                    <Image
                                         src={Survey01}
                                         alt=""
-                                        class="w-100">
-                                    </div>
+                                        class="w-100"
+                                    />
                                 </div>
-                                <div  class="grid md:flex flex-row-reverse justify-between gap-8 items-center">
-                                    <p>90% of participants wanted access to actual clock-in and clock-out records.</p>
-                                    <div class="bg-black border border-gray-100 p-4 rounded-lg max-w-120 mx-auto mt-8 md:mt-0">
-                                        <Image
+                            </div>
+                            <div
+                                class="grid md:flex flex-row-reverse justify-between gap-8 items-center"
+                            >
+                                <p>
+                                    90% of participants wanted access to actual
+                                    clock-in and clock-out records.
+                                </p>
+                                <div
+                                    class="bg-black border border-gray-100 p-4 rounded-lg max-w-120 mx-auto mt-8 md:mt-0"
+                                >
+                                    <Image
                                         src={Survey02}
                                         alt=""
-                                        class="w-100">
-                                    </div>
+                                        class="w-100"
+                                    />
                                 </div>
-                                <p class="mt-16 text-xl">Users lacked confidence in payroll calculations because the system did not provide enough visibility into payroll records and actual worked hours.</p>
                             </div>
                         </div>
-                        <!-- Goal Section -->
-                        <section id="Goal" class="mt-64"></section>
+                        <p class="mt-16 text-xl">
+                            Users lacked confidence in payroll calculations
+                            because the system did not provide enough visibility
+                            into payroll records and actual worked hours.
+                        </p>
+
+                        <div class="mt-32">
+                            <div
+                                class="mb-16 flex flex-col gap-4 justify-center items-start"
+                            >
+                                <h3
+                                    class="inline-block font-light border-b-2 border-accent"
+                                >
+                                    GOAL
+                                </h3>
+                                <h3>
+                                    Improve payroll transparency by providing
+                                    visibility into clock-in and clock-out
+                                    records.
+                                </h3>
+                            </div>
+                            <div
+                                class="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4 md:gap-16 items-center"
+                            >
+                                <div class="flex gap-4 items-center">
+                                    <Image
+                                        src={GroceryStaff}
+                                        alt=""
+                                        class="w-32"
+                                    />
+                                    <p class="text-xl">
+                                        As an employee, I want to review my
+                                        clock-in and clock-out history so that I
+                                        can verify how my payroll hours were
+                                        calculated.
+                                    </p>
+                                </div>
+                                <div
+                                    class="mt-16 rounded-lg border border-gray-100 bg-black p-4 w-120"
+                                >
+                                    <Image
+                                        src={MidFide}
+                                        alt=""
+                                        class="w-full"
+                                    />
+                                </div>
+                            </div>
+                        </div>
                         <!-- UI design Section -->
-                        <section id="UI-design" class="mt-64"></section>
+                        <section id="UI-design" class="mt-64">
+                            <h2 class="font-semibold">
+                                <span class="heading-accent-bar">UI Design</span
+                                >
+                            </h2>
+                            <Image
+                                src={UIDesignLayer}
+                                alt=""
+                                class="w-48 mx-auto my-16"
+                            />
+                            <h3>
+                                Designing the UI Around UKG’s New Brand Identity
+                            </h3>
+                            <div
+                                class="flex items-center justify-center gap-8 md:gap-12 my-16"
+                            >
+                                <Image
+                                    src={OldLogo}
+                                    alt="Previous logo design"
+                                    class="w-40 object-contain"
+                                />
+
+                                <Image
+                                    src={Arrow}
+                                    alt="Transformation arrow"
+                                    class="w-16 opacity-50"
+                                />
+
+                                <Image
+                                    src={NewLogo}
+                                    alt="Redesigned logo"
+                                    class="w-40 object-contain"
+                                />
+                            </div>
+                            <p>
+                                In 2025, UKG introduced a refreshed visual
+                                identity.
+                            </p>
+                            <p>
+                                The redesign explored how the updated visual
+                                identity could be applied more consistently
+                                across the payroll experience.
+                            </p>
+
+                            <div class="mt-16 grid gap-6">
+                                <p>
+                                    Since the official design system was not
+                                    publicly available, visual styles and UI
+                                    patterns were independently analyzed from
+                                    UKG’s public website.
+                                </p>
+                                <div class="max-w-280">
+                                    <Image
+                                        src={DevTool}
+                                        alt="Browser developer tools used to inspect UKG website visual styles"
+                                        class="w-full"
+                                    />
+                                </div>
+                                <Image
+                                    src={Arrow}
+                                    alt=""
+                                    class="transform rotate-90 mx-auto"
+                                />
+                                <Image
+                                    src={PrimitiveColors}
+                                    alt=""
+                                    class="w-120 mx-auto mt-8"
+                                />
+                                <p class="text-center">
+                                    Primitive color tokens derived from the
+                                    analysis
+                                </p>
+                                <div>
+                                    <Image
+                                        src={DesignSystem}
+                                        alt=""
+                                        class="w-full mt-8 rounded-lg"
+                                    />
+                                    <p class="mt-16">
+                                        Rather than connecting raw color values
+                                        directly to the UI, I designed a
+                                        hierarchical structure consisting of
+                                        Primitive → Semantic → Component
+                                        (optional). I placed particular emphasis
+                                        on Semantic Tokens, as defining intent
+                                        and meaning instead of visual values
+                                        helps create more consistent design
+                                        rules. Since this project contained
+                                        relatively few repeated UI patterns,
+                                        Component Tokens were introduced only
+                                        where they provided additional value.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="mt-32">
+                                <h3>Final deign</h3>
+                                <div class="max-w-150 mx-auto">
+                                    <Image
+                                            src={HighFide}
+                                            alt=""
+                                            class="w-full mt-8 rounded-lg"
+                                        />
+                                </div>
+                            </div>
+                        </section>
                         <!-- User Feedback Section -->
                         <section id="User-feedback" class="mt-64"></section>
                         <!-- Reflection -->
