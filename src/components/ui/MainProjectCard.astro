@@ -114,6 +114,11 @@ const { href, cover, coverVideo, title, description, tag } =
     .project-card:focus-within .project-progress-track {
         opacity: 1;
     }
+
+    .project-card.is-video-active .project-cover-video,
+    .project-card.is-video-active .project-progress-track {
+        opacity: 1;
+    }
 </style>
 
 <script>
@@ -137,15 +142,29 @@ const { href, cover, coverVideo, title, description, tag } =
         });
     }
 
-    function setupProjectCoverVideos() {
+    const projectCoverVideoCleanups: Array<() => void> = [];
+    let projectCoverVideoResizeTimer: number | null = null;
+    let projectCoverVideoResizeReady = false;
+
+    function cleanupProjectCoverVideos() {
+        while (projectCoverVideoCleanups.length > 0) {
+            projectCoverVideoCleanups.pop()?.();
+        }
+    }
+
+    function setupProjectCoverVideosByViewport() {
+        cleanupProjectCoverVideos();
+
         const cards =
             document.querySelectorAll<HTMLAnchorElement>(".project-card");
+
+        const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
         cards.forEach((card) => {
             const video = card.querySelector<HTMLVideoElement>(
                 ".project-cover-video",
             );
-            if (!video || card.dataset.videoHoverReady === "true") return;
+            if (!video) return;
 
             const progressBar = card.querySelector<HTMLDivElement>(
                 ".project-progress-bar",
@@ -188,16 +207,70 @@ const { href, cover, coverVideo, title, description, tag } =
                 }
             };
 
-            card.addEventListener("mouseenter", playVideo);
-            card.addEventListener("focusin", playVideo);
-            card.addEventListener("mouseleave", resetVideo);
-            card.addEventListener("focusout", resetVideo);
+            const cleanupCard = () => {
+                resetVideo();
+                card.classList.remove("is-video-active");
+                video.removeEventListener("ended", resetVideo);
+            };
 
-            if (video && progressBar) {
-                video.addEventListener("ended", resetVideo);
+            video.addEventListener("ended", resetVideo);
+
+            if (isMobile) {
+                const observer = new IntersectionObserver(
+                    ([entry]) => {
+                        if (entry.isIntersecting) {
+                            playVideo();
+                            card.classList.add("is-video-active");
+                        } else {
+                            resetVideo();
+                            card.classList.remove("is-video-active");
+                        }
+                    },
+                    {
+                        threshold: 0.5,
+                    },
+                );
+
+                observer.observe(card);
+
+                projectCoverVideoCleanups.push(() => {
+                    observer.disconnect();
+                    cleanupCard();
+                });
+            } else {
+                card.addEventListener("mouseenter", playVideo);
+                card.addEventListener("focusin", playVideo);
+                card.addEventListener("mouseleave", resetVideo);
+                card.addEventListener("focusout", resetVideo);
+
+                projectCoverVideoCleanups.push(() => {
+                    card.removeEventListener("mouseenter", playVideo);
+                    card.removeEventListener("focusin", playVideo);
+                    card.removeEventListener("mouseleave", resetVideo);
+                    card.removeEventListener("focusout", resetVideo);
+                    cleanupCard();
+                });
             }
-            card.dataset.videoHoverReady = "true";
         });
+    }
+
+    function setupProjectCoverVideos() {
+        setupProjectCoverVideosByViewport();
+
+        if (projectCoverVideoResizeReady) return;
+
+        window.addEventListener("resize", () => {
+            if (projectCoverVideoResizeTimer !== null) {
+                window.clearTimeout(projectCoverVideoResizeTimer);
+            }
+
+            projectCoverVideoResizeTimer = window.setTimeout(() => {
+                setupProjectCoverVideosByViewport();
+                projectCoverVideoResizeTimer = null;
+            }, 150);
+        });
+
+        projectCoverVideoResizeReady = true;
     }
 
     document.addEventListener("astro:page-load", trackingHover);

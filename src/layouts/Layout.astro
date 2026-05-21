@@ -27,6 +27,25 @@ import { ClientRouter } from "astro:transitions";
 		<meta property="og:url" content="https://takanari-kondo.com/" />
 		<!-- 画像未設定 -->
 		<meta property="og:image" content="/og-image.png" />
+		<script is:inline>
+			(() => {
+				if (window.__astroTransitionAbortGuardReady) return;
+
+				window.addEventListener("unhandledrejection", (event) => {
+					const reason = event.reason;
+					const isAbortedViewTransition =
+						reason instanceof DOMException &&
+						reason.name === "InvalidStateError" &&
+						reason.message.includes("Transition was aborted");
+
+					if (isAbortedViewTransition) {
+						event.preventDefault();
+					}
+				});
+
+				window.__astroTransitionAbortGuardReady = true;
+			})();
+		</script>
 	</head>
 	<body class="min-h-dvh">
 		<ClientRouter />

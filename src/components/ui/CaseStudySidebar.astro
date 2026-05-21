@@ -41,8 +41,10 @@ const { items, className } = Astro.props
 let observer: IntersectionObserver
 document.addEventListener("astro:page-load",()=>{
     const sidebar = document.getElementById("case-study-sidebar");
+    if (!sidebar) return;
+
     //querySelectorAll() はデフォルトでNodeListOf<Element>を返すが、ElementにはdatasetプロパティがないのでHTMLAnchorElement として型指定する必要がある。
-      const links = sidebar?.querySelectorAll('[data-section-link]') as NodeListOf<HTMLAnchorElement>
+      const links = sidebar.querySelectorAll('[data-section-link]') as NodeListOf<HTMLAnchorElement>
     
         //NodeList → Array
       const sections = Array.from(links)
