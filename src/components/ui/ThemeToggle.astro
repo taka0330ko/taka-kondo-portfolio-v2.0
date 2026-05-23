@@ -1,53 +1,292 @@
 ---
-import darkIcon from "../../assets/images/icons/dark.svg";
-import lightIcon from "../../assets/images/icons/light.svg";
+import DarkIcon from "../../assets/images/icons/dark.svg";
+import LightIcon from "../../assets/images/icons/light.svg";
 ---
 
-<button
-id="theme-toggle"
-type="button"
-aria-label="Toggle theme"
-data-dark={darkIcon.src}
-data-light={lightIcon.src}
-class="cursor-pointer">
-<img 
-id="theme-icon"
-src={darkIcon.src} 
-alt="">
-<span class="sr-only">Toggle theme</span>
-</button>
+<div class="stage is-syncing" data-theme-toggle>
+    <input
+        class="switch-input sr-only"
+        id="theme-switch"
+        type="checkbox"
+        aria-label="Toggle color theme"
+    />
+    <label class="switch" for="theme-switch">
+        <span class="track" aria-hidden="true">
+            <span class="icon icon-dark"><DarkIcon /></span>
+            <span class="icon icon-light"><LightIcon /></span>
+            <span class="knob"></span>
+        </span>
+    </label>
+</div>
+
+
 
 <script is:inline>
-function initThemeToggle(){
-    const btn = document.getElementById("theme-toggle");
-    const icon = document.getElementById("theme-icon");
+    function initThemeToggle() {
+        const input = document.getElementById("theme-switch");
+        const stage = input?.closest("[data-theme-toggle]");
 
-    if (!btn || !icon) return;
+        if (!input) return;
+        function releaseSyncing() {
+            if (!stage) return;
 
-    const darkIcon = btn.getAttribute("data-dark");
-    const lightIcon = btn.getAttribute("data-light");
-    function applyTheme(theme){
-        const isLight = theme === "light";
-        //document.documentElement = <html>
-        document.documentElement.classList.toggle("light", isLight);
-        localStorage.setItem("theme", theme);
-        icon.setAttribute("src", isLight? lightIcon : darkIcon);
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    stage.classList.remove("is-syncing");
+                });
+            });
+        }
+
+        function applyTheme(theme, options = {}) {
+            const shouldSync = options.sync === true;
+            const isLight = theme === "light";
+
+            if (shouldSync) {
+                stage?.classList.add("is-syncing");
+            }
+
+            document.documentElement.classList.toggle("light", isLight);
+            localStorage.setItem("theme", theme);
+            input.checked = isLight;
+
+            if (shouldSync) {
+                releaseSyncing();
+            }
+        }
+
+        const savedTheme = localStorage.getItem("theme");
+        const initialTheme = savedTheme === "dark" ? "dark" : "light";
+        applyTheme(initialTheme, { sync: true });
+
+        if (input.dataset.bound === "true") return;
+
+        input.addEventListener("change", () => {
+            const nextTheme = input.checked ? "light" : "dark";
+            applyTheme(nextTheme);
+        });
+        input.dataset.bound = "true";
     }
 
-    const savedTheme = localStorage.getItem("theme");
-    const initialTheme = savedTheme === "dark" ? "dark" : "light";
-    applyTheme(initialTheme);
+    if (!window.__themeToggleReady) {
+        document.addEventListener("astro:page-load", initThemeToggle);
+        window.__themeToggleReady = true;
+    }
 
-    if (btn.dataset.bound === "true") return;
-
-    btn.addEventListener("click", ()=>{
-        const nextTheme = document.documentElement.classList.contains("light")
-        ? "dark" : "light";
-        applyTheme(nextTheme)
-    });
-     btn.dataset.bound = "true";
-}
-
-  document.addEventListener("astro:page-load", initThemeToggle);
-  initThemeToggle();
+    initThemeToggle();
 </script>
+
+<style>
+    :root {
+        --theme-toggle-spring: linear(
+            0,
+            0.0107,
+            0.0398,
+            0.0834,
+            0.138,
+            0.2003,
+            0.2677,
+            0.3379,
+            0.4089,
+            0.4791,
+            0.5471,
+            0.612,
+            0.6731,
+            0.7297,
+            0.7815,
+            0.8283,
+            0.87,
+            0.9068,
+            0.9388,
+            0.9662,
+            0.9892,
+            1.0083,
+            1.0237,
+            1.0357,
+            1.0449,
+            1.0514,
+            1.0556,
+            1.058,
+            1.0587,
+            1.0581,
+            1.0563,
+            1.0538,
+            1.0506,
+            1.0469,
+            1.043,
+            1.0388,
+            1.0347,
+            1.0306,
+            1.0266,
+            1.0228,
+            1.0192,
+            1.0159,
+            1.0128,
+            1.0101,
+            1.0076,
+            1.0055,
+            1.0036,
+            1.002,
+            1.0006,
+            0.9995,
+            0.9986,
+            0.9979,
+            0.9974,
+            0.997,
+            0.9967,
+            0.9966,
+            0.9966,
+            0.9966,
+            0.9967,
+            0.9968,
+            0.997,
+            0.9972,
+            0.9975,
+            0.9977,
+            0.998,
+            0.9982,
+            0.9984,
+            0.9987,
+            0.9989,
+            0.9991,
+            0.9992,
+            0.9994,
+            0.9996,
+            0.9997,
+            0.9998,
+            0.9999,
+            1,
+            1,
+            1.0001,
+            1.0001,
+            1.0002,
+            1.0002,
+            1.0002,
+            1.0002,
+            1.0002,
+            1.0002,
+            1.0002,
+            1.0002,
+            1.0002,
+            1.0002,
+            1.0001,
+            1.0001,
+            1.0001,
+            1.0001,
+            1.0001,
+            1.0001,
+            1.0001,
+            1.0001,
+            1,
+            1,
+            1
+        );
+    }
+
+    /* Theme switch */
+    .stage {
+        --theme-toggle-track: color-mix(in oklab, var(--color-acc) 80%, var(--color-acc));
+        --theme-toggle-track-active: color-mix(in oklab, var(--brand-white) 88%, var(--brand-blue-100));
+        --theme-toggle-border: color-mix(in oklab, var(--brand-white) 18%, transparent);
+        --theme-toggle-knob: var(--brand-gray-50);
+        --theme-toggle-knob-border: color-mix(in oklab, var(--brand-black) 8%, transparent);
+        --theme-toggle-shadow: 0 0.5rem 1.25rem color-mix(in oklab, var(--brand-black) 22%, transparent);
+        display: inline-flex;
+    }
+
+    .stage.is-syncing .track,
+    .stage.is-syncing .knob,
+    .stage.is-syncing .icon {
+        transition: none;
+    }
+
+    .switch {
+        display: inline-flex;
+        cursor: pointer;
+        border-radius: 9999px;
+    }
+
+    .track {
+        position: relative;
+        display: block;
+        width: 4.875rem;
+        height: 2.75rem;
+        padding: 0.25rem;
+        overflow: hidden;
+        border: 1px solid var(--theme-toggle-border);
+        border-radius: 9999px;
+        background: var(--theme-toggle-track);
+        box-shadow: inset 0 0.125rem 0.5rem color-mix(in oklab, var(--brand-black) 22%, transparent);
+        transition:
+            background-color 800ms var(--theme-toggle-spring),
+            border-color 800ms var(--theme-toggle-spring),
+            box-shadow 800ms var(--theme-toggle-spring);
+    }
+
+    .knob {
+        position: relative;
+        z-index: 1;
+        display: block;
+        width: 2.25rem;
+        height: 2.25rem;
+        border: 1px solid var(--theme-toggle-knob-border);
+        border-radius: 9999px;
+        background: var(--theme-toggle-knob);
+        box-shadow: var(--theme-toggle-shadow);
+        transform: translateX(0);
+        transition:
+            transform 800ms var(--theme-toggle-spring),
+            background-color 800ms var(--theme-toggle-spring),
+            border-color 800ms var(--theme-toggle-spring);
+    }
+
+    .icon {
+        position: absolute;
+        top: 50%;
+        display: grid;
+        width: 1.5rem;
+        height: 1.5rem;
+        place-items: center;
+        transform: translateY(-50%);
+        opacity: 0.72;
+        transition:
+            opacity 300ms ease,
+            transform 800ms var(--theme-toggle-spring);
+    }
+
+    .icon :global(svg) {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .icon-dark {
+        right: 0.625rem;
+    }
+
+    .icon-light {
+        left: 0.625rem;
+        opacity: 0.35;
+    }
+
+    .stage:has(.switch-input:focus-visible) .switch {
+        outline: 2px solid var(--text-accent);
+        outline-offset: 0.25rem;
+    }
+
+    .stage:has(.switch-input:checked) .switch .track {
+        border-color: color-mix(in oklab, var(--brand-black) 10%, transparent);
+        background: var(--theme-toggle-track-active);
+        box-shadow: inset 0 0.125rem 0.5rem color-mix(in oklab, var(--brand-blue-900) 8%, transparent);
+    }
+
+    .stage:has(.switch-input:checked) .switch .knob {
+        transform: translateX(2rem);
+    }
+
+    .stage:has(.switch-input:checked) .icon-dark {
+        opacity: 0.35;
+    }
+
+    .stage:has(.switch-input:checked) .icon-light {
+        opacity: 0.82;
+    }
+</style>

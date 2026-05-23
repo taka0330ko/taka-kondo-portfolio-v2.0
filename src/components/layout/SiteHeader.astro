@@ -1,23 +1,39 @@
 ---
 import ThemeToggle from "../ui/ThemeToggle.astro";
-import Logo from "../../assets/images/common/kondo-logo-md.svg"
+import Logo from "../../assets/images/common/kondo-logo-primary.svg";
 
 const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
 const isAboutPage = pathname === "/about";
-const isProjectsPage = ["/", "/tastebuds", "/billow", "/xeno", "/stone-and-honey"].includes(pathname);
+const isProjectsPage = [
+  "/",
+  "/ukg",
+  "/tastebuds",
+  "/billow",
+  "/xeno",
+  "/stone-and-honey",
+].includes(pathname);
 ---
 
-<header class="px-8 py-2 fixed top-0 w-full z-99 bg-linear-to-br bg-theme-gradient backdrop-blur-sm ">
-      <nav class='flex items-center justify-between mx-auto max-w-360'>
-        <a href="/" aria-label="Home">
-              <Logo class="w-24 h-auto"/>
-        </a>
-          <div class='flex gap-4 md:gap-16 lg:gap-32 items-center'>
-              <div class='flex gap-8 md:gap-16'>
-                <a href="/#projects" data-astro-reload class={`flex items-center gap-2 ${isProjectsPage ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${isProjectsPage ? 'bg-accent' : 'invisible'}`}></span>Projects</a>
-                <a href="/about" class={`flex items-center gap-2 ${isAboutPage ? 'text-accent' : 'text-gray-600'}`}><span class={`h-2 w-2 rounded-full ${isAboutPage ? 'bg-accent' : 'invisible'}`}></span>About</a>
-              </div>
-              <ThemeToggle />
-          </div>
-      </nav>
+<header class="fixed top-0 z-99 w-full bg-linear-to-br bg-theme-gradient px-8 py-4 md:py-2 backdrop-blur-sm">
+  <nav class="mx-auto grid max-w-360 grid-cols-3 items-center gap-y-2 md:flex md:h-16 md:justify-between">
+    <a href="/" aria-label="Home" class="col-span-3 md:col-span-1">
+      <Logo class="h-auto w-36" />
+    </a>
+
+    <div class="col-start-1 pl-4 flex justify-center gap-8 md:col-auto md:gap-16">
+      <a href="/#projects" data-astro-reload class={`flex items-center gap-2 ${isProjectsPage ? 'text-accent' : 'text-gray-600 hover:text-accent'}`}>
+        <span class={`h-2 w-2 rounded-full ${isProjectsPage ? 'bg-accent' : 'invisible'}`}></span>
+        Projects
+      </a>
+
+      <a href="/about" class={`flex items-center gap-2 ${isAboutPage ? 'text-accent' : 'text-gray-600 hover:text-accent'}`}>
+        <span class={`h-2 w-2 rounded-full ${isAboutPage ? 'bg-accent' : 'invisible'}`}></span>
+        About
+      </a>
+    </div>
+
+    <div class="col-start-3 justify-self-end md:col-auto">
+      <ThemeToggle />
+    </div>
+  </nav>
 </header>
