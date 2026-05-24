@@ -1,6 +1,7 @@
 ---
 import AstroIcon from "../../assets/images/icons/astro-logo-icon.svg";
 import TailwindIcon from "../../assets/images/common/tailwind.svg";
+import { ArrowUpRight } from "@lucide/astro";
 const year = new Date().getFullYear();
 
 ---
@@ -11,11 +12,19 @@ const year = new Date().getFullYear();
       <AstroIcon class="w-6 h-6 text-foreground" />       
       <TailwindIcon class="w-6 h-6 text-foreground" />       
      </div>
-        <p class='text-heading-default'>© {year} Taka Kondo</p>
-        <nav class="flex gap-6 text-heading-default items-center">
-          <!-- <span class="flex items-center gap-2">Resume</span> -->
-          <a class="hover:text-accent" href="https://www.linkedin.com/in/takanarikondo/">LinkedIn</a>
-          <a class="hover:text-accent" href="https://github.com/taka0330ko">GitHub</a>
-        </nav>
+        <div class="md:flex gap-16">
+          <nav class="flex gap-6 text-heading-default items-center">
+            <!-- <span class="flex items-center gap-2">Resume</span> -->
+            <a class="inline-flex items-center gap-1 hover:text-accent" href="https://www.linkedin.com/in/takanarikondo/">
+              LinkedIn
+              <ArrowUpRight class="size-4" aria-hidden="true" />
+            </a>
+            <a class="inline-flex items-center gap-1 hover:text-accent" href="https://github.com/taka0330ko">
+              GitHub
+              <ArrowUpRight class="size-4" aria-hidden="true" />
+            </a>
+          </nav>
+          <p class='text-heading-default'>© {year} Taka Kondo</p>
+        </div>
     </div>
 </footer>

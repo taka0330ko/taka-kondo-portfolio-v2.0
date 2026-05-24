@@ -1,0 +1,62 @@
+<button 
+type="button"
+aria-label="Open menu"
+aria-expanded="false"
+data-menu-button>
+    <span class="top-bar"></span>
+    <span class="bottom-bar"></span>
+</button>
+
+<style>
+    [data-menu-button] {
+        appearance: none;
+        position: relative;
+        z-index: 100;
+        display: inline-grid;
+        gap: 6px;
+        place-items: center;
+        padding: 8px;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .top-bar,
+    .bottom-bar {
+        display: block;
+        width: 30px;
+        height: 2.5px;
+        background: var(--color-accent);
+        transform-origin: center;
+        transition: transform 0.45s var(--spring-default);
+    }
+
+    .bottom-bar {
+        transform: translateX(5px) scaleX(0.67);
+    }
+
+    [data-menu-button].is-open .top-bar {
+        transform: translateY(3.75px) rotate(45deg);
+    }
+
+    [data-menu-button].is-open .bottom-bar {
+        transform: translateY(-3.75px) rotate(-45deg) scaleX(1);
+    }
+</style>
+
+<script>
+    function toggleMenu(){
+        const button = document.querySelector<HTMLButtonElement>('[data-menu-button]')
+        if(!button) return;
+        if(button.dataset.bound === 'true') return;
+        button.addEventListener('click', () => {
+            const isOpen = button.classList.toggle('is-open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        });
+
+        button.dataset.bound = 'true';
+    };
+    document.addEventListener("astro:page-load", toggleMenu);
+    toggleMenu();
+</script>

@@ -1,0 +1,109 @@
+---
+import { Github, Linkedin, Mail } from "@lucide/astro";
+import IconHover from "../ui/IconHover.astro";
+const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const isAboutPage = pathname === "/about";
+const isProjectsPage = [
+    "/",
+    "/ukg",
+    "/tastebuds",
+    "/billow",
+    "/xeno",
+    "/stone-and-honey",
+].includes(pathname);
+---
+
+<div class="mobile-menu-panel bg-foreground-inverse/80 backdrop-blur-lg md:hidden" data-mobile-menu-panel>
+    <nav class="mobile-menu-nav flex flex-col items-center" aria-label="Mobile navigation">
+        <a
+        href="/#projects"
+        data-astro-reload
+        class={`relative text-2xl pb-1 transition-colors ${isProjectsPage ? 'text-accent' : 'text-gray-600 hover:text-accent'}`}
+      >
+        Projects
+        <span
+          class={`absolute bottom-0 left-0 h-px w-full rounded-full transition-opacity ${isProjectsPage ? 'bg-accent opacity-100' : 'bg-accent opacity-0'}`}
+        ></span>
+      </a>
+
+      <a
+        href="/about"
+        class={`relative text-2xl pb-1 transition-colors ${isAboutPage ? 'text-accent' : 'text-gray-600 hover:text-accent'}`}
+      >
+        About
+        <span
+          class={`absolute bottom-0 left-0 h-px w-full rounded-full transition-opacity ${isAboutPage ? 'bg-accent opacity-100' : 'bg-accent opacity-0'}`}
+        ></span>
+      </a>
+      <div class="icons flex items-center gap-4">
+    <IconHover
+      href="https://github.com/taka0330ko"
+      aria-label="GitHub profile"
+      label="GitHub"
+    >
+      <Github />
+    </IconHover>
+
+    <IconHover
+      href="https://www.linkedin.com/in/takanarikondo/"
+      aria-label="LinkedIn profile"
+      label="LinkedIn"
+    >
+      <Linkedin />
+    </IconHover>
+
+    <IconHover
+      href="mailto:gtakanari0330@gmail.com"
+      aria-label="Send email"
+      label="Email"
+    >
+      <Mail />
+    </IconHover>
+  </div>
+    </nav>
+</div>
+
+<style>
+    .mobile-menu-panel {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 90;
+        width: 100vw;
+        height: 100vh;
+        clip-path: circle(0% at calc(100% - 48px) 48px);
+        transition: clip-path 0.8s var(--spring-default);
+        pointer-events: none;
+    }
+
+    .mobile-menu-panel.is-open {
+        clip-path: circle(62vmax at calc(100% - 48px) 48px);
+    }
+
+    .mobile-menu-nav {
+        position: absolute;
+        top: 10rem;
+        right: clamp(4rem, 18vw, 7rem);
+        gap: 2.5rem;
+        pointer-events: auto;
+    }
+</style>
+
+<script>
+    function syncMobileMenuPanel() {
+        const button = document.querySelector<HTMLButtonElement>("[data-menu-button]");
+        const panel = document.querySelector<HTMLElement>("[data-mobile-menu-panel]");
+
+        if (!button || !panel) return;
+        if (panel.dataset.bound === "true") return;
+
+        button.addEventListener("click", () => {
+            panel.classList.toggle("is-open", button.classList.contains("is-open"));
+        });
+
+        panel.dataset.bound = "true";
+    }
+
+    document.addEventListener("astro:page-load", syncMobileMenuPanel);
+    syncMobileMenuPanel();
+</script>

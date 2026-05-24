@@ -1,6 +1,8 @@
 ---
 import ThemeToggle from "../ui/ThemeToggle.astro";
 import Logo from "../../assets/images/common/kondo-logo-primary.svg";
+import MenuBar from "../ui/MenuBar.astro";
+import MobileMenuPanel from "../ui/MobileMenuPanel.astro";
 
 const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
 const isAboutPage = pathname === "/about";
@@ -15,25 +17,40 @@ const isProjectsPage = [
 ---
 
 <header class="fixed top-0 z-99 w-full bg-linear-to-br bg-theme-gradient px-8 py-4 md:py-2 backdrop-blur-sm">
-  <nav class="mx-auto grid max-w-360 grid-cols-3 items-center gap-y-2 md:flex md:h-16 md:justify-between">
-    <a href="/" aria-label="Home" class="col-span-3 md:col-span-1">
-      <Logo class="h-auto w-36" />
+  <nav class="mx-auto max-w-360 items-center gap-y-2 flex md:h-16 justify-between">
+    <a href="/" class="relative z-100 inline-block" aria-label="Home">
+      <Logo class="h-auto w-36 md:w-48" />
     </a>
 
-    <div class="col-start-1 pl-4 flex justify-center gap-8 md:col-auto md:gap-16">
-      <a href="/#projects" data-astro-reload class={`flex items-center gap-2 ${isProjectsPage ? 'text-accent' : 'text-gray-600 hover:text-accent'}`}>
-        <span class={`h-2 w-2 rounded-full ${isProjectsPage ? 'bg-accent' : 'invisible'}`}></span>
+    <div class="hidden md:flex justify-center gap-8 md:gap-16">
+      <a
+        href="/#projects"
+        data-astro-reload
+        class={`relative pb-1 transition-colors ${isProjectsPage ? 'text-accent' : 'text-gray-600 hover:text-accent'}`}
+      >
         Projects
+        <span
+          class={`absolute bottom-0 left-0 h-px w-full rounded-full transition-opacity ${isProjectsPage ? 'bg-accent opacity-100' : 'bg-accent opacity-0'}`}
+        ></span>
       </a>
 
-      <a href="/about" class={`flex items-center gap-2 ${isAboutPage ? 'text-accent' : 'text-gray-600 hover:text-accent'}`}>
-        <span class={`h-2 w-2 rounded-full ${isAboutPage ? 'bg-accent' : 'invisible'}`}></span>
+      <a
+        href="/about"
+        class={`relative pb-1 transition-colors ${isAboutPage ? 'text-accent' : 'text-gray-600 hover:text-accent'}`}
+      >
         About
+        <span
+          class={`absolute bottom-0 left-0 h-px w-full rounded-full transition-opacity ${isAboutPage ? 'bg-accent opacity-100' : 'bg-accent opacity-0'}`}
+        ></span>
       </a>
     </div>
 
-    <div class="col-start-3 justify-self-end md:col-auto">
+    <div class="relative z-100 flex items-center gap-4 justify-self-end ">
       <ThemeToggle />
+      <div class="md:hidden pb-2">
+        <MenuBar/>
+      </div>
     </div>
   </nav>
+  <MobileMenuPanel/>
 </header>
