@@ -83,7 +83,7 @@
   --card-active-gradient-to: rgba(255,255,255,0);
   --foreground-color: var(--brand-white);
   --footer-bg:var(--brand-gray-800);
-  --frame-bg-color:var(--brand-gray-950);
+  --frame-bg-color:var(--brand-gray-800);
   
   --frame-ring:var(--glass-ring);
 }
@@ -102,7 +102,7 @@
   --card-active-gradient-to: rgba(255,255,255,0);
   --foreground-color: var(--brand-black);
   --footer-bg:var(--brand-gray-50);
-  --frame-bg-color:var(--brand-gray-50);
+  --frame-bg-color:var(--brand-gray-400);
 }
 
 /* ========================================
@@ -243,6 +243,10 @@
 ======================================== */
 
 @layer components {
+
+.frame{
+  @apply inset-shadow-sm bg-frame  border-[0.1px] border-white/50
+}
   /* Icon */
 .icon-link-hover {
   /* layout + visual + state + pseudo */
