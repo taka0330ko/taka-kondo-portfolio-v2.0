@@ -13,12 +13,12 @@ const isProjectsPage = [
 ].includes(pathname);
 ---
 
-<div class="mobile-menu-panel bg-foreground-inverse/80 backdrop-blur-lg md:hidden" data-mobile-menu-panel>
+<div class="mobile-menu-panel bg-foreground-inverse/95 backdrop-blur-lg md:hidden" data-mobile-menu-panel>
     <nav class="mobile-menu-nav flex flex-col items-center" aria-label="Mobile navigation">
         <a
         href="/#projects"
         data-astro-reload
-        class={`relative text-2xl pb-1 transition-colors ${isProjectsPage ? 'text-accent' : 'text-gray-600 hover:text-accent'}`}
+        class={`relative text-2xl pb-1 transition-colors ${isProjectsPage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
       >
         Projects
         <span
@@ -28,7 +28,7 @@ const isProjectsPage = [
 
       <a
         href="/about"
-        class={`relative text-2xl pb-1 transition-colors ${isAboutPage ? 'text-accent' : 'text-gray-600 hover:text-accent'}`}
+        class={`relative text-2xl pb-1 transition-colors ${isAboutPage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
       >
         About
         <span
