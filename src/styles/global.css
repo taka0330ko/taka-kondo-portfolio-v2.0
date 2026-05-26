@@ -191,6 +191,7 @@
   --foreground-inverse: var(--brand-black);
   --footer-bg:var(--brand-gray-800);
   --frame-bg-color:var(--brand-gray-800);
+  --text-block-bg:var(--brand-gray-700);
   
   
   --frame-ring:var(--glass-ring);
@@ -212,6 +213,7 @@
   --foreground-inverse: var(--brand-white);
   --footer-bg:var(--brand-gray-50);
   --frame-bg-color:var(--brand-gray-400);
+  --text-block-bg:var(--brand-gray-200);
 
 }
 
@@ -230,6 +232,7 @@
   --color-footer:var(--footer-bg);
   --color-frame:var(--frame-bg-color);
   --color-frame-ring:var(--frame-ring);
+  --color-text-block:var(--text-block-bg);
   
   /* Font */
   --font-heading: var(--font-satoshi);
