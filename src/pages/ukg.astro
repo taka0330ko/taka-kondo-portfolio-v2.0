@@ -25,21 +25,30 @@ import NewLogo from "../assets/images/projects/UKG/ukg-new-logo.png";
 import DevTool from "../assets/images/projects/UKG/dev-tool.webp";
 import PrimitiveColors from "../assets/images/projects/UKG/color-primitive.webp";
 import DesignSystem from "../assets/images/projects/UKG/design-system.webp";
+import PrimitiveTokens from "../assets/images/projects/UKG/primitive-tokens.webp";
+import SemanticTokens from "../assets/images/projects/UKG/semantic-tokens.webp";
+import ComponentsTokens from "../assets/images/projects/UKG/components-tokens.webp";
+import OriginalDesign from "../assets/images/projects/UKG/original-design.webp";
+import CalendarUI from "../assets/images/projects/UKG/calendar-ui.webp";
+import WorkCellUI from "../assets/images/projects/UKG/workcell-ui.webp";
 import HighFide from "../assets/images/projects/UKG/high-fide.webp";
 import Image from "astro/components/Image.astro";
 import { ArrowUpRight, Notebook, NotebookPen, TrendingUp } from "@lucide/astro";
+import { postsDataCode } from "../data/ukgCode";
 
 // UI
 import BreadCrumb from "../components/ui/BreadCrumb.astro";
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
+import CodeWindow from "../components/ui/CodeWindow.astro";
 import ProjectMainVideo from "../components/ui/ProjectMainVideo.astro";
 import GlassPill from "../components/ui/GlassPill.astro";
+import BeforeAfterToggle from "../components/ui/BeforeAfterToggle.astro";
 
 export const ukgSections = [
     { label: "Overview", href: "#Overview" },
     { label: "Research", href: "#Research" },
     { label: "UI Design", href: "#UI-design" },
-    { label: "User Feedback", href: "#User-feedback" },
+    { label: "Prototype Dev", href: "#Prototype-dev" },
     { label: "Reflection", href: "#Reflection" },
 ];
 ---
@@ -552,29 +561,26 @@ export const ukgSections = [
                             </div>
 
                             <div class="mt-16">
-                                
-                         
-                                    
-                                        <div class="max-w-100 mx-auto">
-                                            <Image
-                                                src={MidFide}
-                                                alt="Mid-fidelity wireframe for payroll transparency feature"
-                                                class="w-full h-auto"
-                                            />
-                                        </div>
+                                <div class="max-w-100 mx-auto">
+                                    <Image
+                                        src={MidFide}
+                                        alt="Mid-fidelity wireframe for payroll transparency feature"
+                                        class="w-full h-auto"
+                                    />
+                                </div>
 
                                 <div class="mt-8">
                                     <div class="flex gap-4">
                                         <Image
-                                                src={GroceryStaff}
-                                                alt=""
-                                                class="w-32"
-                                            />
+                                            src={GroceryStaff}
+                                            alt=""
+                                            class="w-32"
+                                        />
                                         <p class="mt-6 text-xl">
                                             As an employee, I want to review my
-                                            clock-in and clock-out history so that I
-                                            can verify how my payroll hours were
-                                            calculated.
+                                            clock-in and clock-out history so
+                                            that I can verify how my payroll
+                                            hours were calculated.
                                         </p>
                                     </div>
                                 </div>
@@ -632,11 +638,11 @@ export const ukgSections = [
                                     patterns were independently analyzed from
                                     UKG’s public website.
                                 </p>
-                                <div class="max-w-280">
+                                <div class="mx-auto max-w-280">
                                     <Image
                                         src={DevTool}
                                         alt="Browser developer tools used to inspect UKG website visual styles"
-                                        class="w-full"
+                                        class="w-full max-w-full"
                                     />
                                 </div>
                                 <Image
@@ -647,7 +653,7 @@ export const ukgSections = [
                                 <Image
                                     src={PrimitiveColors}
                                     alt=""
-                                    class="w-120 mx-auto mt-8"
+                                    class="mx-auto mt-8 w-full max-w-120"
                                 />
                                 <p class="text-center">
                                     Primitive color tokens derived from the
@@ -657,7 +663,7 @@ export const ukgSections = [
                                     <Image
                                         src={DesignSystem}
                                         alt=""
-                                        class="w-full mt-8 rounded-lg"
+                                        class="mt-8 w-full max-w-full rounded-lg"
                                     />
                                     <p class="mt-16">
                                         Rather than connecting raw color values
@@ -673,25 +679,172 @@ export const ukgSections = [
                                         Component Tokens were introduced only
                                         where they provided additional value.
                                     </p>
+                                    <div
+                                        class="flex gap-4 overflow-x-auto mt-16"
+                                    >
+                                        <Image
+                                            src={PrimitiveTokens}
+                                            alt=""
+                                            class="mx-auto w-full max-w-80"
+                                        />
+                                        <Image
+                                            src={SemanticTokens}
+                                            alt=""
+                                            class="mx-auto w-full max-w-80"
+                                        />
+                                        <Image
+                                            src={ComponentsTokens}
+                                            alt=""
+                                            class="mx-auto w-full max-w-80"
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="mt-32">
-                                <h3>Final deign</h3>
-                                <div class="max-w-150 mx-auto">
+                                <h3 class="mb-4">Final deign</h3>
+                                <BeforeAfterToggle
+                                    class="flex flex-col items-center h-150"
+                                >
+                                    <div
+                                        slot="before"
+                                        class="max-w-200 mx-auto"
+                                    >
+                                        <Image
+                                            src={OriginalDesign}
+                                            alt=""
+                                            class="w-full mt-8 rounded-lg"
+                                        />
+                                    </div>
+                                    <div slot="after" class="max-w-200 mx-auto">
+                                        <Image
+                                            src={HighFide}
+                                            alt=""
+                                            class="w-full mt-8 rounded-lg"
+                                        />
+                                    </div>
+                                </BeforeAfterToggle>
+                            </div>
+                            <h3 class="mt-32">UI Detail</h3>
+                            <div class="mt-8 grid gap-16">
+                                <div
+                                    class="grid gap-8 rounded-lg border border-white/40 bg-frame p-6 md:grid-cols-[1.4fr_1fr] md:items-center md:p-10"
+                                >
+                                    <div>
+                                        <Image
+                                            src={CalendarUI}
+                                            alt="Final calendar UI showing an hours breakdown chart and weekly totals"
+                                            class="mx-auto w-full max-w-110"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h4>Calendar</h4>
+                                        <p class="mt-6">
+                                            Using darker horizontal grid lines
+                                            than vertical lines improves
+                                            readability and makes time
+                                            progression easier to scan.
+                                        </p>
+                                        <p class="mt-6">
+                                            Emphasizing date numbers makes dates
+                                            easier to identify at a glance.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="grid gap-8 rounded-lg border border-white/40 bg-frame p-6 md:grid-cols-[1.4fr_1fr] md:items-center md:p-10"
+                                >
                                     <Image
-                                        src={HighFide}
-                                        alt=""
-                                        class="w-full mt-8 rounded-lg"
+                                        src={WorkCellUI}
+                                        alt="Work time cell variations for regular, late, and overtime states"
+                                        class="mx-auto w-full max-w-130 bg-(--brand-gray-200) rounded-md"
                                     />
+                                    <div>
+                                        <h4>Work time cell</h4>
+                                        <p class="mt-6">
+                                            Representing clock-in records as a
+                                            top-to-bottom timeline creates a
+                                            clearer sense of chronological flow.
+                                        </p>
+                                        <p class="mt-6">
+                                            Timeline colors and work cell
+                                            variations improve visibility for
+                                            attendance anomalies, including
+                                            lateness and overtime.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                            <h3 class="text-center mt-32">
-                                The rest is currently in progress...
-                            </h3>
                         </section>
-                        <!-- User Feedback Section -->
-                        <section id="User-feedback" class="mt-64"></section>
+                        <!-- Prototype Development Section -->
+                        <section id="Prototype-dev" class="mt-64">
+                            <h2 class="font-semibold">
+                                <span class="heading-accent-bar"
+                                    >Prototype Development</span
+                                >
+                            </h2>
+
+                            <div class="mt-12 flex justify-center">
+                                <Image
+                                    src={DevLayer}
+                                    alt="Prototype development illustration"
+                                    class="w-52"
+                                />
+                            </div>
+
+                            <div class="mx-auto mt-12 max-w-220">
+                                <h3>
+                                    Rapid prototyping with React and Codex.
+                                </h3>
+                                <p class="mt-8">
+                                    Rather than stopping at static Figma
+                                    screens, I built a functional prototype in
+                                    React to test the interaction model in a
+                                    more realistic environment. Codex helped me
+                                    move faster by supporting mock data setup
+                                    and interaction implementation, making it
+                                    possible to recreate a testable experience
+                                    in a short timeframe.
+                                </p>
+
+                                <p class="mt-8">
+                                    I also translated the design tokens defined
+                                    in Figma into CSS, creating a consistent
+                                    workflow from design decisions to
+                                    implementation.
+                                </p>
+
+                                <div class="mx-auto mt-12 max-w-160">
+                                    <CodeWindow
+                                        code={postsDataCode}
+                                        lang="css"
+                                        showExpand={false}
+                                    />
+                                </div>
+                                <div class="mt-16 flex justify-start">
+                                    <GlassPill
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label="Open UKG prototype in a new tab"
+                                        href="https://ukg-pro-redesign.vercel.app/"
+                                    >
+                                        <ArrowUpRight
+                                            slot="after"
+                                            aria-hidden="true"
+                                            focusable="false"
+                                        />
+                                        View prototype
+                                        <span class="sr-only"
+                                            >(opens in a new tab)</span
+                                        >
+                                    </GlassPill>
+                                </div>
+                                <div class="mt-6 overflow-hidden rounded-lg">
+                                    <ProjectMainVideo src={UKGVideo} />
+                                </div>
+                            </div>
+                        </section>
                         <!-- Reflection -->
                         <section id="Reflection" class="mt-64"></section>
                     </div>

@@ -15,7 +15,7 @@ const { code, lang = "ts", showExpand = true } = Astro.props;
 ---
 
 
-<figure data-code-window class="bg-glass bg-card-gradient overflow-hidden rounded-lg">
+<figure data-code-window data-expandable={String(showExpand)} class="bg-glass bg-card-gradient overflow-hidden rounded-lg">
   {showExpand && (
     <div class="border-b border-black/10 px-4 py-3">
       <button
@@ -58,6 +58,7 @@ const { code, lang = "ts", showExpand = true } = Astro.props;
 // 1回目 → 初期化して data-bound="true" を付ける
 // 2回目 → もう初期化済みだからスキップ
     if (!(root instanceof HTMLElement)) return;
+    if (root.dataset.expandable !== 'true') return;
     if (root.dataset.bound === 'true') return;
     root.dataset.bound = 'true';
 

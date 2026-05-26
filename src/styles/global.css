@@ -190,6 +190,7 @@
   --foreground-color: var(--brand-white);
   --foreground-inverse: var(--brand-black);
   --footer-bg:var(--brand-gray-800);
+  --hover-bg:var(--brand-gray-600);
   --frame-bg-color:var(--brand-gray-800);
   --text-block-bg:var(--brand-gray-700);
   
@@ -214,6 +215,7 @@
   --footer-bg:var(--brand-gray-50);
   --frame-bg-color:var(--brand-gray-400);
   --text-block-bg:var(--brand-gray-200);
+  --hover-bg:var(--brand-gray-400);
 
 }
 
