@@ -135,7 +135,7 @@ export const ukgSections = [
                             className="col-start-1 col-span-2"
                         />
                     </aside>
-                    <div class="px-8 md:col-start-3 col-span-10">
+                    <div class="px-4 md:col-start-3 col-span-10">
                         <!-- Overview Section -->
                         <section id="Overview" class="mt-16">
                             <h2 class="font-semibold">
@@ -153,7 +153,7 @@ export const ukgSections = [
                                             <Image
                                                 src={MyUKGPage}
                                                 alt="UKG Pro dashboard displayed on a laptop screen"
-                                                class="w-full"
+                                                class="w-full rounded-lg"
                                             />
                                             <p class="text-caption">
                                                 The UKG main page I actually use
@@ -207,7 +207,7 @@ export const ukgSections = [
                                     >
                                         <div>
                                             <h3 class="mb-4">My strategy</h3>
-                                            <p class="text-subtitle pb-16">
+                                            <p class="pb-16">
                                                 In this project, I first
                                                 analyzed pain points through
                                                 interviews and surveys conducted
@@ -319,16 +319,16 @@ export const ukgSections = [
                                 </div>
                             </div>
                         </section>
-                        <!-- Problem Section -->
-                        <section id="Research" class="mt-32"></section>
-                        <h2 class="font-semibold">
-                            <span class="heading-accent-bar">Research</span>
-                        </h2>
+                        <!-- Research Section -->
+                        <section id="Research" class="mt-32">
+                            <h2 class="font-semibold">
+                                <span class="heading-accent-bar">Research</span>
+                            </h2>
                         <div class="flex justify-center my-8">
                             <img
                                 class="w-40"
                                 src={InterviewLayer.src}
-                                alt="Usability testing illustration"
+                                alt="Interview research illustration"
                                 loading="lazy"
                             />
                         </div>
@@ -353,10 +353,10 @@ export const ukgSections = [
                                     <Image
                                         class="w-32 mx-auto md:mx-0"
                                         src={GroceryStaff}
-                                        alt="Usability testing illustration"
+                                        alt="Grocery staff persona illustration"
                                         loading="lazy"
                                     />
-                                    <p class="text-caption">Grocery Saff</p>
+                                    <p class="text-caption">Grocery Staff</p>
                                 </div>
                                 <blockquote
                                     class="pl-4
@@ -371,9 +371,9 @@ export const ukgSections = [
                             </div>
                             <div class="max-w-120 mx-auto mt-8">
                                 <Image
-                                    class="w-full"
+                                    class="w-full rounded-lg"
                                     src={TotalHours}
-                                    alt="UKG logo"
+                                    alt="UKG screenshot showing total hours worked without breakdown"
                                 />
                             </div>
                         </div>
@@ -384,7 +384,7 @@ export const ukgSections = [
                                     <Image
                                         class="w-32 mx-auto md:mx-0"
                                         src={Cashier}
-                                        alt="Usability testing illustration"
+                                        alt="Cashier persona illustration"
                                         loading="lazy"
                                     />
                                     <p class="text-caption">Cashier</p>
@@ -403,9 +403,9 @@ export const ukgSections = [
                             </div>
                             <div class="max-w-150 mx-auto mt-8">
                                 <Image
-                                    class="w-full"
+                                    class="w-full rounded-lg"
                                     src={Schedule}
-                                    alt="UKG logo"
+                                    alt="UKG schedule view showing assigned shifts only, without punch records"
                                 />
                             </div>
                         </div>
@@ -421,7 +421,7 @@ export const ukgSections = [
                                         <img
                                             class="w-full"
                                             src={StickyNote.src}
-                                            alt=""
+                                            alt="Sticky note showing User Intent"
                                             loading="lazy"
                                         />
                                         <div
@@ -443,7 +443,7 @@ export const ukgSections = [
                                     <img
                                         class="mx-auto w-12 rotate-90 md:w-20 md:rotate-0"
                                         src={Arrow.src}
-                                        alt=""
+                                        alt="Arrow connecting user intent to outcome"
                                         loading="lazy"
                                     />
                                     <div
@@ -452,7 +452,7 @@ export const ukgSections = [
                                         <img
                                             class="w-full hue-rotate-60 saturate-200"
                                             src={StickyNote.src}
-                                            alt=""
+                                            alt="Sticky note showing Outcome - user unable to verify payroll"
                                             loading="lazy"
                                         />
                                         <div
@@ -472,9 +472,9 @@ export const ukgSections = [
                                         </div>
                                     </div>
                                 </div>
-                                <div class="overflow-x-auto">
+                                <div class="horizontal-scroll">
                                     <Image
-                                        class="min-w-240 md:min-w-0"
+                                        class="min-w-240 rounded-lg md:min-w-0"
                                         src={JourneyMap}
                                         alt="Existing user journey map showing payroll review phases, actions, thoughts, emotions, and friction points"
                                     />
@@ -490,7 +490,7 @@ export const ukgSections = [
                                     <img
                                         class="w-full"
                                         src={FormLayer.src}
-                                        alt="Google form illustration"
+                                        alt="Survey form illustration representing research findings phase"
                                         loading="lazy"
                                     />
                                 </div>
@@ -513,7 +513,7 @@ export const ukgSections = [
                                 <div
                                     class="bg-frame border-gray-100 p-4 rounded-lg max-w-120 mx-auto mt-8 md:mt-0"
                                 >
-                                    <Image src={Survey} alt="" class="w-100" />
+                                    <Image src={Survey} alt="User survey showing research findings about payroll transparency needs" class="w-100 rounded-lg" />
                                 </div>
 
                                 <div class="bg-text-block p-4 rounded-lg">
@@ -564,8 +564,8 @@ export const ukgSections = [
                                 <div class="max-w-100 mx-auto">
                                     <Image
                                         src={MidFide}
-                                        alt="Mid-fidelity wireframe for payroll transparency feature"
-                                        class="w-full h-auto"
+                                        alt="Mid-fidelity wireframe showing proposed design for payroll transparency feature"
+                                        class="h-auto w-full rounded-lg"
                                     />
                                 </div>
 
@@ -586,7 +586,8 @@ export const ukgSections = [
                                 </div>
                             </div>
                         </div>
-                        <!-- UI design Section -->
+                        </section>
+                        <!-- UI Design Section -->
                         <section id="UI-design" class="mt-64">
                             <h2 class="font-semibold">
                                 <span class="heading-accent-bar">UI Design</span
@@ -594,7 +595,7 @@ export const ukgSections = [
                             </h2>
                             <Image
                                 src={UIDesignLayer}
-                                alt=""
+                                alt="UI Design illustration"
                                 class="w-48 mx-auto my-16"
                             />
                             <h3>
@@ -605,19 +606,19 @@ export const ukgSections = [
                             >
                                 <Image
                                     src={OldLogo}
-                                    alt="Previous logo design"
+                                    alt="Previous UKG logo design"
                                     class="w-24 object-contain md:w-40"
                                 />
 
                                 <Image
                                     src={Arrow}
-                                    alt="Transformation arrow"
+                                    alt="Arrow showing logo evolution"
                                     class="w-8 opacity-50 md:w-16"
                                 />
 
                                 <Image
                                     src={NewLogo}
-                                    alt="Redesigned logo"
+                                    alt="Redesigned UKG logo with updated visual identity"
                                     class="w-24 object-contain md:w-40"
                                 />
                             </div>
@@ -642,18 +643,18 @@ export const ukgSections = [
                                     <Image
                                         src={DevTool}
                                         alt="Browser developer tools used to inspect UKG website visual styles"
-                                        class="w-full max-w-full"
+                                        class="w-full max-w-full rounded-lg"
                                     />
                                 </div>
                                 <Image
                                     src={Arrow}
-                                    alt=""
+                                    alt="Downward arrow indicating transformation"
                                     class="transform rotate-90 mx-auto"
                                 />
                                 <Image
                                     src={PrimitiveColors}
-                                    alt=""
-                                    class="mx-auto mt-8 w-full max-w-120"
+                                    alt="Extracted primitive color palette from UKG website analysis"
+                                    class="mx-auto mt-8 w-full max-w-120 rounded-lg"
                                 />
                                 <p class="text-center">
                                     Primitive color tokens derived from the
@@ -662,7 +663,7 @@ export const ukgSections = [
                                 <div>
                                     <Image
                                         src={DesignSystem}
-                                        alt=""
+                                        alt="Design system hierarchy showing Primitive, Semantic, and Component tokens"
                                         class="mt-8 w-full max-w-full rounded-lg"
                                     />
                                     <p class="mt-16">
@@ -679,30 +680,28 @@ export const ukgSections = [
                                         Component Tokens were introduced only
                                         where they provided additional value.
                                     </p>
-                                    <div
-                                        class="flex gap-4 overflow-x-auto mt-16"
-                                    >
+                                    <div class="horizontal-scroll mt-16 flex gap-4">
                                         <Image
                                             src={PrimitiveTokens}
-                                            alt=""
-                                            class="mx-auto w-full max-w-80"
+                                            alt="Primitive color tokens showing raw color values"
+                                            class="mx-auto w-full max-w-80 rounded-lg"
                                         />
                                         <Image
                                             src={SemanticTokens}
-                                            alt=""
-                                            class="mx-auto w-full max-w-80"
+                                            alt="Semantic tokens showing intent-based color naming"
+                                            class="mx-auto w-full max-w-80 rounded-lg"
                                         />
                                         <Image
                                             src={ComponentsTokens}
-                                            alt=""
-                                            class="mx-auto w-full max-w-80"
+                                            alt="Component tokens applied to UI elements"
+                                            class="mx-auto w-full max-w-80 rounded-lg"
                                         />
                                     </div>
                                 </div>
                             </div>
 
                             <div class="mt-32">
-                                <h3 class="mb-4">Final deign</h3>
+                                <h3 class="mb-4">Final design</h3>
                                 <BeforeAfterToggle
                                     class="flex flex-col items-center h-150"
                                 >
@@ -712,14 +711,14 @@ export const ukgSections = [
                                     >
                                         <Image
                                             src={OriginalDesign}
-                                            alt=""
+                                            alt="Original UKG payroll design"
                                             class="w-full mt-8 rounded-lg"
                                         />
                                     </div>
                                     <div slot="after" class="max-w-200 mx-auto">
                                         <Image
                                             src={HighFide}
-                                            alt=""
+                                            alt="Redesigned UKG payroll interface with improved transparency"
                                             class="w-full mt-8 rounded-lg"
                                         />
                                     </div>
@@ -734,7 +733,7 @@ export const ukgSections = [
                                         <Image
                                             src={CalendarUI}
                                             alt="Final calendar UI showing an hours breakdown chart and weekly totals"
-                                            class="mx-auto w-full max-w-110"
+                                            class="mx-auto w-full max-w-110 rounded-lg"
                                         />
                                     </div>
                                     <div>
@@ -757,8 +756,8 @@ export const ukgSections = [
                                 >
                                     <Image
                                         src={WorkCellUI}
-                                        alt="Work time cell variations for regular, late, and overtime states"
-                                        class="mx-auto w-full max-w-130 bg-(--brand-gray-200) rounded-md"
+                                        alt="Work cell UI showing time entry variations for regular hours, late clock-in, and overtime states"
+                                        class="mx-auto w-full max-w-130 rounded-lg bg-(--brand-gray-200)"
                                     />
                                     <div>
                                         <h4>Work time cell</h4>
