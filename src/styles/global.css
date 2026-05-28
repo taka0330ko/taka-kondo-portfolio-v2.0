@@ -262,6 +262,27 @@
   --text-hero: clamp(2.5rem, 5vw, 3.75rem);
   --text-hero--line-height: 1;
   --text-hero--letter-spacing: -0.03em;
+
+  /* Case Study type tokens */
+    /* H1 */
+  --text-cs-h1: clamp(2.25rem, 5vw, 3rem);
+  /* 36px → 48px */
+
+  /* H2 */
+  --text-cs-h2: clamp(1.75rem, 3.5vw, 2rem);
+  /* 28px → 32px */
+
+  /* Section Label */
+  --text-cs-section: clamp(1.25rem, 3vw, 1.75rem);
+  /* 20px → 28px */
+
+  /* Body */
+  --text-cs-body: clamp(1rem, 1.8vw, 1.125rem);
+  /* 16px → 18px */
+
+  /* Caption */
+  --text-cs-caption: clamp(.875rem, 1.5vw, 1rem);
+  /* 14px → 16px */
 }
 
 /* ========================================
@@ -491,7 +512,7 @@
 
 @layer utilities {
   .grid-container{
-    @apply flex flex-col gap-10 mx-auto max-w-360 md:grid grid-cols-12 md:gap-6 px-4;
+    @apply flex flex-col gap-10 mx-auto max-w-360 md:grid grid-cols-12 md:gap-6 px-4 md:px-8;
   }
   .bg-theme-gradient {
     background-image: linear-gradient(to bottom right, var(--header-gradient-from), var(--header-gradient-to));

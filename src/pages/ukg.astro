@@ -2,7 +2,6 @@
 // Layout
 import Layout from "../layouts/Layout.astro";
 import UKGVideo from "../assets/images/projects/UKG/videos/demo_video.mp4";
-import UKGIcon from "../assets/images/projects/UKG/ukg-icon.png";
 import MyUKGPage from "../assets/images/projects/UKG/my-ukg-page.webp";
 import Survey from "../assets/images/projects/UKG/survey.webp";
 import UXResearchLayer from "../assets/images/projects/UKG/ux-research-layer.svg";
@@ -135,66 +134,96 @@ export const ukgSections = [
                             className="col-start-1 col-span-2"
                         />
                     </aside>
-                    <div class="px-4 md:col-start-3 col-span-10">
+                    <div class="px-4 md:px-8 md:col-start-3 col-span-10">
                         <!-- Overview Section -->
                         <section id="Overview" class="mt-16">
-                            <h2 class="font-semibold">
-                                <span class="heading-accent-bar">Overview</span>
-                            </h2>
-                            <div class="text-box">
-                                <h3 class="text-xl md:text-2xl">
+                            
+                                <h2 class="text-cs-section font-medium">
+                                    <span class="heading-accent-bar"
+                                        >Overview</span
+                                    >
+                                </h2>
+                                <div
+                                    class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
+                                >
+                                </div>
+                          
+
+                            <div class="mt-12">
+                                <p
+                                    class="inline-flex rounded-sm bg-heading-default px-2 py-1 text-cs-caption uppercase leading-none text-background"
+                                >
+                                    About this project
+                                </p>
+                                <h3
+                                    class="mt-8 max-w-5xl text-cs-h1 font-normal leading-tight"
+                                >
                                     Redesigning the payroll experience of "UKG
                                     Pro" through real workplace experience and
                                     user research.
                                 </h3>
-                                <div class="mt-12">
-                                    <div>
-                                        <div class="mx-auto w-80 md:w-100 my-4">
-                                            <Image
-                                                src={MyUKGPage}
-                                                alt="UKG Pro dashboard displayed on a laptop screen"
-                                                class="w-full rounded-lg"
-                                            />
-                                            <p class="text-caption">
-                                                The UKG main page I actually use
-                                            </p>
-                                        </div>
+
+                                <div
+                                    class="mt-16 grid gap-10 rounded-lg bg-text-block p-6 md:grid-cols-2 md:items-center md:p-12"
+                                >
+                                    <div class="max-w-md">
                                         <div
-                                            class="flex gap-8 items-center mb-4 mt-16"
+                                            class="flex items-center justify-center"
                                         >
-                                            <h4 class="font-medium">UKG Pro</h4>
                                             <Image
                                                 alt=""
-                                                src={UKGIcon}
-                                                class="w-12"
+                                                src={NewLogo}
+                                                class="h-auto w-100 object-contain"
                                             />
                                         </div>
-                                        <p>
+                                        <h4
+                                            class="mt-10 text-cs-h2 font-normal"
+                                        >
+                                            About UKG Pro
+                                        </h4>
+                                        <p
+                                            class="mt-3 text-cs-body leading-snug text-heading-default"
+                                        >
                                             An employee platform for managing
                                             work hours, accessing payroll
                                             information, and reviewing pay
                                             statements.
                                         </p>
                                     </div>
+                                    <figure>
+                                        <Image
+                                            src={MyUKGPage}
+                                            alt="UKG Pro dashboard displayed on a laptop screen"
+                                            class="w-full rounded-sm"
+                                        />
+                                        <figcaption
+                                            class="mt-4 text-cs-caption text-heading-default"
+                                        >
+                                            The UKG main page I actually use
+                                        </figcaption>
+                                    </figure>
                                 </div>
 
-                                <div class="mt-32">
-                                    <div class="mb-8">
-                                        <h4 class="font-medium">
-                                            Toward a More Transparent Payroll
-                                            Experience
-                                            <TrendingUp
-                                                class="ml-2 inline-block size-6 align-[-0.125em] text-foreground"
-                                            />
-                                        </h4>
-                                    </div>
-                                    <p>
+                                <div class="mt-28">
+                                    <p
+                                        class="inline-flex rounded-sm bg-heading-default px-2 py-1 text-cs-caption uppercase leading-none text-background"
+                                    >
+                                        Goal
+                                    </p>
+                                    <h4
+                                        class="mt-5 text-cs-h2 font-normal leading-tight"
+                                    >
+                                        Toward a More Transparent Payroll
+                                        Experience
+                                        <TrendingUp
+                                            class="ml-2 inline-block size-6 align-[-0.125em] text-foreground"
+                                        />
+                                    </h4>
+                                    <p class="mt-5 text-cs-body leading-snug">
                                         This project began with UX research
                                         focused on UKG Pro, which I actively use
                                         at my part-time workplace primarily to
-                                        review pay statements.
-                                    </p>
-                                    <p class="mt-2">
+                                        review pay statements. <br />
                                         The goal of the redesign was to improve
                                         transparency and usability within the
                                         payroll checking experience.
@@ -203,11 +232,22 @@ export const ukgSections = [
 
                                 <div class="mt-32">
                                     <div
-                                        class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+                                        class="grid grid-cols-1 gap-12 md:grid-cols-[minmax(0,1fr)_minmax(26rem,0.95fr)] md:items-start"
                                     >
                                         <div>
-                                            <h3 class="mb-4">My strategy</h3>
-                                            <p class="pb-16">
+                                            <p
+                                                class="inline-flex rounded-sm bg-heading-default px-2 py-1 text-cs-caption uppercase leading-none text-background"
+                                            >
+                                                My Approach
+                                            </p>
+                                            <h3
+                                                class="mt-5 text-cs-h2 font-normal leading-tight"
+                                            >
+                                                A User-Centered Design Process
+                                            </h3>
+                                            <p
+                                                class="mt-5 text-cs-body leading-snug"
+                                            >
                                                 In this project, I first
                                                 analyzed pain points through
                                                 interviews and surveys conducted
@@ -221,29 +261,31 @@ export const ukgSections = [
                                             </p>
                                         </div>
                                         <div
-                                            class="grid grid-cols-[1fr_3fr_2fr] items-center max-w-xl mx-auto"
+                                            class="grid grid-cols-[3rem_minmax(0,1fr)_1fr] items-center gap-x-5 gap-y-8 md:gap-x-8 mx-auto"
                                         >
                                             <!-- Step 1 -->
                                             <div
-                                                class="relative w-10 flex justify-center"
+                                                class="relative flex w-10 justify-center"
                                             >
                                                 <div
-                                                    class="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center font-semibold"
+                                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
                                                 >
                                                     1
                                                 </div>
                                                 <div
-                                                    class="absolute top-full left-1/2 w-0.5 h-20 bg-accent/30 transform -translate-x-1/2"
+                                                    class="absolute left-1/2 top-full h-28 w-px -translate-x-1/2 bg-accent/30"
                                                 >
                                                 </div>
                                             </div>
-                                            <h4>
+                                            <h4
+                                                class="text-cs-body font-normal leading-snug"
+                                            >
                                                 UX Research<br />
                                                 (Interview & Form)
                                             </h4>
                                             <div class="flex justify-center">
                                                 <img
-                                                    class="w-40"
+                                                    class="w-36"
                                                     src={UXResearchLayer.src}
                                                     alt="UX Research illustration"
                                                     loading="lazy"
@@ -251,22 +293,26 @@ export const ukgSections = [
                                             </div>
                                             <!-- Step 2 -->
                                             <div
-                                                class="relative w-10 flex justify-center"
+                                                class="relative flex w-10 justify-center"
                                             >
                                                 <div
-                                                    class="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center font-semibold"
+                                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
                                                 >
                                                     2
                                                 </div>
                                                 <div
-                                                    class="absolute top-full left-1/2 w-0.5 h-20 bg-accent/30 transform -translate-x-1/2"
+                                                    class="absolute left-1/2 top-full h-28 w-px -translate-x-1/2 bg-accent/30"
                                                 >
                                                 </div>
                                             </div>
-                                            <h4>UI design</h4>
+                                            <h4
+                                                class="text-cs-body font-normal leading-snug"
+                                            >
+                                                UI design
+                                            </h4>
                                             <div class="flex justify-center">
                                                 <img
-                                                    class="w-40"
+                                                    class="w-36"
                                                     src={UIDesignLayer.src}
                                                     alt="UI design illustration"
                                                     loading="lazy"
@@ -274,22 +320,26 @@ export const ukgSections = [
                                             </div>
                                             <!-- Step 3 -->
                                             <div
-                                                class="relative w-10 flex justify-center"
+                                                class="relative flex w-10 justify-center"
                                             >
                                                 <div
-                                                    class="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center font-semibold"
+                                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
                                                 >
                                                     3
                                                 </div>
                                                 <div
-                                                    class="absolute top-full left-1/2 w-0.5 h-20 bg-accent/30 transform -translate-x-1/2"
+                                                    class="absolute left-1/2 top-full h-28 w-px -translate-x-1/2 bg-accent/30"
                                                 >
                                                 </div>
                                             </div>
-                                            <h4>Prototype Development</h4>
+                                            <h4
+                                                class="text-cs-body font-normal leading-snug"
+                                            >
+                                                Prototype Development
+                                            </h4>
                                             <div class="flex justify-center">
                                                 <img
-                                                    class="w-40"
+                                                    class="w-36"
                                                     src={DevLayer.src}
                                                     alt="Prototype development illustration"
                                                     loading="lazy"
@@ -297,18 +347,22 @@ export const ukgSections = [
                                             </div>
                                             <!-- Step 4 -->
                                             <div
-                                                class="relative w-10 flex justify-center"
+                                                class="relative flex w-10 justify-center"
                                             >
                                                 <div
-                                                    class="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center font-semibold"
+                                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
                                                 >
                                                     4
                                                 </div>
                                             </div>
-                                            <h4>Usability Testing</h4>
+                                            <h4
+                                                class="text-cs-body font-normal leading-snug"
+                                            >
+                                                Usability Testing
+                                            </h4>
                                             <div class="flex justify-center">
                                                 <img
-                                                    class="w-40"
+                                                    class="w-36"
                                                     src={TestingLayer.src}
                                                     alt="Usability testing illustration"
                                                     loading="lazy"
@@ -842,6 +896,7 @@ export const ukgSections = [
                                 <div class="mt-6 overflow-hidden rounded-lg">
                                     <ProjectMainVideo src={UKGVideo} />
                                 </div>
+                                <h2 class="flex justify-center mt-16">The rest is currently in production...</h2>
                             </div>
                         </section>
                         <!-- Reflection -->
