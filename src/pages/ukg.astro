@@ -14,8 +14,9 @@ import Cashier from "../assets/images/projects/UKG/cashier.svg";
 import GroceryStaff from "../assets/images/projects/UKG/grocery.svg";
 import Schedule from "../assets/images/projects/UKG/schedle.webp";
 import TotalHours from "../assets/images/projects/UKG/total-hours.webp";
-import StickyNote from "../assets/images/projects/UKG/sticky-note.svg";
 import Arrow from "../assets/images/projects/UKG/arrow.svg";
+import SadIcon from "../assets/images/projects/UKG/sad.svg";
+import SmileIcon from "../assets/images/projects/UKG/smile.svg";
 import JourneyMap from "../assets/images/projects/UKG/journey-map.webp";
 // import LowFide from "../assets/images/projects/UKG/low-fide.webp";
 import MidFide from "../assets/images/projects/UKG/mid-fide.webp";
@@ -376,7 +377,7 @@ export const ukgSections = [
                                     loading="lazy"
                                 />
                             </div>
-                            <div class="my-16">
+                            <div class="mx-auto mt-12 max-w-220">
                                 <!-- <p class="caption-pill">Finding</p> -->
                                 <h2 class="text-cs-h2 mt-5">
                                     A challenge uncovered through everyday
@@ -466,68 +467,61 @@ export const ukgSections = [
                                     </div>
                                 </article>
                             </div>
-                            <div class="mt-16">
-                                <h2  class="text-cs-h2">Existing User Journey Pain Points</h2>
+                            <div class="mt-46">
+                                <div class="mx-auto mt-12 max-w-220">
+                                    <h2 class="text-cs-h2 text-center">
+                                        Existing User Journey Pain Points
+                                    </h2>
+                                    <p class="text-cs-body mt-4">
+                                            Users cannot verify how payroll hours
+                                            are calculated, forcing them to rely on
+                                            manual estimation instead of system
+                                            transparency.
+                                        </p>
+                                </div>
                                 <div class="mt-16 grid gap-12">
-                                    <div
-                                        class="mx-auto flex flex-col items-center gap-4 md:flex-row md:gap-8"
-                                    >
+                                    <div class="my-4 grid grid-cols-2">
                                         <div
-                                            class="relative mx-auto w-56 max-w-full md:mx-0"
+                                            class="z-10 flex min-w-0 flex-col items-start gap-4 bg-text-block px-4 py-8 [clip-path:polygon(0_0,86%_0,100%_50%,86%_100%,0_100%)] md:gap-8 md:px-20 md:py-14"
                                         >
-                                            <img
-                                                class="w-full"
-                                                src={StickyNote.src}
-                                                alt="Sticky note showing User Intent"
-                                                loading="lazy"
-                                            />
-                                            <div
-                                                class="absolute inset-0 px-8 py-8 text-heading-default"
+                                            <p
+                                                class="inline-flex rounded-sm bg-heading-default px-2 py-1 text-xs uppercase leading-none text-background md:text-cs-caption"
                                             >
-                                                <h4
-                                                    class="text-black text-body font-semibold"
-                                                >
-                                                    User Intent
-                                                </h4>
-                                                <p
-                                                    class="text-gray-800 mt-2 md:mt-4 text-sm"
-                                                >
-                                                    Confirm that payroll hours
-                                                    were calculated accurately
-                                                </p>
-                                            </div>
+                                                User Intent
+                                            </p>
+                                            <span
+                                                aria-hidden="true"
+                                                class="h-6 w-6 bg-heading-default mask-(--smile-icon-url) mask-no-repeat mask-contain md:h-9 md:w-9"
+                                                style={`--smile-icon-url: url('${SmileIcon.src}')`}
+                                            >
+                                            </span>
+                                            <p
+                                                class="pr-6 text-cs-body leading-snug text-heading-default md:max-w-88 md:pr-12"
+                                            >
+                                                Confirm that payroll hours were
+                                                calculated accurately
+                                            </p>
                                         </div>
-                                        <img
-                                            class="mx-auto w-12 rotate-90 md:w-20 md:rotate-0"
-                                            src={Arrow.src}
-                                            alt="Arrow connecting user intent to outcome"
-                                            loading="lazy"
-                                        />
                                         <div
-                                            class="relative mx-auto w-56 max-w-full md:mx-0"
+                                            class="-ml-[14%] flex min-w-0 flex-col items-start gap-4 bg-text-block/50 px-4 py-8 pl-[calc(14%+1rem)] md:gap-8 md:px-20 md:py-14 md:pl-[calc(14%+5rem)]"
                                         >
+                                            <p
+                                                class="inline-flex rounded-sm bg-heading-default px-2 py-1 text-xs uppercase leading-none text-background md:text-cs-caption"
+                                            >
+                                                Outcome
+                                            </p>
                                             <img
-                                                class="w-full hue-rotate-60 saturate-200"
-                                                src={StickyNote.src}
-                                                alt="Sticky note showing Outcome - user unable to verify payroll"
+                                                class="h-6 w-auto md:h-9"
+                                                src={SadIcon.src}
+                                                alt=""
                                                 loading="lazy"
                                             />
-                                            <div
-                                                class="absolute inset-0 px-8 py-8 text-heading-default"
+                                            <p
+                                                class="text-cs-body leading-snug text-heading-default md:max-w-88"
                                             >
-                                                <h4
-                                                    class="text-black text-body font-semibold"
-                                                >
-                                                    Outcome
-                                                </h4>
-                                                <p
-                                                    class="text-gray-800 mt-2 md:mt-4 text-sm"
-                                                >
-                                                    The user leaves without
-                                                    knowing the exact payroll
-                                                    calculation
-                                                </p>
-                                            </div>
+                                                The user leaves without knowing
+                                                the exact payroll calculation
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="horizontal-scroll">
@@ -537,12 +531,7 @@ export const ukgSections = [
                                             alt="Existing user journey map showing payroll review phases, actions, thoughts, emotions, and friction points"
                                         />
                                     </div>
-                                    <p class="text-xl">
-                                        Users cannot verify how payroll hours
-                                        are calculated, forcing them to rely on
-                                        manual estimation instead of system
-                                        transparency.
-                                    </p>
+                                    
                                 </div>
                                 <div class="mt-32">
                                     <div class="mx-auto w-56">
