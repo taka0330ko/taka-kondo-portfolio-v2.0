@@ -412,6 +412,10 @@
            before:w-1 before:h-full before:bg-accent;
 }
 
+.caption-pill {
+  @apply inline-flex rounded-sm bg-heading-default px-2 py-1 text-cs-caption uppercase leading-none text-background
+}
+
 /* Timeline on project pages */
 .timeline-number{
   @apply flex items-center justify-center left-0
