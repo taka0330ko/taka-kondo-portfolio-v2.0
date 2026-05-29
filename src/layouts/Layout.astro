@@ -4,6 +4,44 @@ import GridBackGround from "../components/layout/GridBackGround.astro";
 import SiteHeader from "../components/layout/SiteHeader.astro";
 import SiteFooter from "../components/layout/SiteFooter.astro";
 import { ClientRouter } from "astro:transitions";
+
+const mainFade = {
+	forwards: {
+		old: {
+			name: "astroFadeOut",
+			duration: "300ms",
+			easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+			fillMode: "both",
+		},
+		new: {
+			name: "astroFadeIn",
+			duration: "900ms",
+			delay: "600ms",
+			easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+			fillMode: "both",
+		},
+	},
+	backwards: {
+		old: {
+			name: "astroFadeOut",
+			duration: "300ms",
+			easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+			fillMode: "both",
+		},
+		new: {
+			name: "astroFadeIn",
+			duration: "900ms",
+			delay: "600ms",
+			easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+			fillMode: "both",
+		},
+	},
+};
+
+const pageTransitionName = `page-content-${Astro.url.pathname
+	.replace(/\/+$/, "")
+	.replace(/^\//, "")
+	.replaceAll("/", "-") || "home"}`;
 ---
 
 
@@ -49,10 +87,12 @@ import { ClientRouter } from "astro:transitions";
 	</head>
 	<body class="min-h-dvh">
 		<ClientRouter />
-		<GridBackGround />
-		<SiteHeader />
-		<slot />
-       <SiteFooter/>
+		<GridBackGround transition:persist />
+		<SiteHeader transition:persist />
+		<div transition:name={pageTransitionName} transition:animate={mainFade}>
+			<slot />
+		</div>
+		<SiteFooter transition:persist />
 	</body>
 </html>
 
