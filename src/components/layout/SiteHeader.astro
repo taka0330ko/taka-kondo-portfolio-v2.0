@@ -26,7 +26,6 @@ const isProjectsPage = [
       <a
         href="/#projects"
         data-astro-reload
-        data-nav-link="projects"
         class={`relative pb-1 transition-colors ${isProjectsPage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
       >
         Projects
@@ -37,7 +36,6 @@ const isProjectsPage = [
 
       <a
         href="/about"
-        data-nav-link="about"
         class={`relative pb-1 transition-colors ${isAboutPage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
       >
         About
@@ -56,24 +54,3 @@ const isProjectsPage = [
   </nav>
   <MobileMenuPanel/>
 </header>
-
-<script>
-  const syncHeaderNav = () => {
-    const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
-    const activeSection = pathname === "/about" ? "about" : "projects";
-
-    document.querySelectorAll("[data-nav-link]").forEach((link) => {
-      const isActive = link.getAttribute("data-nav-link") === activeSection;
-      const marker = link.querySelector("span");
-
-      link.classList.toggle("text-accent", isActive);
-      link.classList.toggle("text-foreground", !isActive);
-      link.classList.toggle("hover:text-accent", !isActive);
-      marker?.classList.toggle("opacity-100", isActive);
-      marker?.classList.toggle("opacity-0", !isActive);
-    });
-  };
-
-  syncHeaderNav();
-  document.addEventListener("astro:page-load", syncHeaderNav);
-</script>
