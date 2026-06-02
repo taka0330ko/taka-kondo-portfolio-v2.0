@@ -32,6 +32,7 @@ import OriginalDesign from "../assets/images/projects/UKG/original-design.webp";
 import CalendarUI from "../assets/images/projects/UKG/calendar-ui.webp";
 import WorkCellUI from "../assets/images/projects/UKG/workcell-ui.webp";
 import HighFide from "../assets/images/projects/UKG/high-fide.webp";
+import Testers from "../assets/images/projects/UKG/testers.webp";
 import Image from "astro/components/Image.astro";
 import { ArrowUpRight, Notebook, NotebookPen, TrendingUp } from "@lucide/astro";
 import { postsDataCode } from "../data/ukgCode";
@@ -49,6 +50,7 @@ export const ukgSections = [
     { label: "Research", href: "#Research" },
     { label: "UI Design", href: "#UI-design" },
     { label: "Prototype Dev", href: "#Prototype-dev" },
+    { label: "User Feedback", href: "#User-feedback" },
     { label: "Reflection", href: "#Reflection" },
 ];
 ---
@@ -125,785 +127,892 @@ export const ukgSections = [
         <!-- ====================== Case Study Start ====================== -->
         <section class="mt-32">
             <div class="flex flex-col max-w-360 mx-auto lg:grid grid-cols-12">
-                    <aside
-                        aria-label="Project section navigation"
-                        class="col-start-1 col-span-2 p-4 sticky top-24 h-fit"
-                    >
-                        <CaseStudySidebar
-                            items={ukgSections}
-                            className="col-start-1 col-span-2"
-                        />
-                    </aside>
-                    <div class="px-4 md:px-8 md:col-start-3 col-span-10">
-                        <!-- Overview Section -->
-                        <section id="Overview" class="mt-16">
-                            <h2 class="text-cs-section font-medium">
-                                <span class="heading-accent-bar">Overview</span>
-                            </h2>
-                            <div
-                                class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
+                <aside
+                    aria-label="Project section navigation"
+                    class="col-start-1 col-span-2 p-4 sticky top-24 h-fit"
+                >
+                    <CaseStudySidebar
+                        items={ukgSections}
+                        className="col-start-1 col-span-2"
+                    />
+                </aside>
+                <div class="px-4 md:px-8 md:col-start-3 col-span-10">
+                    <!-- Overview Section -->
+                    <section id="Overview" class="mt-16">
+                        <h2 class="text-cs-section font-medium">
+                            <span class="heading-accent-bar">Overview</span>
+                        </h2>
+                        <div
+                            class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
+                        >
+                        </div>
+
+                        <div class="mt-12">
+                            <p class="caption-pill">About this project</p>
+                            <h3
+                                class="mt-2 max-w-5xl text-cs-h1 font-normal leading-tight"
                             >
+                                Redesigning the payroll experience of "UKG Pro"
+                                through real workplace experience and user
+                                research.
+                            </h3>
+
+                            <div
+                                class="mt-16 grid gap-10 rounded-lg bg-text-block p-6 md:grid-cols-2 md:items-center md:p-12"
+                            >
+                                <div class="max-w-md">
+                                    <div
+                                        class="flex items-center justify-center"
+                                    >
+                                        <Image
+                                            alt=""
+                                            src={NewLogo}
+                                            class="h-auto w-100 object-contain"
+                                        />
+                                    </div>
+                                    <h4 class="mt-10 text-cs-h2 font-normal">
+                                        About UKG Pro
+                                    </h4>
+                                    <p
+                                        class="mt-3 text-cs-body leading-snug text-heading-default"
+                                    >
+                                        An employee platform for managing work
+                                        hours, accessing payroll information,
+                                        and reviewing pay statements.
+                                    </p>
+                                </div>
+                                <figure>
+                                    <Image
+                                        src={MyUKGPage}
+                                        alt="UKG Pro dashboard displayed on a laptop screen"
+                                        class="w-full rounded-sm"
+                                    />
+                                    <figcaption
+                                        class="mt-4 text-cs-caption text-heading-default"
+                                    >
+                                        The UKG main page I actually use
+                                    </figcaption>
+                                </figure>
                             </div>
 
-                            <div class="mt-12">
-                                <p class="caption-pill">About this project</p>
-                                <h3
-                                    class="mt-2 max-w-5xl text-cs-h1 font-normal leading-tight"
+                            <div class="mt-28">
+                                <p class="caption-pill">Goal</p>
+                                <h4
+                                    class="mt-5 text-cs-h2 font-normal leading-tight"
                                 >
-                                    Redesigning the payroll experience of "UKG
-                                    Pro" through real workplace experience and
-                                    user research.
-                                </h3>
+                                    Toward a More Transparent Payroll Experience
+                                    <TrendingUp
+                                        class="ml-2 inline-block size-6 align-[-0.125em] text-foreground"
+                                    />
+                                </h4>
+                                <p class="mt-5 text-cs-body leading-snug">
+                                    This project began with UX research focused
+                                    on UKG Pro, which I actively use at my
+                                    part-time workplace primarily to review pay
+                                    statements. <br />
+                                    The goal of the redesign was to improve transparency
+                                    and usability within the payroll checking experience.
+                                </p>
+                            </div>
 
+                            <div class="mt-32">
                                 <div
-                                    class="mt-16 grid gap-10 rounded-lg bg-text-block p-6 md:grid-cols-2 md:items-center md:p-12"
+                                    class="grid grid-cols-1 gap-12 md:grid-cols-[minmax(0,1fr)_minmax(26rem,0.95fr)] md:items-start"
                                 >
-                                    <div class="max-w-md">
-                                        <div
-                                            class="flex items-center justify-center"
+                                    <div>
+                                        <p class="caption-pill">My Approach</p>
+                                        <h3
+                                            class="mt-5 text-cs-h2 font-normal leading-tight"
                                         >
-                                            <Image
-                                                alt=""
-                                                src={NewLogo}
-                                                class="h-auto w-100 object-contain"
-                                            />
+                                            A User-Centered Design Process
+                                        </h3>
+                                        <p
+                                            class="mt-5 text-cs-body leading-snug"
+                                        >
+                                            In this project, I first analyzed
+                                            pain points through interviews and
+                                            surveys conducted with real users,
+                                            including my coworkers. Based on
+                                            these insights, I designed the UI in
+                                            Figma, built a prototype using
+                                            AI-assisted development tools, and
+                                            gathered feedback through
+                                            participant evaluations.
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="grid grid-cols-[3rem_minmax(0,1fr)_1fr] items-center gap-x-5 gap-y-8 md:gap-x-8 mx-auto"
+                                    >
+                                        <!-- Step 1 -->
+                                        <div
+                                            class="relative flex w-10 justify-center"
+                                        >
+                                            <div
+                                                class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
+                                            >
+                                                1
+                                            </div>
+                                            <div
+                                                class="absolute left-1/2 top-full h-28 w-px -translate-x-1/2 bg-accent/30"
+                                            >
+                                            </div>
                                         </div>
                                         <h4
-                                            class="mt-10 text-cs-h2 font-normal"
+                                            class="text-cs-body font-normal leading-snug"
                                         >
-                                            About UKG Pro
+                                            UX Research<br />
+                                            (Interview & Form)
                                         </h4>
-                                        <p
-                                            class="mt-3 text-cs-body leading-snug text-heading-default"
-                                        >
-                                            An employee platform for managing
-                                            work hours, accessing payroll
-                                            information, and reviewing pay
-                                            statements.
-                                        </p>
-                                    </div>
-                                    <figure>
-                                        <Image
-                                            src={MyUKGPage}
-                                            alt="UKG Pro dashboard displayed on a laptop screen"
-                                            class="w-full rounded-sm"
-                                        />
-                                        <figcaption
-                                            class="mt-4 text-cs-caption text-heading-default"
-                                        >
-                                            The UKG main page I actually use
-                                        </figcaption>
-                                    </figure>
-                                </div>
-
-                                <div class="mt-28">
-                                    <p class="caption-pill">Goal</p>
-                                    <h4
-                                        class="mt-5 text-cs-h2 font-normal leading-tight"
-                                    >
-                                        Toward a More Transparent Payroll
-                                        Experience
-                                        <TrendingUp
-                                            class="ml-2 inline-block size-6 align-[-0.125em] text-foreground"
-                                        />
-                                    </h4>
-                                    <p class="mt-5 text-cs-body leading-snug">
-                                        This project began with UX research
-                                        focused on UKG Pro, which I actively use
-                                        at my part-time workplace primarily to
-                                        review pay statements. <br />
-                                        The goal of the redesign was to improve transparency
-                                        and usability within the payroll checking
-                                        experience.
-                                    </p>
-                                </div>
-
-                                <div class="mt-32">
-                                    <div
-                                        class="grid grid-cols-1 gap-12 md:grid-cols-[minmax(0,1fr)_minmax(26rem,0.95fr)] md:items-start"
-                                    >
-                                        <div>
-                                            <p class="caption-pill">
-                                                My Approach
-                                            </p>
-                                            <h3
-                                                class="mt-5 text-cs-h2 font-normal leading-tight"
-                                            >
-                                                A User-Centered Design Process
-                                            </h3>
-                                            <p
-                                                class="mt-5 text-cs-body leading-snug"
-                                            >
-                                                In this project, I first
-                                                analyzed pain points through
-                                                interviews and surveys conducted
-                                                with real users, including my
-                                                coworkers. Based on these
-                                                insights, I designed the UI in
-                                                Figma, built a prototype using
-                                                AI-assisted development tools,
-                                                and conducted usability testing
-                                                with participants.
-                                            </p>
-                                        </div>
-                                        <div
-                                            class="grid grid-cols-[3rem_minmax(0,1fr)_1fr] items-center gap-x-5 gap-y-8 md:gap-x-8 mx-auto"
-                                        >
-                                            <!-- Step 1 -->
-                                            <div
-                                                class="relative flex w-10 justify-center"
-                                            >
-                                                <div
-                                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
-                                                >
-                                                    1
-                                                </div>
-                                                <div
-                                                    class="absolute left-1/2 top-full h-28 w-px -translate-x-1/2 bg-accent/30"
-                                                >
-                                                </div>
-                                            </div>
-                                            <h4
-                                                class="text-cs-body font-normal leading-snug"
-                                            >
-                                                UX Research<br />
-                                                (Interview & Form)
-                                            </h4>
-                                            <div class="flex justify-center">
-                                                <img
-                                                    class="w-36"
-                                                    src={UXResearchLayer.src}
-                                                    alt="UX Research illustration"
-                                                    loading="lazy"
-                                                />
-                                            </div>
-                                            <!-- Step 2 -->
-                                            <div
-                                                class="relative flex w-10 justify-center"
-                                            >
-                                                <div
-                                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
-                                                >
-                                                    2
-                                                </div>
-                                                <div
-                                                    class="absolute left-1/2 top-full h-28 w-px -translate-x-1/2 bg-accent/30"
-                                                >
-                                                </div>
-                                            </div>
-                                            <h4
-                                                class="text-cs-body font-normal leading-snug"
-                                            >
-                                                UI design
-                                            </h4>
-                                            <div class="flex justify-center">
-                                                <img
-                                                    class="w-36"
-                                                    src={UIDesignLayer.src}
-                                                    alt="UI design illustration"
-                                                    loading="lazy"
-                                                />
-                                            </div>
-                                            <!-- Step 3 -->
-                                            <div
-                                                class="relative flex w-10 justify-center"
-                                            >
-                                                <div
-                                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
-                                                >
-                                                    3
-                                                </div>
-                                                <div
-                                                    class="absolute left-1/2 top-full h-28 w-px -translate-x-1/2 bg-accent/30"
-                                                >
-                                                </div>
-                                            </div>
-                                            <h4
-                                                class="text-cs-body font-normal leading-snug"
-                                            >
-                                                Prototype Development
-                                            </h4>
-                                            <div class="flex justify-center">
-                                                <img
-                                                    class="w-36"
-                                                    src={DevLayer.src}
-                                                    alt="Prototype development illustration"
-                                                    loading="lazy"
-                                                />
-                                            </div>
-                                            <!-- Step 4 -->
-                                            <div
-                                                class="relative flex w-10 justify-center"
-                                            >
-                                                <div
-                                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
-                                                >
-                                                    4
-                                                </div>
-                                            </div>
-                                            <h4
-                                                class="text-cs-body font-normal leading-snug"
-                                            >
-                                                Usability Testing
-                                            </h4>
-                                            <div class="flex justify-center">
-                                                <img
-                                                    class="w-36"
-                                                    src={TestingLayer.src}
-                                                    alt="Usability testing illustration"
-                                                    loading="lazy"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <!-- Research Section -->
-                        <section id="Research" class="mt-32">
-                            <h2 class="text-cs-section font-medium">
-                                <span class="heading-accent-bar">Research</span>
-                            </h2>
-                            <div
-                                class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
-                            >
-                            </div>
-                            <div class="flex justify-center my-8">
-                                <Image
-                                    class="w-56"
-                                    src={InterviewLayer}
-                                    alt="Interview research illustration"
-                                    loading="lazy"
-                                />
-                            </div>
-                            <div class="mx-auto mt-12 max-w-220">
-                                <!-- <p class="caption-pill">Finding</p> -->
-                                <h2 class="text-cs-h2 mt-5">
-                                    A challenge uncovered through everyday
-                                    conversations with coworkers
-                                </h2>
-                                <p class="text-cs-body mt-5">
-                                    During a regular day at work, a conversation
-                                    about checking payroll in UKG revealed a
-                                    shared frustration among my coworkers and
-                                    myself. To better understand the issue, I
-                                    conducted interviews with other coworkers.
-                                </p>
-                            </div>
-
-                            <div class="my-16 grid gap-12">
-                                <article
-                                    class="grid gap-8 bg-text-block py-8 px-4 md:gap-10 rounded-lg md:grid-cols-[16rem_minmax(0,1fr)] md:px-16 md:py-16"
-                                >
-                                    <h3 class="sr-only">Interview 1</h3>
-                                    <blockquote
-                                        class="border-l-4 border-body-default/10 pl-6 text-[clamp(1.375rem,6vw,1.75rem)] italic leading-snug text-heading-default md:col-start-1 md:col-span-2 md:pl-8 md:text-[1.5rem]"
-                                    >
-                                        “I can see the total hours worked, but I
-                                        can’t see the breakdown.”
-                                    </blockquote>
-                                    <div
-                                        class="flex flex-col items-center justify-end gap-8 md:row-start-2"
-                                    >
-                                        <p
-                                            class="text-center text-cs-caption"
-                                        >
-                                            Grocery Staff
-                                        </p>
-                                        <Image
-                                            class="w-30 md:w-48"
-                                            src={GroceryStaff}
-                                            alt="Grocery staff persona illustration"
-                                            loading="lazy"
-                                        />
-                                    </div>
-                                    <div
-                                        class="mx-auto mt-4 w-full max-w-120 md:row-start-2 md:mt-0"
-                                    >
-                                        <Image
-                                            class="w-full rounded-sm shadow-lg"
-                                            src={TotalHours}
-                                            alt="UKG screenshot showing total hours worked without breakdown"
-                                        />
-                                    </div>
-                                </article>
-
-                                <article
-                                    class="grid gap-8 bg-text-block py-8 px-4  md:gap-10 rounded-lg md:grid-cols-[16rem_minmax(0,1fr)] md:px-16 md:py-16"
-                                >
-                                    <h3 class="sr-only">Interview 2</h3>
-                                    <blockquote
-                                        class="border-l-4 border-body-default/10 pl-6 text-[clamp(1.375rem,6vw,1.75rem)] italic leading-snug text-heading-default md:col-start-1 md:col-span-2 md:pl-8 md:text-[1.5rem]"
-                                    >
-                                        “The punch records should exist
-                                        somewhere, but I can’t verify them in
-                                        UKG Pro. <br />The schedule only shows
-                                        assigned shifts.”
-                                    </blockquote>
-                                    <div
-                                        class="flex flex-col items-center justify-end gap-8 md:row-start-2"
-                                    >
-                                        <p
-                                            class="text-center text-heading-default text-cs-caption"
-                                        >
-                                            Cashier
-                                        </p>
-                                        <Image
-                                            class="w-30 md:w-48"
-                                            src={Cashier}
-                                            alt="Cashier persona illustration"
-                                            loading="lazy"
-                                        />
-                                    </div>
-                                    <div
-                                        class="mx-auto mt-4 w-full max-w-170 md:row-start-2 md:mt-0"
-                                    >
-                                        <Image
-                                            class="w-full rounded-sm shadow-lg"
-                                            src={Schedule}
-                                            alt="UKG schedule view showing assigned shifts only, without punch records"
-                                        />
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="mt-46">
-                                <div class="mx-auto mt-12 max-w-220">
-                                    <h2 class="text-cs-h2 text-center">
-                                        Existing User Journey Pain Points
-                                    </h2>
-                                    <p class="text-cs-body mt-4">
-                                            Users cannot verify how payroll hours
-                                            are calculated, forcing them to rely on
-                                            manual estimation instead of system
-                                            transparency.
-                                        </p>
-                                </div>
-                                <div class="mt-16 grid gap-12">
-                                    <div class="my-4 grid grid-cols-2">
-                                        <div
-                                            class="z-10 flex min-w-0 flex-col items-start gap-4 bg-text-block px-4 py-8 [clip-path:polygon(0_0,86%_0,100%_50%,86%_100%,0_100%)] md:gap-8 md:px-20 md:py-14"
-                                        >
-                                            <p
-                                                class="inline-flex rounded-sm bg-heading-default px-2 py-1 text-xs uppercase leading-none text-background md:text-cs-caption"
-                                            >
-                                                User Intent
-                                            </p>
-                                            <span
-                                                aria-hidden="true"
-                                                class="h-6 w-6 bg-heading-default mask-(--smile-icon-url) mask-no-repeat mask-contain md:h-9 md:w-9"
-                                                style={`--smile-icon-url: url('${SmileIcon.src}')`}
-                                            >
-                                            </span>
-                                            <p
-                                                class="pr-6 text-cs-body leading-snug text-heading-default md:max-w-88 md:pr-12"
-                                            >
-                                                Confirm that payroll hours were
-                                                calculated accurately
-                                            </p>
-                                        </div>
-                                        <div
-                                            class="-ml-[14%] flex min-w-0 flex-col items-start gap-4 bg-text-block/50 px-4 py-8 pl-[calc(14%+1rem)] md:gap-8 md:px-20 md:py-14 md:pl-[calc(14%+5rem)]"
-                                        >
-                                            <p
-                                                class="inline-flex rounded-sm bg-heading-default px-2 py-1 text-xs uppercase leading-none text-background md:text-cs-caption"
-                                            >
-                                                Outcome
-                                            </p>
+                                        <div class="flex justify-center">
                                             <img
-                                                class="h-6 w-auto md:h-9"
-                                                src={SadIcon.src}
-                                                alt=""
+                                                class="w-36"
+                                                src={UXResearchLayer.src}
+                                                alt="UX Research illustration"
                                                 loading="lazy"
                                             />
-                                            <p
-                                                class="text-cs-body leading-snug text-heading-default md:max-w-88"
+                                        </div>
+                                        <!-- Step 2 -->
+                                        <div
+                                            class="relative flex w-10 justify-center"
+                                        >
+                                            <div
+                                                class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
                                             >
-                                                The user leaves without knowing
-                                                the exact payroll calculation
-                                            </p>
+                                                2
+                                            </div>
+                                            <div
+                                                class="absolute left-1/2 top-full h-28 w-px -translate-x-1/2 bg-accent/30"
+                                            >
+                                            </div>
+                                        </div>
+                                        <h4
+                                            class="text-cs-body font-normal leading-snug"
+                                        >
+                                            UI design
+                                        </h4>
+                                        <div class="flex justify-center">
+                                            <img
+                                                class="w-36"
+                                                src={UIDesignLayer.src}
+                                                alt="UI design illustration"
+                                                loading="lazy"
+                                            />
+                                        </div>
+                                        <!-- Step 3 -->
+                                        <div
+                                            class="relative flex w-10 justify-center"
+                                        >
+                                            <div
+                                                class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
+                                            >
+                                                3
+                                            </div>
+                                            <div
+                                                class="absolute left-1/2 top-full h-28 w-px -translate-x-1/2 bg-accent/30"
+                                            >
+                                            </div>
+                                        </div>
+                                        <h4
+                                            class="text-cs-body font-normal leading-snug"
+                                        >
+                                            Prototype Development
+                                        </h4>
+                                        <div class="flex justify-center">
+                                            <img
+                                                class="w-36"
+                                                src={DevLayer.src}
+                                                alt="Prototype development illustration"
+                                                loading="lazy"
+                                            />
+                                        </div>
+                                        <!-- Step 4 -->
+                                        <div
+                                            class="relative flex w-10 justify-center"
+                                        >
+                                            <div
+                                                class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
+                                            >
+                                                4
+                                            </div>
+                                        </div>
+                                        <h4
+                                            class="text-cs-body font-normal leading-snug"
+                                        >
+                                            User Feedback
+                                        </h4>
+                                        <div class="flex justify-center">
+                                            <img
+                                                class="w-36"
+                                                src={TestingLayer.src}
+                                                alt="User Feedback illustration"
+                                                loading="lazy"
+                                            />
                                         </div>
                                     </div>
-                                    <div class="horizontal-scroll">
-                                        <Image
-                                            class="min-w-240 rounded-lg md:min-w-0"
-                                            src={JourneyMap}
-                                            alt="Existing user journey map showing payroll review phases, actions, thoughts, emotions, and friction points"
-                                        />
-                                    </div>
-                                    
                                 </div>
-                                <div class="mt-32">
-                                    <div class="mx-auto w-56">
-                                        <Image
-                                            class="w-full"
-                                            src={FormLayer}
-                                            alt="Survey form illustration representing research findings phase"
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Research Section -->
+                    <section id="Research" class="mt-32">
+                        <h2 class="text-cs-section font-medium">
+                            <span class="heading-accent-bar">Research</span>
+                        </h2>
+                        <div
+                            class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
+                        >
+                        </div>
+                        <div class="flex justify-center my-8">
+                            <Image
+                                class="w-56"
+                                src={InterviewLayer}
+                                alt="Interview research illustration"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="mx-auto mt-12 max-w-220">
+                            <!-- <p class="caption-pill">Finding</p> -->
+                            <h2 class="text-cs-h2 mt-5">
+                                A challenge uncovered through everyday
+                                conversations with coworkers
+                            </h2>
+                            <p class="text-cs-body mt-5">
+                                During a regular day at work, a conversation
+                                about checking payroll in UKG revealed a shared
+                                frustration among my coworkers and myself. To
+                                better understand the issue, I conducted
+                                interviews with other coworkers.
+                            </p>
+                        </div>
+
+                        <div class="my-16 grid gap-12">
+                            <article
+                                class="grid gap-8 bg-text-block py-8 px-4 md:gap-10 rounded-lg md:grid-cols-[16rem_minmax(0,1fr)] md:px-16 md:py-16"
+                            >
+                                <h3 class="sr-only">Interview 1</h3>
+                                <blockquote
+                                    class="border-l-4 border-body-default/10 pl-6 text-[clamp(1.375rem,6vw,1.75rem)] italic leading-snug text-heading-default md:col-start-1 md:col-span-2 md:pl-8 md:text-[1.5rem]"
+                                >
+                                    “I can see the total hours worked, but I
+                                    can’t see the breakdown.”
+                                </blockquote>
+                                <div
+                                    class="flex flex-col items-center justify-end gap-8 md:row-start-2"
+                                >
+                                    <p class="text-center text-cs-caption">
+                                        Grocery Staff
+                                    </p>
+                                    <Image
+                                        class="w-30 md:w-48"
+                                        src={GroceryStaff}
+                                        alt="Grocery staff persona illustration"
+                                        loading="lazy"
+                                    />
+                                </div>
+                                <div
+                                    class="mx-auto mt-4 w-full max-w-120 md:row-start-2 md:mt-0"
+                                >
+                                    <Image
+                                        class="w-full rounded-sm shadow-lg"
+                                        src={TotalHours}
+                                        alt="UKG screenshot showing total hours worked without breakdown"
+                                    />
+                                </div>
+                            </article>
+
+                            <article
+                                class="grid gap-8 bg-text-block py-8 px-4 md:gap-10 rounded-lg md:grid-cols-[16rem_minmax(0,1fr)] md:px-16 md:py-16"
+                            >
+                                <h3 class="sr-only">Interview 2</h3>
+                                <blockquote
+                                    class="border-l-4 border-body-default/10 pl-6 text-[clamp(1.375rem,6vw,1.75rem)] italic leading-snug text-heading-default md:col-start-1 md:col-span-2 md:pl-8 md:text-[1.5rem]"
+                                >
+                                    “The punch records should exist somewhere,
+                                    but I can’t verify them in UKG Pro. <br
+                                    />The schedule only shows assigned shifts.”
+                                </blockquote>
+                                <div
+                                    class="flex flex-col items-center justify-end gap-8 md:row-start-2"
+                                >
+                                    <p
+                                        class="text-center text-heading-default text-cs-caption"
+                                    >
+                                        Cashier
+                                    </p>
+                                    <Image
+                                        class="w-30 md:w-48"
+                                        src={Cashier}
+                                        alt="Cashier persona illustration"
+                                        loading="lazy"
+                                    />
+                                </div>
+                                <div
+                                    class="mx-auto mt-4 w-full max-w-170 md:row-start-2 md:mt-0"
+                                >
+                                    <Image
+                                        class="w-full rounded-sm shadow-lg"
+                                        src={Schedule}
+                                        alt="UKG schedule view showing assigned shifts only, without punch records"
+                                    />
+                                </div>
+                            </article>
+                        </div>
+                        <div class="mt-46">
+                            <div class="mx-auto mt-12 max-w-220">
+                                <h2 class="text-cs-h2 text-center">
+                                    Existing User Journey Pain Points
+                                </h2>
+                                <p class="text-cs-body mt-4">
+                                    Users cannot verify how payroll hours are
+                                    calculated, forcing them to rely on manual
+                                    estimation instead of system transparency.
+                                </p>
+                            </div>
+                            <div class="mt-16 grid gap-12">
+                                <div class="my-4 grid grid-cols-2">
+                                    <div
+                                        class="z-10 flex min-w-0 flex-col items-start gap-4 bg-text-block px-4 py-8 [clip-path:polygon(0_0,86%_0,100%_50%,86%_100%,0_100%)] md:gap-8 md:px-20 md:py-14"
+                                    >
+                                        <p
+                                            class="inline-flex rounded-sm bg-heading-default px-2 py-1 text-xs uppercase leading-none text-background md:text-cs-caption"
+                                        >
+                                            User Intent
+                                        </p>
+                                        <span
+                                            aria-hidden="true"
+                                            class="h-6 w-6 bg-heading-default mask-(--smile-icon-url) mask-no-repeat mask-contain md:h-9 md:w-9"
+                                            style={`--smile-icon-url: url('${SmileIcon.src}')`}
+                                        >
+                                        </span>
+                                        <p
+                                            class="pr-6 text-cs-body leading-snug text-heading-default md:max-w-88 md:pr-12"
+                                        >
+                                            Confirm that payroll hours were
+                                            calculated accurately
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="-ml-[14%] flex min-w-0 flex-col items-start gap-4 bg-text-block/50 px-4 py-8 pl-[calc(14%+1rem)] md:gap-8 md:px-20 md:py-14 md:pl-[calc(14%+5rem)]"
+                                    >
+                                        <p
+                                            class="inline-flex rounded-sm bg-heading-default px-2 py-1 text-xs uppercase leading-none text-background md:text-cs-caption"
+                                        >
+                                            Outcome
+                                        </p>
+                                        <img
+                                            class="h-6 w-auto md:h-9"
+                                            src={SadIcon.src}
+                                            alt=""
                                             loading="lazy"
                                         />
-                                    </div>
-                                    <div class="flex flex-col gap-4">
-                                        <h3 class="text-3xl md:text-4xl">
-                                            Research Findings
-                                        </h3>
-                                        <p>
-                                            Conducted a survey to further
-                                            validate existing pain points and
-                                            identify strong user demand for
-                                            better visibility into payroll
-                                            records.
+                                        <p
+                                            class="text-cs-body leading-snug text-heading-default md:max-w-88"
+                                        >
+                                            The user leaves without knowing the
+                                            exact payroll calculation
                                         </p>
                                     </div>
                                 </div>
-
-                                <div
-                                    class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 items-center mt-16"
-                                >
-                                    <div
-                                        class="bg-frame border-gray-100 p-4 rounded-lg max-w-120 mx-auto mt-8 md:mt-0"
-                                    >
-                                        <Image
-                                            src={Survey}
-                                            alt="User survey showing research findings about payroll transparency needs"
-                                            class="w-100 rounded-lg"
-                                        />
-                                    </div>
-
-                                    <div class="bg-text-block p-4 rounded-lg">
-                                        <div
-                                            class="flex items-center gap-4 justify-center mb-4"
-                                        >
-                                            <h4>Main findings</h4>
-                                            <NotebookPen />
-                                        </div>
-                                        <ul class="list-disc pl-5">
-                                            <li>
-                                                80% of participants said they
-                                                would not feel confident
-                                                verifying payroll calculations
-                                                if an error occurred.
-                                            </li>
-                                            <li class="mt-4">
-                                                90% of participants wanted
-                                                access to actual clock-in and
-                                                clock-out records.
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="mt-16 text-xl">
-                                Users lacked confidence in payroll calculations
-                                because the system did not provide enough
-                                visibility into payroll records and actual
-                                worked hours.
-                            </p>
-
-                            <div class="mt-32">
-                                <div
-                                    class="mb-16 flex flex-col gap-4 justify-center items-start"
-                                >
-                                    <h3
-                                        class="inline-block font-light border-b-2 border-accent"
-                                    >
-                                        GOAL
-                                    </h3>
-                                    <h3>
-                                        Improve payroll transparency by
-                                        providing visibility into clock-in and
-                                        clock-out records.
-                                    </h3>
-                                </div>
-
-                                <div class="mt-16">
-                                    <div class="max-w-100 mx-auto">
-                                        <Image
-                                            src={MidFide}
-                                            alt="Mid-fidelity wireframe showing proposed design for payroll transparency feature"
-                                            class="h-auto w-full rounded-lg"
-                                        />
-                                    </div>
-
-                                    <div class="mt-8">
-                                        <div class="flex gap-4">
-                                            <Image
-                                                src={GroceryStaff}
-                                                alt=""
-                                                class="w-32"
-                                            />
-                                            <p class="mt-6 text-xl">
-                                                As an employee, I want to review
-                                                my clock-in and clock-out
-                                                history so that I can verify how
-                                                my payroll hours were
-                                                calculated.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <!-- UI Design Section -->
-                        <section id="UI-design" class="mt-64">
-                            <h2 class="font-semibold">
-                                <span class="heading-accent-bar">UI Design</span
-                                >
-                            </h2>
-                            <Image
-                                src={UIDesignLayer}
-                                alt="UI Design illustration"
-                                class="w-48 mx-auto my-16"
-                            />
-                            <h3>
-                                Designing the UI Around UKG’s New Brand Identity
-                            </h3>
-                            <div
-                                class="flex items-center justify-center gap-4 md:gap-12 my-16"
-                            >
-                                <Image
-                                    src={OldLogo}
-                                    alt="Previous UKG logo design"
-                                    class="w-24 object-contain md:w-40"
-                                />
-
-                                <Image
-                                    src={Arrow}
-                                    alt="Arrow showing logo evolution"
-                                    class="w-8 opacity-50 md:w-16"
-                                />
-
-                                <Image
-                                    src={NewLogo}
-                                    alt="Redesigned UKG logo with updated visual identity"
-                                    class="w-24 object-contain md:w-40"
-                                />
-                            </div>
-                            <p>
-                                In 2025, UKG introduced a refreshed visual
-                                identity.
-                            </p>
-                            <p>
-                                The redesign explored how the updated visual
-                                identity could be applied more consistently
-                                across the payroll experience.
-                            </p>
-
-                            <div class="mt-16 grid gap-6">
-                                <p>
-                                    Since the official design system was not
-                                    publicly available, visual styles and UI
-                                    patterns were independently analyzed from
-                                    UKG’s public website.
-                                </p>
-                                <div class="mx-auto max-w-280">
+                                <div class="horizontal-scroll">
                                     <Image
-                                        src={DevTool}
-                                        alt="Browser developer tools used to inspect UKG website visual styles"
-                                        class="w-full max-w-full rounded-lg"
+                                        class="min-w-240 rounded-lg md:min-w-0"
+                                        src={JourneyMap}
+                                        alt="Existing user journey map showing payroll review phases, actions, thoughts, emotions, and friction points"
                                     />
                                 </div>
+                            </div>
+                            <div class="mt-32">
+                                <div class="mx-auto w-56">
+                                    <Image
+                                        class="w-full"
+                                        src={FormLayer}
+                                        alt="Survey form illustration representing research findings phase"
+                                        loading="lazy"
+                                    />
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <h3 class="text-3xl md:text-4xl">
+                                        Research Findings
+                                    </h3>
+                                    <p>
+                                        Conducted a survey to further validate
+                                        existing pain points and identify strong
+                                        user demand for better visibility into
+                                        payroll records.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 items-center mt-16"
+                            >
+                                <div
+                                    class="bg-frame border-gray-100 p-4 rounded-lg max-w-120 mx-auto mt-8 md:mt-0"
+                                >
+                                    <Image
+                                        src={Survey}
+                                        alt="User survey showing research findings about payroll transparency needs"
+                                        class="w-100 rounded-lg"
+                                    />
+                                </div>
+
+                                <div class="bg-text-block p-4 rounded-lg">
+                                    <div
+                                        class="flex items-center gap-4 justify-center mb-4"
+                                    >
+                                        <h4>Main findings</h4>
+                                        <NotebookPen />
+                                    </div>
+                                    <ul class="list-disc pl-5">
+                                        <li>
+                                            80% of participants said they would
+                                            not feel confident verifying payroll
+                                            calculations if an error occurred.
+                                        </li>
+                                        <li class="mt-4">
+                                            90% of participants wanted access to
+                                            actual clock-in and clock-out
+                                            records.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-16 text-xl">
+                            Users lacked confidence in payroll calculations
+                            because the system did not provide enough visibility
+                            into payroll records and actual worked hours.
+                        </p>
+
+                        <div class="mt-32">
+                            <div
+                                class="mb-16 flex flex-col gap-4 justify-center items-start"
+                            >
+                                <h3
+                                    class="inline-block font-light border-b-2 border-accent"
+                                >
+                                    GOAL
+                                </h3>
+                                <h3>
+                                    Improve payroll transparency by providing
+                                    visibility into clock-in and clock-out
+                                    records.
+                                </h3>
+                            </div>
+
+                            <div class="mt-16">
+                                <div class="max-w-100 mx-auto">
+                                    <Image
+                                        src={MidFide}
+                                        alt="Mid-fidelity wireframe showing proposed design for payroll transparency feature"
+                                        class="h-auto w-full rounded-lg"
+                                    />
+                                </div>
+
+                                <div class="mt-8">
+                                    <div class="flex gap-4">
+                                        <Image
+                                            src={GroceryStaff}
+                                            alt=""
+                                            class="w-32"
+                                        />
+                                        <p class="mt-6 text-xl">
+                                            As an employee, I want to review my
+                                            clock-in and clock-out history so
+                                            that I can verify how my payroll
+                                            hours were calculated.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- UI Design Section -->
+                    <section id="UI-design" class="mt-64">
+                        <h2 class="text-cs-section font-medium">
+                            <span class="heading-accent-bar">UI Design</span>
+                        </h2>
+                        <div
+                            class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
+                        >
+                        </div>
+                        <Image
+                            src={UIDesignLayer}
+                            alt="UI Design illustration"
+                            class="w-48 mx-auto my-16"
+                        />
+                        <h3>
+                            Designing the UI Around UKG’s New Brand Identity
+                        </h3>
+                        <div
+                            class="flex items-center justify-center gap-4 md:gap-12 my-16"
+                        >
+                            <Image
+                                src={OldLogo}
+                                alt="Previous UKG logo design"
+                                class="w-24 object-contain md:w-40"
+                            />
+
+                            <Image
+                                src={Arrow}
+                                alt="Arrow showing logo evolution"
+                                class="w-8 opacity-50 md:w-16"
+                            />
+
+                            <Image
+                                src={NewLogo}
+                                alt="Redesigned UKG logo with updated visual identity"
+                                class="w-24 object-contain md:w-40"
+                            />
+                        </div>
+                        <p>
+                            In 2025, UKG introduced a refreshed visual identity.
+                        </p>
+                        <p>
+                            The redesign explored how the updated visual
+                            identity could be applied more consistently across
+                            the payroll experience.
+                        </p>
+
+                        <div class="mt-16 grid gap-6">
+                            <p>
+                                Since the official design system was not
+                                publicly available, visual styles and UI
+                                patterns were independently analyzed from UKG’s
+                                public website.
+                            </p>
+                            <div class="mx-auto max-w-280">
                                 <Image
-                                    src={Arrow}
-                                    alt="Downward arrow indicating transformation"
-                                    class="transform rotate-90 mx-auto"
+                                    src={DevTool}
+                                    alt="Browser developer tools used to inspect UKG website visual styles"
+                                    class="w-full max-w-full rounded-lg"
                                 />
+                            </div>
+                            <Image
+                                src={Arrow}
+                                alt="Downward arrow indicating transformation"
+                                class="transform rotate-90 mx-auto"
+                            />
+                            <Image
+                                src={PrimitiveColors}
+                                alt="Extracted primitive color palette from UKG website analysis"
+                                class="mx-auto mt-8 w-full max-w-120 rounded-lg"
+                            />
+                            <p class="text-center">
+                                Primitive color tokens derived from the analysis
+                            </p>
+                            <div>
                                 <Image
-                                    src={PrimitiveColors}
-                                    alt="Extracted primitive color palette from UKG website analysis"
-                                    class="mx-auto mt-8 w-full max-w-120 rounded-lg"
+                                    src={DesignSystem}
+                                    alt="Design system hierarchy showing Primitive, Semantic, and Component tokens"
+                                    class="mt-8 w-full max-w-full rounded-lg"
                                 />
-                                <p class="text-center">
-                                    Primitive color tokens derived from the
-                                    analysis
+                                <p class="mt-16">
+                                    Rather than connecting raw color values
+                                    directly to the UI, I designed a
+                                    hierarchical structure consisting of
+                                    Primitive → Semantic → Component (optional).
+                                    I placed particular emphasis on Semantic
+                                    Tokens, as defining intent and meaning
+                                    instead of visual values helps create more
+                                    consistent design rules. Since this project
+                                    contained relatively few repeated UI
+                                    patterns, Component Tokens were introduced
+                                    only where they provided additional value.
                                 </p>
+                                <div class="horizontal-scroll mt-16 flex gap-4">
+                                    <Image
+                                        src={PrimitiveTokens}
+                                        alt="Primitive color tokens showing raw color values"
+                                        class="mx-auto w-full max-w-80 rounded-lg"
+                                    />
+                                    <Image
+                                        src={SemanticTokens}
+                                        alt="Semantic tokens showing intent-based color naming"
+                                        class="mx-auto w-full max-w-80 rounded-lg"
+                                    />
+                                    <Image
+                                        src={ComponentsTokens}
+                                        alt="Component tokens applied to UI elements"
+                                        class="mx-auto w-full max-w-80 rounded-lg"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-32">
+                            <h3 class="mb-4">Final design</h3>
+                            <BeforeAfterToggle
+                                class="flex flex-col items-center h-150"
+                            >
+                                <div slot="before" class="max-w-200 mx-auto">
+                                    <Image
+                                        src={OriginalDesign}
+                                        alt="Original UKG payroll design"
+                                        class="w-full mt-8 rounded-lg"
+                                    />
+                                </div>
+                                <div slot="after" class="max-w-200 mx-auto">
+                                    <Image
+                                        src={HighFide}
+                                        alt="Redesigned UKG payroll interface with improved transparency"
+                                        class="w-full mt-8 rounded-lg"
+                                    />
+                                </div>
+                            </BeforeAfterToggle>
+                        </div>
+                        <h3 class="mt-32">UI Detail</h3>
+                        <div class="mt-8 grid gap-16">
+                            <div
+                                class="grid gap-8 rounded-lg border border-white/40 bg-frame p-6 md:grid-cols-[1.4fr_1fr] md:items-center md:p-10"
+                            >
                                 <div>
                                     <Image
-                                        src={DesignSystem}
-                                        alt="Design system hierarchy showing Primitive, Semantic, and Component tokens"
-                                        class="mt-8 w-full max-w-full rounded-lg"
+                                        src={CalendarUI}
+                                        alt="Final calendar UI showing an hours breakdown chart and weekly totals"
+                                        class="mx-auto w-full max-w-110 rounded-lg"
                                     />
-                                    <p class="mt-16">
-                                        Rather than connecting raw color values
-                                        directly to the UI, I designed a
-                                        hierarchical structure consisting of
-                                        Primitive → Semantic → Component
-                                        (optional). I placed particular emphasis
-                                        on Semantic Tokens, as defining intent
-                                        and meaning instead of visual values
-                                        helps create more consistent design
-                                        rules. Since this project contained
-                                        relatively few repeated UI patterns,
-                                        Component Tokens were introduced only
-                                        where they provided additional value.
+                                </div>
+                                <div>
+                                    <h4>Calendar</h4>
+                                    <p class="mt-6">
+                                        Using darker horizontal grid lines than
+                                        vertical lines improves readability and
+                                        makes time progression easier to scan.
                                     </p>
-                                    <div
-                                        class="horizontal-scroll mt-16 flex gap-4"
-                                    >
-                                        <Image
-                                            src={PrimitiveTokens}
-                                            alt="Primitive color tokens showing raw color values"
-                                            class="mx-auto w-full max-w-80 rounded-lg"
-                                        />
-                                        <Image
-                                            src={SemanticTokens}
-                                            alt="Semantic tokens showing intent-based color naming"
-                                            class="mx-auto w-full max-w-80 rounded-lg"
-                                        />
-                                        <Image
-                                            src={ComponentsTokens}
-                                            alt="Component tokens applied to UI elements"
-                                            class="mx-auto w-full max-w-80 rounded-lg"
-                                        />
-                                    </div>
+                                    <p class="mt-6">
+                                        Emphasizing date numbers makes dates
+                                        easier to identify at a glance.
+                                    </p>
                                 </div>
                             </div>
 
-                            <div class="mt-32">
-                                <h3 class="mb-4">Final design</h3>
-                                <BeforeAfterToggle
-                                    class="flex flex-col items-center h-150"
-                                >
-                                    <div
-                                        slot="before"
-                                        class="max-w-200 mx-auto"
-                                    >
-                                        <Image
-                                            src={OriginalDesign}
-                                            alt="Original UKG payroll design"
-                                            class="w-full mt-8 rounded-lg"
-                                        />
-                                    </div>
-                                    <div slot="after" class="max-w-200 mx-auto">
-                                        <Image
-                                            src={HighFide}
-                                            alt="Redesigned UKG payroll interface with improved transparency"
-                                            class="w-full mt-8 rounded-lg"
-                                        />
-                                    </div>
-                                </BeforeAfterToggle>
-                            </div>
-                            <h3 class="mt-32">UI Detail</h3>
-                            <div class="mt-8 grid gap-16">
-                                <div
-                                    class="grid gap-8 rounded-lg border border-white/40 bg-frame p-6 md:grid-cols-[1.4fr_1fr] md:items-center md:p-10"
-                                >
-                                    <div>
-                                        <Image
-                                            src={CalendarUI}
-                                            alt="Final calendar UI showing an hours breakdown chart and weekly totals"
-                                            class="mx-auto w-full max-w-110 rounded-lg"
-                                        />
-                                    </div>
-                                    <div>
-                                        <h4>Calendar</h4>
-                                        <p class="mt-6">
-                                            Using darker horizontal grid lines
-                                            than vertical lines improves
-                                            readability and makes time
-                                            progression easier to scan.
-                                        </p>
-                                        <p class="mt-6">
-                                            Emphasizing date numbers makes dates
-                                            easier to identify at a glance.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="grid gap-8 rounded-lg border border-white/40 bg-frame p-6 md:grid-cols-[1.4fr_1fr] md:items-center md:p-10"
-                                >
-                                    <Image
-                                        src={WorkCellUI}
-                                        alt="Work cell UI showing time entry variations for regular hours, late clock-in, and overtime states"
-                                        class="mx-auto w-full max-w-130 rounded-lg bg-(--brand-gray-200)"
-                                    />
-                                    <div>
-                                        <h4>Work time cell</h4>
-                                        <p class="mt-6">
-                                            Representing clock-in records as a
-                                            top-to-bottom timeline creates a
-                                            clearer sense of chronological flow.
-                                        </p>
-                                        <p class="mt-6">
-                                            Timeline colors and work cell
-                                            variations improve visibility for
-                                            attendance anomalies, including
-                                            lateness and overtime.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <!-- Prototype Development Section -->
-                        <section id="Prototype-dev" class="mt-64">
-                            <h2 class="font-semibold">
-                                <span class="heading-accent-bar"
-                                    >Prototype Development</span
-                                >
-                            </h2>
-
-                            <div class="mt-12 flex justify-center">
+                            <div
+                                class="grid gap-8 rounded-lg border border-white/40 bg-frame p-6 md:grid-cols-[1.4fr_1fr] md:items-center md:p-10"
+                            >
                                 <Image
-                                    src={DevLayer}
-                                    alt="Prototype development illustration"
-                                    class="w-52"
+                                    src={WorkCellUI}
+                                    alt="Work cell UI showing time entry variations for regular hours, late clock-in, and overtime states"
+                                    class="mx-auto w-full max-w-130 rounded-lg bg-(--brand-gray-200)"
+                                />
+                                <div>
+                                    <h4>Work time cell</h4>
+                                    <p class="mt-6">
+                                        Representing clock-in records as a
+                                        top-to-bottom timeline creates a clearer
+                                        sense of chronological flow.
+                                    </p>
+                                    <p class="mt-6">
+                                        Timeline colors and work cell variations
+                                        improve visibility for attendance
+                                        anomalies, including lateness and
+                                        overtime.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Prototype Development Section -->
+                    <section id="Prototype-dev" class="mt-64">
+                        <h2 class="text-cs-section font-medium">
+                            <span class="heading-accent-bar"
+                                >Prototype Development</span
+                            >
+                        </h2>
+                        <div
+                            class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
+                        >
+                        </div>
+                        <div class="mt-12 flex justify-center">
+                            <Image
+                                src={DevLayer}
+                                alt="Prototype development illustration"
+                                class="w-52"
+                            />
+                        </div>
+
+                        <div class="mx-auto mt-12 max-w-220">
+                            <h3>Rapid prototyping with React and Codex.</h3>
+                            <p class="mt-8">
+                                Rather than stopping at static Figma screens, I
+                                built a functional prototype in React to test
+                                the interaction model in a more realistic
+                                environment. Codex helped me move faster by
+                                supporting mock data setup and interaction
+                                implementation, making it possible to recreate a
+                                testable experience in a short timeframe.
+                            </p>
+
+                            <p class="mt-8">
+                                I also translated the design tokens defined in
+                                Figma into CSS, creating a consistent workflow
+                                from design decisions to implementation.
+                            </p>
+
+                            <div class="mx-auto mt-12 max-w-160">
+                                <CodeWindow
+                                    code={postsDataCode}
+                                    lang="css"
+                                    showExpand={false}
                                 />
                             </div>
-
-                            <div class="mx-auto mt-12 max-w-220">
-                                <h3>Rapid prototyping with React and Codex.</h3>
-                                <p class="mt-8">
-                                    Rather than stopping at static Figma
-                                    screens, I built a functional prototype in
-                                    React to test the interaction model in a
-                                    more realistic environment. Codex helped me
-                                    move faster by supporting mock data setup
-                                    and interaction implementation, making it
-                                    possible to recreate a testable experience
-                                    in a short timeframe.
-                                </p>
-
-                                <p class="mt-8">
-                                    I also translated the design tokens defined
-                                    in Figma into CSS, creating a consistent
-                                    workflow from design decisions to
-                                    implementation.
-                                </p>
-
-                                <div class="mx-auto mt-12 max-w-160">
-                                    <CodeWindow
-                                        code={postsDataCode}
-                                        lang="css"
-                                        showExpand={false}
+                            <div class="mt-16 flex justify-start">
+                                <GlassPill
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Open UKG prototype in a new tab"
+                                    href="https://ukg-pro-redesign.vercel.app/"
+                                >
+                                    <ArrowUpRight
+                                        slot="after"
+                                        aria-hidden="true"
+                                        focusable="false"
                                     />
-                                </div>
-                                <div class="mt-16 flex justify-start">
-                                    <GlassPill
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        aria-label="Open UKG prototype in a new tab"
-                                        href="https://ukg-pro-redesign.vercel.app/"
+                                    View prototype
+                                    <span class="sr-only"
+                                        >(opens in a new tab)</span
                                     >
-                                        <ArrowUpRight
-                                            slot="after"
-                                            aria-hidden="true"
-                                            focusable="false"
-                                        />
-                                        View prototype
-                                        <span class="sr-only"
-                                            >(opens in a new tab)</span
-                                        >
-                                    </GlassPill>
-                                </div>
-                                <div class="mt-6 overflow-hidden rounded-lg">
-                                    <ProjectMainVideo src={UKGVideo} />
-                                </div>
-                                <h2 class="flex justify-center mt-16">
-                                    The rest is currently in production...
-                                </h2>
+                                </GlassPill>
                             </div>
-                        </section>
-                        <!-- Reflection -->
-                        <section id="Reflection" class="mt-64"></section>
+                            <div class="mt-6 overflow-hidden rounded-lg">
+                                <ProjectMainVideo src={UKGVideo} />
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Testing -->
+                    <section id="User-feedback" class="mt-64">
+                        <h2 class="text-cs-section font-medium">
+                            <span class="heading-accent-bar"
+                                >User Feedback</span
+                            >
+                        </h2>
+                        <div
+                            class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
+                        >
+                        </div>
+
+                        <div class="mt-12 flex justify-center">
+                            <Image
+                                src={TestingLayer}
+                                alt="Prototype development illustration"
+                                class="w-52"
+                            />
+                        </div>
+
+                        <div class="mx-auto mt-12 max-w-220">
+                            <p class="caption-pill">Verification</p>
+                            <h2 class="text-cs-h2 mt-5">
+                                Did the redesign actually improve transparency?
+                            </h2>
+                            <p class="text-cs-body mt-5">
+                                To evaluate whether the redesign improved
+                                transparency during payroll verification, a
+                                comparative usability test was conducted
+                                comparing the existing UKG interface with the
+                                redesigned experience.
+                            </p>
+                            <p class="text-cs-body mt-5">
+                                Participants completed the same tasks based on a
+                                shared work scenario, while measuring their
+                                understanding of payroll information, trust, and
+                                confidence in verifying payroll accuracy.
+                            </p>
+                        </div>
+
+                        <div
+                            class="mt-16 grid items-center gap-10 rounded-lg bg-frame px-6 py-12 md:grid-cols-[minmax(18rem,0.9fr)_minmax(0,1.4fr)] md:gap-16 md:px-12 md:py-16"
+                        >
+                            <div
+                                class="rounded-lg bg-text-block p-6 md:max-w-110"
+                            >
+                                <dl class="space-y-6">
+                                    <div>
+                                        <dt
+                                            class="text-sm uppercase text-body-default/65"
+                                        >
+                                            Test type
+                                        </dt>
+                                        <dd class="mt-1 text-cs-body">
+                                            Comparative usability testing
+                                            (Moderated)
+                                        </dd>
+                                    </div>
+                                    <div>
+                                        <dt
+                                            class="text-sm uppercase text-body-default/65"
+                                        >
+                                            Participants
+                                        </dt>
+                                        <dd class="mt-1 text-cs-body">
+                                            UKG Pro users working at
+                                            supermarkets
+                                        </dd>
+                                    </div>
+                                    <div>
+                                        <dt
+                                            class="text-sm uppercase text-body-default/65"
+                                        >
+                                            Sample size
+                                        </dt>
+                                        <dd class="mt-1 text-cs-body">
+                                            5 participants
+                                        </dd>
+                                    </div>
+                                </dl>
+                            </div>
+
+                            <Image
+                                src={Testers}
+                                alt="Moderated usability testing sessions with supermarket staff using the UKG Pro redesign on a laptop"
+                                class="mx-auto w-full max-w-150"
+                            />
+                        </div>
+
+                        <div class="mt-16">
+                            <p class="caption-pill">
+                                Result
+                            </p>
+                            <div class="mt-8 max-w-300">
+                                <h3 class="text-cs-h2 font-normal">
+                                    1. Users became more confident verifying
+                                    payroll information
+                                </h3>
+                                <p class="mt-8 text-cs-body">
+                                    In the existing UKG interface, no
+                                    participants answered that the displayed
+                                    hours were correct after comparing the
+                                    provided work scenario against the total
+                                    worked hours shown on screen.
+                                    <br />
+                                    In contrast, many participants were able to
+                                    verify payroll information with greater
+                                    confidence using the redesigned version.
+                                    <br />
+                                    These results suggest that the redesign
+                                    improved users' ability to verify payroll
+                                    information during payroll review.
+                                </p>
+                            </div>
+
+                            <div class="mt-20 max-w-300">
+                                <h3 class="text-cs-h2 font-normal">
+                                    2. Users no longer relied on missing
+                                    information requests
+                                </h3>
+                                <p class="mt-8 text-cs-body">
+                                    In the existing interface, many participants
+                                    reported missing clock-in and clock-out
+                                    information as a barrier to verifying
+                                    payroll information.
+                                    <br />
+                                    In contrast, requests for additional
+                                    information decreased significantly in the
+                                    redesigned version, where supporting work
+                                    information was made visible.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </section>
