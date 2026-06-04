@@ -126,9 +126,12 @@ import { Image } from "astro:assets";
                 {
                     projects
                         .filter(
-                            (project) => project.href !== "/stone-and-honey"
-                            && project.href !== "/billow",
+                            (project) =>
+                                ["/ukg", "/tastebuds", "/billow"].includes(
+                                    project.href,
+                                ) && project.href !== "/stone-and-honey",
                         )
+                        .slice(0, 2)
                         .map((project) => {
                             return (
                                 <Card

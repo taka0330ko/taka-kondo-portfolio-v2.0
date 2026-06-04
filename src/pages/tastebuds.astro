@@ -808,9 +808,11 @@ export const tastebudsSections = [
                     projects
                         .filter(
                             (project) =>
-                                project.href !== "/tastebuds" &&
-                                project.href !== "/stone-and-honey",
+                                ["/ukg", "/tastebuds", "/billow"].includes(
+                                    project.href,
+                                ) && project.href !== "/tastebuds",
                         )
+                        .slice(0, 2)
                         .map((project) => {
                             return (
                                 <Card

@@ -40,10 +40,12 @@ import { postsDataCode } from "../data/ukgCode";
 // UI
 import BreadCrumb from "../components/ui/BreadCrumb.astro";
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
+import Card from "../components/ui/Card.astro";
 import CodeWindow from "../components/ui/CodeWindow.astro";
 import ProjectMainVideo from "../components/ui/ProjectMainVideo.astro";
 import GlassPill from "../components/ui/GlassPill.astro";
 import BeforeAfterToggle from "../components/ui/BeforeAfterToggle.astro";
+import { projects } from "../data/projects";
 
 export const ukgSections = [
     { label: "Overview", href: "#Overview" },
@@ -882,8 +884,7 @@ export const ukgSections = [
                     <!-- Testing -->
                     <section id="User-feedback" class="mt-64">
                         <h2 class="text-cs-section font-medium">
-                            <span class="heading-accent-bar"
-                                >User Feedback</span
+                            <span class="heading-accent-bar">User Feedback</span
                             >
                         </h2>
                         <div
@@ -968,52 +969,93 @@ export const ukgSections = [
                             />
                         </div>
 
-                        <div class="mt-16">
-                            <p class="caption-pill">
-                                Result
-                            </p>
+                        <div class="mx-auto mt-12 max-w-220">
+                            <p class="caption-pill">Findings</p>
                             <div class="mt-8 max-w-300">
                                 <h3 class="text-cs-h2 font-normal">
-                                    1. Users became more confident verifying
+                                    Users became more confident verifying
                                     payroll information
                                 </h3>
-                                <p class="mt-8 text-cs-body">
-                                    In the existing UKG interface, no
-                                    participants answered that the displayed
-                                    hours were correct after comparing the
-                                    provided work scenario against the total
-                                    worked hours shown on screen.
-                                    <br />
-                                    In contrast, many participants were able to
-                                    verify payroll information with greater
-                                    confidence using the redesigned version.
-                                    <br />
-                                    These results suggest that the redesign
-                                    improved users' ability to verify payroll
-                                    information during payroll review.
+                                <p class="mt-4 text-cs-body">
+                                    Participants using the redesigned version
+                                    were able to verify payroll information with
+                                    greater confidence compared to the existing
+                                    interface.
                                 </p>
                             </div>
 
                             <div class="mt-20 max-w-300">
                                 <h3 class="text-cs-h2 font-normal">
-                                    2. Users no longer relied on missing
-                                    information requests
+                                    Visibility of supporting information
+                                    increased trust
                                 </h3>
-                                <p class="mt-8 text-cs-body">
-                                    In the existing interface, many participants
-                                    reported missing clock-in and clock-out
-                                    information as a barrier to verifying
+                                <p class="mt-4 text-cs-body">
+                                    Trust scores improved from 3.8 to 6.8 after
+                                    introducing supporting information such as
+                                    worked hour breakdowns and clock-in/out
+                                    records. These findings suggest that
+                                    improving transparency increased trust in
                                     payroll information.
-                                    <br />
-                                    In contrast, requests for additional
-                                    information decreased significantly in the
-                                    redesigned version, where supporting work
-                                    information was made visible.
                                 </p>
                             </div>
                         </div>
                     </section>
+                    <section id="Reflection" class="mt-64">
+                        <h2 class="text-cs-section font-medium">
+                            <span class="heading-accent-bar">Reflection</span>
+                        </h2>
+                        <div
+                            class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
+                        >
+                        </div>
+                        <div class="mt-20 max-w-300">
+                            <h3 class="text-cs-h2 font-normal">Learning the Challenges of User-Centered Design</h3>
+                            <p class="mt-4 text-cs-body">
+                                Through this project, I learned that user-centered
+                                design is not easy. Users are not all the same. At
+                                my workplace, people of different ages and
+                                backgrounds use the system, so my assumptions were
+                                not always correct. For example, the work hour cell
+                                UI was not as clear for everyone as I expected. At
+                                the same time, finding these problems showed me the
+                                value of talking to real users. This project taught
+                                me that UX design is not only about creating
+                                screens, but also about listening to users and
+                                testing ideas repeatedly.
+                            </p>
+                        </div>
+                    </section>
                 </div>
+            </div>
+        </section>
+
+        <!-- Other Projects -->
+        <section class="p-4 md:p-16">
+            <h2 class="text-center p-16">Other Projects</h2>
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-4 max-w-400 mx-auto"
+            >
+                {
+                    projects
+                        .filter(
+                            (project) =>
+                                ["/ukg", "/tastebuds", "/billow"].includes(
+                                    project.href,
+                                ) && project.href !== "/ukg",
+                        )
+                        .slice(0, 2)
+                        .map((project) => {
+                            return (
+                                <Card
+                                    href={project.href}
+                                    cover={project.cover}
+                                    title={project.title}
+                                    description={project.description}
+                                    tag={project.tag}
+                                />
+                            );
+                        })
+                }
             </div>
         </section>
     </main>

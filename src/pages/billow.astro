@@ -425,9 +425,11 @@ export const cardContents = [
                     projects
                         .filter(
                             (project) =>
-                                project.href !== "/billow" &&
-                                project.href !== "/stone-and-honey",
+                                ["/ukg", "/tastebuds", "/billow"].includes(
+                                    project.href,
+                                ) && project.href !== "/billow",
                         )
+                        .slice(0, 2)
                         .map((project) => {
                             return (
                                 <Card
