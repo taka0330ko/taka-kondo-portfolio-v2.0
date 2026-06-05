@@ -1,49 +1,67 @@
 ---
 const { class: className } = Astro.props;
 ---
-<div class:list={["stage", className]}>
+<div class:list={["stage", className]} data-before-after-toggle data-active="after">
         <div class="segmented">
-          <span class="segment-indicator"></span>
-          <input class="segment-input" id="segment-1" name="segment" type="radio" />
-          <label class="segment" for="segment-1" style="anchor-name: --segment-1">Original</label>
-          <input class="segment-input" id="segment-2" name="segment" type="radio" checked />
-          <label class="segment" for="segment-2" style="anchor-name: --segment-2">Add Hours Breakdown</label>
+          <span class="segment-indicator" aria-hidden="true"></span>
+          <button class="segment" type="button" data-toggle-target="before" aria-pressed="false" style="anchor-name: --segment-before">Original</button>
+          <button class="segment" type="button" data-toggle-target="after" aria-pressed="true" style="anchor-name: --segment-after">Redesign</button>
         </div>
         <div class="toggle-content">
-          <div class="toggle-panel before-panel">
+          <div class="toggle-panel before-panel" data-toggle-panel="before" hidden>
             <slot name="before" />
           </div>
-          <div class="toggle-panel after-panel">
+          <div class="toggle-panel after-panel" data-toggle-panel="after">
             <slot name="after" />
           </div>
         </div>
 </div>
 
+<script is:inline>
+    function initBeforeAfterToggle() {
+        const toggles = document.querySelectorAll("[data-before-after-toggle]");
+
+        toggles.forEach((toggle) => {
+            if (toggle.dataset.bound === "true") return;
+
+            const buttons = toggle.querySelectorAll("[data-toggle-target]");
+            const panels = toggle.querySelectorAll("[data-toggle-panel]");
+
+            function setActive(active) {
+                toggle.dataset.active = active;
+
+                buttons.forEach((button) => {
+                    const isActive = button.dataset.toggleTarget === active;
+                    button.setAttribute("aria-pressed", String(isActive));
+                });
+
+                panels.forEach((panel) => {
+                    panel.hidden = panel.dataset.togglePanel !== active;
+                });
+            }
+
+            buttons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    setActive(button.dataset.toggleTarget);
+                });
+            });
+
+            setActive(toggle.dataset.active || "after");
+            toggle.dataset.bound = "true";
+        });
+    }
+
+    document.addEventListener("astro:page-load", initBeforeAfterToggle);
+    initBeforeAfterToggle();
+</script>
+
 <style>
     .stage {
-        &:has(#segment-1:checked) {
-          .before-panel {
-            display: block;
-          }
-
-          .after-panel {
-            display: none;
-          }
-        }
-
-        &:has(#segment-2:checked) {
-          .before-panel {
-            display: none;
-          }
-
-          .after-panel {
-            display: block;
-          }
-        }
+        overflow-anchor: none;
       }
 
     .segmented {
-        --selected-anchor: --segment-2;
+        --selected-anchor: --segment-after;
         position: relative;
         display: flex;
         flex-wrap: wrap;
@@ -79,7 +97,11 @@ const { class: className } = Astro.props;
           align-items: center;
           min-height: 48px;
           padding-inline: 20px;
+          border: 0;
           border-radius: 999px;
+          background: transparent;
+          color: inherit;
+          font: inherit;
           cursor: pointer;
           user-select: none;
           transition: all 0.2s;
@@ -91,20 +113,20 @@ const { class: className } = Astro.props;
           }
         }
 
-        .segment-input:checked + .segment {
+        .segment[aria-pressed="true"] {
           color: var(--color-foreground-inverse);
         }
 
-        &:has(#segment-1:checked) {
-          --selected-anchor: --segment-1;
+        .stage[data-active="before"] & {
+          --selected-anchor: --segment-before;
         }
 
-        &:has(#segment-2:checked) {
-          --selected-anchor: --segment-2;
+        .stage[data-active="after"] & {
+          --selected-anchor: --segment-after;
         }
 
         @media (any-hover: hover) {
-          .segment-input:checked + .segment:hover {
+          .segment[aria-pressed="true"]:hover {
             background: transparent;
           }
         }
@@ -122,15 +144,23 @@ const { class: className } = Astro.props;
         }
       }
 
-      .segment-input {
+      .toggle-content {
+        position: relative;
+        width: 100%;
+        min-height: 0;
+        flex: 1;
+        overflow-anchor: none;
+      }
+
+      .toggle-panel {
         position: absolute;
-        inline-size: 1px;
-        block-size: 1px;
-        margin: -1px;
-        padding: 0;
-        border: 0;
-        overflow: hidden;
-        clip-path: inset(50%);
+        inset: 0;
+        width: 100%;
+        overflow: auto;
+      }
+
+      .toggle-panel[hidden] {
+        display: none;
       }
 
 </style>

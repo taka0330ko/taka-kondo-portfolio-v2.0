@@ -6,7 +6,7 @@ import StoneAndHoneyThumbnail from "../assets/images/projects/stone-and-honey/st
 import TastebudsThumbnail from "../assets/images/projects/tastebuds/foodblog-tumbnail.png";
 import TastebudsVideo from "../assets/images/projects/tastebuds/videos/foodblog-cover-video.mp4"
 import UKGThumbnail from "../assets/images/projects/UKG/UKG-thumbnail.webp"
-import UKGVideo from "../assets/images/projects/UKG/videos/demo_video.mp4"
+import UKGVideo from "../assets/images/projects/UKG/videos/main-thumbnail.mp4"
 
 type Project = {
   href: string;
@@ -22,7 +22,7 @@ export const projects: Project[] = [
     href:"/ukg",
     cover: UKGThumbnail,
     coverVideo:UKGVideo,
-    title: "UKG UI/UXRedesign",
+    title: "UKG App - Payment Page Redesign",
     description:
       "A project where I researched and redesigned the UX of the payroll app UKG, which is actively used at my workplace, based on interviews and feedback from coworkers.",
       tag:"UI/UX",
