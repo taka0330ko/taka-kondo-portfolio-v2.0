@@ -3,6 +3,7 @@ import type { ImageMetadata } from "astro";
 import Arrow from "../../assets/images/icons/card-arrow.svg";
 import GlassPill from "./GlassPill.astro";
 import { Image } from "astro:assets";
+import { Check } from "@lucide/astro";
 
 type Props = {
     href: string;
@@ -10,10 +11,11 @@ type Props = {
     coverVideo?: string;
     title: string;
     description: string;
+    summaryList: string[];
     tag: string;
 };
 
-const { href, cover, coverVideo, title, description, tag } =
+const { href, cover, coverVideo, title, description,summaryList, tag } =
     Astro.props as Props;
 ---
 
@@ -59,11 +61,16 @@ const { href, cover, coverVideo, title, description, tag } =
                 <h2 class="p-4">{title}</h2>
                 <div class="flex flex-col">
                     <p class="px-4">{description}</p>
+                    <ul class="px-4">
+                        {summaryList?.map((list)=>(
+                            <div class="flex gap-2 my-4"><Check class="text-accent"/><li>{list}</li></div>
+                        ))}
+                    </ul>
                 </div>
                 <div
-                    class="flex justify-end mt-16 md:mt-32 px-6 pb-6 transition-all duration-300 self-end opacity-0 group-hover:translate-x-1 group-hover:opacity-100"
+                    class="flex justify-end items-end gap-4 mt-16 md:mt-32 px-6 pb-6 transition-all duration-300 self-end group-hover:translate-x-1 group-hover:opacity-100"
                 >
-                    <Arrow class="text-foreground w-16" />
+                    <p>Click To Read More</p><Arrow class="text-foreground w-16 mb-2" />
                 </div>
             </div>
         </div>
