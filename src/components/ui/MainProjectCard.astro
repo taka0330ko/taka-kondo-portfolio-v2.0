@@ -19,14 +19,14 @@ const { href, cover, coverVideo, title, description, tag } =
 
 <a
     href={href}
-    class="project-card grid grid-rows-subgrid row-span-4 h-full group"
+    class="project-card grid h-full group"
 >
     <article
         class="gap-0 h-full rounded-sm mouse-track-card content transition duration-300 relative"
     >
         <div class="glow-effect"></div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <figure class="relative overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+            <figure class="relative overflow-hidden md:col-span-3">
                 <Image
                     src={cover}
                     alt={title}
@@ -55,8 +55,8 @@ const { href, cover, coverVideo, title, description, tag } =
                     </div>
   
             </figure>
-            <div class="flex flex-col justify-between my-auto">
-                <h3 class="p-4">{title}</h3>
+            <div class="flex flex-col justify-between my-auto md:col-start-4 md:col-span-2">
+                <h2 class="p-4">{title}</h2>
                 <div class="flex flex-col">
                     <p class="px-4">{description}</p>
                 </div>
@@ -69,7 +69,6 @@ const { href, cover, coverVideo, title, description, tag } =
         </div>
     </article>
 </a>
-
 <style>
     .mouse-track-card {
         position: relative;

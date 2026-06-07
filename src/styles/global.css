@@ -248,7 +248,7 @@
   --text-caption--line-height: 1.2rem;
   --text-caption--letter-spacing: 0.02em;
 
-  --text-title: 2rem;
+  --text-title: 1.5rem;
   --text-title--line-height: 1.4;
 
   --text-subtitle: 1.25rem;
@@ -528,8 +528,8 @@
     @apply mt-16 mb-32
   }
   @keyframes lines-pulse {
-    from { opacity: 0.4}
-    to {opacity: 0.2;}
+    from { opacity: 0.5}
+    to {opacity: 0.1;}
   }
   .animation-lines-pulse {
     animation: lines-pulse 6s ease-in-out infinite alternate;
