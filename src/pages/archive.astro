@@ -1,0 +1,92 @@
+---
+import Layout from "../layouts/Layout.astro";
+import RippleEffectMoon from "../components/webGL/RippleEffectMoon";
+---
+
+<Layout>
+    <main>
+        <section id="archive-hero" aria-labelledby="archive-title">
+            <div class="archive-hero-grid grid-container">
+                <div class="archive-intro">
+                    <h1 id="archive-title">Archive</h1>
+                    <p>
+                        Visual communication design<br />
+                        Product concept<br />
+                        Explorations
+                    </p>
+                </div>
+
+                <div class="archive-moon">
+                    <RippleEffectMoon client:load />
+                </div>
+            </div>
+        </section>
+        <section id="archive-main"></section>
+    </main>
+</Layout>
+
+<style>
+    #archive-hero {
+        min-height: 100svh;
+        overflow: hidden;
+    }
+
+    .archive-hero-grid {
+        min-height: calc(100svh - 6rem);
+        padding-block: clamp(2rem, 6vh, 5rem);
+    }
+
+    .archive-intro {
+        z-index: 1;
+        align-self: end;
+    }
+
+    .archive-intro h1 {
+        font-size: clamp(3.5rem, 8vw, 7rem);
+        font-weight: 400;
+        line-height: 0.9;
+    }
+
+    .archive-intro p {
+        margin-top: 1.5rem;
+        color: var(--text-heading-default);
+        font-size: clamp(1.125rem, 2vw, 1.75rem);
+        line-height: 1.35;
+    }
+
+    .archive-moon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+    }
+
+    @media (width < 768px) {
+        .archive-hero-grid {
+            justify-content: space-between;
+        }
+
+        .archive-intro {
+            order: 2;
+            align-self: start;
+        }
+
+        .archive-moon {
+            order: 1;
+            width: min(100%, 30rem);
+            margin-inline: auto;
+        }
+    }
+
+    @media (width >= 768px) {
+        .archive-intro {
+            grid-column: 1 / span 4;
+            padding-bottom: clamp(1rem, 5vh, 4rem);
+        }
+
+        .archive-moon {
+            grid-column: 7 / span 5;
+            align-self: center;
+        }
+    }
+</style>
