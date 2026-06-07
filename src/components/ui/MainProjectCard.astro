@@ -22,31 +22,30 @@ const { href, cover, coverVideo, title, description, tag } =
     class="project-card grid grid-rows-subgrid row-span-4 h-full group"
 >
     <article
-        class="gap-0 h-full bg-card-gradient backdrop-blur-lg
-                    rounded-lg border border-white/20 shadow-lg mouse-track-card content transition duration-300 relative"
+        class="gap-0 h-full rounded-sm mouse-track-card content transition duration-300 relative"
     >
         <div class="glow-effect"></div>
-        <div class="grid grid-cols-1 md:grid-cols-2">
-            <figure class="relative overflow-hidden md:rounded-l-lg">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <figure class="relative overflow-hidden">
                 <Image
                     src={cover}
                     alt={title}
                     width={cover.width}
                     height={cover.height}
-                    class="project-cover-image w-full h-full object-cover"
+                    class="project-cover-image w-full h-full object-cover rounded-sm"
                 />
                 {
                     coverVideo && (
                         <video
                             src={coverVideo}
-                            class="project-cover-video absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 group-focus-visible:opacity-100"
+                            class="project-cover-video absolute rounded-sm inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 group-focus-visible:opacity-100"
                             muted
                             loop
                             playsinline
                             preload="auto"
                             aria-label={`${title} preview`}
                         />
-                        <div class="project-progress-track absolute left-0 right-0 bottom-0 h-1 bg-gray-400/30 overflow-hidden z-30 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+                        <div class="project-progress-track rounded-b-sm absolute left-0 right-0 bottom-0 h-1.5 bg-gray-400/30 overflow-hidden z-30 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
                             <div class="project-progress-bar h-full bg-accent w-full" />
                         </div>
                     )
@@ -60,11 +59,11 @@ const { href, cover, coverVideo, title, description, tag } =
                 <h3 class="p-4">{title}</h3>
                 <div class="flex flex-col">
                     <p class="px-4">{description}</p>
-                    <div
-                        class="flex justify-end px-6 pb-6 transition-all duration-300 self-end opacity-0 group-hover:translate-x-1 group-hover:opacity-100"
-                    >
-                        <Arrow class="text-foreground w-16" />
-                    </div>
+                </div>
+                <div
+                    class="flex justify-end mt-16 md:mt-32 px-6 pb-6 transition-all duration-300 self-end opacity-0 group-hover:translate-x-1 group-hover:opacity-100"
+                >
+                    <Arrow class="text-foreground w-16" />
                 </div>
             </div>
         </div>
