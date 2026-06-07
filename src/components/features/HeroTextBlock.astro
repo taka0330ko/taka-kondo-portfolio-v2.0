@@ -1,39 +1,48 @@
 ---
 import { Github, Linkedin, Mail } from "@lucide/astro";
 import IconHover from "../ui/IconHover.astro";
+import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
 ---
 
-<div class="col-span-6">
-  <h1 class="hero-title">
-    Taka is a <span class="text-accent">UI/UX Designer</span> who bridges <span class="text-accent">design</span> and <span class="text-accent">development.</span>
-  </h1>
+<div class="grid grid-cols-1 md:grid-cols-12 mt-16">
+  <div class="flex flex-col gap-8 md:gap-16 md:col-span-8">
+      <h1 class="hero-title md:order-2">
+        Taka is a <span class="text-accent">UI/UX Designer</span> who bridges <span class="text-accent">design</span> and <span class="text-accent">development.</span>
+      </h1>
+      <div class="icons flex items-center justify-center gap-10 mt-8 md:order-1 md:justify-start">
+      <IconHover
+        href="https://github.com/taka0330ko"
+        aria-label="GitHub profile"
+        label="GitHub"
+      >
+        <Github />
+      </IconHover>
+  
+      <IconHover
+        href="https://www.linkedin.com/in/takanarikondo/"
+        aria-label="LinkedIn profile"
+        label="LinkedIn"
+      >
+        <Linkedin />
+      </IconHover>
+  
+      <IconHover
+        href="mailto:gtakanari0330@gmail.com"
+        aria-label="Send email"
+        label="Email"
+      >
+        <Mail />
+      </IconHover>
+    </div>
+    
 
-  <div class="icons flex items-center justify-center md:justify-start gap-10 mt-8">
-    <IconHover
-      href="https://github.com/taka0330ko"
-      aria-label="GitHub profile"
-      label="GitHub"
-    >
-      <Github />
-    </IconHover>
-
-    <IconHover
-      href="https://www.linkedin.com/in/takanarikondo/"
-      aria-label="LinkedIn profile"
-      label="LinkedIn"
-    >
-      <Linkedin />
-    </IconHover>
-
-    <IconHover
-      href="mailto:gtakanari0330@gmail.com"
-      aria-label="Send email"
-      label="Email"
-    >
-      <Mail />
-    </IconHover>
+    
+  </div>
+  <div class="mt-16 md:mt-auto flex w-full justify-center md:col-start-9 md:col-span-4 md:justify-end">
+    <GoToProjectsLinkBtn />
   </div>
 </div>
+
 
 <script>
   import { gsap } from "gsap";

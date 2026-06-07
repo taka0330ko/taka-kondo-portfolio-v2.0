@@ -10,13 +10,11 @@ import MainProjectCard from '../components/ui/MainProjectCard.astro';
 
 <Layout>
 <main>
-	<section class="mb-64">
-    <div class="grid grid-cols-12 grid-container mt-45 md:mt-60 items-center">
-       <HeroTextBlock />
-       <div class="col-span-6 flex justify-center">
+	<section class="mb-64 mt-6 mx-auto max-w-360 md:gap-6 px-4 md:px-8 flex flex-col gap-16">
+      <div class="mx-auto flex items-center justify-center mt-32">
         <RippleEffectRings client:visible />
-       </div>
-    </div>
+      </div>
+      <HeroTextBlock/>
 	</section>
 
   <section id="projects" class="max-w-350 mx-auto px-4 md:px-8" >

@@ -1,0 +1,134 @@
+<a
+    href="#projects"
+    aria-label="Go to Projects"
+    class="scroll-projects-btn flex shrink-0 items-center justify-center px-3 py-2"
+>
+    <span class="btn-text">Go to Projects</span>
+
+    <span class="btn-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6"></path>
+        </svg>
+    </span>
+</a>
+<style>
+    .scroll-projects-btn {
+        width: 96px;
+        min-height: 96px;
+        animation: float-up-down 3.2s ease-in-out infinite;
+        border-radius: 999px;
+        overflow: hidden;
+        color: var(--color-accent);
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.38);
+        border: 2px solid rgba(255, 255, 255, 0.85);
+        box-shadow:
+            0 20px 60px rgba(120, 145, 190, 0.22),
+            inset 0 0 24px rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(18px);
+        transition:
+            width 0.8s var(--spring-default),
+            min-height 0.8s var(--spring-default),
+            border-radius 0.8s var(--spring-default),
+            box-shadow 0.3s ease,
+            background 0.3s ease;
+    }
+
+    .btn-text {
+        max-width: 0;
+
+        opacity: 0;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        font-family: monospace;
+
+        font-size: 22px;
+
+        letter-spacing: 0.16em;
+
+        transition:
+            max-width 0.7s var(--spring-default),
+            opacity 0.2s linear;
+    }
+
+    .btn-icon {
+        width: 42px;
+
+        height: 42px;
+
+        display: grid;
+
+        place-items: center;
+
+        flex-shrink: 0;
+
+        transition: transform 0.7s var(--spring-default);
+    }
+
+    .btn-icon svg {
+        width: 28px;
+
+        height: 28px;
+
+        stroke: currentColor;
+
+        stroke-width: 3;
+
+        fill: none;
+
+        stroke-linecap: round;
+
+        stroke-linejoin: round;
+    }
+
+    .scroll-projects-btn:hover,
+    .scroll-projects-btn:focus-visible {
+        animation-play-state: paused;
+
+        width: min(450px, calc(100vw - 48px));
+
+        min-height: 96px;
+
+        border-radius: 999px;
+
+        background: rgba(255, 255, 255, 0.42);
+
+        box-shadow:
+            0 24px 70px rgba(120, 145, 190, 0.32),
+            inset 0 0 28px rgba(255, 255, 255, 0.65);
+    }
+
+    .scroll-projects-btn:hover .btn-text,
+    .scroll-projects-btn:focus-visible .btn-text {
+        max-width: 320px;
+
+        opacity: 1;
+
+        margin-right: 18px;
+    }
+
+    .scroll-projects-btn:hover .btn-icon,
+    .scroll-projects-btn:focus-visible .btn-icon {
+        transform: translateX(4px);
+    }
+
+    @keyframes float-up-down {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .scroll-projects-btn {
+            animation: none;
+        }
+    }
+</style>
