@@ -13,8 +13,8 @@
 </a>
 <style>
     .scroll-projects-btn {
-        width: 96px;
-        min-height: 96px;
+        width: 80px;
+        min-height: 80px;
         animation: float-up-down 3.2s ease-in-out infinite;
         border-radius: 999px;
         overflow: hidden;
@@ -36,51 +36,29 @@
 
     .btn-text {
         max-width: 0;
-
         opacity: 0;
-
         white-space: nowrap;
-
         overflow: hidden;
-
-        font-family: monospace;
-
-        font-size: 22px;
-
         letter-spacing: 0.16em;
-
         transition:
             max-width 0.7s var(--spring-default),
             opacity 0.2s linear;
     }
 
     .btn-icon {
-        width: 42px;
-
-        height: 42px;
-
         display: grid;
-
         place-items: center;
-
         flex-shrink: 0;
-
         transition: transform 0.7s var(--spring-default);
     }
 
     .btn-icon svg {
         width: 28px;
-
         height: 28px;
-
         stroke: currentColor;
-
         stroke-width: 3;
-
         fill: none;
-
         stroke-linecap: round;
-
         stroke-linejoin: round;
     }
 
@@ -88,9 +66,9 @@
     .scroll-projects-btn:focus-visible {
         animation-play-state: paused;
 
-        width: min(450px, calc(100vw - 48px));
+        width: min(320px, calc(100vw - 48px));
 
-        min-height: 96px;
+        min-height: 80px;
 
         border-radius: 999px;
 
