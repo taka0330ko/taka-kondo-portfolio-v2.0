@@ -1,0 +1,91 @@
+---
+import type { ImageMetadata } from "astro";
+import { Masonry } from "astro-masonry";
+import ArchiveCover from "../ui/ArchiveCover.astro";
+
+interface Props {
+    archive: {
+        id: number;
+        href: string;
+        cover: ImageMetadata;
+        coverType?: "image" | "green-blob";
+        coverVideo: string;
+        title: string;
+        placeholder?: boolean;
+        height?: number;
+    }[];
+}
+
+const { archive } = Astro.props;
+---
+
+<Masonry
+    class="archive-masonry"
+    breakpointCols={{
+        default: 3,
+        900: 2,
+        600: 1,
+    }}
+>
+    {
+        archive.map((item) => (
+            <div
+                class="archive-card"
+                style={`--card-height:${item.height ?? 400}px; --card-padding:24px;`}
+            >
+                {
+                    item.placeholder ? (
+                        <div
+                            class="placeholder"
+                            style={`height:${item.height}px`}
+                            aria-hidden="true"
+                        />
+                    ) : (
+                        item.href ? (
+                            <a class="archive-link" href={item.href} aria-label={item.title}>
+                                <ArchiveCover
+                                    cover={item.cover}
+                                    coverType={item.coverType}
+                                    title={item.title}
+                                />
+                            </a>
+                        ) : (
+                            <div class="archive-link archive-link-disabled" aria-disabled="true">
+                                <ArchiveCover
+                                    cover={item.cover}
+                                    coverType={item.coverType}
+                                    title={item.title}
+                                />
+                            </div>
+                        )
+                    )
+                }
+            </div>
+        ))
+    }
+</Masonry>
+
+<style>
+    :global(.archive-masonry) {
+        gap: 48px;
+    }
+    .archive-card {
+        margin-bottom: 48px;
+    }
+
+    .archive-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .archive-link-disabled {
+        cursor: not-allowed;
+    }
+
+    .placeholder {
+        width: 100%;
+        background: #e6e6e6;
+        border-radius: 24px;
+    }
+</style>

@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import RippleEffectMoon from "../components/webGL/RippleEffectMoon";
+import ArchiveMasonryGrid from "../components/layout/ArchiveMasonryGrid.astro";
+import { archive } from "../data/archiveList";
 ---
 
 <Layout>
@@ -20,7 +22,9 @@ import RippleEffectMoon from "../components/webGL/RippleEffectMoon";
                 </div>
             </div>
         </section>
-        <section id="archive-main" class="h-screen"></section>
+        <section id="archive-main" class="mt-96 mx-6">
+            <ArchiveMasonryGrid archive={archive} />
+        </section>
     </main>
 </Layout>
 
