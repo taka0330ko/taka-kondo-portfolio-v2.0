@@ -259,7 +259,7 @@
   --text-display--line-height: 1.1;
   --text-display--letter-spacing: -0.02em;
 
-  --text-hero: clamp(2.5rem, 5vw, 3.75rem);
+  --text-hero: clamp(2.5rem, 5vw, 4.5rem);
   --text-hero--line-height: 1;
   --text-hero--letter-spacing: -0.03em;
 
@@ -528,8 +528,8 @@
     @apply mt-16 mb-32
   }
   @keyframes lines-pulse {
-    from { opacity: 0.5}
-    to {opacity: 0.1;}
+    from { opacity: 1}
+    to {opacity: 0.2;}
   }
   .animation-lines-pulse {
     animation: lines-pulse 6s ease-in-out infinite alternate;

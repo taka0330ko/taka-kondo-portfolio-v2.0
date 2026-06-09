@@ -5,6 +5,8 @@ import HeroTextBlock from '../components/features/HeroTextBlock.astro';
 import CopyEmail from '../components/ui/CopyEmail.astro';
 import { projects } from '../data/projects';
 import MainProjectCard from '../components/ui/MainProjectCard.astro';
+import IconHover from '../components/ui/IconHover.astro';
+import { Github, Linkedin, Mail } from '@lucide/astro';
 
 ---
 
@@ -34,8 +36,33 @@ import MainProjectCard from '../components/ui/MainProjectCard.astro';
       })}
     </div>
   </section>
-          <section class="flex justify-center items-center h-100">
-          <CopyEmail/>
-        </section>
+<section class="flex flex-col justify-center items-center my-40">
+    <CopyEmail />
+    <div class="icons flex items-center gap-10 mt-4">
+      <IconHover
+        href="https://github.com/taka0330ko"
+        aria-label="GitHub profile"
+        label="GitHub"
+      >
+        <Github />
+      </IconHover>
+
+      <IconHover
+        href="https://www.linkedin.com/in/takanarikondo/"
+        aria-label="LinkedIn profile"
+        label="LinkedIn"
+      >
+        <Linkedin />
+      </IconHover>
+
+      <IconHover
+        href="mailto:gtakanari0330@gmail.com"
+        aria-label="Send email"
+        label="Email"
+      >
+        <Mail />
+      </IconHover>
+    </div>
+  </section>
 </main>
 </Layout>

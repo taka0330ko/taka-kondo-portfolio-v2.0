@@ -6,6 +6,7 @@ import MobileMenuPanel from "../ui/MobileMenuPanel.astro";
 
 const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
 const isAboutPage = pathname === "/about";
+const isArchivePage = pathname === "/archive";
 const isProjectsPage = [
   "/",
   "/ukg",
@@ -41,6 +42,16 @@ const isProjectsPage = [
         About
         <span
           class={`absolute bottom-0 left-0 h-px w-full rounded-full transition-opacity ${isAboutPage ? 'bg-accent opacity-100' : 'bg-accent opacity-0'}`}
+        ></span>
+      </a>
+
+      <a
+        href="/archive"
+        class={`relative pb-1 transition-colors ${isArchivePage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
+      >
+        Archive
+        <span
+          class={`absolute bottom-0 left-0 h-px w-full rounded-full transition-opacity ${isArchivePage ? 'bg-accent opacity-100' : 'bg-accent opacity-0'}`}
         ></span>
       </a>
     </div>

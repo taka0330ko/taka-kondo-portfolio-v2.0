@@ -381,7 +381,7 @@ function RippleEffectRings() {
     <div>
       <div
         ref={threeHostRef}
-        className="relative w-82.5 md:w-100 lg:w-112.5 aspect-3/1
+        className="relative w-82.5 md:w-100 lg:w-120 aspect-3/1
          select-none
     [-webkit-touch-callout:none] [-webkit-tap-highlight-color:transparent]"
         aria-label="hero rings"

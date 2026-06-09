@@ -60,25 +60,25 @@ export const projects: Project[] = [
       tag:"Web dev",
   },
   
-  {
-    href: "/xeno",
-    cover: XENOThumbnail,
-    coverVideo: "",
-    title: "XENO",
-    description: "Fitness branding project.",
-        summaryList:[
+  // {
+  //   href: "/xeno",
+  //   cover: XENOThumbnail,
+  //   coverVideo: "",
+  //   title: "XENO",
+  //   description: "Fitness branding project.",
+  //       summaryList:[
        
-      ],
-    tag:"Branding",
-  },
-  {
-    href: "/stone-and-honey",
-    cover: StoneAndHoneyThumbnail,
-    coverVideo: "",
-    title: "Stone & Honey",
-    description: "Butter nuts project",
-        summaryList:[
-      ],
-    tag:"Branding",
-  },
+  //     ],
+  //   tag:"Branding",
+  // },
+  // {
+  //   href: "/stone-and-honey",
+  //   cover: StoneAndHoneyThumbnail,
+  //   coverVideo: "",
+  //   title: "Stone & Honey",
+  //   description: "Butter nuts project",
+  //       summaryList:[
+  //     ],
+  //   tag:"Branding",
+  // },
 ]
