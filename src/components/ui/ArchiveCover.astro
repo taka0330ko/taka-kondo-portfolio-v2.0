@@ -3,6 +3,7 @@ import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import GreenBolb from "./greenBolb.astro";
 
+
 interface Props {
     cover: ImageMetadata;
     coverType?: "image" | "green-blob";
@@ -45,7 +46,7 @@ const { cover, coverType, title } = Astro.props;
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        border-radius: 24px;
+        border-radius: 8px;
         background: #e6e6e6;
     }
 

@@ -17,6 +17,7 @@ interface Props {
 }
 
 const { archive } = Astro.props;
+const isExternalLink = (href: string) => /^https?:\/\//.test(href);
 ---
 
 <Masonry
@@ -42,7 +43,13 @@ const { archive } = Astro.props;
                         />
                     ) : (
                         item.href ? (
-                            <a class="archive-link" href={item.href} aria-label={item.title}>
+                            <a
+                                class="archive-link"
+                                href={item.href}
+                                aria-label={item.title}
+                                target={isExternalLink(item.href) ? "_blank" : undefined}
+                                rel={isExternalLink(item.href) ? "noopener noreferrer" : undefined}
+                            >
                                 <ArchiveCover
                                     cover={item.cover}
                                     coverType={item.coverType}
@@ -67,10 +74,10 @@ const { archive } = Astro.props;
 
 <style>
     :global(.archive-masonry) {
-        gap: 48px;
+        gap: 12px;
     }
     .archive-card {
-        margin-bottom: 48px;
+        margin-bottom: 12px;
     }
 
     .archive-link {
@@ -86,6 +93,6 @@ const { archive } = Astro.props;
     .placeholder {
         width: 100%;
         background: #e6e6e6;
-        border-radius: 24px;
+        border-radius: 8px;
     }
 </style>

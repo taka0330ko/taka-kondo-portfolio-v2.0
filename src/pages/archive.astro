@@ -3,6 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import RippleEffectMoon from "../components/webGL/RippleEffectMoon";
 import ArchiveMasonryGrid from "../components/layout/ArchiveMasonryGrid.astro";
 import { archive } from "../data/archiveList";
+import IconHover from "../components/ui/IconHover.astro";
+import { Github, Linkedin, Mail } from "@lucide/astro";
+import CopyEmail from "../components/ui/CopyEmail.astro";
 ---
 
 <Layout>
@@ -22,9 +25,42 @@ import { archive } from "../data/archiveList";
                 </div>
             </div>
         </section>
-        <section id="archive-main" class="mt-96 mx-6">
-            <ArchiveMasonryGrid archive={archive} />
+        <section id="archive-main" class="pt-64 md:pt-84 pb-24">
+            <div class="archive-main-inner">
+                <ArchiveMasonryGrid archive={archive} />
+                
+            </div>
         </section>
+        <section
+                    class="flex flex-col justify-center items-center my-40"
+                >
+                    <CopyEmail />
+                    <div class="icons flex items-center gap-10 mt-4">
+                        <IconHover
+                            href="https://github.com/taka0330ko"
+                            aria-label="GitHub profile"
+                            label="GitHub"
+                        >
+                            <Github />
+                        </IconHover>
+
+                        <IconHover
+                            href="https://www.linkedin.com/in/takanarikondo/"
+                            aria-label="LinkedIn profile"
+                            label="LinkedIn"
+                        >
+                            <Linkedin />
+                        </IconHover>
+
+                        <IconHover
+                            href="mailto:gtakanari0330@gmail.com"
+                            aria-label="Send email"
+                            label="Email"
+                        >
+                            <Mail />
+                        </IconHover>
+                    </div>
+                </section>
     </main>
 </Layout>
 
@@ -32,6 +68,23 @@ import { archive } from "../data/archiveList";
     #archive-hero {
         min-height: 100svh;
         overflow: hidden;
+    }
+
+    #archive-main {
+        background-color: transparent;
+        background-image: linear-gradient(
+            180deg,
+            var(--archive-gradient-edge) 0%,
+            var(--archive-gradient-center) 35%,
+            var(--archive-gradient-center) 75%,
+            var(--archive-gradient-edge) 100%
+        );
+    }
+
+    
+
+    .archive-main-inner {
+        padding-inline: 1.5rem;
     }
 
     .archive-hero-grid {

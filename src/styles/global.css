@@ -193,6 +193,8 @@
   --hover-bg:var(--brand-gray-600);
   --frame-bg-color:var(--brand-gray-800);
   --text-block-bg:var(--brand-gray-700);
+  --archive-gradient-edge:color-mix(in oklab, var(--bg-default) 50%, transparent);
+  --archive-gradient-center:rgba(255, 255, 255, 0.5);
   
   
   --frame-ring:var(--glass-ring);
@@ -216,6 +218,8 @@
   --frame-bg-color:var(--brand-gray-400);
   --text-block-bg:var(--brand-gray-200);
   --hover-bg:var(--brand-gray-400);
+  --archive-gradient-edge:color-mix(in oklab, var(--bg-default) 50%, transparent);
+  --archive-gradient-center:rgba(0, 0, 0, 0.5);
 
 }
 
