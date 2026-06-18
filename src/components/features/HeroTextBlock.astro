@@ -4,12 +4,36 @@ import IconHover from "../ui/IconHover.astro";
 import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-12 mt-16 md:mt-0 lg:mb-8">
-  <div class="flex flex-col md:gap-16 md:col-span-8">
-      <h1 class="hero-title md:order-2">
-        Taka is a <span class="text-accent">UI/UX Designer</span> who bridges <span class="text-accent">design</span> and <span class="text-accent">development.</span>
-      </h1>
-      <div class="icons flex items-center justify-center gap-10 mt-8 md:order-1 md:justify-start">
+<div class="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 mt-16 md:mt-28">
+  <div class="md:col-span-8 md:row-span-2 flex items-center">
+    <h1 class="hero-title">
+      Bridging<br />
+      design and development<br />
+      through collaboration to<br />
+      create user-centered products.
+    </h1>
+  </div>
+
+  <div class="icons md:col-start-10 md:col-span-3 md:row-start-1 flex items-center justify-center  gap-16 mt-8 md:mt-0">
+    <IconHover href="https://github.com/taka0330ko" aria-label="GitHub profile" label="GitHub">
+      <Github />
+    </IconHover>
+
+    <IconHover href="https://www.linkedin.com/in/takanarikondo/" aria-label="LinkedIn profile" label="LinkedIn">
+      <Linkedin />
+    </IconHover>
+
+    <IconHover href="mailto:gtakanari0330@gmail.com" aria-label="Send email" label="Email">
+      <Mail />
+    </IconHover>
+  </div>
+
+  <div class="md:col-start-10 md:col-span-3 md:row-start-2 flex justify-center  items-center mt-12 md:mt-0">
+    <GoToProjectsLinkBtn />
+  </div>
+</div>
+  <!-- <div class="mt-12 md:mt-auto flex w-full justify-center md:col-start-9 md:col-span-4 md:justify-end">
+    <div class="icons flex items-center justify-center gap-10 mt-8 md:justify-start">
       <IconHover
         href="https://github.com/taka0330ko"
         aria-label="GitHub profile"
@@ -34,12 +58,9 @@ import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
         <Mail />
       </IconHover>
     </div>
-  
-  </div>
-  <div class="mt-12 md:mt-auto flex w-full justify-center md:col-start-9 md:col-span-4 md:justify-end">
-    <GoToProjectsLinkBtn />
-  </div>
-</div>
+
+  </div> -->
+
 
 
 <script>

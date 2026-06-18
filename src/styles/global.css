@@ -263,7 +263,7 @@
   --text-display--line-height: 1.1;
   --text-display--letter-spacing: -0.02em;
 
-  --text-hero: clamp(2.5rem, 5vw, 4.5rem);
+  --text-hero: clamp(2.2rem, 5vw, 4.5rem);
   --text-hero--line-height: 1;
   --text-hero--letter-spacing: -0.03em;
 
