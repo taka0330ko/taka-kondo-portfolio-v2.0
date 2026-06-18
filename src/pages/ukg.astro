@@ -459,7 +459,7 @@ export const ukgSections = [
                         </div>
                         <div class="mt-46">
                             <div class="mx-auto mt-12 max-w-220">
-                                <h2 class="text-cs-h2 text-center">
+                                <h2 class="text-cs-h2">
                                     Existing User Journey Pain Points
                                 </h2>
                                 <p class="text-cs-body mt-4">
@@ -521,7 +521,7 @@ export const ukgSections = [
                                     />
                                 </div>
                             </div>
-                            <div class="mt-32">
+                            <div class="mt-48">
                                 <div class="mx-auto w-56">
                                     <Image
                                         class="w-full"
@@ -530,24 +530,25 @@ export const ukgSections = [
                                         loading="lazy"
                                     />
                                 </div>
-                                <div class="flex flex-col gap-4">
-                                    <h3 class="text-3xl md:text-4xl">
-                                        Research Findings
-                                    </h3>
-                                    <p>
-                                        Conducted a survey to further validate
+                                <div class="mx-auto mt-8 max-w-220">
+                                <h2 class="text-cs-h2">
+                                    Research Findings
+                                </h2>
+                                <p class="text-cs-body mt-4">
+                                    Conducted a survey to further validate
                                         existing pain points and identify strong
                                         user demand for better visibility into
                                         payroll records.
-                                    </p>
-                                </div>
+                                </p>
+                            </div>
+
                             </div>
 
                             <div
-                                class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 items-center mt-16"
+                                class="flex flex-col justify-center items-center gap-8 md:gap-16 md:flex-row mx-auto mt-16"
                             >
                                 <div
-                                    class="bg-frame border-gray-100 p-4 rounded-lg max-w-120 mx-auto mt-8 md:mt-0"
+                                    class="bg-frame border-gray-100 p-4 rounded-lg max-w-150 mt-8 md:mt-0"
                                 >
                                     <Image
                                         src={Survey}
@@ -556,7 +557,7 @@ export const ukgSections = [
                                     />
                                 </div>
 
-                                <div class="bg-text-block p-4 rounded-lg">
+                                <div class="bg-text-block p-4 rounded-lg max-w-100">
                                     <div
                                         class="flex items-center gap-4 justify-center mb-4"
                                     >
@@ -578,7 +579,7 @@ export const ukgSections = [
                                 </div>
                             </div>
                         </div>
-                        <p class="mt-16 text-xl">
+                        <p class="mt-16 text-cs-body mx-auto max-w-220">
                             Users lacked confidence in payroll calculations
                             because the system did not provide enough visibility
                             into payroll records and actual worked hours.
@@ -586,22 +587,18 @@ export const ukgSections = [
 
                         <div class="mt-32">
                             <div
-                                class="mb-16 flex flex-col gap-4 justify-center items-start"
+                                class="mb-16 flex flex-col gap-4 justify-center items-start max-w-220 mx-auto"
                             >
-                                <h3
-                                    class="inline-block font-light border-b-2 border-accent"
-                                >
-                                    GOAL
-                                </h3>
-                                <h3>
+                                <p class="caption-pill">DESIGN CHALLENGE</p>
+                                <h2 class="text-cs-h2">
                                     Improve payroll transparency by providing
                                     visibility into clock-in and clock-out
                                     records.
-                                </h3>
+                                </h2>
                             </div>
 
                             <div class="mt-16">
-                                <div class="max-w-100 mx-auto">
+                                <div class="max-w-150 mx-auto">
                                     <Image
                                         src={MidFide}
                                         alt="Mid-fidelity wireframe showing proposed design for payroll transparency feature"
@@ -610,18 +607,18 @@ export const ukgSections = [
                                 </div>
 
                                 <div class="mt-8">
-                                    <div class="flex gap-4">
-                                        <Image
+                                    <div class="flex gap-16 max-w-220 mx-auto items-center">
+                                       <Image
                                             src={GroceryStaff}
                                             alt=""
                                             class="w-32"
                                         />
-                                        <p class="mt-6 text-xl">
-                                            As an employee, I want to review my
-                                            clock-in and clock-out history so
-                                            that I can verify how my payroll
-                                            hours were calculated.
-                                        </p>
+                                            <p class="text-cs-body">
+                                                As an employee, I want to review my
+                                                clock-in and clock-out history so
+                                                that I can verify how my payroll
+                                                hours were calculated.
+                                            </p>
                                     </div>
                                 </div>
                             </div>
@@ -641,40 +638,41 @@ export const ukgSections = [
                             alt="UI Design illustration"
                             class="w-48 mx-auto my-16"
                         />
-                        <h3>
-                            Designing the UI Around UKG’s New Brand Identity
-                        </h3>
-                        <div
-                            class="flex items-center justify-center gap-4 md:gap-12 my-16"
-                        >
-                            <Image
-                                src={OldLogo}
-                                alt="Previous UKG logo design"
-                                class="w-24 object-contain md:w-40"
-                            />
-
-                            <Image
-                                src={Arrow}
-                                alt="Arrow showing logo evolution"
-                                class="w-8 opacity-50 md:w-16"
-                            />
-
-                            <Image
-                                src={NewLogo}
-                                alt="Redesigned UKG logo with updated visual identity"
-                                class="w-24 object-contain md:w-40"
-                            />
+                        <div class="max-w-220 mx-auto">
+                            <h2 class="text-cs-h2">
+                                Designing the UI Around UKG’s New Brand Identity
+                            </h2>
+                            
+                            <p class="mt-4">
+                                In 2025, UKG introduced a refreshed visual identity.
+                            </p>
+                            <p>
+                                The redesign explored how the updated visual
+                                identity could be applied more consistently across
+                                the payroll experience.
+                            </p>
+                            <div
+                                class="flex items-center justify-center gap-4 md:gap-12 mt-8"
+                            >
+                                <Image
+                                    src={OldLogo}
+                                    alt="Previous UKG logo design"
+                                    class="w-24 object-contain md:w-40"
+                                />
+                                <Image
+                                    src={Arrow}
+                                    alt="Arrow showing logo evolution"
+                                    class="w-8 opacity-50 md:w-16"
+                                />
+                                <Image
+                                    src={NewLogo}
+                                    alt="Redesigned UKG logo with updated visual identity"
+                                    class="w-24 object-contain md:w-40"
+                                />
+                            </div>
                         </div>
-                        <p>
-                            In 2025, UKG introduced a refreshed visual identity.
-                        </p>
-                        <p>
-                            The redesign explored how the updated visual
-                            identity could be applied more consistently across
-                            the payroll experience.
-                        </p>
 
-                        <div class="mt-16 grid gap-6">
+                        <div class="mx-auto max-w-220 mt-32 grid gap-6">
                             <p>
                                 Since the official design system was not
                                 publicly available, visual styles and UI
@@ -740,8 +738,8 @@ export const ukgSections = [
                             </div>
                         </div>
 
-                        <div class="mt-32">
-                            <h3 class="mb-4">Final design</h3>
+                        <div class="mt-32 mx-auto w-full">
+                            <h2 class="mb-4 text-cs-h2">Final design</h2>
                             <BeforeAfterToggle
                                 class="flex flex-col items-center h-150"
                             >
@@ -761,53 +759,56 @@ export const ukgSections = [
                                 </div>
                             </BeforeAfterToggle>
                         </div>
-                        <h3 class="mt-32">UI Detail</h3>
-                        <div class="mt-8 grid gap-16">
-                            <div
-                                class="grid gap-8 rounded-lg border border-white/40 bg-frame p-6 md:grid-cols-[1.4fr_1fr] md:items-center md:p-10"
-                            >
-                                <div>
-                                    <Image
-                                        src={CalendarUI}
-                                        alt="Final calendar UI showing an hours breakdown chart and weekly totals"
-                                        class="mx-auto w-full max-w-110 rounded-lg"
-                                    />
+                        <div class="mx-auto w-full">
+                            <h2 class="mt-32 text-cs-h2">UI Detail</h2>
+                            <div class="mt-8 grid gap-16">
+                                <div
+                                    class="grid gap-16 md:grid-cols-[1.4fr_1fr] md:items-center"
+                                >
+                                    <div class="bg-frame border-gray-100 p-4 rounded-lg">
+                                        <Image
+                                            src={CalendarUI}
+                                            alt="Final calendar UI showing an hours breakdown chart and weekly totals"
+                                            class="mx-auto w-full max-w-110 rounded-lg"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h4>Calendar</h4>
+                                        <p class="mt-6">
+                                            Using darker horizontal grid lines than
+                                            vertical lines improves readability and
+                                            makes time progression easier to scan.
+                                        </p>
+                                        <p class="mt-6">
+                                            Emphasizing date numbers makes dates
+                                            easier to identify at a glance.
+                                        </p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4>Calendar</h4>
-                                    <p class="mt-6">
-                                        Using darker horizontal grid lines than
-                                        vertical lines improves readability and
-                                        makes time progression easier to scan.
-                                    </p>
-                                    <p class="mt-6">
-                                        Emphasizing date numbers makes dates
-                                        easier to identify at a glance.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div
-                                class="grid gap-8 rounded-lg border border-white/40 bg-frame p-6 md:grid-cols-[1.4fr_1fr] md:items-center md:p-10"
-                            >
-                                <Image
-                                    src={WorkCellUI}
-                                    alt="Work cell UI showing time entry variations for regular hours, late clock-in, and overtime states"
-                                    class="mx-auto w-full max-w-130 rounded-lg bg-(--brand-gray-200)"
-                                />
-                                <div>
-                                    <h4>Work time cell</h4>
-                                    <p class="mt-6">
-                                        Representing clock-in records as a
-                                        top-to-bottom timeline creates a clearer
-                                        sense of chronological flow.
-                                    </p>
-                                    <p class="mt-6">
-                                        Timeline colors and work cell variations
-                                        improve visibility for attendance
-                                        anomalies, including lateness and
-                                        overtime.
-                                    </p>
+                                <div
+                                    class="grid gap-16 md:grid-cols-[1.4fr_1fr] md:items-center"
+                                >
+                                    <div class="bg-frame border-gray-100 p-4 rounded-lg">
+                                        <Image
+                                            src={WorkCellUI}
+                                            alt="Work cell UI showing time entry variations for regular hours, late clock-in, and overtime states"
+                                            class="mx-auto w-full max-w-130 rounded-lg bg-(--brand-gray-200)"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h4>Work time cell</h4>
+                                        <p class="mt-6">
+                                            Representing clock-in records as a
+                                            top-to-bottom timeline creates a clearer
+                                            sense of chronological flow.
+                                        </p>
+                                        <p class="mt-6">
+                                            Timeline colors and work cell variations
+                                            improve visibility for attendance
+                                            anomalies, including lateness and
+                                            overtime.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
