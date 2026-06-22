@@ -39,12 +39,12 @@ const { href, cover, coverVideo, title, description,summaryList, tag } =
                 {
                     coverVideo && (
                         <video
-                            src={coverVideo}
+                            data-src={coverVideo}
                             class="project-cover-video absolute rounded-sm inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 group-focus-visible:opacity-100"
                             muted
                             loop
                             playsinline
-                            preload="auto"
+                            preload="none"
                             aria-label={`${title} preview`}
                         />
                         <div class="project-progress-track rounded-b-sm absolute left-0 right-0 bottom-0 h-1.5 bg-gray-400/30 overflow-hidden z-30 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
@@ -171,6 +171,16 @@ const { href, cover, coverVideo, title, description,summaryList, tag } =
             );
             if (!video) return;
 
+            const loadVideo = () => {
+                if (video.src) return;
+
+                const videoSrc = video.dataset.src;
+                if (!videoSrc) return;
+
+                video.src = videoSrc;
+                video.load();
+            };
+
             const progressBar = card.querySelector<HTMLDivElement>(
                 ".project-progress-bar",
             );
@@ -190,6 +200,7 @@ const { href, cover, coverVideo, title, description,summaryList, tag } =
             };
 
             const playVideo = () => {
+                loadVideo();
                 video.play().catch(() => {});
 
                 if (progressAnimationId === null) {
@@ -200,7 +211,9 @@ const { href, cover, coverVideo, title, description,summaryList, tag } =
 
             const resetVideo = () => {
                 video.pause();
-                video.currentTime = 0;
+                if (video.src) {
+                    video.currentTime = 0;
+                }
 
                 if (progressAnimationId !== null) {
                     cancelAnimationFrame(progressAnimationId);
