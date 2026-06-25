@@ -6,7 +6,8 @@ import CopyEmail from '../components/ui/CopyEmail.astro';
 import { projects } from '../data/projects';
 import MainProjectCard from '../components/ui/MainProjectCard.astro';
 import IconHover from '../components/ui/IconHover.astro';
-import { Github, Linkedin, Mail } from '@lucide/astro';
+import { GithubIcon, LinkedinIcon } from '../data/icons';
+import { Mail } from '@lucide/astro';
 
 ---
 
@@ -44,7 +45,7 @@ import { Github, Linkedin, Mail } from '@lucide/astro';
         aria-label="GitHub profile"
         label="GitHub"
       >
-        <Github />
+        <GithubIcon />
       </IconHover>
 
       <IconHover
@@ -52,7 +53,7 @@ import { Github, Linkedin, Mail } from '@lucide/astro';
         aria-label="LinkedIn profile"
         label="LinkedIn"
       >
-        <Linkedin />
+        <LinkedinIcon />
       </IconHover>
 
       <IconHover

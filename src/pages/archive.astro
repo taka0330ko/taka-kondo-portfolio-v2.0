@@ -4,7 +4,8 @@ import RippleEffectMoon from "../components/webGL/RippleEffectMoon";
 import ArchiveMasonryGrid from "../components/layout/ArchiveMasonryGrid.astro";
 import { archive } from "../data/archiveList";
 import IconHover from "../components/ui/IconHover.astro";
-import { Github, Linkedin, Mail } from "@lucide/astro";
+import { GithubIcon, LinkedinIcon } from "../data/icons";
+import { Mail } from "@lucide/astro";
 import CopyEmail from "../components/ui/CopyEmail.astro";
 ---
 
@@ -41,7 +42,7 @@ import CopyEmail from "../components/ui/CopyEmail.astro";
                             aria-label="GitHub profile"
                             label="GitHub"
                         >
-                            <Github />
+                            <GithubIcon />
                         </IconHover>
 
                         <IconHover
@@ -49,7 +50,7 @@ import CopyEmail from "../components/ui/CopyEmail.astro";
                             aria-label="LinkedIn profile"
                             label="LinkedIn"
                         >
-                            <Linkedin />
+                            <LinkedinIcon />
                         </IconHover>
 
                         <IconHover

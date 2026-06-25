@@ -3,7 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import RippleEffectMyPic from "../components/webGL/RippleEffectMyPic";
 import CopyEmail from "../components/ui/CopyEmail.astro";
 import Gallery from "../components/ui/Gallery.astro";
-import { X, Github, Linkedin, Mail } from "@lucide/astro";
+import { GithubIcon, LinkedinIcon } from "../data/icons";
+import { X, Mail } from "@lucide/astro";
 import IconHover from "../components/ui/IconHover.astro";
 ---
 
@@ -82,7 +83,7 @@ import IconHover from "../components/ui/IconHover.astro";
         aria-label="GitHub profile"
         label="GitHub"
       >
-        <Github />
+        <GithubIcon />
       </IconHover>
 
       <IconHover
@@ -90,7 +91,7 @@ import IconHover from "../components/ui/IconHover.astro";
         aria-label="LinkedIn profile"
         label="LinkedIn"
       >
-        <Linkedin />
+        <LinkedinIcon />
       </IconHover>
 
       <IconHover

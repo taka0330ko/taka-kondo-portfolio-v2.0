@@ -1,5 +1,6 @@
 ---
-import { Github, Linkedin, Mail } from "@lucide/astro";
+import { GithubIcon, LinkedinIcon } from "../../data/icons";
+import { Mail } from "@lucide/astro";
 import IconHover from "../ui/IconHover.astro";
 const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
 const isAboutPage = pathname === "/about";
@@ -52,7 +53,7 @@ const isProjectsPage = [
       aria-label="GitHub profile"
       label="GitHub"
     >
-      <Github />
+      <GithubIcon />
     </IconHover>
 
     <IconHover
@@ -60,7 +61,7 @@ const isProjectsPage = [
       aria-label="LinkedIn profile"
       label="LinkedIn"
     >
-      <Linkedin />
+      <LinkedinIcon />
     </IconHover>
 
     <IconHover

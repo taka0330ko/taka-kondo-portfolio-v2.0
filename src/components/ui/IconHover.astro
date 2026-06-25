@@ -1,29 +1,29 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 interface Props extends HTMLAttributes<"a"> {
-    label: string
-    href: string
-} 
+  label: string;
+  href: string;
+}
 
-const {href, label, ...rest} = Astro.props
+const { href, label, ...rest } = Astro.props;
 ---
 
 <div class="group relative flex flex-col items-center">
-        <a
-        target="_blank"
-        href={href}
-        rel="noopener noreferrer"
-        {...rest}
-          class="icon-link-hover"
-        >
-          <span class="relative z-10 [&>svg]:size-6">
-              <slot />
-          </span>
-        </a>
-        <span class="icon-tooltip">
-          {label}
-        </span>
- </div>
+  <a
+    target="_blank"
+    href={href}
+    rel="noopener noreferrer"
+    {...rest}
+    class="icon-link-hover"
+  >
+    <span class="relative z-10 [&>svg]:size-6">
+      <slot />
+    </span>
+  </a>
+  <span class="icon-tooltip">
+    {label}
+  </span>
+</div>
 
 <!-- global.css  -->
 <!-- @layer components {
@@ -41,3 +41,81 @@ const {href, label, ...rest} = Astro.props
     border border-white/20 shadow-lg px-2 py-1 text-xs text-accent opacity-0 transition-all 
     duration-400 ease-[cubic-bezier(0.47,2,0.41,1.5)] group-hover:translate-y-1 group-hover:opacity-100}
 } -->
+
+<style>
+  /* Icon */
+  .icon-link-hover {
+    position: relative;
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 9999px;
+    color: var(--color-heading-default);
+    transition: color 300ms;
+  }
+
+  .icon-link-hover:hover {
+    color: var(--color-accent);
+  }
+
+  .icon-link-hover:focus-visible {
+    color: black;
+  }
+
+  .icon-link-hover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateY(-100%);
+    background: linear-gradient(
+      to bottom right,
+      rgb(255 255 255 / 0.3),
+      rgb(255 255 255 / 0)
+    );
+    backdrop-filter: blur(16px);
+    transition: transform 300ms;
+  }
+
+  .group:hover .icon-link-hover::after {
+    transform: translateY(0);
+  }
+
+  /* Tooltip */
+  .icon-tooltip {
+    pointer-events: none;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    z-index: 20;
+    margin-top: 0.5rem;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid rgb(255 255 255 / 0.2);
+    border-radius: 0.25rem;
+    background: linear-gradient(
+      to bottom right,
+      rgb(255 255 255 / 0.3),
+      rgb(255 255 255 / 0)
+    );
+    backdrop-filter: blur(16px);
+    box-shadow:
+      0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    line-height: 1rem;
+    opacity: 0;
+    transition:
+      transform 800ms var(--spring-strong),
+      opacity 800ms var(--spring-strong);
+  }
+
+  .group:hover .icon-tooltip {
+    transform: translate(-50%, 0.25rem);
+    opacity: 1;
+  }
+</style>

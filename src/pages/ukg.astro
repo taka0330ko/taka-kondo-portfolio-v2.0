@@ -1,43 +1,11 @@
 ---
-// Layout
+// Page layout
 import Layout from "../layouts/Layout.astro";
-import UKGVideo from "../assets/images/projects/UKG/videos/demo_video.mp4";
-import MyUKGPage from "../assets/images/projects/UKG/my-ukg-page.webp";
-import Survey from "../assets/images/projects/UKG/survey.webp";
-import UXResearchLayer from "../assets/images/projects/UKG/ux-research-layer.svg";
-import UIDesignLayer from "../assets/images/projects/UKG/uidesign-layer.svg";
-import InterviewLayer from "../assets/images/projects/UKG/interview-layer.svg";
-import FormLayer from "../assets/images/projects/UKG/form-layer.svg";
-import DevLayer from "../assets/images/projects/UKG/dev-layer.svg";
-import TestingLayer from "../assets/images/projects/UKG/testing-layer.svg";
-import Cashier from "../assets/images/projects/UKG/cashier.svg";
-import GroceryStaff from "../assets/images/projects/UKG/grocery.svg";
-import Schedule from "../assets/images/projects/UKG/schedle.webp";
-import TotalHours from "../assets/images/projects/UKG/total-hours.webp";
-import Arrow from "../assets/images/projects/UKG/arrow.svg";
-import SadIcon from "../assets/images/projects/UKG/sad.svg";
-import SmileIcon from "../assets/images/projects/UKG/smile.svg";
-import JourneyMap from "../assets/images/projects/UKG/journey-map.webp";
-// import LowFide from "../assets/images/projects/UKG/low-fide.webp";
-import MidFide from "../assets/images/projects/UKG/mid-fide.webp";
-import OldLogo from "../assets/images/projects/UKG/ukg-old-logo.png";
-import NewLogo from "../assets/images/projects/UKG/ukg-new-logo.png";
-import DevTool from "../assets/images/projects/UKG/dev-tool.webp";
-import PrimitiveColors from "../assets/images/projects/UKG/color-primitive.webp";
-import DesignSystem from "../assets/images/projects/UKG/design-system.webp";
-import PrimitiveTokens from "../assets/images/projects/UKG/primitive-tokens.webp";
-import SemanticTokens from "../assets/images/projects/UKG/semantic-tokens.webp";
-import ComponentsTokens from "../assets/images/projects/UKG/components-tokens.webp";
-import OriginalDesign from "../assets/images/projects/UKG/original-design.webp";
-import CalendarUI from "../assets/images/projects/UKG/calendar-ui.webp";
-import WorkCellUI from "../assets/images/projects/UKG/workcell-ui.webp";
-import HighFide from "../assets/images/projects/UKG/high-fide.webp";
-import Testers from "../assets/images/projects/UKG/testers.webp";
-import Image from "astro/components/Image.astro";
-import { ArrowUpRight, Notebook, NotebookPen, TrendingUp } from "@lucide/astro";
-import { postsDataCode } from "../data/ukgCode";
 
-// UI
+// Astro utilities
+import Image from "astro/components/Image.astro";
+
+// UI components
 import BreadCrumb from "../components/ui/BreadCrumb.astro";
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
 import Card from "../components/ui/Card.astro";
@@ -45,7 +13,56 @@ import CodeWindow from "../components/ui/CodeWindow.astro";
 import ProjectMainVideo from "../components/ui/ProjectMainVideo.astro";
 import GlassPill from "../components/ui/GlassPill.astro";
 import BeforeAfterToggle from "../components/ui/BeforeAfterToggle.astro";
+
+// Icons
+import { ArrowUpRight, Notebook, NotebookPen, TrendingUp } from "@lucide/astro";
+
+// Project data
+import { postsDataCode } from "../data/ukgCode";
 import { projects } from "../data/projects";
+
+// Hero media
+import UKGVideo from "../assets/images/projects/UKG/videos/demo_video.mp4";
+import MyUKGPage from "../assets/images/projects/UKG/my-ukg-page.webp";
+
+// Research media
+import Survey from "../assets/images/projects/UKG/survey.webp";
+import Cashier from "../assets/images/projects/UKG/cashier.svg";
+import GroceryStaff from "../assets/images/projects/UKG/grocery.svg";
+import Schedule from "../assets/images/projects/UKG/schedle.webp";
+import TotalHours from "../assets/images/projects/UKG/total-hours.webp";
+import SadIcon from "../assets/images/projects/UKG/sad.svg";
+import SmileIcon from "../assets/images/projects/UKG/smile.svg";
+import JourneyMap from "../assets/images/projects/UKG/journey-map.webp";
+
+// Process layer graphics
+import UXResearchLayer from "../assets/images/projects/UKG/ux-research-layer.svg";
+import UIDesignLayer from "../assets/images/projects/UKG/uidesign-layer.svg";
+import InterviewLayer from "../assets/images/projects/UKG/interview-layer.svg";
+import FormLayer from "../assets/images/projects/UKG/form-layer.svg";
+import DevLayer from "../assets/images/projects/UKG/dev-layer.svg";
+import TestingLayer from "../assets/images/projects/UKG/testing-layer.svg";
+import Arrow from "../assets/images/projects/UKG/arrow.svg";
+
+// Design process media
+import MidFide from "../assets/images/projects/UKG/mid-fide.webp";
+import OldLogo from "../assets/images/projects/UKG/ukg-old-logo.png";
+import NewLogo from "../assets/images/projects/UKG/ukg-new-logo.png";
+import DevTool from "../assets/images/projects/UKG/dev-tool.webp";
+
+// Design system media
+import PrimitiveColors from "../assets/images/projects/UKG/color-primitive.webp";
+import DesignSystem from "../assets/images/projects/UKG/design-system.webp";
+import PrimitiveTokens from "../assets/images/projects/UKG/primitive-tokens.webp";
+import SemanticTokens from "../assets/images/projects/UKG/semantic-tokens.webp";
+import ComponentsTokens from "../assets/images/projects/UKG/components-tokens.webp";
+
+// Prototype and testing media
+import OriginalDesign from "../assets/images/projects/UKG/original-design.webp";
+import CalendarUI from "../assets/images/projects/UKG/calendar-ui.webp";
+import WorkCellUI from "../assets/images/projects/UKG/workcell-ui.webp";
+import HighFide from "../assets/images/projects/UKG/high-fide.webp";
+import Testers from "../assets/images/projects/UKG/testers.webp";
 
 export const ukgSections = [
     { label: "Overview", href: "#Overview" },
@@ -60,7 +77,7 @@ export const ukgSections = [
 <Layout>
     <main class="mt-30 md:mt-40">
         <!-- Breadcrumb -->
-        <div class="ml-8">
+        <div class="container pl-8">
             <BreadCrumb>UKG Redesign Project</BreadCrumb>
         </div>
         <section id="hero" aria-labelledby="ukg-redesign-overview">
@@ -128,7 +145,7 @@ export const ukgSections = [
         </section>
         <!-- ====================== Case Study Start ====================== -->
         <section class="mt-32">
-            <div class="flex flex-col max-w-360 mx-auto lg:grid grid-cols-12">
+            <div class="container flex flex-col lg:grid grid-cols-12">
                 <aside
                     aria-label="Project section navigation"
                     class="col-start-1 col-span-2 p-4 sticky top-24 h-fit"
@@ -204,7 +221,7 @@ export const ukgSections = [
                                         class="ml-2 inline-block size-6 align-[-0.125em] text-foreground"
                                     />
                                 </h4>
-                                <p class="mt-5 text-cs-body leading-snug">
+                                <p class="mt-4 text-cs-body leading-snug">
                                     This project began with UX research focused
                                     on UKG Pro, which I actively use at my
                                     part-time workplace primarily to review pay
@@ -222,12 +239,12 @@ export const ukgSections = [
                                     <div>
                                         <p class="caption-pill">My Approach</p>
                                         <h3
-                                            class="mt-5 text-cs-h2 font-normal leading-tight"
+                                            class="mt-4 text-cs-h2 font-normal leading-tight"
                                         >
                                             A User-Centered Design Process
                                         </h3>
                                         <p
-                                            class="mt-5 text-cs-body leading-snug"
+                                            class="mt-4 text-cs-body leading-snug"
                                         >
                                             In this project, I first analyzed
                                             pain points through interviews and
@@ -970,7 +987,7 @@ export const ukgSections = [
 
                         <div class="mx-auto mt-12 max-w-220">
                             <p class="caption-pill">Findings</p>
-                            <div class="mt-8 max-w-300">
+                            <div class="mt-8 container">
                                 <h3 class="text-cs-h2 font-normal">
                                     Users became more confident verifying
                                     payroll information
@@ -983,7 +1000,7 @@ export const ukgSections = [
                                 </p>
                             </div>
 
-                            <div class="mt-20 max-w-300">
+                            <div class="mt-20 container">
                                 <h3 class="text-cs-h2 font-normal">
                                     Visibility of supporting information
                                     increased trust
@@ -1007,7 +1024,7 @@ export const ukgSections = [
                             class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
                         >
                         </div>
-                        <div class="mt-20 max-w-300">
+                        <div class="mt-20 container">
                             <h3 class="text-cs-h2 font-normal">
                                 Learning the Challenges of User-Centered Design
                             </h3>

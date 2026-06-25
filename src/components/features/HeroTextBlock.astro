@@ -1,5 +1,6 @@
 ---
-import { Github, Linkedin, Mail } from "@lucide/astro";
+import { Mail } from "@lucide/astro";
+import { GithubIcon, LinkedinIcon } from "../../data/icons";
 import IconHover from "../ui/IconHover.astro";
 import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
 ---
@@ -13,7 +14,7 @@ import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
       <span class="reveal-text">Development</span><br />
       through collaboration to<br />
       create
-      <span class="reveal-text">user-centered</span>
+      <span class="reveal-text">user-centred</span>
       products.
     </h1>
   </div>
@@ -26,7 +27,7 @@ import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
       aria-label="GitHub profile"
       label="GitHub"
     >
-      <Github />
+      <GithubIcon />
     </IconHover>
 
     <IconHover
@@ -34,7 +35,7 @@ import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
       aria-label="LinkedIn profile"
       label="LinkedIn"
     >
-      <Linkedin />
+      <LinkedinIcon />
     </IconHover>
 
     <IconHover
