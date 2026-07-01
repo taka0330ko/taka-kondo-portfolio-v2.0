@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react"
 import * as THREE from "three"
-import heroRingsDark from "../../assets/images/home/hero-rings-dark.svg"
-import heroRingsLight from "../../assets/images/home/hero-rings-light.svg"
+import heroRingsDark from "../../assets/images/home/ring-dark.svg"
+import heroRingsLight from "../../assets/images/home/ring-light.svg"
 
 function RippleEffectRings() {
   const threeHostRef = useRef<HTMLDivElement | null>(null)
@@ -40,6 +40,7 @@ function RippleEffectRings() {
     // --- Texture (switch by theme class) ---
     const textureLoader = new THREE.TextureLoader()
     let currentTexture: THREE.Texture | null = null
+    let textureReady = false
 
     const getTextureUrl = () => {
       const isLight = document.documentElement.classList.contains("light")
@@ -47,18 +48,26 @@ function RippleEffectRings() {
     }
 
     const applyTexture = (url: string) => {
-      const next = textureLoader.load(url)
-      next.minFilter = THREE.LinearFilter
-      next.magFilter = THREE.LinearFilter
-      next.generateMipmaps = false
-      if ("colorSpace" in next) {
-        next.colorSpace = THREE.SRGBColorSpace
-      }
+      textureReady = false
+      textureLoader.load(url, (next) => {
+        next.minFilter = THREE.LinearFilter
+        next.magFilter = THREE.LinearFilter
+        next.generateMipmaps = false
+        if ("colorSpace" in next) {
+          next.colorSpace = THREE.SRGBColorSpace
+        }
 
-      renderUniforms.uTexture.value = next
+        const image = next.image as HTMLImageElement
+        const textureWidth = image.naturalWidth || image.width || 1
+        const textureHeight = image.naturalHeight || image.height || 1
 
-      if (currentTexture) currentTexture.dispose()
-      currentTexture = next
+        renderUniforms.uTexture.value = next
+        renderUniforms.uTextureAspect.value = textureWidth / textureHeight
+        textureReady = true
+
+        if (currentTexture) currentTexture.dispose()
+        currentTexture = next
+      })
     }
 
     // --- Simulation targets (ping-pong) ---
@@ -95,13 +104,13 @@ function RippleEffectRings() {
 
       // Tunables
       uDelta: { value: 1.0 },
-      uRadiusPx: { value: 18.0 },
-      uInject: { value: 1.5 },
+      uRadiusPx: { value: 20.0 },
+      uInject: { value: 0.6 },
       uVelDamp: { value: 0.002 },
       uPressDamp: { value: 0.999 },
       uSpring: { value: 0.005 },
       // very subtle always-on movement
-      uAmbient: { value: 0.00018 },
+      uAmbient: { value: 0.00015 },
     }
 
     const simMaterial = new THREE.ShaderMaterial({
@@ -203,8 +212,10 @@ function RippleEffectRings() {
     const renderUniforms = {
       uTexture: { value: null as THREE.Texture | null },
       uSim: { value: rtA.texture as THREE.Texture },
-      uDistort: { value: 0.13 },
-      uGlint: { value: 0.15 },
+      uCanvasAspect: { value: 1.0 },
+      uTextureAspect: { value: 1.0 },
+      uDistort: { value: 0.10 },
+      uGlint: { value: 0.12 },
       uLightDir: { value: new THREE.Vector3(-3, 10, 3).normalize() },
     }
 
@@ -223,18 +234,44 @@ function RippleEffectRings() {
 
         uniform sampler2D uTexture;
         uniform sampler2D uSim;
+        uniform float uCanvasAspect;
+        uniform float uTextureAspect;
         uniform float uDistort;
         uniform float uGlint;
         uniform vec3 uLightDir;
 
         varying vec2 vUv;
 
+        vec2 containUv(vec2 uv, float canvasAspect, float textureAspect) {
+          vec2 scale = vec2(1.0);
+
+          if (canvasAspect > textureAspect) {
+            scale.x = textureAspect / canvasAspect;
+          } else {
+            scale.y = canvasAspect / textureAspect;
+          }
+
+          return (uv - 0.5) / scale + 0.5;
+        }
+
         void main() {
           vec2 uv = vUv;
           vec4 data = texture2D(uSim, uv);
 
           vec2 offset = data.zw * uDistort;
-          vec2 uvSample = clamp(uv + offset, vec2(0.001), vec2(0.999));
+          vec2 uvSample = containUv(uv + offset, uCanvasAspect, uTextureAspect);
+
+          if (
+            uvSample.x < 0.0 ||
+            uvSample.x > 1.0 ||
+            uvSample.y < 0.0 ||
+            uvSample.y > 1.0
+          ) {
+            gl_FragColor = vec4(0.0);
+            return;
+          }
+
+          uvSample = clamp(uvSample, vec2(0.001), vec2(0.999));
 
           vec4 color = texture2D(uTexture, uvSample);
 
@@ -279,6 +316,7 @@ function RippleEffectRings() {
       const w = Math.max(1, Math.floor(rect.width))
       const h = Math.max(1, Math.floor(rect.height))
       renderer.setSize(w, h, false)
+      renderUniforms.uCanvasAspect.value = w / h
     }
 
     setSize()
@@ -341,7 +379,9 @@ function RippleEffectRings() {
 
       // Render pass
       renderUniforms.uSim.value = rtA.texture
-      renderer.render(renderScene, camera)
+      if (textureReady) {
+        renderer.render(renderScene, camera)
+      }
 
       frame++
       raf = requestAnimationFrame(tick)
@@ -381,7 +421,7 @@ function RippleEffectRings() {
     <div>
       <div
         ref={threeHostRef}
-        className="relative w-82.5 md:w-100 lg:w-120 aspect-3/1
+        className="relative aspect-square w-60 md:w-120 
          select-none
     [-webkit-touch-callout:none] [-webkit-tap-highlight-color:transparent]"
         aria-label="hero rings"

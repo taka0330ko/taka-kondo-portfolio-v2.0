@@ -1,5 +1,4 @@
 ---
-import RippleEffectRings from '../components/webGL/RippleEffectRings';
 import Layout from '../layouts/Layout.astro';
 import HeroTextBlock from '../components/features/HeroTextBlock.astro';
 import CopyEmail from '../components/ui/CopyEmail.astro';
@@ -13,10 +12,7 @@ import { Mail } from '@lucide/astro';
 
 <Layout>
 <main>
-	<section class="mb-64 mt-6 mx-auto max-w-360 md:gap-0 px-4 md:px-8 flex flex-col ">
-      <div class="flex items-center justify-center mt-32 md:mt-42">
-        <RippleEffectRings client:visible />
-      </div>
+	<section class="home-hero">
       <HeroTextBlock/>
 	</section>
 
@@ -67,3 +63,17 @@ import { Mail } from '@lucide/astro';
   </section>
 </main>
 </Layout>
+
+<style>
+  .home-hero {
+    min-height: 100svh;
+    padding: 6rem 1rem 3rem;
+  }
+
+  @media (width >= 768px) {
+    .home-hero {
+      min-height: 100svh;
+      padding: 5.5rem 2rem 3rem;
+    }
+  }
+</style>

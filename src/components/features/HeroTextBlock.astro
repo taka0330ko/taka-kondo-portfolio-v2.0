@@ -1,12 +1,13 @@
 ---
+import RippleEffectRings from "../webGL/RippleEffectRings";
 import { Mail } from "@lucide/astro";
 import { GithubIcon, LinkedinIcon } from "../../data/icons";
 import IconHover from "../ui/IconHover.astro";
 import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 mt-16 md:mt-28">
-  <div class="md:col-span-8 md:row-span-2 flex items-center">
+<div class="home-hero-grid">
+  <div class="hero-copy">
     <h1 class="hero-title">
       Taka bridges<br />
       <span class="reveal-text">Design</span>
@@ -19,9 +20,11 @@ import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
     </h1>
   </div>
 
-  <div
-    class="icons md:col-start-10 md:col-span-3 md:row-start-1 flex items-center justify-center gap-16 mt-8 md:mt-0"
-  >
+  <div class="hero-rings" aria-hidden="true">
+    <RippleEffectRings client:visible />
+  </div>
+
+  <div class="hero-socials">
     <IconHover
       href="https://github.com/taka0330ko"
       aria-label="GitHub profile"
@@ -47,14 +50,53 @@ import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
     </IconHover>
   </div>
 
-  <div
-    class="md:col-start-10 md:col-span-3 md:row-start-2 flex justify-center items-center mt-12 md:mt-0"
-  >
+  <div class="hero-cta">
     <GoToProjectsLinkBtn />
   </div>
 </div>
 
 <style>
+  .home-hero-grid {
+    display: grid;
+    min-height: calc(100svh - 9rem);
+    max-width: 90rem;
+    margin-inline: auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "rings"
+      "copy"
+      "socials"
+      "cta";
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .hero-copy {
+    grid-area: copy;
+    min-width: 0;
+  }
+
+  .hero-rings {
+    grid-area: rings;
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .hero-socials {
+    grid-area: socials;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .hero-cta {
+    grid-area: cta;
+    display: flex;
+    justify-content: center;
+  }
+
   .reveal-text {
     background: linear-gradient(
       to right,
@@ -82,6 +124,42 @@ import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
     line-height: 1.12;
     overflow: visible;
   }
+
+  @media (width >= 768px) {
+    .home-hero-grid {
+      min-height: calc(100svh - 8.5rem);
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      grid-template-rows: minmax(20rem, 1fr) minmax(5rem, auto) minmax(6rem, auto);
+      grid-template-areas:
+        "copy copy copy copy copy copy copy rings rings rings rings rings"
+        "copy copy copy copy copy copy copy socials socials socials socials socials"
+        ". . . . . cta cta . . . . .";
+      column-gap: 1.5rem;
+      row-gap: clamp(1.5rem, 4vh, 3.5rem);
+    }
+
+    .hero-copy {
+      align-self: end;
+      padding-bottom: clamp(0rem, 5vh, 3rem);
+    }
+
+    .hero-title {
+      max-width: 56rem;
+    }
+
+    .hero-rings {
+      align-self: center;
+      justify-content: center;
+    }
+
+    .hero-socials {
+      align-self: start;
+    }
+
+    .hero-cta {
+      align-self: start;
+    }
+  }
 </style>
 
 <script>
@@ -89,7 +167,7 @@ import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
 
   const runHeroAnimation = () => {
     const textEl = document.querySelector(".hero-title");
-    const iconsEl = document.querySelector(".icons");
+    const iconsEl = document.querySelector(".hero-socials");
 
     if (!textEl) return;
 
