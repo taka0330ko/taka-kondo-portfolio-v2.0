@@ -27,20 +27,24 @@ const { href, cover, coverVideo, title, description,summaryList, tag } =
         class="gap-0 h-full rounded-sm mouse-track-card content transition duration-300 relative"
     >
         <div class="glow-effect"></div>
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
-            <figure class="relative overflow-hidden md:col-span-3">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+            <figure class="relative overflow-hidden lg:col-span-3">
                 <Image
                     src={cover}
                     alt={title}
                     width={cover.width}
                     height={cover.height}
-                    class="project-cover-image w-full h-full object-cover rounded-sm"
+                    class:list={[
+                        "project-cover-image w-full h-full object-cover rounded-sm transition-[filter] duration-500 ease-out",
+                        coverVideo &&
+                            "group-hover:blur-md group-focus-visible:blur-md",
+                    ]}
                 />
                 {
                     coverVideo && (
                         <video
                             data-src={coverVideo}
-                            class="project-cover-video absolute rounded-sm inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 group-focus-visible:opacity-100"
+                            class="project-cover-video absolute inset-0 m-auto max-w-[92%] max-h-[88%] rounded-sm opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 group-focus-visible:opacity-100"
                             muted
                             loop
                             playsinline
@@ -57,7 +61,7 @@ const { href, cover, coverVideo, title, description,summaryList, tag } =
                     </div>
   
             </figure>
-            <div class="flex flex-col justify-between my-auto md:col-start-4 md:col-span-2">
+            <div class="flex flex-col justify-between my-auto lg:col-start-4 lg:col-span-2">
                 <h2 class="p-4">{title}</h2>
                 <div class="flex flex-col">
                     <p class="px-4">{description}</p>
@@ -68,9 +72,9 @@ const { href, cover, coverVideo, title, description,summaryList, tag } =
                     </ul>
                 </div>
                 <div
-                    class="flex justify-end items-end gap-4 mt-16 md:mt-32 px-6 pb-6 transition-all duration-300 self-end group-hover:translate-x-1 group-hover:opacity-100"
+                    class="flex justify-end items-end gap-4 mt-16 lg:mt-32 px-6 pb-6 transition-all duration-300 self-end group-hover:translate-x-1 group-hover:opacity-100"
                 >
-                    <p>Click To Read More</p><Arrow class="text-foreground w-16 mb-2" />
+                    <p class="text-heading-default underline underline-offset-4 decoration-current">Click To Read More</p><Arrow class="text-foreground w-16" />
                 </div>
             </div>
         </div>
@@ -104,9 +108,12 @@ const { href, cover, coverVideo, title, description,summaryList, tag } =
         z-index: 10;
     }
 
-    .project-cover-image,
-    .project-cover-video {
+    .project-cover-image {
         aspect-ratio: 16 / 10;
+        display: block;
+    }
+
+    .project-cover-video {
         display: block;
     }
 
@@ -123,6 +130,10 @@ const { href, cover, coverVideo, title, description,summaryList, tag } =
     .project-card.is-video-active .project-cover-video,
     .project-card.is-video-active .project-progress-track {
         opacity: 1;
+    }
+
+    .project-card.is-video-active .project-cover-image {
+        filter: blur(12px);
     }
 </style>
 
