@@ -13,15 +13,21 @@ type Props = {
     description: string;
     summaryList: string[];
     tag: string;
+    isReady: boolean;
 };
 
-const { href, cover, coverVideo, title, description,summaryList, tag } =
+const { href, cover, coverVideo, title, description, summaryList, tag, isReady } =
     Astro.props as Props;
+const cardHref = isReady ? href : undefined;
 ---
 
 <a
-    href={href}
-    class="project-card grid h-full group"
+    href={cardHref}
+    aria-disabled={isReady ? undefined : "true"}
+    class:list={[
+        "project-card grid h-full group",
+        isReady ? "cursor-pointer" : "cursor-not-allowed",
+    ]}
 >
     <article
         class="gap-0 h-full rounded-sm mouse-track-card content transition duration-300 relative"
@@ -74,7 +80,10 @@ const { href, cover, coverVideo, title, description,summaryList, tag } =
                 <div
                     class="flex justify-end items-end gap-4 mt-16 lg:mt-32 px-6 pb-6 transition-all duration-300 self-end group-hover:translate-x-1 group-hover:opacity-100"
                 >
-                    <p class="text-heading-default underline underline-offset-4 decoration-current">Click To Read More</p><Arrow class="text-foreground w-16" />
+                {isReady? 
+                (<p class="text-heading-default underline underline-offset-4 decoration-current">Click To Read More</p><Arrow class="text-foreground w-16" />): 
+                (<p class="text-heading-default underline underline-offset-4 decoration-current">Coming Soon ...</p>)}
+                 
                 </div>
             </div>
         </div>
