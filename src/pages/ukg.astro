@@ -1089,6 +1089,10 @@ export const ukgSections = [
     gsap.registerPlugin(ScrollTrigger);
 
     document.addEventListener("astro:page-load", () => {
+        // This script stays loaded across ClientRouter navigations,
+        // so bail out on every page except this one.
+        if (window.location.pathname.replace(/\/$/, "") !== "/ukg") return;
+
         const refresh = () =>
             requestAnimationFrame(() => ScrollTrigger.refresh());
 
