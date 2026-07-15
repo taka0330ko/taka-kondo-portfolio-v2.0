@@ -323,6 +323,35 @@ function RippleEffectMoon() {
         renderer.domElement.addEventListener("pointercancel", onPointerLeave)
       }
 
+      // Touch devices: listen on window with passive listeners so scrolling
+      // is never blocked; ripples appear when the finger crosses the canvas
+      const onTouchMove = (event: TouchEvent) => {
+        const touch = event.touches[0]
+        if (!touch) return
+
+        const rect = renderer.domElement.getBoundingClientRect()
+        const x = (touch.clientX - rect.left) / rect.width
+        const y = (touch.clientY - rect.top) / rect.height
+
+        if (x < 0 || x > 1 || y < 0 || y > 1) {
+          pointerTarget = 0
+          return
+        }
+
+        mouse01.set(x, 1 - y)
+        pointerTarget = 1
+        lastPointerMove = performance.now()
+      }
+
+      const onTouchEnd = () => {
+        pointerTarget = 0
+      }
+
+      window.addEventListener("touchstart", onTouchMove, { passive: true })
+      window.addEventListener("touchmove", onTouchMove, { passive: true })
+      window.addEventListener("touchend", onTouchEnd)
+      window.addEventListener("touchcancel", onTouchEnd)
+
       let frame = 0
       let animationFrame = 0
       let isVisible = true
@@ -375,6 +404,11 @@ function RippleEffectMoon() {
           renderer.domElement.removeEventListener("pointerleave", onPointerLeave)
           renderer.domElement.removeEventListener("pointercancel", onPointerLeave)
         }
+
+        window.removeEventListener("touchstart", onTouchMove)
+        window.removeEventListener("touchmove", onTouchMove)
+        window.removeEventListener("touchend", onTouchEnd)
+        window.removeEventListener("touchcancel", onTouchEnd)
 
         geometry.dispose()
         simMaterial.dispose()
