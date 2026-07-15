@@ -222,6 +222,10 @@
     text-rendering: optimizeLegibility;
   }
 
+  ::selection {
+    background-color: var(--five-lines);
+  }
+
   /* Reset */
 
   h1,
@@ -283,6 +287,12 @@
 
   a {
     text-decoration: none;
+    
+  }
+
+  a,
+  button{
+      -webkit-tap-highlight-color: var(--five-lines);
   }
 
   button,
