@@ -1,17 +1,21 @@
 import type { ImageMetadata } from "astro";
 import BillowThumbnail from "../assets/images/projects/billow/billow-tumbnail.png";
-import BillowVideo from "../assets/images/projects/billow/videos/billow-cover-video.mp4";
+import BillowVideo from "../assets/images/projects/billow/videos/billow-cover-video.webm";
+import BillowVideoMp4 from "../assets/images/projects/billow/videos/billow-cover-video.mp4";
 import XENOThumbnail from "../assets/images/projects/xeno/xeno-thumbnail.jpg";
 import StoneAndHoneyThumbnail from "../assets/images/projects/stone-and-honey/stone-honey-thumbnail.jpg";
 import TastebudsThumbnail from "../assets/images/projects/tastebuds/foodblog-tumbnail.png";
-import TastebudsVideo from "../assets/images/projects/tastebuds/videos/foodblog-cover-video.mp4";
+import TastebudsVideo from "../assets/images/projects/tastebuds/videos/foodblog-cover-video.webm";
+import TastebudsVideoMp4 from "../assets/images/projects/tastebuds/videos/foodblog-cover-video.mp4";
 import StoreMapNavigationThumbNailInProgress from "../assets/images/projects/store-navigation/store-navigation-thimbnail-coming-soon.webp"
 import UKGThumbnail from "../assets/images/projects/UKG/UKG-thumbnail.webp";
-import UKGVideo from "../assets/images/projects/UKG/videos/main-thumbnail.mp4";
+import UKGVideo from "../assets/images/projects/UKG/videos/main-thumbnail.webm";
+import UKGVideoMp4 from "../assets/images/projects/UKG/videos/main-thumbnail.mp4";
 
 type Project = {
   href: string;
   coverVideo: string | undefined;
+  coverVideoFallback?: string;
   cover: ImageMetadata;
   title: string;
   description: string;
@@ -25,6 +29,7 @@ export const projects: Project[] = [
     href: "/ukg",
     cover: UKGThumbnail,
     coverVideo: UKGVideo,
+    coverVideoFallback: UKGVideoMp4,
     title: "UKG Payroll Verification Redesign",
     description:
       "Researched and redesigned the payroll verification experience for UKG, based on real user interviews and feedback",
@@ -40,6 +45,7 @@ export const projects: Project[] = [
     href: "/billow",
     cover: BillowThumbnail,
     coverVideo: BillowVideo,
+    coverVideoFallback: BillowVideoMp4,
     title: "Billow",
     description: "AI chat–based dashboard built with Next.js, focusing on conversational UI and chat interaction design.",
     summaryList: [
@@ -55,6 +61,7 @@ export const projects: Project[] = [
     href: "/tastebuds",
     cover: TastebudsThumbnail,
     coverVideo: TastebudsVideo,
+    coverVideoFallback: TastebudsVideoMp4,
     title: "Tastebuds - Food Blog Site",
     description:
       "Food blog project documenting my JavaScript journey from a Vanilla JS MVP to React and Next.js.",

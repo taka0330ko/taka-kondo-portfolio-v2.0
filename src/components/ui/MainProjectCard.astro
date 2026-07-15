@@ -9,6 +9,7 @@ type Props = {
     href: string;
     cover: ImageMetadata;
     coverVideo?: string;
+    coverVideoFallback?: string;
     title: string;
     description: string;
     summaryList: string[];
@@ -16,7 +17,7 @@ type Props = {
     isReady: boolean;
 };
 
-const { href, cover, coverVideo, title, description, summaryList, tag, isReady } =
+const { href, cover, coverVideo, coverVideoFallback, title, description, summaryList, tag, isReady } =
     Astro.props as Props;
 const cardHref = isReady ? href : undefined;
 ---
@@ -50,6 +51,7 @@ const cardHref = isReady ? href : undefined;
                     coverVideo && (
                         <video
                             data-src={coverVideo}
+                            data-fallback-src={coverVideoFallback}
                             class="project-cover-video absolute inset-0 m-auto max-w-[92%] max-h-[88%] rounded-sm opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 group-focus-visible:opacity-100"
                             muted
                             loop
@@ -194,7 +196,14 @@ const cardHref = isReady ? href : undefined;
             const loadVideo = () => {
                 if (video.src) return;
 
-                const videoSrc = video.dataset.src;
+                let videoSrc = video.dataset.src;
+                if (
+                    videoSrc?.endsWith(".webm") &&
+                    !video.canPlayType('video/webm; codecs="vp9"') &&
+                    video.dataset.fallbackSrc
+                ) {
+                    videoSrc = video.dataset.fallbackSrc;
+                }
                 if (!videoSrc) return;
 
                 video.src = videoSrc;

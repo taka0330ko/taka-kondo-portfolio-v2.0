@@ -22,7 +22,9 @@ import { postsDataCode } from "../data/ukgCode";
 import { projects } from "../data/projects";
 
 // Hero media
-import UKGVideo from "../assets/images/projects/UKG/videos/demo_video.mp4";
+import UKGVideo from "../assets/images/projects/UKG/videos/demo_video.webm";
+import UKGVideoMp4 from "../assets/images/projects/UKG/videos/demo_video.mp4";
+import UKGVideoPoster from "../assets/images/projects/UKG/videos/demo_video-poster.webp";
 import MyUKGPage from "../assets/images/projects/UKG/my-ukg-page.webp";
 
 // Research media
@@ -139,7 +141,7 @@ export const ukgSections = [
                     </div>
                 </dl>
                 <div class="order-2 md:order-3 col-span-12">
-                    <ProjectMainVideo src={UKGVideo} />
+                    <ProjectMainVideo src={UKGVideo} fallbackSrc={UKGVideoMp4} poster={UKGVideoPoster.src} />
                 </div>
             </div>
         </section>
@@ -894,7 +896,7 @@ export const ukgSections = [
                                 </GlassPill>
                             </div>
                             <div class="mt-6 overflow-hidden rounded-lg">
-                                <ProjectMainVideo src={UKGVideo} />
+                                <ProjectMainVideo src={UKGVideo} fallbackSrc={UKGVideoMp4} poster={UKGVideoPoster.src} />
                             </div>
                         </div>
                     </section>

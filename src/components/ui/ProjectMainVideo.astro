@@ -1,17 +1,21 @@
 ---
 import { Pause, Play } from "@lucide/astro";
 
-const { src } = Astro.props;
+const { src, fallbackSrc, poster } = Astro.props;
+const isWebm = typeof src === "string" && src.endsWith(".webm");
 ---
 
 <div class="relative col-span-12" data-project-video>
                     <video
-                        class="h-auto w-full aspect-video object-cover"
-                        src={src}
+                        class="h-auto w-full aspect-video bg-text-block object-cover"
+                        poster={poster}
                         autoplay
                         loop
                         muted
-                        playsinline></video>
+                        playsinline>
+                        <source src={src} type={isWebm ? "video/webm" : "video/mp4"} />
+                        {fallbackSrc && <source src={fallbackSrc} type="video/mp4" />}
+                    </video>
                     <button
                         class="absolute cursor-pointer bottom-4 right-4 grid size-12 place-items-center bg-accent/80 text-white backdrop-blur-sm transition hover:bg-accent/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:bottom-8 md:right-8"
                         type="button"

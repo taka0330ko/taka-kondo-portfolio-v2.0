@@ -18,8 +18,11 @@ import Diagram from "../assets/images/projects/billow/diagram.png";
 import Diagram_SoC from "../assets/images/projects/billow/diagram-soc.png";
 
 //Videos
-import CoverVideo from "../assets/images/projects/billow/videos/billow-cover-video.mp4";
-import MVPVideo from "../assets/images/projects/billow/videos/billow-mvp.mp4";
+import CoverVideo from "../assets/images/projects/billow/videos/billow-cover-video.webm";
+import CoverVideoMp4 from "../assets/images/projects/billow/videos/billow-cover-video.mp4";
+import CoverVideoPoster from "../assets/images/projects/billow/videos/billow-cover-video-poster.webp";
+import MVPVideo from "../assets/images/projects/billow/videos/billow-mvp.webm";
+import MVPVideoMp4 from "../assets/images/projects/billow/videos/billow-mvp.mp4";
 
 // Icon
 import { ArrowUpRight, TriangleAlert } from "@lucide/astro";
@@ -148,7 +151,7 @@ export const cardContents = [
                     </div>
                 </dl>
                 <div class="order-2 md:order-3 col-span-12">
-                    <ProjectMainVideo src={CoverVideo} />
+                    <ProjectMainVideo src={CoverVideo} fallbackSrc={CoverVideoMp4} poster={CoverVideoPoster.src} />
                 </div>
             </div>
         </section>
@@ -224,11 +227,13 @@ export const cardContents = [
                                 <div class="flex justify-center">
                                     <video
                                         class="py-16 w-150"
-                                        src={MVPVideo}
                                         autoplay
                                         loop
                                         muted
-                                        playsinline></video>
+                                        playsinline>
+                                        <source src={MVPVideo} type="video/webm" />
+                                        <source src={MVPVideoMp4} type="video/mp4" />
+                                    </video>
                                 </div>
                                 <div class="flex flex-col gap-4 items-center">
                                     <span class="flex items-center gap-2">
