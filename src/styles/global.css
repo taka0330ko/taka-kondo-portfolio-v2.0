@@ -179,6 +179,10 @@
   --text-cs-h2: clamp(1.75rem, 3.5vw, 2rem);
   /* 28px → 32px */
 
+  /* H3 */
+  --text-cs-h3: clamp(1.375rem, 2.2vw, 1.625rem);
+  /* 24px → 28px */
+
   /* Section Label */
   --text-cs-section: clamp(1.25rem, 3vw, 1.75rem);
   /* 20px → 28px */
@@ -287,12 +291,12 @@
 
   a {
     text-decoration: none;
-    
+
   }
 
   a,
-  button{
-      -webkit-tap-highlight-color: var(--five-lines);
+  button {
+    -webkit-tap-highlight-color: var(--five-lines);
   }
 
   button,
@@ -330,7 +334,7 @@
   }
 
   .step {
-    @apply grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-[3rem_minmax(0,1fr)]
+    @apply grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-[3rem_minmax(0,_1fr)]
   }
 
   .step::after {

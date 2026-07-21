@@ -1,0 +1,253 @@
+---
+// Page layout
+import Layout from "../layouts/Layout.astro";
+
+// Astro utilities
+import Image from "astro/components/Image.astro";
+
+// UI components
+import BreadCrumb from "../components/ui/BreadCrumb.astro";
+import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
+import ProjectMainVideo from "../components/ui/ProjectMainVideo.astro";
+import GlassPill from "../components/ui/GlassPill.astro";
+
+// Icons
+import { ArrowUpRight } from "@lucide/astro";
+
+// Hero media
+import StoreMapVideo from "../assets/images/projects/store-navigation/videos/store-map-thumbnail.webm";
+import StoreMapPoster from "../assets/images/projects/store-navigation/store-navigation-thimbnail-coming-soon.webp";
+
+// Overview media
+import StoreMapModel from "../assets/images/projects/store-navigation/store-map-model.webp";
+import Walmart from "../assets/images/projects/store-navigation/walmart.webp";
+import ClaudeFigma from "../assets/images/projects/store-navigation/claude-figma.webp";
+import ReactNative from "../assets/images/projects/store-navigation/react-native.webp";
+
+export const storeMapSections = [
+    { label: "Overview", href: "#Overview" },
+    { label: "Context & Opportunity", href: "#Context-opportunity" },
+    { label: "Brand Guidelines", href: "#Brand-guidelines" },
+    { label: "AI Assisted Workflow", href: "#AI-assisted-workflow" },
+    { label: "User Testing", href: "#User-testing" },
+    { label: "Reflection", href: "#Reflection" },
+];
+---
+
+<Layout>
+    <main class="mt-30 md:mt-40">
+        <!-- Breadcrumb -->
+        <div class="container pl-8">
+            <BreadCrumb>Grocery Store Map Navigation</BreadCrumb>
+        </div>
+        <section id="hero" aria-labelledby="store-map-overview">
+            <div class="grid grid-cols-12 grid-container items-start">
+                <div class="col-span-8">
+                    <h1 class="mt-8">
+                        Why is finding a product in a supermarket still so
+                        difficult?
+                    </h1>
+                    <p class="mt-8">
+                        Rethinking grocery navigation with interactive maps and
+                        intelligent routing.
+                    </p>
+                    <div class="mt-8 md:my-8">
+                        <GlassPill
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Open Grocery Store Map Navigation prototype in a new tab"
+                            href="#"
+                        >
+                            <ArrowUpRight
+                                slot="after"
+                                aria-hidden="true"
+                                focusable="false"
+                            />
+                            Prototype
+                            <span class="sr-only">(opens in a new tab)</span>
+                        </GlassPill>
+                    </div>
+                </div>
+                <dl
+                    class="order-3 md:order-2 grid gap-4 border-l border-accent pl-6 md:min-w-64 md:col-span-4"
+                >
+                    <div class="grid gap-1">
+                        <dt class="text-caption uppercase tracking-wide">
+                            Tool
+                        </dt>
+                        <dd class="font-medium text-body text-heading-default">
+                            Figma + MCP / Claude code
+                        </dd>
+                        <dd class="font-medium text-body text-heading-default">
+                            React Native / Express API / MySQL
+                        </dd>
+                    </div>
+                    <div class="grid gap-1">
+                        <dt
+                            class="text-caption uppercase tracking-wide text-body-default"
+                        >
+                            Role
+                        </dt>
+                        <dd class="text-body font-medium text-heading-default">
+                            UX Research / UI Design / Frontend Development
+                        </dd>
+                    </div>
+                    <div class="grid gap-1">
+                        <dt
+                            class="text-caption uppercase tracking-wide text-body-default"
+                        >
+                            Timeline
+                        </dt>
+                        <dd class="text-body font-medium text-heading-default">
+                            One month, Jun - Jul, 2026
+                        </dd>
+                    </div>
+                </dl>
+                <div class="order-2 md:order-3 col-span-12">
+                    <ProjectMainVideo
+                        src={StoreMapVideo}
+                        poster={StoreMapPoster.src}
+                    />
+                </div>
+            </div>
+        </section>
+        <!-- ====================== Case Study Start ====================== -->
+        <section class="mt-32">
+            <div class="container flex flex-col lg:grid grid-cols-12">
+                <aside
+                    aria-label="Project section navigation"
+                    class="col-start-1 col-span-2 p-4 sticky top-24 h-fit"
+                >
+                    <CaseStudySidebar
+                        items={storeMapSections}
+                        className="col-start-1 col-span-2"
+                    />
+                </aside>
+                <div class="px-4 md:px-8 md:col-start-3 col-span-10">
+                    <!-- Overview Section -->
+                    <section id="Overview" class="mt-16">
+                        <h2 class="text-cs-section font-medium">
+                            <span class="heading-accent-bar">Overview</span>
+                        </h2>
+                        <div
+                            class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
+                        >
+                        </div>
+
+                        <div class="mt-12">
+                            <div class="max-w-240 mx-auto">
+                                <p class="caption-pill">About this project</p>
+                                <h3
+                                    class="mt-2 max-w-5xl text-cs-h1 font-normal leading-tight"
+                                >
+                                    Designing a seamless grocery shopping
+                                    experience by combining product search with
+                                    in-store navigation.
+                                </h3>
+                            </div>
+
+                            <div class="mt-16 flex justify-center">
+                                <Image
+                                    src={StoreMapModel}
+                                    alt="Hand holding a phone showing the store map app overlaid on a grocery aisle, with pins marking product locations on the shelves"
+                                    class="w-full max-w-160 rounded-lg"
+                                />
+                            </div>
+
+                            <div class="mt-28 max-w-240 mx-auto">
+                                <p class="caption-pill">Main objective</p>
+                                <h2
+                                    class="mt-2 max-w-220 text-cs-h2 leading-snug"
+                                >
+                                    Less Wandering. More Shopping.
+                                </h2>
+                                <p class="text-cs-body mt-2">
+                                    Help shoppers quickly locate products in
+                                    large supermarkets, reducing unnecessary
+                                    walking and frustration throughout the
+                                    shopping experience.
+                                </p>
+                            </div>
+
+                            <div class="mt-28 max-w-240 mx-auto">
+                                <p class="caption-pill">Project highlight</p>
+                                <h2
+                                    class="mt-5 max-w-220 text-cs-h2 leading-snug"
+                                >
+                                    Design × AI Tools × Development
+                                </h2>
+                                <p>
+                                    Designed, built, and validated an
+                                    interactive grocery navigation experience
+                                    through user-centered design, AI-assisted
+                                    workflows, and React Native development.
+                                </p>
+                            </div>
+
+                            <div class="mt-24 grid gap-12 md:grid-cols-3">
+                                <div class="grid gap-6 md:first:pl-0">
+                                    <h4 class="text-cs-h3 flex gap-4">
+                                        <span class="feature-number">01</span>
+                                        <span class="text-cs-h3">Design Constraints</span>
+                                    </h4>
+                                    <div class="grid grid-cols-5 md:grid-cols-1">
+                                        <Image
+                                            src={Walmart}
+                                            alt="Walmart brand mark"
+                                            class="h-34 w-auto object-contain mx-auto col-span-2"
+                                        />
+                                        <p class="text-cs-body col-span-3 place-content-center">
+                                            Designed an additional Walmart app
+                                            feature to gain experience working
+                                            within an enterprise design system.
+                                        </p>
+                                    </div>
+                                    <!-- <a
+                                        href="https://brandcenter.walmart.com/brand"
+                                        >https://brandcenter.walmart.com/brand</a
+                                    > -->
+                                </div>
+                                <div class="grid gap-6 md:pl-8">
+                                    <h4 class="text-cs-h3 flex gap-4">
+                                        <span class="feature-number">02</span>
+                                        <span class="text-cs-h3"> AI Assisted Workflow</span>
+                                    </h4>
+                                    <div class="grid grid-cols-5 md:grid-cols-1">
+                                        <Image
+                                            src={ClaudeFigma}
+                                            alt="Claude Code and Figma MCP icons"
+                                            class="h-34 w-auto object-contain mx-auto col-span-2"
+                                        />
+                                        <p class="text-cs-body col-span-3 place-content-center">
+                                            Built an AI-assisted design-to-code
+                                            workflow using Claude Code and
+                                            Figma MCP.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="grid gap-6 md:pl-8">
+                                    <h4 class="text-cs-h3 flex gap-4">
+                                        <span class="feature-number">03</span>
+                                        <span class="text-cs-h3">Interactive Prototype</span>
+                                    </h4>
+                                    <div class="grid grid-cols-5 md:grid-cols-1">
+                                        <Image
+                                            src={ReactNative}
+                                            alt="React Native logo"
+                                            class="h-34 w-auto object-contain mx-auto col-span-2"
+                                        />
+                                        <p class="text-cs-body col-span-3 place-content-center">
+                                            Developed an interactive React
+                                            Native prototype for usability
+                                            testing.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>

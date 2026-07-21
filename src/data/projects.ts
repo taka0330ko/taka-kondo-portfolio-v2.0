@@ -7,7 +7,8 @@ import StoneAndHoneyThumbnail from "../assets/images/projects/stone-and-honey/st
 import TastebudsThumbnail from "../assets/images/projects/tastebuds/foodblog-tumbnail.png";
 import TastebudsVideo from "../assets/images/projects/tastebuds/videos/foodblog-cover-video.webm";
 import TastebudsVideoMp4 from "../assets/images/projects/tastebuds/videos/foodblog-cover-video.mp4";
-import StoreMapNavigationThumbNailInProgress from "../assets/images/projects/store-navigation/store-navigation-thimbnail-coming-soon.webp"
+import StoreMapNavigationThumbNailInProgress from "../assets/images/projects/store-navigation/store-navigation-thimbnail-coming-soon.webp";
+import StoreMapNavigationVideo from "../assets/images/projects/store-navigation/videos/store-map-thumbnail.webm"
 import UKGThumbnail from "../assets/images/projects/UKG/UKG-thumbnail.webp";
 import UKGVideo from "../assets/images/projects/UKG/videos/main-thumbnail.webm";
 import UKGVideoMp4 from "../assets/images/projects/UKG/videos/main-thumbnail.mp4";
@@ -25,6 +26,21 @@ type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    href: "/store-map",
+    cover: StoreMapNavigationThumbNailInProgress,
+    coverVideo: StoreMapNavigationVideo,
+    title: "Grocery Store Map Navigation",
+    description:
+      "Mobile app concept that helps shoppers locate products and navigate grocery stores through an interactive indoor map.",
+    summaryList: [
+      "Designed the interface within a strict enterprise design system and established reusable design tokens",
+      "Built a scalable design-to-code workflow using Figma MCP and Claude to automate SVG map naming and ID generation",
+      "Developed an interactive React Native prototype to validate navigation and product discovery flows"
+    ],
+    tag: "Product Design",
+    isReady: true,
+  },
   {
     href: "/ukg",
     cover: UKGThumbnail,
@@ -73,22 +89,7 @@ export const projects: Project[] = [
     isReady: true,
 
   },
-  {
-    href: "/",
-    cover: StoreMapNavigationThumbNailInProgress,
-    coverVideo: undefined,
-    title: "Grocery Store Map Navigation",
-    description:
-      "Mobile app concept that helps shoppers locate products and navigate grocery stores through an interactive indoor map.",
-    summaryList: [
-      "Designed the interface within a strict enterprise design system and established reusable design tokens",
-      "Built a scalable design-to-code workflow using Figma MCP and Claude to automate SVG map naming and ID generation",
-      "Developed an interactive React Native prototype to validate navigation and product discovery flows"
-    ],
-    tag: "Product Design",
-    isReady: false,
-
-  },
+  
 
   // {
   //   href: "/xeno",
