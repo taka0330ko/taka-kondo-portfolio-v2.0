@@ -24,6 +24,11 @@ import Walmart from "../assets/images/projects/store-navigation/walmart.webp";
 import ClaudeFigma from "../assets/images/projects/store-navigation/claude-figma.webp";
 import ReactNative from "../assets/images/projects/store-navigation/react-native.webp";
 
+// Context & Opportunity media
+import IconCustomer from "../assets/images/projects/store-navigation/icon-customer.svg";
+import IconStaff from "../assets/images/projects/store-navigation/icon-staff.svg";
+import UserFlow from "../assets/images/projects/store-navigation/userflow.webp"
+
 export const storeMapSections = [
     { label: "Overview", href: "#Overview" },
     { label: "Context & Opportunity", href: "#Context-opportunity" },
@@ -172,11 +177,11 @@ export const storeMapSections = [
                             <div class="mt-28 max-w-240 mx-auto">
                                 <p class="caption-pill">Project highlight</p>
                                 <h2
-                                    class="mt-5 max-w-220 text-cs-h2 leading-snug"
+                                    class="mt-2 max-w-220 text-cs-h2 leading-snug"
                                 >
                                     Design × AI Tools × Development
                                 </h2>
-                                <p>
+                                <p class="text-cs-body mt-2">
                                     Designed, built, and validated an
                                     interactive grocery navigation experience
                                     through user-centered design, AI-assisted
@@ -243,6 +248,133 @@ export const storeMapSections = [
                                         </p>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Context & Opportunity Section -->
+                    <section id="Context-opportunity" class="mt-32">
+                        <h2 class="text-cs-section font-medium">
+                            <span class="heading-accent-bar"
+                                >Context & Opportunity</span
+                            >
+                        </h2>
+                        <div
+                            class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
+                        >
+                        </div>
+
+                        <div class="mt-16 max-w-240 mx-auto">
+                            <p class="caption-pill">Background</p>
+                            <h3
+                                class="mt-4 max-w-4xl text-cs-h1 font-normal leading-tight"
+                            >
+                                A problem I witnessed every day while working
+                                at a supermarket
+                            </h3>
+                            <p class="mt-4 text-cs-body leading-snug">
+                                While working at a supermarket, I frequently
+                                saw customers struggling to find products in
+                                large stores with thousands of items. Even
+                                when the products were available, many
+                                customers left without finding them,
+                                highlighting the need for a better in-store
+                                navigation experience.
+                            </p>
+
+                            <div class="mt-16 grid gap-12 md:grid-cols-2">
+                                <div>
+                                    <div class="flex items-center gap-3">
+                                        <span
+                                            aria-hidden="true"
+                                            class="h-6 w-6 shrink-0 bg-heading-default mask-(--icon-customer-url) mask-no-repeat mask-contain"
+                                            style={`--icon-customer-url: url('${IconCustomer.src}')`}
+                                        >
+                                        </span>
+                                        <h4
+                                            class="text-cs-body font-medium text-heading-default"
+                                        >
+                                            Customer side:
+                                        </h4>
+                                    </div>
+                                    <ul class="mt-6 grid gap-5">
+                                        <li class="text-cs-body">
+                                            “I spend too much time walking
+                                            around the store.”
+                                        </li>
+                                        <li class="text-cs-body">
+                                            “I often have to ask staff where
+                                            products are.”
+                                        </li>
+                                        <li class="text-cs-body">
+                                            “Sometimes I leave without finding
+                                            what I need.”
+                                        </li>
+                                        <li class="text-cs-body">
+                                            “I forget what I came to buy.”
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-3">
+                                        <span
+                                            aria-hidden="true"
+                                            class="h-6 w-6 shrink-0 bg-heading-default mask-(--icon-staff-url) mask-no-repeat mask-contain"
+                                            style={`--icon-staff-url: url('${IconStaff.src}')`}
+                                        >
+                                        </span>
+                                        <h4
+                                            class="text-cs-body font-medium text-heading-default"
+                                        >
+                                            Store Staff side:
+                                        </h4>
+                                    </div>
+                                    <ul class="mt-6 grid gap-5">
+                                        <li class="text-cs-body">
+                                            “Not every employee knows where
+                                            every product is.”
+                                        </li>
+                                        <li class="text-cs-body">
+                                            “Customers often interrupt us for
+                                            directions.”
+                                        </li>
+                                        <li class="text-cs-body">
+                                            “Category signs alone aren’t
+                                            enough.”
+                                        </li>
+                                        <li class="text-cs-body">
+                                            “Product location data would make
+                                            our jobs easier.”
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-28 max-w-240 mx-auto">
+                            <p class="caption-pill">Design Goals</p>
+                            <h2 class="mt-4 text-cs-h2 leading-snug">
+                                Help shoppers find products quickly and
+                                confidently
+                            </h2>
+                            <div class="mt-6 flex gap-4 items-start">
+                                <span
+                                    aria-hidden="true"
+                                    class="h-8 w-8 shrink-0 mt-1 bg-heading-default mask-(--icon-customer-url) mask-no-repeat mask-contain"
+                                    style={`--icon-customer-url: url('${IconCustomer.src}')`}
+                                >
+                                </span>
+                                <p class="text-cs-body leading-snug">
+                                    As a grocery shopper, I want to easily find
+                                    the products I’m looking for, so that I can
+                                    shop without getting lost.
+                                </p>
+                            </div>
+                            <div class="mt-16 flex justify-center">
+                                <Image
+                                    src={UserFlow}
+                                    alt="Hand holding a phone showing the store map app overlaid on a grocery aisle, with pins marking product locations on the shelves"
+                                    class="w-full max-w-160 rounded-lg"
+                                />
                             </div>
                         </div>
                     </section>
