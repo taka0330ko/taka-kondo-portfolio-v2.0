@@ -27,12 +27,24 @@ import ReactNative from "../assets/images/projects/store-navigation/react-native
 // Context & Opportunity media
 import IconCustomer from "../assets/images/projects/store-navigation/icon-customer.svg";
 import IconStaff from "../assets/images/projects/store-navigation/icon-staff.svg";
-import UserFlow from "../assets/images/projects/store-navigation/userflow.webp"
+import UserFlow from "../assets/images/projects/store-navigation/userflow.webp";
+
+// Design Constraints media
+import ColorPalette from "../assets/images/projects/store-navigation/color-palette-primary-brand-colors.webp";
+import FigmaTokensPanel from "../assets/images/projects/store-navigation/figma-variables-color-tokens-panel.webp";
+import TokenMappingDiagram from "../assets/images/projects/store-navigation/design-tokens-semantic-mapping-diagram.webp";
+import ItemFoundView from "../assets/images/projects/store-navigation/store-map-app-item-found-view.webp";
+
+// AI Assisted Workflow media
+import MapPixcel from "../assets/images/projects/store-navigation/map-pixcel.webp";
+import FigmaMcp from "../assets/images/projects/store-navigation/figma-mcp.webp";
+import MapOnFigma from "../assets/images/projects/store-navigation/map-on-figma.webp";
+import SvgCode from "../assets/images/projects/store-navigation/svg-code.webp";
 
 export const storeMapSections = [
     { label: "Overview", href: "#Overview" },
     { label: "Context & Opportunity", href: "#Context-opportunity" },
-    { label: "Brand Guidelines", href: "#Brand-guidelines" },
+    { label: "Design Constraints", href: "#Design-constraints" },
     { label: "AI Assisted Workflow", href: "#AI-assisted-workflow" },
     { label: "User Testing", href: "#User-testing" },
     { label: "Reflection", href: "#Reflection" },
@@ -167,10 +179,9 @@ export const storeMapSections = [
                                     Less Wandering. More Shopping.
                                 </h2>
                                 <p class="text-cs-body mt-2">
-                                    Help shoppers quickly locate products in
-                                    large supermarkets, reducing unnecessary
-                                    walking and frustration throughout the
-                                    shopping experience.
+                                    Help shoppers in large supermarkets quickly
+                                    find the products they need, reducing time
+                                    spent wandering through unfamiliar aisles.
                                 </p>
                             </div>
 
@@ -193,15 +204,21 @@ export const storeMapSections = [
                                 <div class="grid gap-6 md:first:pl-0">
                                     <h4 class="text-cs-h3 flex gap-4">
                                         <span class="feature-number">01</span>
-                                        <span class="text-cs-h3">Design Constraints</span>
+                                        <span class="text-cs-h3"
+                                            >Design Constraints</span
+                                        >
                                     </h4>
-                                    <div class="grid grid-cols-5 md:grid-cols-1">
+                                    <div
+                                        class="grid grid-cols-5 md:grid-cols-1"
+                                    >
                                         <Image
                                             src={Walmart}
                                             alt="Walmart brand mark"
                                             class="h-34 w-auto object-contain mx-auto col-span-2"
                                         />
-                                        <p class="text-cs-body col-span-3 place-content-center">
+                                        <p
+                                            class="text-cs-body col-span-3 place-content-center"
+                                        >
                                             Designed an additional Walmart app
                                             feature to gain experience working
                                             within an enterprise design system.
@@ -215,36 +232,46 @@ export const storeMapSections = [
                                 <div class="grid gap-6 md:pl-8">
                                     <h4 class="text-cs-h3 flex gap-4">
                                         <span class="feature-number">02</span>
-                                        <span class="text-cs-h3"> AI Assisted Workflow</span>
+                                        <span class="text-cs-h3">
+                                            AI Assisted Workflow</span
+                                        >
                                     </h4>
-                                    <div class="grid grid-cols-5 md:grid-cols-1">
+                                    <div
+                                        class="grid grid-cols-5 md:grid-cols-1"
+                                    >
                                         <Image
                                             src={ClaudeFigma}
                                             alt="Claude Code and Figma MCP icons"
                                             class="h-34 w-auto object-contain mx-auto col-span-2"
                                         />
-                                        <p class="text-cs-body col-span-3 place-content-center">
+                                        <p
+                                            class="text-cs-body col-span-3 place-content-center"
+                                        >
                                             Built an AI-assisted design-to-code
-                                            workflow using Claude Code and
-                                            Figma MCP.
+                                            workflow using Claude Code and Figma
+                                            MCP.
                                         </p>
                                     </div>
                                 </div>
                                 <div class="grid gap-6 md:pl-8">
                                     <h4 class="text-cs-h3 flex gap-4">
                                         <span class="feature-number">03</span>
-                                        <span class="text-cs-h3">Interactive Prototype</span>
+                                        <span class="text-cs-h3"
+                                            >Validating Through Code</span
+                                        >
                                     </h4>
-                                    <div class="grid grid-cols-5 md:grid-cols-1">
+                                    <div
+                                        class="grid grid-cols-5 md:grid-cols-1"
+                                    >
                                         <Image
                                             src={ReactNative}
                                             alt="React Native logo"
                                             class="h-34 w-auto object-contain mx-auto col-span-2"
                                         />
-                                        <p class="text-cs-body col-span-3 place-content-center">
-                                            Developed an interactive React
-                                            Native prototype for usability
-                                            testing.
+                                        <p
+                                            class="text-cs-body col-span-3 place-content-center"
+                                        >
+                                            Built a React Native prototype to validate real interactions and usability.
                                         </p>
                                     </div>
                                 </div>
@@ -268,17 +295,16 @@ export const storeMapSections = [
                             <h3
                                 class="mt-4 max-w-4xl text-cs-h1 font-normal leading-tight"
                             >
-                                A problem I witnessed every day while working
-                                at a supermarket
+                                A problem I witnessed every day while working at
+                                a supermarket
                             </h3>
                             <p class="mt-4 text-cs-body leading-snug">
-                                While working at a supermarket, I frequently
-                                saw customers struggling to find products in
-                                large stores with thousands of items. Even
-                                when the products were available, many
-                                customers left without finding them,
-                                highlighting the need for a better in-store
-                                navigation experience.
+                                While working at a supermarket, I frequently saw
+                                customers struggling to find products in large
+                                stores with thousands of items. Even when the
+                                products were available, many customers left
+                                without finding them, highlighting the need for
+                                a better in-store navigation experience.
                             </p>
 
                             <div class="mt-16 grid gap-12 md:grid-cols-2">
@@ -376,6 +402,290 @@ export const storeMapSections = [
                                     class="w-full max-w-160 rounded-lg"
                                 />
                             </div>
+                        </div>
+                    </section>
+                    <!-- Design Constraints Section -->
+                    <section id="Design-constraints" class="mt-32">
+                        <h2 class="text-cs-section font-medium">
+                            <span class="heading-accent-bar"
+                                >Design Constraints</span
+                            >
+                        </h2>
+                        <div
+                            class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
+                        >
+                        </div>
+
+                        <div class="mt-16 max-w-240 mx-auto">
+                            <p class="caption-pill">Design Constraints</p>
+                            <h3
+                                class="mt-4 text-cs-h2 font-normal leading-tight"
+                            >
+                                Designing Within Brand Constraints
+                            </h3>
+                            <p class="mt-4 text-cs-body leading-snug">
+                                Rather than creating a new design system from
+                                scratch, I challenged myself to design within
+                                the constraints of a real enterprise brand.
+                                Since Walmart’s internal design system wasn’t
+                                publicly available, I used its published brand
+                                guidelines as the foundation for every design
+                                decision.
+                            </p>
+                        </div>
+
+                        <div
+                            class="mt-24 max-w-240 mx-auto grid gap-10 md:grid-cols-2 md:items-center"
+                        >
+                            <div>
+                                <p class="caption-pill">Constraint</p>
+                                <h3 class="mt-4 text-cs-h2 font-normal leading-snug">
+                                    Only Walmart’s brand guidelines were
+                                    publicly available.
+                                </h3>
+                                <p class="mt-4 text-cs-body leading-snug">
+                                    The internal UI components, design tokens,
+                                    and implementation details were not
+                                    accessible. Instead of attempting to
+                                    replicate the private design system, I
+                                    focused on preserving the brand’s visual
+                                    language while creating a scalable
+                                    foundation for new components.
+                                </p>
+                            </div>
+                            <figure
+                                class="bg-frame border-gray-100 p-4 rounded-lg"
+                            >
+                                <Image
+                                    src={ColorPalette}
+                                    alt="Walmart brand center color page showing the primary palette of True Blue, White, and Spark Yellow"
+                                    class="w-full rounded-lg"
+                                />
+                                <figcaption
+                                    class="mt-3 text-cs-caption text-body-default/70"
+                                >
+                                    <a
+                                        href="https://brandcenter.walmart.com/brand/brand-identity/color"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="hover:underline"
+                                        >https://brandcenter.walmart.com/brand/brand-identity/color</a
+                                    >
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div
+                            class="mt-24 max-w-240 mx-auto grid gap-10 md:grid-cols-2 md:items-center"
+                        >
+                            <div>
+                                <p class="caption-pill">Decision</p>
+                                <h3 class="mt-4 text-cs-h2 font-normal leading-snug">
+                                    I translated the published brand
+                                    principles into semantic design tokens.
+                                </h3>
+                                <p class="mt-4 text-cs-body leading-snug">
+                                    Instead of applying brand colors directly
+                                    to components, I introduced semantic
+                                    tokens to make new UI patterns reusable
+                                    and easier to maintain.
+                                </p>
+                            </div>
+                            <div class="bg-frame border-gray-100 p-4 rounded-lg">
+                                <Image
+                                    src={FigmaTokensPanel}
+                                    alt="Figma variables panel showing semantic color tokens for action, icon, background, and border"
+                                    class="w-full rounded-lg"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="mt-24 max-w-240 mx-auto">
+                            <p class="caption-pill">Application</p>
+                            <h3 class="mt-4 text-cs-h2 font-normal leading-snug">
+                                The tokens powered reusable components across
+                                the feature.
+                            </h3>
+                            <p class="mt-4 text-cs-body leading-snug">
+                                Using the token system, I built reusable
+                                components such as Item Pins and Item List
+                                Icons that were applied consistently
+                                throughout the Store Map experience. This
+                                allowed new interactions to feel native to
+                                Walmart’s existing visual language without
+                                copying its internal design system.
+                            </p>
+
+                            <div
+                                class="mt-12 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-center"
+                            >
+                                <Image
+                                    src={TokenMappingDiagram}
+                                    alt="Diagram mapping semantic background, border, icon, and action tokens to an item pin's inactive and active states"
+                                    class="w-full rounded-lg"
+                                />
+                                <div
+                                    class="bg-frame border-gray-100 p-4 rounded-lg mx-auto w-full max-w-80"
+                                >
+                                    <Image
+                                        src={ItemFoundView}
+                                        alt="Store Map app screen showing an item found view with the product highlighted at aisle 8B on the store map"
+                                        class="w-full rounded-lg"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- AI Assisted Workflow Section -->
+                    <section id="AI-assisted-workflow" class="mt-32">
+                        <h2 class="text-cs-section font-medium">
+                            <span class="heading-accent-bar"
+                                >AI Assisted Workflow</span
+                            >
+                        </h2>
+                        <div
+                            class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
+                        >
+                        </div>
+
+                        <!-- Objective -->
+                        <div class="mt-16 max-w-240 mx-auto">
+                            <p class="caption-pill">Objective</p>
+                            <h3
+                                class="mt-4 max-w-3xl text-cs-h2 font-normal leading-tight"
+                            >
+                                Implementing the Store Map
+                            </h3>
+                            <p class="mt-4 max-w-2xl text-cs-body leading-snug">
+                                The goal was to help shoppers find products
+                                without getting lost in the store. Using the
+                                layout of the store where I work, I accurately
+                                recreated its aisles and product areas.
+                            </p>
+
+                            <div
+                                class="mt-12 overflow-hidden rounded-lg border border-frame-ring"
+                            >
+                                <Image
+                                    src={MapPixcel}
+                                    alt="Three stages of the store map SVG: the scanned floor plan, the floor plan traced over an 8 by 8 pixel grid, and the final clean vector map"
+                                    class="w-full h-auto"
+                                />
+                            </div>
+
+                            <p class="mt-8 max-w-2xl text-cs-body leading-snug">
+                                To create a clean, structured SVG, I overlaid an
+                                8 × 8 px grid on the original floor plan and
+                                traced each section cell by cell.
+                            </p>
+                        </div>
+
+                        <!-- Design to Dev -->
+                        <div class="mt-28 max-w-240 mx-auto">
+                            <p class="caption-pill">Design to Dev</p>
+                            <div
+                                class="mt-6 grid gap-8 md:grid-cols-[1fr_320px] md:items-center"
+                            >
+                                <div>
+                                    <h3
+                                        class="max-w-xl text-cs-h2 font-normal leading-tight"
+                                    >
+                                        Streamlining Interactive Map Development
+                                        with AI
+                                    </h3>
+                                    <p
+                                        class="mt-4 max-w-lg text-cs-body leading-snug"
+                                    >
+                                        To make the map interactive, each area
+                                        needed to be accurately connected to its
+                                        product data. I introduced an
+                                        AI-assisted workflow to streamline this
+                                        repetitive process.
+                                    </p>
+                                </div>
+                                <Image
+                                    src={FigmaMcp}
+                                    alt="Figma and Claude icons connected through MCP"
+                                    class="w-full"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Challenge -->
+                        <div class="mt-28">
+                            <div
+                                class="mt-6 grid gap-8 md:grid-cols-2 md:items-center md:-mr-8"
+                            >
+                                <div
+                                    class="max-w-240 mx-auto md:mx-0 md:max-w-lg md:pl-[max(1rem,calc((100%-60rem)/2))]"
+                                >
+                                    <div class="max-w-240 mx-auto">
+                                        <p class="caption-pill">Challenge</p>
+                                    </div>
+                                    <h2 class="text-cs-h2 leading-snug">
+                                        Managing Hundreds of Cells Accurately
+                                    </h2>
+                                    <p class="mt-4 text-cs-body leading-snug">
+                                        Connecting products to their locations
+                                        required a unique ID for every map
+                                        element. Naming hundreds of elements
+                                        manually would have been time-consuming
+                                        and prone to errors or duplicates.
+                                    </p>
+                                </div>
+                                <Image
+                                    src={MapOnFigma}
+                                    alt="Figma layers panel listing dozens of individually named produce section layers"
+                                    class="w-full"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Solution -->
+                        <div class="mt-28">
+                            <div
+                                class="mt-6 grid gap-8 md:grid-cols-2 md:items-center md:-mr-8"
+                            >
+                                <div
+                                    class="max-w-240 mx-auto md:mx-0 md:max-w-lg md:pl-[max(1rem,calc((100%-60rem)/2))]"
+                                >
+                                    <div class="max-w-240 mx-auto">
+                                        <p class="caption-pill">Solution</p>
+                                    </div>
+                                    <h2 class="text-cs-h2 leading-snug">
+                                        Automating the Naming Process with Figma
+                                        MCP and Claude
+                                    </h2>
+                                    <p class="mt-4 text-cs-body leading-snug">
+                                        I created a naming convention based on
+                                        product category and location, then used
+                                        Claude through Figma MCP to apply it to
+                                        each layer. The layer names could then
+                                        be used directly as SVG IDs, creating a
+                                        smoother handoff to development.
+                                    </p>
+                                </div>
+                                <Image
+                                    src={SvgCode}
+                                    alt="Code editor showing SVG rectangles with produce ID attributes and fill colors"
+                                    class="w-full"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Outcome -->
+                        <div class="mt-28 max-w-240 mx-auto">
+                            <p class="caption-pill">Outcome</p>
+                            <h2 class="mt-4 text-cs-h2 leading-snug">
+                                Reduced Development Time and Improved
+                                Implementation Accuracy
+                            </h2>
+                            <p class="mt-4 max-w-2xl text-cs-body leading-snug">
+                                The workflow reduced repetitive work and
+                                improved naming accuracy. It also made the
+                                transition from Figma to development more
+                                efficient.
+                            </p>
                         </div>
                     </section>
                 </div>
