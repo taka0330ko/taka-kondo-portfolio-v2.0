@@ -7,7 +7,7 @@ import StoneAndHoneyThumbnail from "../assets/images/projects/stone-and-honey/st
 import TastebudsThumbnail from "../assets/images/projects/tastebuds/foodblog-tumbnail.png";
 import TastebudsVideo from "../assets/images/projects/tastebuds/videos/foodblog-cover-video.webm";
 import TastebudsVideoMp4 from "../assets/images/projects/tastebuds/videos/foodblog-cover-video.mp4";
-import StoreMapNavigationThumbNailInProgress from "../assets/images/projects/store-navigation/store-navigation-thimbnail-coming-soon.webp";
+import StoreMapNavigationThumbnail from "../assets/images/projects/store-navigation/store-map-thumbnail.webp";
 import StoreMapNavigationVideo from "../assets/images/projects/store-navigation/videos/store-map-thumbnail.webm"
 import UKGThumbnail from "../assets/images/projects/UKG/UKG-thumbnail.webp";
 import UKGVideo from "../assets/images/projects/UKG/videos/main-thumbnail.webm";
@@ -28,7 +28,7 @@ type Project = {
 export const projects: Project[] = [
   {
     href: "/store-map",
-    cover: StoreMapNavigationThumbNailInProgress,
+    cover: StoreMapNavigationThumbnail,
     coverVideo: StoreMapNavigationVideo,
     title: "Grocery Store Map Navigation",
     description:
