@@ -10,9 +10,13 @@ import BreadCrumb from "../components/ui/BreadCrumb.astro";
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
 import ProjectMainVideo from "../components/ui/ProjectMainVideo.astro";
 import GlassPill from "../components/ui/GlassPill.astro";
+import Card from "../components/ui/Card.astro";
 
 // Icons
-import { ArrowUpRight } from "@lucide/astro";
+import { ArrowUpRight, Check, X } from "@lucide/astro";
+
+// Project data
+import { projects } from "../data/projects";
 
 // Hero media
 import StoreMapVideo from "../assets/images/projects/store-navigation/videos/store-map-thumbnail.webm";
@@ -41,12 +45,17 @@ import FigmaMcp from "../assets/images/projects/store-navigation/figma-mcp.webp"
 import MapOnFigma from "../assets/images/projects/store-navigation/map-on-figma.webp";
 import SvgCode from "../assets/images/projects/store-navigation/svg-code.webp";
 
+// Testing media
+import OptionA from "../assets/images/projects/store-navigation/option-a.webp";
+import OptionB from "../assets/images/projects/store-navigation/option-b.webp";
+import FinalDesign from "../assets/images/projects/store-navigation/final-design.webp";
+
 export const storeMapSections = [
     { label: "Overview", href: "#Overview" },
     { label: "Context & Opportunity", href: "#Context-opportunity" },
     { label: "Design Constraints", href: "#Design-constraints" },
     { label: "AI Assisted Workflow", href: "#AI-assisted-workflow" },
-    { label: "User Testing", href: "#User-testing" },
+    { label: "Testing", href: "#Testing" },
     { label: "Reflection", href: "#Reflection" },
 ];
 ---
@@ -636,7 +645,7 @@ export const storeMapSections = [
                                 <Image
                                     src={MapOnFigma}
                                     alt="Figma layers panel listing dozens of individually named produce section layers"
-                                    class="w-full"
+                                    class="js-bleed-right w-full"
                                 />
                             </div>
                         </div>
@@ -668,7 +677,7 @@ export const storeMapSections = [
                                 <Image
                                     src={SvgCode}
                                     alt="Code editor showing SVG rectangles with produce ID attributes and fill colors"
-                                    class="w-full"
+                                    class="js-bleed-right w-full"
                                 />
                             </div>
                         </div>
@@ -688,8 +697,403 @@ export const storeMapSections = [
                             </p>
                         </div>
                     </section>
+                    <!-- Testing Section -->
+                    <section id="Testing" class="mt-32">
+                        <h2 class="text-cs-section font-medium">
+                            <span class="heading-accent-bar">Testing</span>
+                        </h2>
+                        <div
+                            class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
+                        >
+                        </div>
+
+                        <div class="mt-16 max-w-240 mx-auto">
+                            <p class="caption-pill">Design Challenge</p>
+                            <h3
+                                class="mt-4 text-cs-h2 font-normal leading-tight"
+                            >
+                                Balancing Map Visibility and Item Accessibility
+                            </h3>
+                            <p class="mt-4 text-cs-body leading-snug">
+                                While navigating the store, shoppers need both
+                                a clear view of the map and quick access to
+                                their shopping list. However, maximizing one
+                                often compromises the other. To identify the
+                                better experience, I explored two navigation
+                                patterns and validated them through usability
+                                testing.
+                            </p>
+                        </div>
+
+                        <div class="mt-28 max-w-240 mx-auto">
+                            <p class="caption-pill">Design Trade-off</p>
+                            <h3
+                                class="mt-4 text-cs-h2 font-normal leading-tight"
+                            >
+                                Comparing Two Navigation Patterns
+                            </h3>
+                        </div>
+
+                        <!-- Pattern A -->
+                        <div
+                            class="mt-16 max-w-240 mx-auto grid gap-10 md:grid-cols-2 md:items-center"
+                        >
+                            <div>
+                                <p class="text-cs-body text-body-default">
+                                    Pattern A
+                                </p>
+                                <h4
+                                    class="mt-1 text-cs-h3 font-normal leading-tight"
+                                >
+                                    Header List
+                                </h4>
+                                <p class="mt-4 text-cs-body leading-snug">
+                                    The Header List keeps shopping items
+                                    constantly accessible, enabling faster
+                                    switching between products while slightly
+                                    reducing the visible map area.
+                                </p>
+
+                                <ul
+                                    class="mt-10 grid divide-y divide-dashed divide-body-default/25 rounded-lg bg-text-block p-6"
+                                >
+                                    <li
+                                        class="flex items-center gap-3 pb-5 first:pt-0"
+                                    >
+                                        <Check
+                                            class="size-5 shrink-0 text-green-500"
+                                        />
+                                        <p class="text-cs-body">
+                                            Faster item switching
+                                        </p>
+                                    </li>
+                                    <li class="flex items-center gap-3 py-5">
+                                        <Check
+                                            class="size-5 shrink-0 text-green-500"
+                                        />
+                                        <p class="text-cs-body">
+                                            View the map and shopping list
+                                            simultaneously
+                                        </p>
+                                    </li>
+                                    <li
+                                        class="flex items-center gap-3 pt-5 last:pb-0"
+                                    >
+                                        <X
+                                            class="size-5 shrink-0 text-red-500"
+                                        />
+                                        <p class="text-cs-body">
+                                            Less map space
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div
+                                class="bg-frame border-gray-100 p-4 rounded-lg ml-auto w-full max-w-80"
+                            >
+                                <Image
+                                    src={OptionA}
+                                    alt="Store Map app Header List pattern showing the shopping list docked above the map, with the current item highlighted at aisle 8B"
+                                    class="w-full rounded-lg"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Pattern B -->
+                        <div
+                            class="mt-24 max-w-240 mx-auto grid gap-10 md:grid-cols-2 md:items-center"
+                        >
+                            <div>
+                                <p class="text-cs-body text-body-default">
+                                    Pattern B
+                                </p>
+                                <h4
+                                    class="mt-1 text-cs-h3 font-normal leading-tight"
+                                >
+                                    Bottom Sheet
+                                </h4>
+                                <p class="mt-4 text-cs-body leading-snug">
+                                    The Bottom Sheet prioritizes map visibility
+                                    by allowing the shopping list to be hidden
+                                    when it’s not needed.
+                                </p>
+
+                                <ul
+                                    class="mt-10 grid divide-y divide-dashed divide-body-default/25 rounded-lg bg-text-block p-6"
+                                >
+                                    <li
+                                        class="flex items-center gap-3 pb-5 first:pt-0"
+                                    >
+                                        <Check
+                                            class="size-5 shrink-0 text-green-500"
+                                        />
+                                        <p class="text-cs-body">
+                                            Maximized map visibility
+                                        </p>
+                                    </li>
+                                    <li class="flex items-center gap-3 py-5">
+                                        <Check
+                                            class="size-5 shrink-0 text-green-500"
+                                        />
+                                        <p class="text-cs-body">
+                                            On-demand shopping list
+                                        </p>
+                                    </li>
+                                    <li
+                                        class="flex items-center gap-3 pt-5 last:pb-0"
+                                    >
+                                        <X
+                                            class="size-5 shrink-0 text-red-500"
+                                        />
+                                        <p class="text-cs-body">
+                                            Map is partially obscured when
+                                            expanded
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div
+                                class="bg-frame border-gray-100 p-4 rounded-lg ml-auto w-full max-w-80"
+                            >
+                                <Image
+                                    src={OptionB}
+                                    alt="Store Map app Bottom Sheet pattern showing the shopping list collapsed into a draggable sheet below the map, with the current item highlighted at aisle 8B"
+                                    class="w-full rounded-lg"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Usability Test -->
+                        <div class="mt-28 max-w-240 mx-auto">
+                            <p class="caption-pill">Usability Test</p>
+                            <h3
+                                class="mt-4 text-cs-h2 font-normal leading-tight"
+                            >
+                                Evaluating Real Shopping Behavior
+                            </h3>
+                            <p class="mt-4 text-cs-body leading-snug">
+                                Five participants were asked to locate six
+                                grocery items, switch between products, mark
+                                items as found, and navigate using the store
+                                map. During the sessions, I observed not only
+                                which interface participants preferred, but
+                                also how frequently they switched items,
+                                reopened the shopping list, and interacted
+                                with the map throughout the task.
+                            </p>
+
+                            <div
+                                class="mt-10 grid gap-8 md:grid-cols-2 md:items-stretch"
+                            >
+                                <div>
+                                    <p class="text-cs-body text-body-default">
+                                        5 participants<br />
+                                        Task: Find six products using the
+                                        Store Map.
+                                    </p>
+
+                                    <div
+                                        class="mt-8 rounded-lg bg-text-block p-6"
+                                    >
+                                        <h4
+                                            class="text-cs-h3 font-normal leading-tight"
+                                        >
+                                            Key Findings
+                                        </h4>
+                                        <ul class="mt-6 grid gap-5">
+                                            <li
+                                                class="flex items-start gap-3 text-cs-body"
+                                            >
+                                                <span
+                                                    aria-hidden="true"
+                                                    class="mt-2.5 size-1.5 shrink-0 rounded-full bg-body-default"
+                                                ></span>
+                                                Users wanted to keep the map
+                                                visible
+                                            </li>
+                                            <li
+                                                class="flex items-start gap-3 text-cs-body"
+                                            >
+                                                <span
+                                                    aria-hidden="true"
+                                                    class="mt-2.5 size-1.5 shrink-0 rounded-full bg-body-default"
+                                                ></span>
+                                                The Bottom Sheet covered too
+                                                much of the map
+                                            </li>
+                                            <li
+                                                class="flex items-start gap-3 text-cs-body"
+                                            >
+                                                <span
+                                                    aria-hidden="true"
+                                                    class="mt-2.5 size-1.5 shrink-0 rounded-full bg-body-default"
+                                                ></span>
+                                                Switching products felt
+                                                easier from the header
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- TODO: replace with supporting testing image -->
+                                <div
+                                    class="rounded-lg bg-body-default/10"
+                                    aria-hidden="true"
+                                >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Design Decision -->
+                        <div
+                            class="mt-28 max-w-240 mx-auto grid gap-10 md:grid-cols-2 md:items-center"
+                        >
+                            <div>
+                                <p class="caption-pill">Design Decision</p>
+                                <h3
+                                    class="mt-4 text-cs-h2 font-normal leading-tight"
+                                >
+                                    Prioritizing a Smoother Shopping Flow
+                                </h3>
+                                <p class="mt-4 text-cs-body leading-snug">
+                                    Although the Bottom Sheet provided a
+                                    larger map, participants switched between
+                                    shopping items more frequently than they
+                                    viewed the map in full screen. The Header
+                                    List reduced unnecessary interactions,
+                                    kept products readily accessible, and
+                                    supported a smoother shopping experience.
+                                    Based on these findings, it became the
+                                    final interface.
+                                </p>
+                            </div>
+                            <div
+                                class="bg-frame border-gray-100 p-4 rounded-lg ml-auto w-full max-w-80"
+                            >
+                                <Image
+                                    src={FinalDesign}
+                                    alt="Final Store Map app design showing the Header List pattern with the selected item marked as Found, and a checkmark pin at aisle 8B on the map"
+                                    class="w-full rounded-lg"
+                                />
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Reflection Section -->
+                    <section id="Reflection" class="mt-32">
+                        <h2 class="text-cs-section font-medium">
+                            <span class="heading-accent-bar">Reflection</span>
+                        </h2>
+                        <div
+                            class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
+                        >
+                        </div>
+
+                        <div class="mt-16 max-w-240 mx-auto">
+                            <h3 class="text-cs-h2 font-normal leading-tight">
+                                Design is the process of balancing
+                                constraints, trade-offs, and user needs.
+                            </h3>
+                            <p class="mt-6 text-cs-body leading-snug">
+                                This project taught me that the quality of a
+                                design is defined not by the number of
+                                possibilities, but by the ability to
+                                prioritize within constraints. By working
+                                through design constraints and trade-offs, I
+                                learned to evaluate decisions based not on
+                                visual novelty, but on reusability,
+                                implementation feasibility, and their impact
+                                on the user experience.
+                            </p>
+                            <p class="mt-6 text-cs-body leading-snug">
+                                I also realized that while AI has
+                                significantly accelerated the process of
+                                turning ideas into tangible solutions, speed
+                                alone has little value. What truly matters is
+                                using that extra time to validate
+                                assumptions, iterate on ideas, and make
+                                better-informed design decisions. This
+                                experience changed my understanding of
+                                efficient design. It is not about reducing
+                                effort. It is about spending more time on the
+                                decisions that create the greatest impact.
+                            </p>
+                        </div>
+                    </section>
                 </div>
+            </div>
+        </section>
+
+        <!-- Other Projects -->
+        <section class="p-4 md:p-16">
+            <h2 class="text-center p-16">Other Projects</h2>
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-4 max-w-400 mx-auto"
+            >
+                {
+                    projects
+                        .filter((project) => project.href !== "/store-map")
+                        .slice(0, 2)
+                        .map((project) => {
+                            return (
+                                <Card
+                                    href={project.href}
+                                    cover={project.cover}
+                                    title={project.title}
+                                    description={project.description}
+                                    tag={project.tag}
+                                />
+                            );
+                        })
+                }
             </div>
         </section>
     </main>
 </Layout>
+
+<script>
+    // These images sit inside a sidebar-offset, centered .container, so a
+    // static CSS calc() can't reach the true viewport edge at every screen
+    // size. Instead we measure each element's live position and stretch its
+    // width to close the remaining gap, which also lets it grow bigger on
+    // wide monitors instead of stopping at a fixed max-width.
+    function bleedToViewportEdge() {
+        if (
+            window.location.pathname.replace(/\/$/, "") !== "/store-map"
+        )
+            return;
+
+        document
+            .querySelectorAll<HTMLElement>(".js-bleed-right")
+            .forEach((el) => {
+                // Reset first so the measurement below reflects the natural
+                // CSS-flow position, not a leftover value from a previous run.
+                el.style.marginLeft = "";
+                el.style.width = "";
+                el.style.maxWidth = "";
+
+                const rect = el.getBoundingClientRect();
+                const isStacked = window.matchMedia(
+                    "(max-width: 767px)",
+                ).matches;
+                // clientWidth (not window.innerWidth) excludes the scrollbar,
+                // matching the coordinate system getBoundingClientRect() uses.
+                // Using innerWidth here would overshoot by the scrollbar's
+                // width and force a horizontal scrollbar of its own.
+                const viewportWidth = document.documentElement.clientWidth;
+
+                if (isStacked) {
+                    // Below md the grid stacks into one column, so bleed on
+                    // both sides: pull the left edge to 0, then widen to fill.
+                    el.style.marginLeft = `${-rect.left}px`;
+                    el.style.width = `${viewportWidth}px`;
+                } else {
+                    // Keep the left edge where the grid places it; only grow
+                    // the width so the right edge lands exactly on-screen.
+                    el.style.width = `${viewportWidth - rect.left}px`;
+                }
+                el.style.maxWidth = "none";
+            });
+    }
+
+    document.addEventListener("astro:page-load", bleedToViewportEdge);
+    window.addEventListener("resize", bleedToViewportEdge);
+</script>
