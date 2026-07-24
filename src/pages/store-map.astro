@@ -46,8 +46,8 @@ import MapOnFigma from "../assets/images/projects/store-navigation/map-on-figma.
 import SvgCode from "../assets/images/projects/store-navigation/svg-code.webp";
 
 // Testing media
-import OptionA from "../assets/images/projects/store-navigation/option-a.webp";
-import OptionB from "../assets/images/projects/store-navigation/option-b.webp";
+import OptionAVideo from "../assets/images/projects/store-navigation/videos/option-a.webm";
+import OptionBVideo from "../assets/images/projects/store-navigation/videos/option-b.webm";
 import FinalDesign from "../assets/images/projects/store-navigation/final-design.webp";
 
 export const storeMapSections = [
@@ -791,11 +791,18 @@ export const storeMapSections = [
                             <div
                                 class="bg-frame border-gray-100 p-4 rounded-lg mx-auto md:ml-auto w-full max-w-80"
                             >
-                                <Image
-                                    src={OptionA}
-                                    alt="Store Map app Header List pattern showing the shopping list docked above the map, with the current item highlighted at aisle 8B"
+                                <video
                                     class="w-full rounded-lg"
-                                />
+                                    autoplay
+                                    loop
+                                    muted
+                                    playsinline
+                                >
+                                    <source
+                                        src={OptionAVideo}
+                                        type="video/webm"
+                                    />
+                                </video>
                             </div>
                         </div>
 
@@ -855,11 +862,18 @@ export const storeMapSections = [
                             <div
                                 class="bg-frame border-gray-100 p-4 rounded-lg mx-auto md:ml-auto w-full max-w-80"
                             >
-                                <Image
-                                    src={OptionB}
-                                    alt="Store Map app Bottom Sheet pattern showing the shopping list collapsed into a draggable sheet below the map, with the current item highlighted at aisle 8B"
+                                <video
                                     class="w-full rounded-lg"
-                                />
+                                    autoplay
+                                    loop
+                                    muted
+                                    playsinline
+                                >
+                                    <source
+                                        src={OptionBVideo}
+                                        type="video/webm"
+                                    />
+                                </video>
                             </div>
                         </div>
 
