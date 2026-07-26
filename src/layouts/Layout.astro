@@ -8,6 +8,10 @@ import { ClientRouter } from "astro:transitions";
 const GA_ID = "G-CBQ9ES1KDS";
 const enableAnalytics = import.meta.env.PROD;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const {
+	title = "Takanari Kondo | UI/UX Designer building with code",
+	description = "Portfolio of Takanari Kondo, a frontend developer and UI/UX designer focused on building fast, accessible, and visually refined web experiences.",
+} = Astro.props;
 ---
 
 
@@ -19,14 +23,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="canonical" href={canonicalURL}>
 		<meta name="generator" content={Astro.generator} />
-		<title>Takanari Kondo | UI/UX Designer building with code</title>
-		<meta name= "description" content="Portfolio of Takanari Kondo, a frontend developer and UI/UX designer focused on building fast, accessible, and visually refined web experiences." />
+		<title>{title}</title>
+		<meta name="description" content={description} />
 		<meta name="author" content="Takanari Kondo" />
 
 
 		<!-- Open Graph / Social -->
-		<meta property="og:title" content="Takanari Kondo | UI/UX Designer building with code" />
-		<meta property="og:description" content="Explore projects, web development work and UI/UX case studies by Takanari Kondo." />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:image" content="/og-image.png" />
