@@ -1,9 +1,13 @@
 diff --git a/src/components/Masonry.astro b/src/components/Masonry.astro
-index 744ce47b4aec8e26ab1e591cdeff436bbada4e3f..2efb0dcebf7269b7b302cb434819e4226b85e708 100644
+index 744ce47b4aec8e26ab1e591cdeff436bbada4e3f..cfba793e38c6a0870cac663c1dd40a190f66b80c 100644
 --- a/src/components/Masonry.astro
 +++ b/src/components/Masonry.astro
-@@ -70,7 +70,9 @@ const breakpointColsString =
+@@ -66,11 +66,11 @@ const breakpointColsString =
+   let initialized = false;
  
+   const initMasonry = () => {
+-    console.log("Initializing masonry.");
+-
      const masonryContainer = document.querySelector("[data-masonry-container]");
      if (!masonryContainer) {
 -      console.warn("Masonry container not found.");

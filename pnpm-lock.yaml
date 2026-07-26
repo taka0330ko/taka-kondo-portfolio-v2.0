@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   astro-masonry:
-    hash: 73a5e1e700bf5130cd54d9826fd830fb9d4343f5afb3da200956f13a4c0d07d9
+    hash: 42235bc5c3203f930629127eb4c9ee9ab281defcfb1c9784796320329a63b5a1
     path: patches/astro-masonry.patch
 
 importers:
@@ -33,7 +33,7 @@ importers:
         version: 7.0.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(jiti@2.6.1)(rollup@4.59.0)(yaml@2.8.3)
       astro-masonry:
         specifier: ^1.2.2
-        version: 1.2.2(patch_hash=73a5e1e700bf5130cd54d9826fd830fb9d4343f5afb3da200956f13a4c0d07d9)
+        version: 1.2.2(patch_hash=42235bc5c3203f930629127eb4c9ee9ab281defcfb1c9784796320329a63b5a1)
       gsap:
         specifier: ^3.14.2
         version: 3.14.2
@@ -3244,7 +3244,7 @@ snapshots:
 
   aria-query@5.3.2: {}
 
-  astro-masonry@1.2.2(patch_hash=73a5e1e700bf5130cd54d9826fd830fb9d4343f5afb3da200956f13a4c0d07d9): {}
+  astro-masonry@1.2.2(patch_hash=42235bc5c3203f930629127eb4c9ee9ab281defcfb1c9784796320329a63b5a1): {}
 
   astro@7.0.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(jiti@2.6.1)(rollup@4.59.0)(yaml@2.8.3):
     dependencies:
