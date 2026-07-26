@@ -20,6 +20,7 @@ import { projects } from "../data/projects";
 
 // Hero media
 import StoreMapVideo from "../assets/images/projects/store-navigation/videos/store-map-thumbnail.webm";
+import StoreMapVideoMp4 from "../assets/images/projects/store-navigation/videos/store-map-thumbnail.mp4";
 import StoreMapPoster from "../assets/images/projects/store-navigation/store-map-thumbnail.webp";
 
 // Overview media
@@ -132,6 +133,7 @@ export const storeMapSections = [
                 <div class="order-2 md:order-3 col-span-12">
                     <ProjectMainVideo
                         src={StoreMapVideo}
+                        fallbackSrc={StoreMapVideoMp4}
                         poster={StoreMapPoster.src}
                     />
                 </div>
