@@ -46,8 +46,8 @@ import MapOnFigma from "../assets/images/projects/store-navigation/map-on-figma.
 import SvgCode from "../assets/images/projects/store-navigation/svg-code.webp";
 
 // Testing media
-import OptionAVideo from "../assets/images/projects/store-navigation/videos/option-a.webm";
-import OptionBVideo from "../assets/images/projects/store-navigation/videos/option-b.webm";
+import OptionAVideoMp4 from "../assets/images/projects/store-navigation/videos/option-a.mp4";
+import OptionBVideoMp4 from "../assets/images/projects/store-navigation/videos/option-b.mp4";
 import FinalDesign from "../assets/images/projects/store-navigation/final-design.webp";
 
 export const storeMapSections = [
@@ -793,16 +793,12 @@ export const storeMapSections = [
                             >
                                 <video
                                     class="w-full rounded-lg"
+                                    src={OptionAVideoMp4}
                                     autoplay
                                     loop
                                     muted
                                     playsinline
-                                >
-                                    <source
-                                        src={OptionAVideo}
-                                        type="video/webm"
-                                    />
-                                </video>
+                                ></video>
                             </div>
                         </div>
 
@@ -864,16 +860,12 @@ export const storeMapSections = [
                             >
                                 <video
                                     class="w-full rounded-lg"
+                                    src={OptionBVideoMp4}
                                     autoplay
                                     loop
                                     muted
                                     playsinline
-                                >
-                                    <source
-                                        src={OptionBVideo}
-                                        type="video/webm"
-                                    />
-                                </video>
+                                ></video>
                             </div>
                         </div>
 
