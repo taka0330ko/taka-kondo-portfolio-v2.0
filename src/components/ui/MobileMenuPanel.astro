@@ -85,12 +85,13 @@ const isProjectsPage = [
         width: 100vw;
         height: 100vh;
         clip-path: circle(0% at calc(100% - 48px) 48px);
-        transition: clip-path 0.8s var(--spring-default);
+        transition: clip-path 0.1s ease-in;
         pointer-events: none;
     }
 
     .mobile-menu-panel.is-open {
-        clip-path: circle(62vmax at calc(100% - 48px) 48px);
+        clip-path: circle(100vw at calc(100% - 48px) 48px);
+        transition: clip-path 0.8s var(--spring-default);
     }
 
     .mobile-menu-nav {
