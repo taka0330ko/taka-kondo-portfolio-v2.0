@@ -49,6 +49,8 @@ import SvgCode from "../assets/images/projects/store-navigation/svg-code.webp";
 // Testing media
 import OptionAVideoMp4 from "../assets/images/projects/store-navigation/videos/option-a.mp4";
 import OptionBVideoMp4 from "../assets/images/projects/store-navigation/videos/option-b.mp4";
+import OptionAPoster from "../assets/images/projects/store-navigation/option-a.webp";
+import OptionBPoster from "../assets/images/projects/store-navigation/option-b.webp";
 import FinalDesign from "../assets/images/projects/store-navigation/final-design.webp";
 
 export const storeMapSections = [
@@ -795,12 +797,18 @@ export const storeMapSections = [
                             >
                                 <video
                                     class="w-full rounded-lg"
-                                    src={OptionAVideoMp4}
+                                    poster={OptionAPoster.src}
+                                    preload="auto"
                                     autoplay
                                     loop
                                     muted
                                     playsinline
-                                ></video>
+                                >
+                                    <source
+                                        src={OptionAVideoMp4}
+                                        type="video/mp4"
+                                    />
+                                </video>
                             </div>
                         </div>
 
@@ -862,12 +870,18 @@ export const storeMapSections = [
                             >
                                 <video
                                     class="w-full rounded-lg"
-                                    src={OptionBVideoMp4}
+                                    poster={OptionBPoster.src}
+                                    preload="auto"
                                     autoplay
                                     loop
                                     muted
                                     playsinline
-                                ></video>
+                                >
+                                    <source
+                                        src={OptionBVideoMp4}
+                                        type="video/mp4"
+                                    />
+                                </video>
                             </div>
                         </div>
 
