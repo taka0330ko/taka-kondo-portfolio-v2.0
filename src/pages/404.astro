@@ -1,0 +1,120 @@
+---
+import { ArrowLeft } from "@lucide/astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Page not found | Takanari Kondo"
+  description="The page you are looking for could not be found."
+>
+  <main class="not-found">
+    <div class="not-found__content">
+      <p class="not-found__code" aria-hidden="true">404</p>
+
+      <div class="not-found__message">
+        <p class="not-found__eyebrow">404 error</p>
+        <h1>Looks like this page got lost.</h1>
+        <p>
+          The page may have moved or no longer exists. Let&apos;s get you back
+          to the projects.
+        </p>
+
+        <a class="not-found__link" href="/">
+          <ArrowLeft aria-hidden="true" />
+          Back to home
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .not-found {
+    display: grid;
+    min-height: calc(100dvh - 5rem);
+    place-items: center;
+    padding: 8rem 1rem 4rem;
+    overflow: hidden;
+  }
+
+  .not-found__content {
+    position: relative;
+    display: grid;
+    width: min(100%, 72rem);
+    place-items: center;
+    isolation: isolate;
+  }
+
+  .not-found__code {
+    position: absolute;
+    z-index: -1;
+    color: transparent;
+    font-family: var(--font-heading);
+    font-size: clamp(12rem, 38vw, 34rem);
+    font-weight: 700;
+    line-height: 0.75;
+    -webkit-text-stroke: 1px var(--five-lines);
+    user-select: none;
+  }
+
+  .not-found__message {
+    max-width: 36rem;
+    text-align: center;
+  }
+
+  .not-found__eyebrow {
+    margin-bottom: 1rem;
+    color: var(--text-accent);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .not-found__message h1 {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+  }
+
+  .not-found__message > p:not(.not-found__eyebrow) {
+    max-width: 30rem;
+    margin: 1.5rem auto 0;
+  }
+
+  .not-found__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    border: 1px solid var(--frame-ring);
+    border-radius: 999px;
+    padding: 0.75rem 1.25rem;
+    background: var(--card-gradient-from);
+    color: var(--text-heading-default);
+    transition:
+      color 200ms ease,
+      border-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .not-found__link:hover {
+    border-color: var(--text-accent);
+    color: var(--text-accent);
+    transform: translateY(-2px);
+  }
+
+  .not-found__link:focus-visible {
+    outline: 2px solid var(--text-accent);
+    outline-offset: 4px;
+  }
+
+  .not-found__link :global(svg) {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .not-found__link {
+      transition: none;
+    }
+  }
+</style>
