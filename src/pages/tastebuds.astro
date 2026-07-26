@@ -13,6 +13,7 @@ import Card from "../components/ui/Card.astro";
 import CodeWindow from "../components/ui/CodeWindow.astro";
 import GlassPill from "../components/ui/GlassPill.astro";
 import ProjectMainVideo from "../components/ui/ProjectMainVideo.astro";
+import PlayButton from "../components/ui/PlayButton.astro";
 import {
     CardRenderA,
     CardRenderB,
@@ -267,19 +268,19 @@ export const tastebudsSections = [
                                         </GlassPill>
                                     </div>
                                     <!-- MVP Video -->
-                                    <div
+                                    <PlayButton
                                         class="bg-card-gradient border border-frame-ring rounded-lg shadow-lg"
                                     >
                                         <video
                                             class="p-4"
                                             src={MVPVideoMp4}
                                             preload="auto"
-                                            autoplay
+                                            controls
                                             loop
                                             muted
                                             playsinline
                                         ></video>
-                                    </div>
+                                    </PlayButton>
 
                                     <!-- MVP Stacks -->
                                     <div
@@ -490,17 +491,17 @@ export const tastebudsSections = [
                                             </GlassPill>
                                         </div>
                                         <!-- MVP Video -->
-                                        <div
+                                        <PlayButton
                                             class="bg-card-gradient border border-frame-ring rounded-lg shadow-lg"
                                         >
                                             <video
                                                 class="p-4"
                                                 src={ReDevVideo}
-                                                autoplay
+                                                controls
                                                 loop
                                                 muted
                                                 playsinline></video>
-                                        </div>
+                                        </PlayButton>
 
                                         <!-- Redevelopment Stacks -->
                                         <div

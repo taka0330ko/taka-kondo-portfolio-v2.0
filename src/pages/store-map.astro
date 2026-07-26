@@ -9,6 +9,7 @@ import Image from "astro/components/Image.astro";
 import BreadCrumb from "../components/ui/BreadCrumb.astro";
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
 import ProjectMainVideo from "../components/ui/ProjectMainVideo.astro";
+import PlayButton from "../components/ui/PlayButton.astro";
 import GlassPill from "../components/ui/GlassPill.astro";
 import Card from "../components/ui/Card.astro";
 
@@ -21,7 +22,7 @@ import { projects } from "../data/projects";
 // Hero media
 import StoreMapVideo from "../assets/images/projects/store-navigation/videos/store-map-thumbnail.webm";
 import StoreMapVideoMp4 from "../assets/images/projects/store-navigation/videos/store-map-thumbnail.mp4";
-import StoreMapPoster from "../assets/images/projects/store-navigation/store-map-thumbnail.webp";
+import StoreMapPoster from "../assets/images/projects/store-navigation/store-map-video-poster.webp";
 
 // Overview media
 import StoreMapModel from "../assets/images/projects/store-navigation/store-map-model.webp";
@@ -792,14 +793,14 @@ export const storeMapSections = [
                                     </li>
                                 </ul>
                             </div>
-                            <div
+                            <PlayButton
                                 class="mx-auto md:mx-0 md:ml-auto w-full max-w-60 drop-shadow-2xl"
                             >
                                 <video
                                     class="w-full rounded-lg"
                                     poster={OptionAPoster.src}
                                     preload="auto"
-                                    autoplay
+                                    controls
                                     loop
                                     muted
                                     playsinline
@@ -809,7 +810,7 @@ export const storeMapSections = [
                                         type="video/mp4"
                                     />
                                 </video>
-                            </div>
+                            </PlayButton>
                         </div>
 
                         <!-- Pattern B -->
@@ -865,14 +866,14 @@ export const storeMapSections = [
                                     </li>
                                 </ul>
                             </div>
-                            <div
+                            <PlayButton
                                 class="mx-auto md:mx-0 md:ml-auto w-full max-w-60 drop-shadow-2xl"
                             >
                                 <video
                                     class="w-full rounded-lg"
                                     poster={OptionBPoster.src}
                                     preload="auto"
-                                    autoplay
+                                    controls
                                     loop
                                     muted
                                     playsinline
@@ -882,7 +883,7 @@ export const storeMapSections = [
                                         type="video/mp4"
                                     />
                                 </video>
-                            </div>
+                            </PlayButton>
                         </div>
 
                         <!-- Usability Test -->

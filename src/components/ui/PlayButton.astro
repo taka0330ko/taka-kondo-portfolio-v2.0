@@ -1,0 +1,184 @@
+---
+import { Pause, Play } from "@lucide/astro";
+
+const { class: className = "" } = Astro.props;
+---
+
+<div class:list={["video-player", className]} data-video-player>
+    <slot />
+    <button
+        class="video-toggle"
+        type="button"
+        aria-label="Play video"
+        data-video-toggle
+    >
+        <Play class="play-icon" aria-hidden="true" data-play-icon />
+        <Pause class="pause-icon" aria-hidden="true" data-pause-icon />
+    </button>
+</div>
+
+<style>
+    .video-player {
+        position: relative;
+    }
+
+    .video-player :global(video) {
+        cursor: pointer;
+    }
+
+    .video-toggle {
+        position: absolute;
+        inset: 50% auto auto 50%;
+        display: grid;
+        width: 4rem;
+        height: 4rem;
+        place-items: center;
+        border: 1px solid rgb(255 255 255 / 45%);
+        border-radius: 999px;
+        background: rgb(0 0 0 / 55%);
+        color: white;
+        cursor: pointer;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+        backdrop-filter: blur(8px);
+        transition:
+            opacity 180ms ease,
+            transform 180ms ease,
+            background-color 180ms ease;
+    }
+
+    .video-player:hover .video-toggle,
+    .video-player:not(.has-played) .video-toggle,
+    .video-toggle:focus-visible {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .video-toggle:hover {
+        background: rgb(0 0 0 / 70%);
+    }
+
+    .video-toggle:focus-visible {
+        outline: 2px solid var(--text-accent);
+        outline-offset: 3px;
+    }
+
+    .video-toggle :global(svg) {
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: currentColor;
+    }
+
+    .pause-icon,
+    .video-player.is-playing .play-icon {
+        display: none;
+    }
+
+    .video-player.is-playing .pause-icon {
+        display: block;
+    }
+
+    .video-player.native-controls .video-toggle {
+        display: none;
+    }
+
+    @media (max-width: 767px) {
+        .video-toggle {
+            display: none;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .video-toggle {
+            transition: none;
+        }
+    }
+</style>
+
+<script>
+    function initVideoButtons() {
+        document.querySelectorAll<HTMLElement>("[data-video-player]").forEach((player) => {
+            if (player.dataset.bound === "true") return;
+
+            const video = player.querySelector<HTMLVideoElement>("video");
+            const button = player.querySelector<HTMLButtonElement>("[data-video-toggle]");
+            if (!video || !button) return;
+
+            player.dataset.bound = "true";
+            const desktopQuery = window.matchMedia("(min-width: 768px)");
+            const isFirefox = navigator.userAgent.includes("Firefox/");
+            let isVisible = false;
+            let wasUsingNativeControls = false;
+
+            if (isFirefox) {
+                video.preload = "none";
+                video.load();
+            }
+
+            const sync = () => {
+                player.classList.toggle("is-playing", !video.paused);
+                button.setAttribute("aria-label", video.paused ? "Play video" : "Pause video");
+            };
+
+            video.addEventListener("play", () => {
+                player.classList.add("has-played");
+            });
+
+            const togglePlayback = () => {
+                if (video.paused) {
+                    video.play().catch(sync);
+                } else {
+                    video.pause();
+                }
+            };
+
+            const handleVideoClick = () => {
+                if (desktopQuery.matches && !isFirefox) {
+                    togglePlayback();
+                }
+            };
+
+            const syncPlaybackMode = () => {
+                const useNativeControls = !desktopQuery.matches || isFirefox;
+                player.classList.toggle("native-controls", useNativeControls);
+                video.controls = useNativeControls;
+
+                if (useNativeControls) {
+                    if (!wasUsingNativeControls) {
+                        video.pause();
+                        player.classList.remove("has-played");
+                    }
+                } else if (isVisible) {
+                    video.controls = false;
+                    video.muted = true;
+                    video.play().catch(sync);
+                } else {
+                    video.pause();
+                    sync();
+                }
+
+                wasUsingNativeControls = useNativeControls;
+            };
+
+            const observer = new IntersectionObserver(
+                ([entry]) => {
+                    isVisible = entry.isIntersecting;
+                    syncPlaybackMode();
+                },
+                { threshold: 0.25 },
+            );
+
+            button.addEventListener("click", togglePlayback);
+            video.addEventListener("click", handleVideoClick);
+            video.addEventListener("play", sync);
+            video.addEventListener("pause", sync);
+            video.addEventListener("ended", sync);
+            desktopQuery.addEventListener("change", syncPlaybackMode);
+            observer.observe(video);
+            sync();
+        });
+    }
+
+    document.addEventListener("astro:page-load", initVideoButtons);
+    initVideoButtons();
+</script>

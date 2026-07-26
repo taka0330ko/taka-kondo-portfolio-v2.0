@@ -1,63 +1,19 @@
 ---
-import { Pause, Play } from "@lucide/astro";
+import PlayButton from "./PlayButton.astro";
 
 const { src, fallbackSrc, poster } = Astro.props;
 const isWebm = typeof src === "string" && src.endsWith(".webm");
 ---
 
-<div class="relative col-span-12" data-project-video>
-                    <video
-                        class="h-auto w-full aspect-video bg-text-block object-cover"
-                        poster={poster}
-                        autoplay
-                        loop
-                        muted
-                        playsinline>
-                        <source src={src} type={isWebm ? "video/webm" : "video/mp4"} />
-                        {fallbackSrc && <source src={fallbackSrc} type="video/mp4" />}
-                    </video>
-                    <button
-                        class="absolute cursor-pointer bottom-4 right-4 grid size-12 place-items-center bg-accent/80 text-white backdrop-blur-sm transition hover:bg-accent/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:bottom-8 md:right-8"
-                        type="button"
-                        aria-label="Pause video"
-                        data-video-toggle
-                    >
-                        <Pause class="size-5" data-pause-icon />
-                        <Play class="hidden size-5" data-play-icon />
-                    </button>
-</div>
-
-<script>
-    
-    function initPlayPauseBtn(){
-          document.querySelectorAll("[data-project-video]").forEach((root) => {
-            if (!(root instanceof HTMLElement)) return;
-            if (root.dataset.bound === "true") return;
-            root.dataset.bound = "true";
-
-            const video = root.querySelector<HTMLVideoElement>("video");
-            const toggleButton =
-                root.querySelector<HTMLButtonElement>("[data-video-toggle]");
-            const pauseIcon = root.querySelector<SVGElement>("[data-pause-icon]");
-            const playIcon = root.querySelector<SVGElement>("[data-play-icon]");
-            toggleButton?.addEventListener("click", () => {
-                if (!video || !pauseIcon || !playIcon) return;
-        
-                if (video.paused) {
-                    video.play().catch(() => {});
-                    toggleButton.setAttribute("aria-label", "Pause video");
-                    pauseIcon.classList.remove("hidden");
-                    playIcon.classList.add("hidden");
-                    return;
-                }
-        
-                video.pause();
-                toggleButton.setAttribute("aria-label", "Play video");
-                pauseIcon.classList.add("hidden");
-                playIcon.classList.remove("hidden");
-            });
-          });
-        }
-
-          document.addEventListener("astro:page-load", initPlayPauseBtn);
-</script>
+<PlayButton class="col-span-12">
+    <video
+        class="h-auto w-full aspect-video bg-text-block object-cover"
+        poster={poster}
+        controls
+        loop
+        muted
+        playsinline>
+        <source src={src} type={isWebm ? "video/webm" : "video/mp4"} />
+        {fallbackSrc && <source src={fallbackSrc} type="video/mp4" />}
+    </video>
+</PlayButton>

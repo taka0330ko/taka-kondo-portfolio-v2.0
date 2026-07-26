@@ -9,6 +9,7 @@ import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
 import Card from "../components/ui/Card.astro";
 import CodeWindow from "../components/ui/CodeWindow.astro";
 import ProjectMainVideo from "../components/ui/ProjectMainVideo.astro";
+import PlayButton from "../components/ui/PlayButton.astro";
 
 // Images
 import Image from "astro/components/Image.astro";
@@ -224,17 +225,17 @@ export const cardContents = [
                             <div
                                 class="lg:flex items-center gap-16 justify-center py-8"
                             >
-                                <div class="flex justify-center">
+                                <PlayButton class="flex justify-center">
                                     <video
                                         class="py-16 w-150"
-                                        autoplay
+                                        controls
                                         loop
                                         muted
                                         playsinline>
                                         <source src={MVPVideo} type="video/webm" />
                                         <source src={MVPVideoMp4} type="video/mp4" />
                                     </video>
-                                </div>
+                                </PlayButton>
                                 <div class="flex flex-col gap-4 items-center">
                                     <span class="flex items-center gap-2">
                                         <TriangleAlert
