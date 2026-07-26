@@ -1,0 +1,2 @@
+patchedDependencies:
+  astro-masonry: patches/astro-masonry.patch

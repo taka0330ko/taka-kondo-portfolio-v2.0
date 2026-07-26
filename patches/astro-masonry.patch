@@ -1,0 +1,15 @@
+diff --git a/src/components/Masonry.astro b/src/components/Masonry.astro
+index 744ce47b4aec8e26ab1e591cdeff436bbada4e3f..2efb0dcebf7269b7b302cb434819e4226b85e708 100644
+--- a/src/components/Masonry.astro
++++ b/src/components/Masonry.astro
+@@ -70,7 +70,9 @@ const breakpointColsString =
+ 
+     const masonryContainer = document.querySelector("[data-masonry-container]");
+     if (!masonryContainer) {
+-      console.warn("Masonry container not found.");
++      // No masonry container on this page (e.g. after navigating away from
++      // the Archive page under Astro's persistent View Transitions router).
++      // This is expected, not an error, so stay silent instead of warning.
+       return;
+     }
+ 
