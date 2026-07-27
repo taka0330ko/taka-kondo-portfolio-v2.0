@@ -53,6 +53,7 @@ import OptionBVideoMp4 from "../assets/images/projects/store-navigation/videos/o
 import OptionAPoster from "../assets/images/projects/store-navigation/option-a.webp";
 import OptionBPoster from "../assets/images/projects/store-navigation/option-b.webp";
 import FinalDesign from "../assets/images/projects/store-navigation/final-design.webp";
+import UserTestingPic from "../assets/images/projects/store-navigation/usertesting-pic.webp";
 
 export const storeMapSections = [
     { label: "Overview", href: "#Overview" },
@@ -895,7 +896,7 @@ export const storeMapSections = [
                                 Evaluating Real Shopping Behavior
                             </h3>
                             <p class="mt-4 text-cs-body leading-snug">
-                                Five participants were asked to locate six
+                                The participant was asked to locate six
                                 grocery items, switch between products, mark
                                 items as found, and navigate using the store
                                 map. During the sessions, I observed not only
@@ -910,8 +911,7 @@ export const storeMapSections = [
                             >
                                 <div>
                                     <p class="text-cs-body text-body-default">
-                                        5 participants<br />
-                                        Task: Find six products using the
+                                        Task: Find five products using Pattern A and five using Pattern B.
                                         Store Map.
                                     </p>
 
@@ -957,12 +957,11 @@ export const storeMapSections = [
                                         </ul>
                                     </div>
                                 </div>
-                                <!-- TODO: replace with supporting testing image -->
-                                <div
-                                    class="rounded-lg bg-body-default/10"
-                                    aria-hidden="true"
-                                >
-                                </div>
+                                <Image
+                                    src={UserTestingPic}
+                                    alt="Participant using the Store Map app on a phone while shopping in a grocery store aisle"
+                                    class="w-full h-full rounded-lg object-cover"
+                                />
                             </div>
                         </div>
 
