@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"span"> {
+    label: string;
+    className?: string;
+}
+
+const { label, className, ...rest } = Astro.props;
+---
+
+<span
+    {...rest}
+    class:list={[
+        "inline-flex items-center gap-2 rounded-full  bg-foreground-inverse px-4 py-2 text-caption text-heading-default ",
+        className,
+    ]}
+>
+    <span class="flex size-5 shrink-0 items-center justify-center [&>svg]:size-5">
+        <slot name="icon" />
+    </span>
+    {label}
+</span>

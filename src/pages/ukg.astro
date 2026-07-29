@@ -13,9 +13,14 @@ import CodeWindow from "../components/ui/CodeWindow.astro";
 import ProjectMainVideo from "../components/ui/ProjectMainVideo.astro";
 import GlassPill from "../components/ui/GlassPill.astro";
 import BeforeAfterToggle from "../components/ui/BeforeAfterToggle.astro";
+import ToolPill from "../components/ui/ToolPill.astro";
 
 // Icons
 import { ArrowUpRight, Notebook, NotebookPen, TrendingUp } from "@lucide/astro";
+import GoogleFormIcon from "../assets/images/icons/stacks/google-form.svg";
+import FigmaIcon from "../assets/images/icons/stacks/figma.svg";
+import ReactIcon from "../assets/images/icons/stacks/react.svg";
+import TailwindIcon from "../assets/images/icons/stacks/tailwind.svg";
 
 // Project data
 import { postsDataCode } from "../data/ukgCode";
@@ -111,12 +116,23 @@ export const ukgSections = [
                 <dl
                     class="order-3 md:order-2 grid gap-4 border-l border-accent pl-6 md:min-w-64 md:col-span-4"
                 >
-                    <div class="grid gap-1">
+                    <div class="grid gap-2">
                         <dt class="text-caption uppercase tracking-wide">
                             Tool
                         </dt>
-                        <dd class="font-medium text-body text-heading-default">
-                            Google form / Figma / React & Tailwind
+                        <dd class="flex flex-wrap gap-2">
+                            <ToolPill label="Google Form">
+                                <GoogleFormIcon slot="icon" />
+                            </ToolPill>
+                            <ToolPill label="Figma">
+                                <FigmaIcon slot="icon" />
+                            </ToolPill>
+                            <ToolPill label="React">
+                                <ReactIcon slot="icon" />
+                            </ToolPill>
+                            <ToolPill label="Tailwind">
+                                <TailwindIcon slot="icon" />
+                            </ToolPill>
                         </dd>
                     </div>
                     <div class="grid gap-1">
@@ -125,7 +141,7 @@ export const ukgSections = [
                         >
                             Role
                         </dt>
-                        <dd class="text-body font-medium text-heading-default">
+                        <dd class="text-body text-heading-default">
                             UX Researcher / UI Designer / Front-end Developer
                         </dd>
                     </div>
@@ -135,7 +151,7 @@ export const ukgSections = [
                         >
                             Timeline
                         </dt>
-                        <dd class="text-body font-medium text-heading-default">
+                        <dd class="text-body  text-heading-default">
                             One month, Apr-May, 2026
                         </dd>
                     </div>

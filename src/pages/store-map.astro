@@ -12,9 +12,16 @@ import ProjectMainVideo from "../components/ui/ProjectMainVideo.astro";
 import PlayButton from "../components/ui/PlayButton.astro";
 import GlassPill from "../components/ui/GlassPill.astro";
 import Card from "../components/ui/Card.astro";
+import ToolPill from "../components/ui/ToolPill.astro";
 
 // Icons
 import { ArrowUpRight, Check, X } from "@lucide/astro";
+import FigmaIcon from "../assets/images/icons/stacks/figma.svg";
+import ClaudeIcon from "../assets/images/icons/stacks/claude.svg";
+import ReactIcon from "../assets/images/icons/stacks/react.svg";
+import NodeIcon from "../assets/images/icons/stacks/node.svg";
+import ExpressIcon from "../assets/images/icons/stacks/express.svg";
+import MysqlIcon from "../assets/images/icons/stacks/mysql.svg";
 
 // Project data
 import { projects } from "../data/projects";
@@ -102,15 +109,29 @@ export const storeMapSections = [
                 <dl
                     class="order-3 md:order-2 grid gap-4 border-l border-accent pl-6 md:min-w-64 md:col-span-4"
                 >
-                    <div class="grid gap-1">
+                    <div class="grid gap-2">
                         <dt class="text-caption uppercase tracking-wide">
                             Tool
                         </dt>
-                        <dd class="font-medium text-body text-heading-default">
-                            Figma + MCP / Claude code
-                        </dd>
-                        <dd class="font-medium text-body text-heading-default">
-                            React Native / Express API / MySQL
+                        <dd class="flex flex-wrap gap-2">
+                            <ToolPill label="Figma + MCP">
+                                <FigmaIcon slot="icon" />
+                            </ToolPill>
+                            <ToolPill label="Claude">
+                                <ClaudeIcon slot="icon" />
+                            </ToolPill>
+                            <ToolPill label="React Native">
+                                <ReactIcon slot="icon" />
+                            </ToolPill>
+                            <ToolPill label="Node.js">
+                                <NodeIcon slot="icon" />
+                            </ToolPill>
+                            <ToolPill label="Express">
+                                <ExpressIcon slot="icon" />
+                            </ToolPill>
+                            <ToolPill label="MySQL">
+                                <MysqlIcon slot="icon" />
+                            </ToolPill>
                         </dd>
                     </div>
                     <div class="grid gap-1">
@@ -119,8 +140,8 @@ export const storeMapSections = [
                         >
                             Role
                         </dt>
-                        <dd class="text-body font-medium text-heading-default">
-                            UX Research / UI Design / Frontend Development
+                        <dd class="text-body text-heading-default">
+                            UX Researcher / UI Designer / Frontend Developer
                         </dd>
                     </div>
                     <div class="grid gap-1">
@@ -129,7 +150,7 @@ export const storeMapSections = [
                         >
                             Timeline
                         </dt>
-                        <dd class="text-body font-medium text-heading-default">
+                        <dd class="text-body text-heading-default">
                             One month, Jun - Jul, 2026
                         </dd>
                     </div>
