@@ -30,7 +30,7 @@ export const projects: Project[] = [
     href: "/store-map",
     cover: StoreMapNavigationThumbnail,
     coverVideo: StoreMapNavigationVideo,
-    title: "Grocery Store Map Navigation",
+    title: "Walmart Grocery Store Map Navigation",
     description:
       "Mobile app concept that helps shoppers locate products and navigate grocery stores through an interactive indoor map.",
     summaryList: [
