@@ -30,7 +30,9 @@ import CoverVideo from "../assets/images/projects/tastebuds/videos/foodblog-cove
 import CoverVideoMp4 from "../assets/images/projects/tastebuds/videos/foodblog-cover-video.mp4";
 import CoverVideoPoster from "../assets/images/projects/tastebuds/videos/foodblog-cover-video-poster.webp";
 import MVPVideoMp4 from "../assets/images/projects/tastebuds/videos/mvp-record.mp4";
+import MVPVideoPoster from "../assets/images/projects/tastebuds/videos/mvp-record-poster.jpg";
 import ReDevVideo from "../assets/images/projects/tastebuds/videos/redesign-record.mp4";
+import ReDevVideoPoster from "../assets/images/projects/tastebuds/videos/redesign-record-poster.jpg";
 
 // Images
 import MVPFolders from "../assets/images/projects/tastebuds/mvp-folders.png";
@@ -278,13 +280,18 @@ export const tastebudsSections = [
                                     >
                                         <video
                                             class="p-4"
-                                            src={MVPVideoMp4}
+                                            poster={MVPVideoPoster.src}
                                             preload="auto"
                                             controls
                                             loop
                                             muted
                                             playsinline
-                                        ></video>
+                                        >
+                                            <source
+                                                src={MVPVideoMp4}
+                                                type="video/mp4"
+                                            />
+                                        </video>
                                     </PlayButton>
 
                                     <!-- MVP Stacks -->
@@ -501,11 +508,17 @@ export const tastebudsSections = [
                                         >
                                             <video
                                                 class="p-4"
-                                                src={ReDevVideo}
+                                                poster={ReDevVideoPoster.src}
                                                 controls
                                                 loop
                                                 muted
-                                                playsinline></video>
+                                                playsinline
+                                            >
+                                                <source
+                                                    src={ReDevVideo}
+                                                    type="video/mp4"
+                                                />
+                                            </video>
                                         </PlayButton>
 
                                         <!-- Redevelopment Stacks -->
