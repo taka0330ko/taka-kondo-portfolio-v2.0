@@ -147,7 +147,7 @@
   --font-heading: var(--font-satoshi);
   --font-body: var(--font-general-sans);
 
-  /* type tokens */
+  /* Main typography tokens */
   --text-body: 1.1rem;
   --text-body--line-height: 1.7;
 
@@ -170,7 +170,12 @@
   --text-hero--line-height: 1.1;
   --text-hero--letter-spacing: -0.03em;
 
-  /* Case Study type tokens */
+  /* About typography tokens */
+  --text-ab-heading-capital: clamp(2.25rem, 5vw, 3rem);
+  --text-ab-heading: clamp(1.75rem, 3.5vw, 2rem);
+  --text-ab-body: clamp(1rem, 1.8vw, 1.125rem);
+
+  /* Case Study typography tokens */
   /* H1 */
   --text-cs-h1: clamp(2.25rem, 5vw, 3rem);
   /* 36px → 48px */
@@ -409,6 +414,20 @@
     background-image: linear-gradient(to bottom right,
         var(--card-active-gradient-from),
         var(--card-active-gradient-to));
+  }
+
+  .text-about-heading{
+    @apply text-ab-heading;
+    letter-spacing:6px;
+    font-weight: 300;
+  }
+
+  .text-about-heading::first-letter{
+    @apply text-ab-heading-capital;
+  }
+
+  .text-about-body{
+    @apply text-ab-body
   }
 
 }

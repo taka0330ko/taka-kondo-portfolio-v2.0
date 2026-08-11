@@ -1,0 +1,25 @@
+---
+import SquareRingAstroComponent from "../components/features/SquareRing.astro";
+---
+
+<div class="about-bg" aria-hidden="true">
+  <SquareRingAstroComponent class="about-ring about-ring-1" />
+</div>
+
+<style>
+  .about-bg {
+    background-color: var(--color-background);
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  :global(.about-ring) {
+    --ring-position: absolute;
+    --ring-width: min(15vw, 16rem);
+    opacity: 0.6;
+  }
+
+</style>

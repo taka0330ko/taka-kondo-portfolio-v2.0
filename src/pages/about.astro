@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import RippleEffectMyPic from "../components/webGL/RippleEffectMyPic";
+import AboutBg from "../layouts/AboutBg.astro";
 import CopyEmail from "../components/ui/CopyEmail.astro";
 import Gallery from "../components/ui/Gallery.astro";
 import { GithubIcon, LinkedinIcon } from "../data/icons";
@@ -11,100 +12,149 @@ import IconHover from "../components/ui/IconHover.astro";
 <Layout>
   <main>
     <section id="about-hero" aria-labelledby="about-title">
-            <div class="about-hero-grid grid-container">
-                <div class="about-intro">
-                    <h1 id="about-title"><span class="text-display">About</span> Taka</h1>
-                    <p class="">
-                        Born in Japan. <br />
-                        Professional workaholic.
-                    </p>
-                </div>
+      <div class="about-hero-grid grid-container">
+        <div class="about-intro">
+          <h1 id="about-title"><span class="text-display">About</span> Taka</h1>
+          <p>
+            Born in Japan. <br />
+            Professional workaholic.
+          </p>
+        </div>
 
-                <div class="about-my-pic mt-16 md:mt-0">
-                    <RippleEffectMyPic client:visible />
-                </div>
-            </div>
-        </section>
+        <div class="about-my-pic mt-16 md:mt-0">
+          <RippleEffectMyPic client:visible />
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="about-contents"
+      aria-labelledby="about-contents"
+      class="grid-container relative"
+    >
+      <AboutBg />
+      <div class="col-start-4 col-span-6">
+        <h2 class="text-about-heading mb-8">What I do</h2>
+        <p class="text-ab-body">
+          I don't stop at Figma. I use code to turn my ideas into interactive
+          prototypes, test them with real users, and improve the experience
+          based on what I learn.
+        </p>
+      </div>
+      <div class="col-start-4 col-span-6 mt-32">
+        <h2 class="text-about-heading mb-8">How I learn</h2>
+        <p class="text-ab-body">
+          Whether in design, development, or anything else I do, I value
+          understanding the fundamentals and systems first, building strong
+          foundations before moving forward.
+        </p>
+      </div>
+      <div class="col-start-4 col-span-6 mt-32">
+        <h2 class="text-about-heading mb-8">Education</h2>
+        <p class="text-ab-body">
+          New Media Design and Web Development at BCIT.
+        </p>
+        <p>2025 - 2026</p>
+      </div>
+    </section>
+    <section class="flex flex-col justify-center items-center my-40">
+      <CopyEmail />
+      <div class="icons flex items-center gap-10 mt-4">
+        <IconHover
+          href="https://github.com/taka0330ko"
+          aria-label="GitHub profile"
+          label="GitHub"
+        >
+          <GithubIcon />
+        </IconHover>
+
+        <IconHover
+          href="https://www.linkedin.com/in/takanarikondo/"
+          aria-label="LinkedIn profile"
+          label="LinkedIn"
+        >
+          <LinkedinIcon />
+        </IconHover>
+
+        <IconHover
+          href="mailto:gtakanari0330@gmail.com"
+          aria-label="Send email"
+          label="Email"
+        >
+          <Mail />
+        </IconHover>
+      </div>
+    </section>
   </main>
 </Layout>
 
 <style>
   #about-hero {
-        min-height: 100svh;
-        overflow: hidden;
-    }
+    min-height: 100svh;
+    overflow: hidden;
+  }
 
-    #about-main {
-        background-color: transparent;
-        background-image: linear-gradient(
-            180deg,
-            var(--archive-gradient-edge) 0%,
-            var(--archive-gradient-center) 35%,
-            var(--archive-gradient-center) 75%,
-            var(--archive-gradient-edge) 100%
-        );
-    }
+  .about-main-inner {
+    padding-inline: 1.5rem;
+  }
 
-    .about-main-inner {
-        padding-inline: 1.5rem;
-    }
+  .about-hero-grid {
+    min-height: calc(100svh - 6rem);
+    padding-block: clamp(2rem, 6vh, 5rem);
+  }
 
+  .about-intro {
+    z-index: 1;
+    align-self: end;
+  }
+
+  .about-intro h1 {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 400;
+    line-height: 0.9;
+  }
+
+  .about-intro p {
+    margin-top: 1.5rem;
+    color: var(--text-heading-default);
+    font-size: clamp(1.125rem, 2vw, 1.75rem);
+    line-height: 1.35;
+  }
+
+  .about-my-pic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  @media (width < 768px) {
     .about-hero-grid {
-        min-height: calc(100svh - 6rem);
-        padding-block: clamp(2rem, 6vh, 5rem);
+      justify-content: space-between;
     }
 
     .about-intro {
-        z-index: 1;
-        align-self: end;
-    }
-
-    .about-intro h1 {
-        font-size: clamp(3.5rem, 8vw, 7rem);
-        font-weight: 400;
-        line-height: 0.9;
-    }
-
-    .about-intro p {
-        margin-top: 1.5rem;
-        color: var(--text-heading-default);
-        font-size: clamp(1.125rem, 2vw, 1.75rem);
-        line-height: 1.35;
+      order: 2;
+      align-self: start;
     }
 
     .about-my-pic {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 0;
+      order: 1;
+      width: min(100%, 30rem);
+      margin-inline: auto;
+    }
+  }
+
+  @media (width >= 768px) {
+    .about-intro {
+      grid-column: 1 / span 4;
+      padding-bottom: clamp(1rem, 5vh, 4rem);
     }
 
-    @media (width < 768px) {
-        .about-hero-grid {
-            justify-content: space-between;
-        }
-
-        .about-intro {
-            order: 2;
-            align-self: start;
-        }
-
-        .about-my-pic {
-            order: 1;
-            width: min(100%, 30rem);
-            margin-inline: auto;
-        }
+    .about-my-pic {
+      grid-column: 7 / span 5;
+      align-self: center;
     }
+  }
 
-    @media (width >= 768px) {
-        .about-intro {
-            grid-column: 1 / span 4;
-            padding-bottom: clamp(1rem, 5vh, 4rem);
-        }
-
-        .about-my-pic {
-            grid-column: 7 / span 5;
-            align-self: center;
-        }
-    }
 </style>
