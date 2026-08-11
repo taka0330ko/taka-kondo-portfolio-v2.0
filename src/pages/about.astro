@@ -9,163 +9,102 @@ import IconHover from "../components/ui/IconHover.astro";
 ---
 
 <Layout>
-  <div class="grid grid-cols-12 grid-container">
-    <div class="order-2 md:order-1 col-start-1 col-end-7">
-      <section class="md:h-screen flex items-center">
-        <div>
-          <h1 class="text-heading-default text-4xl text-nowrap">
-            Hello, I&apos;m Taka
-          </h1>
-          <div class="text-body-default mt-4">
-            <p>
-              I&apos;m currently studying New Media Design and Web Development
-              at BCIT.
-            </p>
+  <main>
+    <section id="about-hero" aria-labelledby="about-title">
+            <div class="about-hero-grid grid-container">
+                <div class="about-intro">
+                    <h1 id="about-title"><span class="text-display">About</span> Taka</h1>
+                    <p class="">
+                        Born in Japan. <br />
+                        Professional workaholic.
+                    </p>
+                </div>
 
-            <p class="mt-4">
-              I aim to transform complex technology into intuitive and
-              trustworthy experiences through user-centered design.
-            </p>
-            <p class="mt-4">
-              In both design and development, I value understanding fundamentals
-              and systems first, building strong foundations while aiming to
-              bridge the gap between design and development.
-            </p>
-            <p class="mt-4">
-              As part of a team, I enjoy contributing across research, design,
-              and implementation, helping turn ideas into meaningful digital
-              experiences.
-            </p>
-          </div>
-        </div>
-      </section>
-      <section class="flex items-center">
-        <div class="flex flex-col gap-4">
-          <p class="text-center mb-4 mt-32 md:mt-0">
-            When I&apos;m not in front of a computer screen,<br />
-            you&apos;ll likely find me
-            <span class="text-accent">painting or practicing calligraphy.</span> ↓
-          </p>
-          <div class="gallery-shell" data-gallery-shell>
-            <div class="gallery-modal" data-gallery-modal hidden>
-              <div class="gallery-modal__panel glass-card">
-                <button
-                  class="gallery-modal__close text-heading-default p-1 hover:bg-accent/50 rounded-full"
-                  type="button"
-                  data-gallery-modal-close
-                  aria-label="Close gallery modal"
-                >
-                  <X />
-                </button>
-                <img
-                  class="gallery-modal__image"
-                  data-gallery-modal-image
-                  alt=""
-                />
-              </div>
+                <div class="about-my-pic mt-16 md:mt-0">
+                    <RippleEffectMyPic client:visible />
+                </div>
             </div>
-            <Gallery />
-          </div>
-        </div>
-      </section>
-    </div>
-    <div class="order-1 md:order-2 col-start-8 col-end-12">
-      <div class="md:sticky md:top-50 flex justify-center mt-30">
-        <RippleEffectMyPic client:visible />
-      </div>
-    </div>
-  </div>
-  <section class="flex flex-col justify-center items-center my-40">
-    <CopyEmail />
-    <div class="icons flex items-center gap-10 mt-4">
-      <IconHover
-        href="https://github.com/taka0330ko"
-        aria-label="GitHub profile"
-        label="GitHub"
-      >
-        <GithubIcon />
-      </IconHover>
-
-      <IconHover
-        href="https://www.linkedin.com/in/takanarikondo/"
-        aria-label="LinkedIn profile"
-        label="LinkedIn"
-      >
-        <LinkedinIcon />
-      </IconHover>
-
-      <IconHover
-        href="mailto:gtakanari0330@gmail.com"
-        aria-label="Send email"
-        label="Email"
-      >
-        <Mail />
-      </IconHover>
-    </div>
-  </section>
+        </section>
+  </main>
 </Layout>
 
 <style>
-  .gallery-shell {
-    position: relative;
-  }
+  #about-hero {
+        min-height: 100svh;
+        overflow: hidden;
+    }
 
-  .gallery-modal {
-    position: absolute;
-    inset: 0;
-    z-index: 20;
-    display: grid;
-    place-items: center;
-    background: #0000009f;
-    padding: 1rem;
-    opacity: 0;
-    visibility: hidden;
-    transition:
-      opacity 220ms ease,
-      visibility 220ms ease;
-  }
+    #about-main {
+        background-color: transparent;
+        background-image: linear-gradient(
+            180deg,
+            var(--archive-gradient-edge) 0%,
+            var(--archive-gradient-center) 35%,
+            var(--archive-gradient-center) 75%,
+            var(--archive-gradient-edge) 100%
+        );
+    }
 
-  .gallery-modal[hidden] {
-    display: none;
-  }
+    .about-main-inner {
+        padding-inline: 1.5rem;
+    }
 
-  .gallery-modal.is-visible {
-    opacity: 1;
-    visibility: visible;
-  }
+    .about-hero-grid {
+        min-height: calc(100svh - 6rem);
+        padding-block: clamp(2rem, 6vh, 5rem);
+    }
 
-  .gallery-modal__panel {
-    display: flex;
-    flex-direction: column;
-    width: min(100%, 28rem);
-    max-height: calc(100% - 2rem);
-    overflow: auto;
-    border-radius: 8px;
-    padding: 1rem;
-    transform: translateY(12px);
-    opacity: 0;
-    transition:
-      transform 220ms ease,
-      opacity 220ms ease;
-  }
+    .about-intro {
+        z-index: 1;
+        align-self: end;
+    }
 
-  .gallery-modal.is-visible .gallery-modal__panel {
-    transform: translateY(0);
-    opacity: 1;
-  }
+    .about-intro h1 {
+        font-size: clamp(3.5rem, 8vw, 7rem);
+        font-weight: 400;
+        line-height: 0.9;
+    }
 
-  .gallery-modal__close {
-    cursor: pointer;
-    display: inline-flex;
-    align-self: flex-end;
-    margin-left: auto;
-    margin-bottom: 1rem;
-  }
+    .about-intro p {
+        margin-top: 1.5rem;
+        color: var(--text-heading-default);
+        font-size: clamp(1.125rem, 2vw, 1.75rem);
+        line-height: 1.35;
+    }
 
-  .gallery-modal__image {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
+    .about-my-pic {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+    }
+
+    @media (width < 768px) {
+        .about-hero-grid {
+            justify-content: space-between;
+        }
+
+        .about-intro {
+            order: 2;
+            align-self: start;
+        }
+
+        .about-my-pic {
+            order: 1;
+            width: min(100%, 30rem);
+            margin-inline: auto;
+        }
+    }
+
+    @media (width >= 768px) {
+        .about-intro {
+            grid-column: 1 / span 4;
+            padding-bottom: clamp(1rem, 5vh, 4rem);
+        }
+
+        .about-my-pic {
+            grid-column: 7 / span 5;
+            align-self: center;
+        }
+    }
 </style>

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 import type { Texture } from "three"
-import myPic from "../../assets/images/about/taka-picture.webp"
+import myPic from "../../assets/images/about/taka-picture-circle.webp"
 
 function RippleEffectMyPic() {
   const threeHostRef = useRef<HTMLDivElement | null>(null)
@@ -440,7 +440,7 @@ function RippleEffectMyPic() {
     <div>
       <div
         ref={threeHostRef}
-        className="relative w-75 md:w-90 lg:w-112.5 aspect-square overflow-hidden rounded-lg
+        className="relative w-150 aspect-square overflow-hidden rounded-lg
     select-none
     [-webkit-touch-callout:none] [-webkit-tap-highlight-color:transparent]"
         aria-label="hero rings"
