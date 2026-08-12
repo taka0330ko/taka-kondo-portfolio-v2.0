@@ -60,7 +60,11 @@ import OptionBVideoMp4 from "../assets/images/projects/store-navigation/videos/o
 import OptionAPoster from "../assets/images/projects/store-navigation/option-a.webp";
 import OptionBPoster from "../assets/images/projects/store-navigation/option-b.webp";
 import FinalDesign from "../assets/images/projects/store-navigation/final-design.webp";
-import UserTestingPic from "../assets/images/projects/store-navigation/usertesting-pic.webp";
+import UserTestingPic from "../assets/images/projects/store-navigation/in-store-navigation-testing.webp";
+import CarrotSearchPic from "../assets/images/projects/store-navigation/store-map-carrot-search.webp";
+import DressingSearchPic from "../assets/images/projects/store-navigation/store-map-dressing-search.webp";
+import HotcakeMixPic from "../assets/images/projects/store-navigation/store-map-hotcake-mix.webp";
+import TomatoFoundPic from "../assets/images/projects/store-navigation/store-map-tomato-found.webp";
 
 export const storeMapSections = [
     { label: "Overview", href: "#Overview" },
@@ -86,8 +90,7 @@ export const storeMapSections = [
                         difficult?
                     </h1>
                     <p class="mt-8">
-                        Rethinking grocery navigation with interactive maps and
-                        intelligent routing.
+                        Rethinking grocery shopping with interactive store maps and intuitive product discovery.
                     </p>
                     <div class="mt-8 md:my-8">
                         <!-- <GlassPill
@@ -937,60 +940,100 @@ export const storeMapSections = [
                             </p>
 
                             <div
-                                class="mt-10 grid gap-8 md:grid-cols-2 md:items-stretch"
+                                class="mt-10 grid gap-8 md:grid-cols-[1fr_2fr] md:items-start"
                             >
-                                <div>
+                                <div class="text-center">
                                     <p class="text-cs-body text-body-default">
                                         Task: Find five products using Pattern A
                                         and five using Pattern B. Store Map.
                                     </p>
 
+                                    <Image
+                                        src={UserTestingPic}
+                                        alt="Participant using the Store Map app on a phone while shopping in a grocery store aisle"
+                                        class="mx-auto mt-8 block max-w-80 aspect-3/4 rounded-lg object-cover"
+                                    />
+                                </div>
+                                <div class="grid gap-8">
                                     <div
-                                        class="mt-8 rounded-lg bg-text-block p-6"
+                                        class="flex items-center gap-4 rounded-lg bg-text-block p-6"
                                     >
-                                        <h4
-                                            class="text-cs-h3 font-normal leading-tight"
+                                        <span
+                                            class="shrink-0 text-6xl font-light text-red-400"
                                         >
-                                            Key Findings
-                                        </h4>
-                                        <ul class="mt-6 grid gap-5">
-                                            <li
-                                                class="flex items-start gap-3 text-cs-body"
-                                            >
-                                                <span
-                                                    aria-hidden="true"
-                                                    class="mt-2.5 size-1.5 shrink-0 rounded-full bg-body-default"
-                                                ></span>
-                                                Users wanted to keep the map visible
-                                            </li>
-                                            <li
-                                                class="flex items-start gap-3 text-cs-body"
-                                            >
-                                                <span
-                                                    aria-hidden="true"
-                                                    class="mt-2.5 size-1.5 shrink-0 rounded-full bg-body-default"
-                                                ></span>
-                                                The Bottom Sheet covered too much
-                                                of the map
-                                            </li>
-                                            <li
-                                                class="flex items-start gap-3 text-cs-body"
-                                            >
-                                                <span
-                                                    aria-hidden="true"
-                                                    class="mt-2.5 size-1.5 shrink-0 rounded-full bg-body-default"
-                                                ></span>
-                                                Switching products felt easier from
-                                                the header
-                                            </li>
-                                        </ul>
+                                            A
+                                        </span>
+                                        <div class="grid grid-cols-2 gap-3">
+                                            <Image
+                                                src={CarrotSearchPic}
+                                                alt="Header List pattern showing search results for carrots, overlaid on a photo of fresh carrots in the produce aisle"
+                                                class="aspect-square w-full rounded-lg object-cover"
+                                            />
+                                            <Image
+                                                src={DressingSearchPic}
+                                                alt="Header List pattern showing search results for salad dressing, overlaid on a photo of the condiment aisle"
+                                                class="aspect-square w-full rounded-lg object-cover"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-4 rounded-lg bg-text-block p-6"
+                                    >
+                                        <span
+                                            class="shrink-0 text-6xl font-light text-blue-400"
+                                        >
+                                            B
+                                        </span>
+                                        <div class="grid grid-cols-2 gap-3">
+                                            <Image
+                                                src={HotcakeMixPic}
+                                                alt="Bottom Sheet pattern showing item details for hotcake mix, overlaid on a photo of the snack aisle"
+                                                class="aspect-square w-full rounded-lg object-cover"
+                                            />
+                                            <Image
+                                                src={TomatoFoundPic}
+                                                alt="Bottom Sheet pattern showing an item marked as Found for tomatoes, overlaid on a photo of tomatoes in the produce aisle"
+                                                class="aspect-square w-full rounded-lg object-cover"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                                <Image
-                                    src={UserTestingPic}
-                                    alt="Participant using the Store Map app on a phone while shopping in a grocery store aisle"
-                                    class="w-full h-full rounded-lg object-cover"
-                                />
+                            </div>
+
+                            <div class="mt-8 rounded-lg bg-text-block p-6">
+                                <h4
+                                    class="text-cs-h3 font-normal leading-tight text-center"
+                                >
+                                    Key Findings
+                                </h4>
+                                <ul class="mt-6 grid w-fit gap-5 mx-auto">
+                                    <li
+                                        class="flex items-center gap-3 text-cs-body"
+                                    >
+                                        <Check
+                                            class="size-5 shrink-0 text-green-500"
+                                        />
+                                        Users wanted to keep the map visible
+                                    </li>
+                                    <li
+                                        class="flex items-center gap-3 text-cs-body"
+                                    >
+                                        <Check
+                                            class="size-5 shrink-0 text-green-500"
+                                        />
+                                        The Bottom Sheet covered too much of
+                                        the map
+                                    </li>
+                                    <li
+                                        class="flex items-center gap-3 text-cs-body"
+                                    >
+                                        <Check
+                                            class="size-5 shrink-0 text-green-500"
+                                        />
+                                        Switching products felt easier from
+                                        the header
+                                    </li>
+                                </ul>
                             </div>
                         </div>
 
