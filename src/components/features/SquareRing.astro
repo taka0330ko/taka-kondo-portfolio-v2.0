@@ -5,23 +5,31 @@ interface Props {
 
 const { class: className } = Astro.props;
 
-const rotations = Array.from({ length: 64 }, () => `${Math.random() * 180}deg`);
+const rotations = Array.from({ length: 32 }, () => `${Math.random() * 180}deg`);
 ---
 
 <div class:list={["square-ring", className]} aria-hidden="true">
-  {rotations.map((rotation) => <span style={`--rotation: ${rotation}`} />)}
+  <div class="square-ring-spin">
+    {rotations.map((rotation) => <span style={`--rotation: ${rotation}`} />)}
+  </div>
 </div>
 
 <style>
   .square-ring {
-    width: var(--ring-width, min(80vw, 22rem));
+    position: var(--ring-position, relative);
+    width: var(--ring-width, 100%);
     aspect-ratio: 1;
   }
 
-  .square-ring span {
+  .square-ring-spin {
+    position: absolute;
+    inset: 0;
+  }
+
+  .square-ring-spin span {
     position: absolute;
     inset: 15%;
-    border: .5px solid var(--five-lines);
+    border: 1.2px solid var(--five-lines);
     transform: rotate(var(--rotation));
     transform-origin: center;
     pointer-events: none;

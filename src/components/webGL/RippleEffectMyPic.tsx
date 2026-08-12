@@ -440,7 +440,7 @@ function RippleEffectMyPic() {
     <div>
       <div
         ref={threeHostRef}
-        className="relative w-150 aspect-square overflow-hidden rounded-lg
+        className="relative w-120 md:w-130 lg:w-150 aspect-square overflow-hidden rounded-lg
     select-none
     [-webkit-touch-callout:none] [-webkit-tap-highlight-color:transparent]"
         aria-label="hero rings"

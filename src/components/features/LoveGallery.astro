@@ -1,0 +1,230 @@
+---
+import { Image } from "astro:assets";
+import Calligraphy from "../../assets/images/about/calligraphy.jpg";
+import PaintingMarket from "../../assets/images/about/painting-market.jpg";
+import FanLandscapeInkPainting from "../../assets/images/about/fan-landscape-ink-painting.jpg";
+import PaintingLake from "../../assets/images/about/painting-lake.jpg";
+import FoodMatchaWagashi from "../../assets/images/about/food-matcha-wagashi.webp";
+import FoodPasta from "../../assets/images/about/food-pasta.webp";
+import FoodPretzels from "../../assets/images/about/food-pretzels.webp";
+import FoodSalmonSushi from "../../assets/images/about/food-salmon-sushi.webp";
+---
+
+<div class="gallery" aria-label="Personal interests gallery">
+        <svg
+          class="network"
+          viewBox="0 0 82 171"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <defs>
+            <filter
+              id="line-shadow"
+              x="-4"
+              y="-4"
+              width="90"
+              height="179"
+              filterUnits="userSpaceOnUse"
+            >
+              <feDropShadow
+                dx="0.5"
+                dy="0.75"
+                stdDeviation="0.5"
+                flood-color="#626268"
+                flood-opacity="0.32"
+              />
+            </filter>
+          </defs>
+
+          <g class="network__lines" filter="url(#line-shadow)">
+            <path d="M32 28 L40 8" />
+            <path d="M32 28 L40 27" />
+            <path d="M67 27 L73 36" />
+            <path d="M32 28 L46 36" />
+            <path d="M7 45 L38 51" />
+            <path d="M46 46 L38 51" />
+            <path d="M46 46 L45 59" />
+            <path d="M73 46 L70 59" />
+            <path d="M38 68 L45 59" />
+            <path d="M10 68 L45 84" />
+
+            <path d="M45 84 L10 89" />
+            <path d="M45 84 L52 101" />
+            <path d="M70 84 L52 101" />
+            <path d="M45 84 L45 116" />
+            <path d="M52 101 L45 116" />
+
+            <path d="M10 107 L12 116" />
+            <path d="M37 107 L12 116" />
+            <path d="M12 126 L12 134" />
+            <path d="M52 125 L35 134" />
+            <path d="M45 126 L53 133" />
+            <path d="M70 125 L74 133" />
+          </g>
+        </svg>
+
+        <figure class="photo photo--art-1">
+          <Image src={Calligraphy} alt="Calligraphy artwork" />
+        </figure>
+
+        <figure class="photo photo--art-2">
+          <Image src={PaintingMarket} alt="Market painting" />
+        </figure>
+
+        <figure class="photo photo--art-3">
+          <Image src={FanLandscapeInkPainting} alt="Fan landscape ink painting" />
+        </figure>
+
+        <h3 class="label label--arts">Love Arts</h3>
+
+        <figure class="photo photo--art-4">
+          <Image src={PaintingLake} alt="Lake painting" />
+        </figure>
+
+        <figure class="photo photo--food-1">
+          <Image src={FoodMatchaWagashi} alt="Matcha and wagashi" loading="lazy" />
+        </figure>
+
+        <figure class="photo photo--food-2">
+          <Image src={FoodPasta} alt="Pasta dish" loading="lazy" />
+        </figure>
+
+        <h3 class="label label--cooking">Love Cooking</h3>
+
+        <figure class="photo photo--food-3">
+          <Image src={FoodPretzels} alt="Pretzels" loading="lazy" />
+        </figure>
+
+        <figure class="photo photo--food-4">
+          <Image src={FoodSalmonSushi} alt="Salmon sushi" loading="lazy" />
+        </figure>
+</div>
+
+<style>
+  .gallery {
+    --paper: #fff;
+    --line: var(--five-lines, rgb(255 255 255 / 98%));
+    --unit: 1.219512cqw;
+
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(82, 1fr);
+    grid-template-rows: repeat(171, 1fr);
+    width: min(100%, 656px);
+    aspect-ratio: 82 / 171;
+    overflow: hidden;
+    container-type: inline-size;
+    isolation: isolate;
+  }
+
+  .network {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .network__lines {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .network__lines path {
+    stroke: var(--line);
+    stroke-width: 2px;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .photo,
+  .label {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    background: var(--paper);
+  }
+
+  .photo {
+    padding: var(--unit);
+    box-shadow:
+      calc(var(--unit) * 0.75)
+      var(--unit)
+      calc(var(--unit) * 1.1)
+      rgb(58 58 63 / 25%);
+  }
+
+  .photo :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #e8e8ea;
+    object-fit: cover;
+  }
+
+  .label {
+    display: grid;
+    place-items: center;
+    color: #111;
+    font-size: clamp(14px, 3.35cqw, 22px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.3em;
+    white-space: nowrap;
+  }
+
+  .photo--art-1 {
+    grid-column: 41 / span 27;
+    grid-row: 9 / span 19;
+  }
+
+  .photo--art-2 {
+    grid-column: 8 / span 25;
+    grid-row: 29 / span 17;
+  }
+
+  .photo--art-3 {
+    grid-column: 11 / span 28;
+    grid-row: 52 / span 17;
+  }
+
+  .label--arts {
+    grid-column: 47 / span 27;
+    grid-row: 37 / span 10;
+  }
+
+  .photo--art-4 {
+    grid-column: 46 / span 25;
+    grid-row: 60 / span 25;
+  }
+
+  .photo--food-1 {
+    grid-column: 11 / span 27;
+    grid-row: 90 / span 18;
+  }
+
+  .photo--food-2 {
+    grid-column: 53 / span 18;
+    grid-row: 102 / span 24;
+  }
+
+  .label--cooking {
+    grid-column: 13 / span 33;
+    grid-row: 117 / span 10;
+    letter-spacing: 0.27em;
+  }
+
+  .photo--food-3 {
+    grid-column: 13 / span 23;
+    grid-row: 135 / span 24;
+  }
+
+  .photo--food-4 {
+    grid-column: 54 / span 21;
+    grid-row: 134 / span 31;
+  }
+
+</style>
