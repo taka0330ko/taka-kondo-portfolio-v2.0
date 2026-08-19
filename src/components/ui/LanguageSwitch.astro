@@ -1,0 +1,93 @@
+---
+import MyArrowDown from "../../assets/images/icons/CaretDown.svg";
+
+const pathname = Astro.url.pathname;
+const isJapanese = pathname === "/jp" || pathname.startsWith("/jp/");
+const currentLanguage = isJapanese ? "日本語" : "Eng";
+const anotherLanguage = isJapanese ? "Eng" : "日本語";
+const anotherLanguagePath = isJapanese
+    ? pathname.replace(/^\/jp(?=\/|$)/, "") || "/"
+    : `/jp${pathname === "/" ? "" : pathname}`;
+---
+
+<div id="language-dropdown" class="relative">
+    <button
+        id="language-switch"
+        type="button"
+        class="flex cursor-pointer items-center gap-1 hover:text-accent"
+        aria-expanded="false"
+        aria-controls="another-lang"
+    >
+        {currentLanguage}<span class="language-arrow"><MyArrowDown /></span>
+    </button>
+
+    <div
+        id="another-lang"
+        class="absolute left-1/2 top-full z-10 -translate-x-1/2 pt-2"
+        hidden
+    >
+        <a
+            href={anotherLanguagePath}
+            class="block whitespace-nowrap rounded-md px-3 py-2 hover:text-accent"
+        >
+            {anotherLanguage}
+        </a>
+    </div>
+</div>
+
+<style>
+    .language-arrow {
+        transition: transform 200ms ease;
+    }
+
+    #language-switch[aria-expanded="true"] .language-arrow {
+        transform: rotate(180deg);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .language-arrow {
+            transition: none;
+        }
+    }
+</style>
+
+<script>
+    let languageDropdownController: AbortController | undefined;
+
+    function initLanguageDropdown() {
+        languageDropdownController?.abort();
+        languageDropdownController = new AbortController();
+        const { signal } = languageDropdownController;
+
+        const dropdown = document.getElementById("language-dropdown");
+        const anotherLang = document.getElementById("another-lang");
+        const langSwitch = document.getElementById("language-switch");
+
+        if (!dropdown || !anotherLang || !langSwitch) return;
+
+        const closeDropdown = () => {
+            anotherLang.hidden = true;
+            langSwitch.setAttribute("aria-expanded", "false");
+        };
+
+        langSwitch.addEventListener("click", () => {
+            const willOpen = anotherLang.hidden;
+            anotherLang.hidden = !willOpen;
+            langSwitch.setAttribute("aria-expanded", String(willOpen));
+        }, { signal });
+
+        document.addEventListener("click", (event) => {
+            if (!dropdown.contains(event.target as Node)) closeDropdown();
+        }, { signal });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeDropdown();
+                langSwitch.focus();
+            }
+        }, { signal });
+    }
+
+    document.addEventListener("astro:page-load", initLanguageDropdown);
+    initLanguageDropdown();
+</script>

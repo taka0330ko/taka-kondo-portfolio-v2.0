@@ -3,6 +3,7 @@ import ThemeToggle from "../ui/ThemeToggle.astro";
 import Logo from "../../assets/images/common/kondo-logo-primary.svg";
 import MenuBar from "../ui/MenuBar.astro";
 import MobileMenuPanel from "../ui/MobileMenuPanel.astro";
+import LanguageSwitch from "../ui/LanguageSwitch.astro";
 
 const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
 const isAboutPage = pathname === "/about";
@@ -58,6 +59,7 @@ const isProjectsPage = [
     </div>
 
     <div class="relative z-100 flex items-center gap-4 justify-self-end ">
+      <LanguageSwitch/>
       <ThemeToggle />
       <div class="md:hidden pb-2">
         <MenuBar/>
