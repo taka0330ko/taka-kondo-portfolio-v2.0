@@ -1,0 +1,82 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import JapaneseHero from "../../components/features/JapaneseHero.astro";
+import CopyEmail from "../../components/ui/CopyEmail.astro";
+import MainProjectCard from "../../components/ui/MainProjectCard.astro";
+import IconHover from "../../components/ui/IconHover.astro";
+import { projects } from "../../data/projects";
+import { GithubIcon, LinkedinIcon } from "../../data/icons";
+import { Mail } from "@lucide/astro";
+---
+
+<Layout
+  title="近藤嵩成 | UI/UXデザイナー・フロントエンド開発者"
+  description="UI/UXデザインとフロントエンド開発に取り組む近藤嵩成のポートフォリオです。"
+>
+  <main>
+    <section class="home-hero">
+      <JapaneseHero />
+    </section>
+
+    <section id="projects" class="mx-auto max-w-350 px-4 md:px-8">
+      <h2 class="sr-only pb-16">Projects</h2>
+      <div class="grid gap-24">
+        {projects.map((project) => (
+          <MainProjectCard
+            href={project.href}
+            cover={project.cover}
+            coverVideo={project.coverVideo}
+            coverVideoFallback={project.coverVideoFallback}
+            title={project.title}
+            description={project.description}
+            summaryList={project.summaryList}
+            tag={project.tag}
+            isReady={project.isReady}
+          />
+        ))}
+      </div>
+    </section>
+
+    <section class="my-40 flex flex-col items-center justify-center">
+      <CopyEmail />
+      <div class="icons mt-4 flex items-center gap-10">
+        <IconHover
+          href="https://github.com/taka0330ko"
+          aria-label="GitHub profile"
+          label="GitHub"
+        >
+          <GithubIcon />
+        </IconHover>
+
+        <IconHover
+          href="https://www.linkedin.com/in/takanarikondo/"
+          aria-label="LinkedIn profile"
+          label="LinkedIn"
+        >
+          <LinkedinIcon />
+        </IconHover>
+
+        <IconHover
+          href="mailto:gtakanari0330@gmail.com"
+          aria-label="メールを送る"
+          label="Email"
+        >
+          <Mail />
+        </IconHover>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .home-hero {
+    min-height: 100svh;
+    padding: 6rem 1rem 3rem;
+  }
+
+  @media (width >= 768px) {
+    .home-hero {
+      padding: 5.5rem 2rem 3rem;
+    }
+  }
+</style>

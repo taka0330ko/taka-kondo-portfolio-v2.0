@@ -1,0 +1,171 @@
+---
+import RippleEffectRings from "../webGL/RippleEffectRings";
+import { Mail } from "@lucide/astro";
+import { GithubIcon, LinkedinIcon } from "../../data/icons";
+import IconHover from "../ui/IconHover.astro";
+import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
+---
+
+<div class="jp-hero-grid">
+  <div class="jp-hero-copy">
+    <h1 class="jp-hero-name">こんどう&nbsp;&nbsp;たかなり</h1>
+    <p class="jp-hero-role">UI/UX Design&nbsp; | &nbsp;Front End Development</p>
+  </div>
+
+  <div class="jp-hero-rings" aria-hidden="true">
+    <RippleEffectRings client:visible />
+  </div>
+
+  <div class="jp-hero-socials">
+    <IconHover
+      href="https://github.com/taka0330ko"
+      aria-label="GitHub profile"
+      label="GitHub"
+    >
+      <GithubIcon />
+    </IconHover>
+
+    <IconHover
+      href="https://www.linkedin.com/in/takanarikondo/"
+      aria-label="LinkedIn profile"
+      label="LinkedIn"
+    >
+      <LinkedinIcon />
+    </IconHover>
+
+    <IconHover
+      href="mailto:gtakanari0330@gmail.com"
+      aria-label="メールを送る"
+      label="Email"
+    >
+      <Mail />
+    </IconHover>
+  </div>
+
+  <div class="jp-hero-cta">
+    <GoToProjectsLinkBtn />
+  </div>
+</div>
+
+<style>
+  .jp-hero-grid {
+    display: grid;
+    min-height: calc(100svh - 9rem);
+    max-width: 90rem;
+    margin-inline: auto;
+    grid-template-areas:
+      "rings"
+      "copy"
+      "socials"
+      "cta";
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .jp-hero-copy {
+    grid-area: copy;
+    text-align: center;
+  }
+
+  .jp-hero-name {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+    font-size: clamp(2rem, 8vw, 3.25rem);
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    line-height: 1.4;
+  }
+
+  .jp-hero-role {
+    margin-top: clamp(1.5rem, 4vh, 3.25rem);
+    color: var(--color-heading-default);
+    font-family: var(--font-body);
+    font-size: clamp(0.9rem, 2.6vw, 1.25rem);
+    letter-spacing: 0.14em;
+  }
+
+  .jp-hero-rings {
+    grid-area: rings;
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .jp-hero-socials {
+    grid-area: socials;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .jp-hero-cta {
+    grid-area: cta;
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (width >= 768px) {
+    .jp-hero-grid {
+      min-height: calc(100svh - 8.5rem);
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      grid-template-rows: minmax(20rem, 1fr) minmax(5rem, auto) minmax(6rem, auto);
+      grid-template-areas:
+        "copy copy copy copy copy copy copy rings rings rings rings rings"
+        "copy copy copy copy copy copy copy socials socials socials socials socials"
+        ". . . . . cta cta . . . . .";
+      column-gap: 1.5rem;
+      row-gap: clamp(1.5rem, 4vh, 3.5rem);
+    }
+
+    .jp-hero-copy {
+      align-self: end;
+      padding-bottom: clamp(0rem, 5vh, 3rem);
+      text-align: left;
+    }
+
+    .jp-hero-rings {
+      align-self: center;
+    }
+
+    .jp-hero-socials,
+    .jp-hero-cta {
+      align-self: start;
+    }
+
+    .jp-hero-name {
+      white-space: nowrap;
+    }
+
+    .jp-hero-role {
+      white-space: nowrap;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  const runJapaneseHeroAnimation = () => {
+    const elements = document.querySelectorAll(
+      ".jp-hero-copy, .jp-hero-rings, .jp-hero-socials",
+    );
+
+    if (!elements.length) return;
+
+    gsap.killTweensOf(elements);
+    gsap.fromTo(
+      elements,
+      { opacity: 0, y: 25 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out",
+        clearProps: "opacity,transform",
+      },
+    );
+  };
+
+  document.addEventListener("astro:page-load", runJapaneseHeroAnimation);
+</script>
