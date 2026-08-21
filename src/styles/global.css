@@ -29,6 +29,16 @@
   --font-japanese-heading: "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
   --font-japanese-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
 
+  /* Japanese case-study typography */
+  --font-case-study-ja: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
+  --leading-cs-ja-heading: 1.45;
+  --leading-cs-ja-body: 1.9;
+  --weight-cs-ja-body: 350;
+  --tracking-cs-ja-heading: 0;
+  --tracking-cs-ja-body: 0.065em;
+  --measure-cs-ja-body: 44rem;
+  --spacing-cs-ja-paragraph: 2rem;
+
   /* motion token */
   --spring-default: linear(0, 0.0107, 0.0398, 0.0834, 0.138, 0.2003, 0.2677, 0.3379, 0.4089, 0.4791, 0.5471, 0.612, 0.6731, 0.7297, 0.7815, 0.8283, 0.87, 0.9068, 0.9388, 0.9662, 0.9892, 1.0083, 1.0237, 1.0357, 1.0449, 1.0514, 1.0556, 1.058, 1.0587, 1.0581, 1.0563, 1.0538, 1.0506, 1.0469,
       1.043, 1.0388, 1.0347, 1.0306, 1.0266, 1.0228, 1.0192, 1.0159, 1.0128, 1.0101, 1.0076, 1.0055, 1.0036, 1.002, 1.0006, 0.9995, 0.9986, 0.9979, 0.9974, 0.997, 0.9967, 0.9966, 0.9966, 0.9966, 0.9967, 0.9968, 0.997, 0.9972, 0.9975, 0.9977, 0.998, 0.9982, 0.9984, 0.9987,
@@ -150,6 +160,7 @@
   --font-body: var(--font-general-sans);
   --font-ja-heading: var(--font-japanese-heading);
   --font-ja-body: var(--font-japanese-body);
+  --font-cs-ja: var(--font-case-study-ja);
 
   /* Main typography tokens */
   --text-body: 1.1rem;
@@ -229,6 +240,23 @@
   /* Caption */
   --text-cs-caption: clamp(.875rem, 1.5vw, 1rem);
   /* 14px → 16px */
+
+  /* Store Map Japanese case-study utilities */
+  --text-cs-ja-hero: clamp(2rem, 4.5vw, 3.75rem);
+  --text-cs-ja-hero--line-height: 1.35;
+  --text-cs-ja-h1: clamp(1.875rem, 4vw, 2.625rem);
+  --text-cs-ja-h1--line-height: var(--leading-cs-ja-heading);
+  --text-cs-ja-h2: clamp(1.5rem, 3vw, 1.875rem);
+  --text-cs-ja-h2--line-height: var(--leading-cs-ja-heading);
+  --text-cs-ja-h3: clamp(1.25rem, 2vw, 1.5rem);
+  --text-cs-ja-h3--line-height: var(--leading-cs-ja-heading);
+  --text-cs-ja-section: clamp(1.25rem, 2.5vw, 1.625rem);
+  --text-cs-ja-section--line-height: var(--leading-cs-ja-heading);
+  --text-cs-ja-body: clamp(1.0625rem, 1.4vw, 1.125rem);
+  --text-cs-ja-body--line-height: var(--leading-cs-ja-body);
+  --text-cs-ja-body--letter-spacing: var(--tracking-cs-ja-body);
+  --text-cs-ja-small: 0.875rem;
+  --text-cs-ja-small--line-height: 1.5;
 }
 
 /* ========================================
@@ -379,6 +407,97 @@
 
   .caption-pill {
     @apply inline-flex rounded-sm bg-heading-default px-2 py-1 text-cs-caption uppercase leading-none text-background
+  }
+
+  /* Japanese typography is scoped to the Store Map case study only. */
+  .store-map-ja {
+    font-family: var(--font-cs-ja);
+    font-feature-settings: "palt" 1;
+    font-kerning: normal;
+  }
+
+  .store-map-ja > section:first-of-type h1 {
+    font-family: var(--font-cs-ja);
+    font-size: var(--text-cs-ja-hero) !important;
+    font-weight: 500 !important;
+    line-height: 1.35 !important;
+    letter-spacing: var(--tracking-cs-ja-heading);
+  }
+
+  .store-map-ja :where(.text-cs-h1, .text-cs-h2, .text-cs-h3, .text-cs-section) {
+    font-family: var(--font-cs-ja);
+    font-weight: 500 !important;
+    line-height: var(--leading-cs-ja-heading) !important;
+    letter-spacing: var(--tracking-cs-ja-heading);
+  }
+
+  .store-map-ja .text-cs-h1 { font-size: var(--text-cs-ja-h1) !important; }
+  .store-map-ja .text-cs-h2 { font-size: var(--text-cs-ja-h2) !important; }
+  .store-map-ja .text-cs-h3 { font-size: var(--text-cs-ja-h3) !important; }
+  .store-map-ja .text-cs-section { font-size: var(--text-cs-ja-section) !important; }
+
+  .store-map-ja :where(.text-cs-body, p:not(.caption-pill), li) {
+    font-family: var(--font-cs-ja);
+    font-size: var(--text-cs-ja-body) !important;
+    font-weight: var(--weight-cs-ja-body) !important;
+    line-height: var(--leading-cs-ja-body) !important;
+    letter-spacing: var(--tracking-cs-ja-body);
+    line-break: strict;
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
+  }
+
+  .store-map-ja p:not(.caption-pill) {
+    max-inline-size: var(--measure-cs-ja-body);
+  }
+
+  .store-map-ja div:has(> .caption-pill) > :is(h2, h3, h4, p:not(.caption-pill)) {
+    margin-inline: auto !important;
+    max-inline-size: var(--measure-cs-ja-body) !important;
+    width: 100%;
+  }
+
+  .store-map-ja div:has(> .caption-pill) > .caption-pill {
+    margin-inline-start: max(0px, calc((100% - var(--measure-cs-ja-body)) / 2));
+  }
+
+  .store-map-ja .cs-user-story {
+    width: 100%;
+    max-inline-size: var(--measure-cs-ja-body);
+    margin-inline: auto;
+  }
+
+  .store-map-ja .cs-copy-block {
+    width: 100%;
+    max-inline-size: var(--measure-cs-ja-body) !important;
+    margin-inline: auto !important;
+  }
+
+  .store-map-ja article h3 {
+    font-family: var(--font-cs-ja);
+    font-weight: 500;
+    line-height: var(--leading-cs-ja-heading);
+    letter-spacing: var(--tracking-cs-ja-heading);
+  }
+
+  .store-map-ja p:not(.caption-pill) + p:not(.caption-pill) {
+    margin-top: var(--spacing-cs-ja-paragraph) !important;
+  }
+
+  .store-map-ja .text-cs-caption {
+    font-family: var(--font-cs-ja);
+    font-size: var(--text-cs-ja-small) !important;
+    line-height: 1.5 !important;
+  }
+
+  .store-map-ja .caption-pill {
+    font-family: var(--font-general-sans), sans-serif;
+    font-size: var(--text-cs-caption) !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+    letter-spacing: normal;
+    font-feature-settings: normal;
+    font-kerning: auto;
   }
 
   /* Timeline on project pages */

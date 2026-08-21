@@ -1,6 +1,8 @@
 ---
 // Page layout
 import Layout from "../layouts/Layout.astro";
+import { storeMapJa, storeMapJaMeta } from "../content/ja/store-map";
+import { homeJa } from "../content/ja/home";
 
 // Astro utilities
 import Image from "astro/components/Image.astro";
@@ -25,6 +27,16 @@ import MysqlIcon from "../assets/images/icons/stacks/mysql.svg";
 
 // Project data
 import { projects } from "../data/projects";
+
+const isJapanese = Astro.url.pathname === "/jp/store-map";
+const t = (text: string) => isJapanese ? (storeMapJa[text] ?? text) : text;
+const relatedProjects = projects
+    .filter((project) => project.href !== "/store-map")
+    .slice(0, 2)
+    .map((project) => isJapanese
+        ? { ...project, ...homeJa.projects[project.slug] }
+        : project
+    );
 
 // Hero media
 import StoreMapVideo from "../assets/images/projects/store-navigation/videos/store-map-thumbnail.webm";
@@ -66,31 +78,30 @@ import DressingSearchPic from "../assets/images/projects/store-navigation/store-
 import HotcakeMixPic from "../assets/images/projects/store-navigation/store-map-hotcake-mix.webp";
 import TomatoFoundPic from "../assets/images/projects/store-navigation/store-map-tomato-found.webp";
 
-export const storeMapSections = [
-    { label: "Overview", href: "#Overview" },
-    { label: "Context & Opportunity", href: "#Context-opportunity" },
-    { label: "Design Constraints", href: "#Design-constraints" },
-    { label: "AI Assisted Workflow", href: "#AI-assisted-workflow" },
-    { label: "Testing", href: "#Testing" },
-    { label: "Reflection", href: "#Reflection" },
+const storeMapSections = [
+    { label: t("Overview"), href: "#Overview" },
+    { label: t("Context & Opportunity"), href: "#Context-opportunity" },
+    { label: t("Design Constraints"), href: "#Design-constraints" },
+    { label: t("AI Assisted Workflow"), href: "#AI-assisted-workflow" },
+    { label: t("Testing"), href: "#Testing" },
+    { label: t("Reflection"), href: "#Reflection" },
 ];
 ---
 
-<Layout>
-    <main class="mt-30 md:mt-40">
+<Layout title={isJapanese ? storeMapJaMeta.title : undefined} description={isJapanese ? storeMapJaMeta.description : undefined}>
+    <main class:list={["mt-30 md:mt-40", { "store-map-ja": isJapanese }]}>
         <!-- Breadcrumb -->
         <div class="container pl-8">
-            <BreadCrumb>Grocery Store Map Navigation</BreadCrumb>
+            <BreadCrumb>{t("Grocery Store Map Navigation")}</BreadCrumb>
         </div>
         <section id="hero" aria-labelledby="store-map-overview">
             <div class="grid grid-cols-12 grid-container items-start">
                 <div class="col-span-8">
                     <h1 class="mt-8">
-                        Why is finding a product in a supermarket still so
-                        difficult?
+                        {t("Why is finding a product in a supermarket still so difficult?")}
                     </h1>
                     <p class="mt-8">
-                        Rethinking grocery shopping with interactive store maps and intuitive product discovery.
+                        {t("Rethinking grocery shopping with interactive store maps and intuitive product discovery.")}
                     </p>
                     <div class="mt-8 md:my-8">
                         <!-- <GlassPill
@@ -141,20 +152,20 @@ export const storeMapSections = [
                         <dt
                             class="text-caption uppercase tracking-wide text-body-default"
                         >
-                            Role
+                            {t("Role")}
                         </dt>
                         <dd class="text-body text-heading-default">
-                            UX Researcher / UI Designer / Frontend Developer
+                            {t("UX Researcher / UI Designer / Frontend Developer")}
                         </dd>
                     </div>
                     <div class="grid gap-1">
                         <dt
                             class="text-caption uppercase tracking-wide text-body-default"
                         >
-                            Timeline
+                            {t("Timeline")}
                         </dt>
                         <dd class="text-body text-heading-default">
-                            One month, Jun - Jul, 2026
+                            {t("One month, Jun - Jul, 2026")}
                         </dd>
                     </div>
                 </dl>
@@ -183,7 +194,7 @@ export const storeMapSections = [
                     <!-- Overview Section -->
                     <section id="Overview" class="mt-16">
                         <h2 class="text-cs-section font-medium">
-                            <span class="heading-accent-bar">Overview</span>
+                            <span class="heading-accent-bar">{t("Overview")}</span>
                         </h2>
                         <div
                             class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
@@ -196,9 +207,7 @@ export const storeMapSections = [
                                 <h3
                                     class="mt-2 max-w-5xl text-cs-h1 font-normal leading-tight"
                                 >
-                                    Designing a seamless grocery shopping
-                                    experience by combining product search with
-                                    in-store navigation.
+                                    {t("Designing a seamless grocery shopping experience by combining product search with in-store navigation.")}
                                 </h3>
                             </div>
 
@@ -215,12 +224,10 @@ export const storeMapSections = [
                                 <h2
                                     class="mt-2 max-w-220 text-cs-h2 leading-snug"
                                 >
-                                    Less Wandering. More Shopping.
+                                    {t("Less Wandering. More Shopping.")}
                                 </h2>
                                 <p class="text-cs-body mt-2">
-                                    Help shoppers in large supermarkets quickly
-                                    find the products they need, reducing time
-                                    spent wandering through unfamiliar aisles.
+                                    {t("Help shoppers in large supermarkets quickly find the products they need, reducing time spent wandering through unfamiliar aisles.")}
                                 </p>
                             </div>
 
@@ -229,13 +236,10 @@ export const storeMapSections = [
                                 <h2
                                     class="mt-2 max-w-220 text-cs-h2 leading-snug"
                                 >
-                                    Design × AI Tools × Development
+                                    {t("Design × AI Tools × Development")}
                                 </h2>
                                 <p class="text-cs-body mt-2">
-                                    Designed, built, and validated an
-                                    interactive grocery navigation experience
-                                    through user-centered design, AI-assisted
-                                    workflows, and React Native development.
+                                    {t("Designed, built, and validated an interactive grocery navigation experience through user-centered design, AI-assisted workflows, and React Native development.")}
                                 </p>
                             </div>
 
@@ -244,7 +248,7 @@ export const storeMapSections = [
                                     <h4 class="text-cs-h3 flex gap-4">
                                         <span class="feature-number">01</span>
                                         <span class="text-cs-h3"
-                                            >Design Constraints</span
+                                            >{t("Design Constraints")}</span
                                         >
                                     </h4>
                                     <div
@@ -258,9 +262,7 @@ export const storeMapSections = [
                                         <p
                                             class="text-cs-body col-span-3 place-content-center"
                                         >
-                                            Designed an additional Walmart app
-                                            feature to gain experience working
-                                            within an enterprise design system.
+                                            {t("Designed an additional Walmart app feature to gain experience working within an enterprise design system.")}
                                         </p>
                                     </div>
                                     <!-- <a
@@ -272,7 +274,7 @@ export const storeMapSections = [
                                     <h4 class="text-cs-h3 flex gap-4">
                                         <span class="feature-number">02</span>
                                         <span class="text-cs-h3">
-                                            AI Assisted Workflow</span
+                                            {t("AI Assisted Workflow")}</span
                                         >
                                     </h4>
                                     <div
@@ -286,9 +288,7 @@ export const storeMapSections = [
                                         <p
                                             class="text-cs-body col-span-3 place-content-center"
                                         >
-                                            Built an AI-assisted design-to-code
-                                            workflow using Claude Code and Figma
-                                            MCP.
+                                            {t("Built an AI-assisted design-to-code workflow using Claude Code and Figma MCP.")}
                                         </p>
                                     </div>
                                 </div>
@@ -296,7 +296,7 @@ export const storeMapSections = [
                                     <h4 class="text-cs-h3 flex gap-4">
                                         <span class="feature-number">03</span>
                                         <span class="text-cs-h3"
-                                            >Testing with a Coded Prototype</span
+                                            >{t("Testing with a Coded Prototype")}</span
                                         >
                                     </h4>
                                     <div
@@ -310,7 +310,7 @@ export const storeMapSections = [
                                         <p
                                             class="text-cs-body col-span-3 place-content-center"
                                         >
-                                            Built a functional React Native prototype and conducted user testing to validate real-world interactions and usability.
+                                            {t("Built a functional React Native prototype and conducted user testing to validate real-world interactions and usability.")}
                                         </p>
                                     </div>
                                 </div>
@@ -321,7 +321,7 @@ export const storeMapSections = [
                     <section id="Context-opportunity" class="mt-32">
                         <h2 class="text-cs-section font-medium">
                             <span class="heading-accent-bar"
-                                >Context & Opportunity</span
+                                >{t("Context & Opportunity")}</span
                             >
                         </h2>
                         <div
@@ -334,16 +334,10 @@ export const storeMapSections = [
                             <h3
                                 class="mt-4 max-w-4xl text-cs-h1 font-normal leading-tight"
                             >
-                                A problem I witnessed every day while working at
-                                a supermarket
+                                {t("A problem I witnessed every day while working at a supermarket")}
                             </h3>
                             <p class="mt-4 text-cs-body leading-snug">
-                                While working at a supermarket, I frequently saw
-                                customers struggling to find products in large
-                                stores with thousands of items. Even when the
-                                products were available, many customers left
-                                without finding them, highlighting the need for
-                                a better in-store navigation experience.
+                                {t("While working at a supermarket, I frequently saw customers struggling to find products in large stores with thousands of items. Even when the products were available, many customers left without finding them, highlighting the need for a better in-store navigation experience.")}
                             </p>
 
                             <div class="mt-16 grid gap-12 md:grid-cols-2">
@@ -358,24 +352,21 @@ export const storeMapSections = [
                                         <h4
                                             class="text-cs-body font-medium text-heading-default"
                                         >
-                                            Customer side:
+                                            {t("Customer side:")}
                                         </h4>
                                     </div>
                                     <ul class="mt-6 grid gap-5">
                                         <li class="text-cs-body">
-                                            “I spend too much time walking
-                                            around the store.”
+                                            {t("“I spend too much time walking around the store.”")}
                                         </li>
                                         <li class="text-cs-body">
-                                            “I often have to ask staff where
-                                            products are.”
+                                            {t("“I often have to ask staff where products are.”")}
                                         </li>
                                         <li class="text-cs-body">
-                                            “Sometimes I leave without finding
-                                            what I need.”
+                                            {t("“Sometimes I leave without finding what I need.”")}
                                         </li>
                                         <li class="text-cs-body">
-                                            “I forget what I came to buy.”
+                                            {t("“I forget what I came to buy.”")}
                                         </li>
                                     </ul>
                                 </div>
@@ -390,25 +381,21 @@ export const storeMapSections = [
                                         <h4
                                             class="text-cs-body font-medium text-heading-default"
                                         >
-                                            Store Staff side:
+                                            {t("Store Staff side:")}
                                         </h4>
                                     </div>
                                     <ul class="mt-6 grid gap-5">
                                         <li class="text-cs-body">
-                                            “Not every employee knows where
-                                            every product is.”
+                                            {t("“Not every employee knows where every product is.”")}
                                         </li>
                                         <li class="text-cs-body">
-                                            “Customers often interrupt us for
-                                            directions.”
+                                            {t("“Customers often interrupt us for directions.”")}
                                         </li>
                                         <li class="text-cs-body">
-                                            “Category signs alone aren’t
-                                            enough.”
+                                            {t("“Category signs alone aren’t enough.”")}
                                         </li>
                                         <li class="text-cs-body">
-                                            “Product location data would make
-                                            our jobs easier.”
+                                            {t("“Product location data would make our jobs easier.”")}
                                         </li>
                                     </ul>
                                 </div>
@@ -418,10 +405,9 @@ export const storeMapSections = [
                         <div class="mt-28 max-w-240 mx-auto">
                             <p class="caption-pill">Design Goals</p>
                             <h2 class="mt-4 text-cs-h2 leading-snug">
-                                Help shoppers find products quickly and
-                                confidently
+                                {t("Help shoppers find products quickly and confidently")}
                             </h2>
-                            <div class="mt-6 flex gap-4 items-center">
+                            <div class="cs-user-story mt-6 flex gap-4 items-center">
                                 <span
                                     aria-hidden="true"
                                     class="h-8 w-8 shrink-0 mt-1 bg-heading-default mask-(--icon-customer-url) mask-no-repeat mask-contain"
@@ -429,9 +415,7 @@ export const storeMapSections = [
                                 >
                                 </span>
                                 <p class="text-cs-body leading-snug">
-                                    As a grocery shopper, I want to easily find
-                                    the products I’m looking for, so that I can
-                                    shop without getting lost.
+                                    {t("As a grocery shopper, I want to easily find the products I’m looking for, so that I can shop without getting lost.")}
                                 </p>
                             </div>
                             <div class="mt-16 flex justify-center">
@@ -447,7 +431,7 @@ export const storeMapSections = [
                     <section id="Design-constraints" class="mt-32">
                         <h2 class="text-cs-section font-medium">
                             <span class="heading-accent-bar"
-                                >Design Constraints</span
+                                >{t("Design Constraints")}</span
                             >
                         </h2>
                         <div
@@ -460,20 +444,15 @@ export const storeMapSections = [
                             <h3
                                 class="mt-4 text-cs-h2 font-normal leading-tight"
                             >
-                                Why Do Design Systems Matter?
+                                {t("Why Do Design Systems Matter?")}
                             </h3>
                             <p class="mt-4 text-cs-body leading-snug">
-                                A design system is more than a collection of
-                                reusable components. It provides the shared
-                                language that allows new features to feel like a
-                                natural extension of an existing product.
+                                {t("A design system is more than a collection of reusable components. It provides the shared language that allows new features to feel like a natural extension of an existing product.")}
                             </p>
                             <p class="mt-4 text-cs-body leading-snug">
-                                To explore this idea, <span class="text-accent"
-                                    >I intentionally designed a Store Map
-                                    feature that doesn't exist in Walmart today.</span
-                                > The challenge wasn't creating something new. It
-                                was creating something new that still "felt like Walmart."
+                                {t("To explore this idea,")} <span class="text-accent"
+                                    >{t("I intentionally designed a Store Map feature that doesn't exist in Walmart today.")}</span
+                                > {t("The challenge wasn't creating something new. It was creating something new that still \"felt like Walmart.\"")}
                             </p>
                         </div>
 
@@ -485,17 +464,10 @@ export const storeMapSections = [
                                 <h3
                                     class="mt-4 text-cs-h2 font-normal leading-snug"
                                 >
-                                    Only Walmart’s brand guidelines were
-                                    publicly available.
+                                    {t("Only Walmart’s brand guidelines were publicly available.")}
                                 </h3>
                                 <p class="mt-4 text-cs-body leading-snug">
-                                    The internal UI components, design tokens,
-                                    and implementation details were not
-                                    accessible. Instead of attempting to
-                                    replicate the private design system, I
-                                    focused on preserving the brand’s visual
-                                    language while creating a scalable
-                                    foundation for new components.
+                                    {t("The internal UI components, design tokens, and implementation details were not accessible. Instead of attempting to replicate the private design system, I focused on preserving the brand’s visual language while creating a scalable foundation for new components.")}
                                 </p>
                             </div>
                             <figure class="mx-auto md:mx-0 md:ml-auto max-w-80">
@@ -526,14 +498,10 @@ export const storeMapSections = [
                                 <h3
                                     class="mt-4 text-cs-h2 font-normal leading-snug"
                                 >
-                                    I translated the published brand principles
-                                    into semantic design tokens.
+                                    {t("I translated the published brand principles into semantic design tokens.")}
                                 </h3>
                                 <p class="mt-4 text-cs-body leading-snug">
-                                    Instead of applying brand colors directly to
-                                    components, I introduced semantic tokens to
-                                    make new UI patterns reusable and easier to
-                                    maintain.
+                                    {t("Instead of applying brand colors directly to components, I introduced semantic tokens to make new UI patterns reusable and easier to maintain.")}
                                 </p>
                             </div>
                             <div class="mx-auto md:mx-0 md:ml-auto max-w-80">
@@ -550,17 +518,10 @@ export const storeMapSections = [
                             <h3
                                 class="mt-4 text-cs-h2 font-normal leading-snug"
                             >
-                                The tokens powered reusable components across
-                                the feature.
+                                {t("The tokens powered reusable components across the feature.")}
                             </h3>
                             <p class="mt-4 text-cs-body leading-snug">
-                                Using the token system, I built reusable
-                                components such as Item Pins and Item List Icons
-                                that were applied consistently throughout the
-                                Store Map experience. This allowed new
-                                interactions to feel native to Walmart’s
-                                existing visual language without copying its
-                                internal design system.
+                                {t("Using the token system, I built reusable components such as Item Pins and Item List Icons that were applied consistently throughout the Store Map experience. This allowed new interactions to feel native to Walmart’s existing visual language without copying its internal design system.")}
                             </p>
 
                             <div
@@ -587,7 +548,7 @@ export const storeMapSections = [
                     <section id="AI-assisted-workflow" class="mt-32">
                         <h2 class="text-cs-section font-medium">
                             <span class="heading-accent-bar"
-                                >AI Assisted Workflow</span
+                                >{t("AI Assisted Workflow")}</span
                             >
                         </h2>
                         <div
@@ -601,13 +562,10 @@ export const storeMapSections = [
                             <h3
                                 class="mt-4 max-w-3xl text-cs-h2 font-normal leading-tight"
                             >
-                                Implementing the Store Map
+                                {t("Implementing the Store Map")}
                             </h3>
                             <p class="mt-4 max-w-2xl text-cs-body leading-snug">
-                                The goal was to help shoppers find products
-                                without getting lost in the store. Using the
-                                layout of the store where I work, I accurately
-                                recreated its aisles and product areas.
+                                {t("The goal was to help shoppers find products without getting lost in the store. Using the layout of the store where I work, I accurately recreated its aisles and product areas.")}
                             </p>
 
                             <div
@@ -621,33 +579,26 @@ export const storeMapSections = [
                             </div>
 
                             <p class="mt-8 max-w-2xl text-cs-body leading-snug">
-                                To create a clean, structured SVG, I overlaid an
-                                8 × 8 px grid on the original floor plan and
-                                traced each section cell by cell.
+                                {t("To create a clean, structured SVG, I overlaid an 8 × 8 px grid on the original floor plan and traced each section cell by cell.")}
                             </p>
                         </div>
 
                         <!-- Design to Dev -->
                         <div class="mt-28 max-w-240 mx-auto">
-                            <p class="caption-pill">Design to Dev</p>
                             <div
                                 class="mt-6 grid gap-8 md:grid-cols-[1fr_320px] md:items-center"
                             >
                                 <div>
+                                    <p class="caption-pill">Design to Dev</p>
                                     <h3
-                                        class="max-w-xl text-cs-h2 font-normal leading-tight"
+                                        class="mt-4 max-w-xl text-cs-h2 font-normal leading-tight"
                                     >
-                                        Streamlining Interactive Map Development
-                                        with AI
+                                        {t("Streamlining Interactive Map Development with AI")}
                                     </h3>
                                     <p
                                         class="mt-4 max-w-lg text-cs-body leading-snug"
                                     >
-                                        To make the map interactive, each area
-                                        needed to be accurately connected to its
-                                        product data. I introduced an
-                                        AI-assisted workflow to streamline this
-                                        repetitive process.
+                                        {t("To make the map interactive, each area needed to be accurately connected to its product data. I introduced an AI-assisted workflow to streamline this repetitive process.")}
                                     </p>
                                 </div>
                                 <Image
@@ -670,14 +621,10 @@ export const storeMapSections = [
                                         <p class="caption-pill">Challenge</p>
                                     </div>
                                     <h2 class="text-cs-h2 leading-snug">
-                                        Managing Hundreds of Cells Accurately
+                                        {t("Managing Hundreds of Cells Accurately")}
                                     </h2>
                                     <p class="mt-4 text-cs-body leading-snug">
-                                        Connecting products to their locations
-                                        required a unique ID for every map
-                                        element. Naming hundreds of elements
-                                        manually would have been time-consuming
-                                        and prone to errors or duplicates.
+                                        {t("Connecting products to their locations required a unique ID for every map element. Naming hundreds of elements manually would have been time-consuming and prone to errors or duplicates.")}
                                     </p>
                                 </div>
                                 <Image
@@ -700,16 +647,10 @@ export const storeMapSections = [
                                         <p class="caption-pill">Solution</p>
                                     </div>
                                     <h2 class="text-cs-h2 leading-snug">
-                                        Automating the Naming Process with Figma
-                                        MCP and Claude
+                                        {t("Automating the Naming Process with Figma MCP and Claude")}
                                     </h2>
                                     <p class="mt-4 text-cs-body leading-snug">
-                                        I created a naming convention based on
-                                        product category and location, then used
-                                        Claude through Figma MCP to apply it to
-                                        each layer. The layer names could then
-                                        be used directly as SVG IDs, creating a
-                                        smoother handoff to development.
+                                        {t("I created a naming convention based on product category and location, then used Claude through Figma MCP to apply it to each layer. The layer names could then be used directly as SVG IDs, creating a smoother handoff to development.")}
                                     </p>
                                 </div>
                                 <Image
@@ -724,21 +665,17 @@ export const storeMapSections = [
                         <div class="mt-28 max-w-240 mx-auto">
                             <p class="caption-pill">Outcome</p>
                             <h2 class="mt-4 text-cs-h2 leading-snug">
-                                Reduced Development Time and Improved
-                                Implementation Accuracy
+                                {t("Reduced Development Time and Improved Implementation Accuracy")}
                             </h2>
                             <p class="mt-4 max-w-2xl text-cs-body leading-snug">
-                                The workflow reduced repetitive work and
-                                improved naming accuracy. It also made the
-                                transition from Figma to development more
-                                efficient.
+                                {t("The workflow reduced repetitive work and improved naming accuracy. It also made the transition from Figma to development more efficient.")}
                             </p>
                         </div>
                     </section>
                     <!-- Testing Section -->
                     <section id="Testing" class="mt-32">
                         <h2 class="text-cs-section font-medium">
-                            <span class="heading-accent-bar">Testing</span>
+                            <span class="heading-accent-bar">{t("Testing")}</span>
                         </h2>
                         <div
                             class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
@@ -750,15 +687,10 @@ export const storeMapSections = [
                             <h3
                                 class="mt-4 text-cs-h2 font-normal leading-tight"
                             >
-                                Balancing Map Visibility and Item Accessibility
+                                {t("Balancing Map Visibility and Item Accessibility")}
                             </h3>
                             <p class="mt-4 text-cs-body leading-snug">
-                                While navigating the store, shoppers need both a
-                                clear view of the map and quick access to their
-                                shopping list. However, maximizing one often
-                                compromises the other. To identify the better
-                                experience, I explored two navigation patterns
-                                and validated them through usability testing.
+                                {t("While navigating the store, shoppers need both a clear view of the map and quick access to their shopping list. However, maximizing one often compromises the other. To identify the better experience, I explored two navigation patterns and validated them through usability testing.")}
                             </p>
                         </div>
 
@@ -767,7 +699,7 @@ export const storeMapSections = [
                             <h3
                                 class="mt-4 text-cs-h2 font-normal leading-tight"
                             >
-                                Comparing Two Navigation Patterns
+                                {t("Comparing Two Navigation Patterns")}
                             </h3>
                         </div>
 
@@ -777,18 +709,15 @@ export const storeMapSections = [
                         >
                             <div>
                                 <p class="text-cs-body text-body-default">
-                                    Pattern A
+                                    {t("Pattern A")}
                                 </p>
                                 <h4
                                     class="mt-1 text-cs-h3 font-normal leading-tight"
                                 >
-                                    Header List
+                                    {t("Header List")}
                                 </h4>
                                 <p class="mt-4 text-cs-body leading-snug">
-                                    The Header List keeps shopping items
-                                    constantly accessible, enabling faster
-                                    switching between products while slightly
-                                    reducing the visible map area.
+                                    {t("The Header List keeps shopping items constantly accessible, enabling faster switching between products while slightly reducing the visible map area.")}
                                 </p>
 
                                 <ul
@@ -801,7 +730,7 @@ export const storeMapSections = [
                                             class="size-5 shrink-0 text-green-500"
                                         />
                                         <p class="text-cs-body">
-                                            Faster item switching
+                                            {t("Faster item switching")}
                                         </p>
                                     </li>
                                     <li class="flex items-center gap-3 py-5">
@@ -809,8 +738,7 @@ export const storeMapSections = [
                                             class="size-5 shrink-0 text-green-500"
                                         />
                                         <p class="text-cs-body">
-                                            View the map and shopping list
-                                            simultaneously
+                                            {t("View the map and shopping list simultaneously")}
                                         </p>
                                     </li>
                                     <li
@@ -820,7 +748,7 @@ export const storeMapSections = [
                                             class="size-5 shrink-0 text-red-500"
                                         />
                                         <p class="text-cs-body">
-                                            Less map space
+                                            {t("Less map space")}
                                         </p>
                                     </li>
                                 </ul>
@@ -851,17 +779,15 @@ export const storeMapSections = [
                         >
                             <div>
                                 <p class="text-cs-body text-body-default">
-                                    Pattern B
+                                    {t("Pattern B")}
                                 </p>
                                 <h4
                                     class="mt-1 text-cs-h3 font-normal leading-tight"
                                 >
-                                    Bottom Sheet
+                                    {t("Bottom Sheet")}
                                 </h4>
                                 <p class="mt-4 text-cs-body leading-snug">
-                                    The Bottom Sheet prioritizes map visibility
-                                    by allowing the shopping list to be hidden
-                                    when it’s not needed.
+                                    {t("The Bottom Sheet prioritizes map visibility by allowing the shopping list to be hidden when it’s not needed.")}
                                 </p>
 
                                 <ul
@@ -874,7 +800,7 @@ export const storeMapSections = [
                                             class="size-5 shrink-0 text-green-500"
                                         />
                                         <p class="text-cs-body">
-                                            Maximized map visibility
+                                            {t("Maximized map visibility")}
                                         </p>
                                     </li>
                                     <li class="flex items-center gap-3 py-5">
@@ -882,7 +808,7 @@ export const storeMapSections = [
                                             class="size-5 shrink-0 text-green-500"
                                         />
                                         <p class="text-cs-body">
-                                            On-demand shopping list
+                                            {t("On-demand shopping list")}
                                         </p>
                                     </li>
                                     <li
@@ -892,8 +818,7 @@ export const storeMapSections = [
                                             class="size-5 shrink-0 text-red-500"
                                         />
                                         <p class="text-cs-body">
-                                            Map is partially obscured when
-                                            expanded
+                                            {t("Map is partially obscured when expanded")}
                                         </p>
                                     </li>
                                 </ul>
@@ -924,17 +849,10 @@ export const storeMapSections = [
                             <h3
                                 class="mt-4 text-cs-h2 font-normal leading-tight"
                             >
-                                Testing the Prototype in a Real Store
+                                {t("Testing the Prototype in a Real Store")}
                             </h3>
                             <p class="mt-4 text-cs-body leading-snug">
-                                The participant was asked to locate six grocery
-                                items, switch between products, mark items as
-                                found, and navigate using the store map. During
-                                the sessions, I observed not only which
-                                interface participants preferred, but also how
-                                frequently they switched items, reopened the
-                                shopping list, and interacted with the map
-                                throughout the task.
+                                {t("The participant was asked to locate six grocery items, switch between products, mark items as found, and navigate using the store map. During the sessions, I observed not only which interface participants preferred, but also how frequently they switched items, reopened the shopping list, and interacted with the map throughout the task.")}
                             </p>
 
                             <div
@@ -942,8 +860,7 @@ export const storeMapSections = [
                             >
                                 <div class="text-center">
                                     <p class="text-cs-body text-body-default">
-                                        Task: Find five products using Pattern A
-                                        and five using Pattern B. Store Map.
+                                        {t("Task: Find five products using Pattern A and five using Pattern B. Store Map.")}
                                     </p>
 
                                     <Image
@@ -1002,7 +919,7 @@ export const storeMapSections = [
                                 <h4
                                     class="text-cs-h3 font-normal leading-tight text-center"
                                 >
-                                    Key Findings
+                                    {t("Key Findings")}
                                 </h4>
                                 <ul class="mt-6 grid w-fit gap-5 mx-auto">
                                     <li
@@ -1011,7 +928,7 @@ export const storeMapSections = [
                                         <Check
                                             class="size-5 shrink-0 text-green-500"
                                         />
-                                        Users wanted to keep the map visible
+                                        {t("Users wanted to keep the map visible")}
                                     </li>
                                     <li
                                         class="flex items-center gap-3 text-cs-body"
@@ -1019,8 +936,7 @@ export const storeMapSections = [
                                         <Check
                                             class="size-5 shrink-0 text-green-500"
                                         />
-                                        The Bottom Sheet covered too much of
-                                        the map
+                                        {t("The Bottom Sheet covered too much of the map")}
                                     </li>
                                     <li
                                         class="flex items-center gap-3 text-cs-body"
@@ -1028,8 +944,7 @@ export const storeMapSections = [
                                         <Check
                                             class="size-5 shrink-0 text-green-500"
                                         />
-                                        Switching products felt easier from
-                                        the header
+                                        {t("Switching products felt easier from the header")}
                                     </li>
                                 </ul>
                             </div>
@@ -1044,17 +959,10 @@ export const storeMapSections = [
                                 <h3
                                     class="mt-4 text-cs-h2 font-normal leading-tight"
                                 >
-                                    Prioritizing a Smoother Shopping Flow
+                                    {t("Prioritizing a Smoother Shopping Flow")}
                                 </h3>
                                 <p class="mt-4 text-cs-body leading-snug">
-                                    Although the Bottom Sheet provided a larger
-                                    map, participants switched between shopping
-                                    items more frequently than they viewed the
-                                    map in full screen. The Header List reduced
-                                    unnecessary interactions, kept products
-                                    readily accessible, and supported a smoother
-                                    shopping experience. Based on these
-                                    findings, it became the final interface.
+                                    {t("Although the Bottom Sheet provided a larger map, participants switched between shopping items more frequently than they viewed the map in full screen. The Header List reduced unnecessary interactions, kept products readily accessible, and supported a smoother shopping experience. Based on these findings, it became the final interface.")}
                                 </p>
                             </div>
                             <div
@@ -1071,39 +979,22 @@ export const storeMapSections = [
                     <!-- Reflection Section -->
                     <section id="Reflection" class="mt-32">
                         <h2 class="text-cs-section font-medium">
-                            <span class="heading-accent-bar">Reflection</span>
+                            <span class="heading-accent-bar">{t("Reflection")}</span>
                         </h2>
                         <div
                             class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
                         >
                         </div>
 
-                        <div class="mt-16 max-w-240 mx-auto">
+                        <div class="cs-copy-block mt-16 max-w-240 mx-auto">
                             <h3 class="text-cs-h2 font-normal leading-tight">
-                                Design is the process of balancing constraints,
-                                trade-offs, and user needs.
+                                {t("Design is the process of balancing constraints, trade-offs, and user needs.")}
                             </h3>
                             <p class="mt-6 text-cs-body leading-snug">
-                                This project taught me that the quality of a
-                                design is defined not by the number of
-                                possibilities, but by the ability to prioritize
-                                within constraints. By working through design
-                                constraints and trade-offs, I learned to
-                                evaluate decisions based not on visual novelty,
-                                but on reusability, implementation feasibility,
-                                and their impact on the user experience.
+                                {t("This project taught me that the quality of a design is defined not by the number of possibilities, but by the ability to prioritize within constraints. By working through design constraints and trade-offs, I learned to evaluate decisions based not on visual novelty, but on reusability, implementation feasibility, and their impact on the user experience.")}
                             </p>
                             <p class="mt-6 text-cs-body leading-snug">
-                                I also realized that while AI has significantly
-                                accelerated the process of turning ideas into
-                                tangible solutions, speed alone has little
-                                value. What truly matters is using that extra
-                                time to validate assumptions, iterate on ideas,
-                                and make better-informed design decisions. This
-                                experience changed my understanding of efficient
-                                design. It is not about reducing effort. It is
-                                about spending more time on the decisions that
-                                create the greatest impact.
+                                {t("I also realized that while AI has significantly accelerated the process of turning ideas into tangible solutions, speed alone has little value. What truly matters is using that extra time to validate assumptions, iterate on ideas, and make better-informed design decisions. This experience changed my understanding of efficient design. It is not about reducing effort. It is about spending more time on the decisions that create the greatest impact.")}
                             </p>
                         </div>
                     </section>
@@ -1113,15 +1004,12 @@ export const storeMapSections = [
 
         <!-- Other Projects -->
         <section class="p-4 md:p-16">
-            <h2 class="text-center p-16">Other Projects</h2>
+            <h2 class="text-center p-16">{t("Other Projects")}</h2>
             <div
                 class="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-4 max-w-400 mx-auto"
             >
                 {
-                    projects
-                        .filter((project) => project.href !== "/store-map")
-                        .slice(0, 2)
-                        .map((project) => {
+                    relatedProjects.map((project) => {
                             return (
                                 <Card
                                     href={project.href}

@@ -15,6 +15,7 @@ import { homeJa } from "../../content/ja/home";
 const localizedProjects = projects.map((project) => ({
   ...project,
   ...homeJa.projects[project.slug],
+  href: project.slug === "store-map" ? "/jp/store-map" : project.href,
 }));
 ---
 

@@ -31,7 +31,7 @@ export const homeJa = {
         "Figma MCPとClaudeでSVGマップを実装可能なデータに整え、デザインと開発をつなぐワークフローを構築",
         "React Nativeでプロトタイプを開発し2種類のUIでユーザーテストを実行",
       ],
-      tag: "Product Design",
+      tag: "プロダクトデザイン",
     },
     ukg: {
       title: "給与確認アプリのリデザイン",
@@ -42,7 +42,7 @@ export const homeJa = {
         "ユーザー調査、比較テスト、UIデザイン、プロトタイピングまで一貫して実施",
         "シフト記録と勤務時間の内訳を導入し、給料内訳に対する信頼度の向上に成功",
       ],
-      tag: "UI/UX Case Study",
+      tag: "UI/UX ケーススタディ",
     },
     billow: {
       title: "Billow",
@@ -53,7 +53,7 @@ export const homeJa = {
         "APIロジック、状態管理、UIの責務を整理して保守性を改善",
         "AIツールを活用しながら、コード理解と設計を重視する開発プロセスを実践",
       ],
-      tag: "Web Development",
+      tag: "Web開発",
     },
     tastebuds: {
       title: "Tastebuds - Food Blog",
@@ -64,7 +64,7 @@ export const homeJa = {
         "コンポーネント設計と動的ルーティングを導入し、重複コードを削減",
         "静的なコンテンツ管理からSupabaseを利用した拡張可能なデータ管理へ移行",
       ],
-      tag: "Web Development",
+      tag: "Web開発",
     },
   },
 } satisfies HomeContent;
