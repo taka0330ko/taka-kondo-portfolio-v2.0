@@ -3,8 +3,15 @@ import { GithubIcon, LinkedinIcon } from "../../data/icons";
 import { Mail } from "@lucide/astro";
 import IconHover from "../ui/IconHover.astro";
 const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
-const isAboutPage = pathname === "/about";
-const isArchivePage = pathname === "/archive";
+const isJapanese = pathname === "/jp" || pathname.startsWith("/jp/");
+const localizedPathname = isJapanese
+    ? pathname.replace(/^\/jp(?=\/|$)/, "") || "/"
+    : pathname;
+const projectsHref = isJapanese ? "/jp#projects" : "/#projects";
+const aboutHref = isJapanese ? "/jp/about" : "/about";
+const archiveHref = "/archive";
+const isAboutPage = localizedPathname === "/about";
+const isArchivePage = localizedPathname === "/archive";
 const isProjectsPage = [
     "/",
     "/ukg",
@@ -13,13 +20,13 @@ const isProjectsPage = [
     "/store-map",
     "/xeno",
     "/stone-and-honey",
-].includes(pathname);
+].includes(localizedPathname);
 ---
 
 <div class="mobile-menu-panel bg-foreground-inverse/95 backdrop-blur-lg md:hidden" data-mobile-menu-panel>
-    <nav class="mobile-menu-nav flex flex-col items-center" aria-label="Mobile navigation">
+    <nav class="mobile-menu-nav flex flex-col items-center font-heading" aria-label="Mobile navigation" lang="en">
         <a
-        href="/#projects"
+        href={projectsHref}
         data-astro-reload
         class={`relative text-2xl pb-1 transition-colors ${isProjectsPage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
       >
@@ -30,7 +37,7 @@ const isProjectsPage = [
       </a>
 
       <a
-        href="/about"
+        href={aboutHref}
         class={`relative text-2xl pb-1 transition-colors ${isAboutPage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
       >
         About
@@ -40,7 +47,7 @@ const isProjectsPage = [
       </a>
 
       <a
-        href="/archive"
+        href={archiveHref}
         class={`relative text-2xl pb-1 transition-colors ${isArchivePage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
       >
         Archive

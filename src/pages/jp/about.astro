@@ -1,0 +1,9 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import AboutPage from "../../components/features/AboutPage.astro";
+import { aboutJa } from "../../content/ja/about";
+---
+
+<Layout title={aboutJa.meta.title} description={aboutJa.meta.description}>
+  <AboutPage content={aboutJa} />
+</Layout>

@@ -6,8 +6,16 @@ import MobileMenuPanel from "../ui/MobileMenuPanel.astro";
 import LanguageSwitch from "../ui/LanguageSwitch.astro";
 
 const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
-const isAboutPage = pathname === "/about";
-const isArchivePage = pathname === "/archive";
+const isJapanese = pathname === "/jp" || pathname.startsWith("/jp/");
+const localizedPathname = isJapanese
+  ? pathname.replace(/^\/jp(?=\/|$)/, "") || "/"
+  : pathname;
+const homeHref = isJapanese ? "/jp" : "/";
+const projectsHref = isJapanese ? "/jp#projects" : "/#projects";
+const aboutHref = isJapanese ? "/jp/about" : "/about";
+const archiveHref = "/archive";
+const isAboutPage = localizedPathname === "/about";
+const isArchivePage = localizedPathname === "/archive";
 const isProjectsPage = [
   "/",
   "/ukg",
@@ -16,18 +24,18 @@ const isProjectsPage = [
   "/store-map",
   "/xeno",
   "/stone-and-honey",
-].includes(pathname);
+].includes(localizedPathname);
 ---
 
 <header class="fixed top-0 z-99 w-full bg-linear-to-br bg-theme-gradient px-8 py-4 md:py-2 backdrop-blur-sm">
   <nav class="mx-auto max-w-360 items-center gap-y-2 flex md:h-16 justify-between">
-    <a href="/" class="relative z-100 inline-block" aria-label="Home">
+    <a href={homeHref} class="relative z-100 inline-block" aria-label="Home">
       <Logo class="h-auto w-36 md:w-48" />
     </a>
 
-    <div class="hidden md:flex justify-center gap-8 md:gap-16">
+    <div class="hidden md:flex justify-center gap-8 md:gap-16 font-heading" lang="en">
       <a
-        href="/#projects"
+        href={projectsHref}
         data-astro-reload
         class={`relative pb-1 transition-colors ${isProjectsPage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
       >
@@ -38,7 +46,7 @@ const isProjectsPage = [
       </a>
 
       <a
-        href="/about"
+        href={aboutHref}
         class={`relative pb-1 transition-colors ${isAboutPage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
       >
         About
@@ -48,7 +56,7 @@ const isProjectsPage = [
       </a>
 
       <a
-        href="/archive"
+        href={archiveHref}
         class={`relative pb-1 transition-colors ${isArchivePage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
       >
         Archive

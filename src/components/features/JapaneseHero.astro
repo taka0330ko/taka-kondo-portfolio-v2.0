@@ -16,8 +16,8 @@ const { content } = Astro.props;
 <div class="jp-hero-grid">
   <div class="jp-hero-content mt-12">
     <div class="jp-hero-copy">
-      <h1 class="jp-hero-name">{content.name}</h1>
-      <p class="jp-hero-role">{content.role}</p>
+      <h1 class="jp-hero-name text-ja-hero">{content.name}</h1>
+      <p class="jp-hero-role" lang="en">{content.role}</p>
     </div>
 
     <div class="jp-hero-rings" aria-hidden="true">
@@ -82,19 +82,17 @@ const { content } = Astro.props;
   }
 
   .jp-hero-name {
-    font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
-    font-size: clamp(2.25rem, 4vw, 5.25rem);
+    font-family: var(--font-japanese-heading);
     font-weight: 500;
     letter-spacing: clamp(0.08em, 0.4vw, 0.22em);
-    line-height: 1.4;
   }
 
   .jp-hero-role {
     margin-top: clamp(1.5rem, 4vh, 3.25rem);
     color: var(--color-heading-default);
-    font-family: var(--font-body);
-    font-size: clamp(0.9rem, 1.6vw, 1.25rem);
+    font-family: var(--font-satoshi), sans-serif;
     letter-spacing: 0.14em;
+    font-size: clamp(1.125rem, 1.8vw, 1.25rem);
   }
 
   .jp-hero-rings {

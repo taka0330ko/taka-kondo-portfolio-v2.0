@@ -23,31 +23,31 @@ export const homeJa = {
   },
   projects: {
     "store-map": {
-      title: "Walmart 店内マップナビゲーション",
+      title: "Walmart 商品ロケーター",
       description:
-        "商品検索と店内移動をインタラクティブな屋内マップで支援する、モバイルアプリのコンセプトです。",
+        "商品検索から売り場の確認までを、インタラクティブな店内マップでスムーズに行えるモバイルアプリのコンセプトです。",
       summaryList: [
-        "エンタープライズ向けデザインシステムの制約内でUIを設計し、再利用可能なデザイントークンを整備",
-        "Figma MCPとClaudeを活用し、SVGマップの命名とID生成を自動化するデザイン・開発フローを構築",
-        "ナビゲーションと商品検索体験を検証するReact Nativeプロトタイプを開発",
+        "企業デザインガイドの制約内でUIを設計し、再利用可能な独自のデザイントークンを整備",
+        "Figma MCPとClaudeでSVGマップを実装可能なデータに整え、デザインと開発をつなぐワークフローを構築",
+        "React Nativeでプロトタイプを開発し2種類のUIでユーザーテストを実行",
       ],
       tag: "Product Design",
     },
     ukg: {
-      title: "UKG 給与確認画面のリデザイン",
+      title: "給与確認アプリのリデザイン",
       description:
-        "実際のユーザーインタビューとフィードバックをもとに、UKGの給与確認体験を調査・再設計しました。",
+        "実際のユーザーインタビューとフィードバックをもとに、給与確認体験を調査・再設計しました。",
       summaryList: [
         "確認しづらかった給与情報を、ユーザーが自信を持って検証できる体験へ再設計",
         "ユーザー調査、比較テスト、UIデザイン、プロトタイピングまで一貫して実施",
-        "シフト記録と勤務時間の内訳を導入し、信頼度スコアを3.2から6.0へ改善",
+        "シフト記録と勤務時間の内訳を導入し、給料内訳に対する信頼度の向上に成功",
       ],
       tag: "UI/UX Case Study",
     },
     billow: {
       title: "Billow",
       description:
-        "会話型UIとチャット体験の設計に重点を置いた、Next.js製のAIチャットダッシュボードです。",
+        "会話型UIとチャット体験の設計に重点を置いた、Next.js製のサブスク管理ダッシュボードです。",
       summaryList: [
         "既存のハッカソン作品を、拡張性の高い構成へ再設計・再開発",
         "APIロジック、状態管理、UIの責務を整理して保守性を改善",
@@ -58,7 +58,7 @@ export const homeJa = {
     tastebuds: {
       title: "Tastebuds - Food Blog",
       description:
-        "Vanilla JavaScriptのMVPからReact、Next.jsへ発展させた学習過程を記録するフードブログです。",
+        "フードブログサイトをVanilla JavaScriptのMVPからReact、Next.jsへ発展させた学習過程を記録しました",
       summaryList: [
         "Vanilla JavaScriptからReact／Next.jsへ移行し、モダンなフロントエンド設計を実践",
         "コンポーネント設計と動的ルーティングを導入し、重複コードを削減",

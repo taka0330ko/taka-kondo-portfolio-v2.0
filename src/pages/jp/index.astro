@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import JapaneseHero from "../../components/features/JapaneseHero.astro";
+import RippleEffectLogo from "../../components/webGL/RippleEffectLogo";
 import CopyEmail from "../../components/ui/CopyEmail.astro";
 import MainProjectCard from "../../components/ui/MainProjectCard.astro";
 import IconHover from "../../components/ui/IconHover.astro";
@@ -9,6 +10,8 @@ import { GithubIcon, LinkedinIcon } from "../../data/icons";
 import { Mail } from "@lucide/astro";
 import { homeJa } from "../../content/ja/home";
 
+// ここが言語切り替えの中心です。
+// JavaScriptのスプレッド構文は、後から指定された値で同名プロパティを上書きします。
 const localizedProjects = projects.map((project) => ({
   ...project,
   ...homeJa.projects[project.slug],
@@ -71,6 +74,9 @@ const localizedProjects = projects.map((project) => ({
         >
           <Mail />
         </IconHover>
+      </div>
+      <div class="mt-16 flex w-full justify-center">
+        <RippleEffectLogo client:visible />
       </div>
     </section>
   </main>

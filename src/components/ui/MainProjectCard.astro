@@ -72,12 +72,15 @@ const cardHref = isReady ? href : undefined;
   
             </figure>
             <div class="flex flex-col justify-between my-auto lg:col-start-4 lg:col-span-2">
-                <h2 class="p-4">{title}</h2>
+                <h2 class="project-card-title p-4">{title}</h2>
                 <div class="flex flex-col">
-                    <p class="px-4">{description}</p>
-                    <ul class="px-4">
+                    <p class="project-card-description px-4">{description}</p>
+                    <ul class="project-card-summary px-4">
                         {summaryList?.map((list)=>(
-                            <div class="flex gap-2 my-4"><Check class="text-accent"/><li>{list}</li></div>
+                            <li class="flex gap-2 my-4">
+                                <Check class="mt-1 shrink-0 text-accent" />
+                                <span>{list}</span>
+                            </li>
                         ))}
                     </ul>
                 </div>
@@ -119,6 +122,29 @@ const cardHref = isReady ? href : undefined;
     .content {
         position: relative;
         z-index: 10;
+    }
+
+    .project-card:lang(ja) .project-card-title {
+        font-family: var(--font-japanese-body);
+        font-size: clamp(1.75rem, 2.4vw, 2.25rem);
+        font-weight: 500;
+        line-height: 1.35;
+        letter-spacing: 0;
+        text-wrap: balance;
+    }
+
+    .project-card:lang(ja) .project-card-description {
+        font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+        font-weight: 400;
+        line-height: 1.75;
+        letter-spacing: 0.01em;
+    }
+
+    .project-card:lang(ja) .project-card-summary {
+        font-size: clamp(0.875rem, 1.1vw, 1rem);
+        font-weight: 400;
+        line-height: 1.7;
+        letter-spacing: 0.01em;
     }
 
     .project-cover-image {

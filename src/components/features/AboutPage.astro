@@ -1,0 +1,340 @@
+---
+import { Image } from "astro:assets";
+import RippleEffectMyPic from "../webGL/RippleEffectMyPic";
+import RippleEffectLogo from "../webGL/RippleEffectLogo";
+import SquareRing from "./SquareRing.astro";
+import CopyEmail from "../ui/CopyEmail.astro";
+import LoveGallery from "./LoveGallery.astro";
+import Portrait from "../../assets/images/about/portrait-octopus-hat.webp";
+import { GithubIcon, LinkedinIcon } from "../../data/icons";
+import { Mail } from "@lucide/astro";
+import IconHover from "../ui/IconHover.astro";
+import type { AboutContent } from "../../content/about.types";
+
+interface Props {
+  content: AboutContent;
+}
+
+const { content } = Astro.props;
+---
+
+<main>
+    <section id="about-hero" aria-labelledby="about-title">
+      <div class="about-hero-grid grid-container">
+        <div class="about-intro">
+          <h1 id="about-title"><span class="text-display">{content.hero.titlePrefix}</span> {content.hero.titleName}</h1>
+          <p>
+            {content.hero.introLines.map((line, index) => (
+              <>{line}{index < content.hero.introLines.length - 1 && <br />}</>
+            ))}
+          </p>
+        </div>
+
+        <div class="about-my-pic mt-16 md:mt-0">
+          <RippleEffectMyPic client:visible />
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="about-contents"
+      aria-labelledby="about-contents"
+      class="grid-container relative my-16"
+    >
+      <div class="about-bg" aria-hidden="true">
+        <SquareRing class="about-ring about-ring-top-right" />
+        <SquareRing class="about-ring about-ring-bottom-left" />
+      </div>
+      <div class="col-start-4 col-span-6">
+        <h2 class="text-about-heading mb-8">{content.sections.whatIDo.title}</h2>
+        <p class="text-ab-body">
+          {content.sections.whatIDo.body}
+        </p>
+      </div>
+      <div class="col-start-4 col-span-6 mt-32">
+        <h2 class="text-about-heading mb-8">{content.sections.coreValue.title}</h2>
+        <p class="text-ab-body">
+          {content.sections.coreValue.body}
+        </p>
+      </div>
+      <div class="col-start-4 col-span-6 mt-32">
+        <h2 class="text-about-heading mb-8">{content.sections.education.title}</h2>
+        <div class="flex justify-between">
+          <p class="text-ab-body">
+            {content.sections.education.program}
+          </p>
+          <p>{content.sections.education.period}</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about-more" aria-labelledby="about-more-title" class="grid-container">
+      <div class="love-board col-span-full">
+        <div class="love-layout">
+          <div class="love-profile">
+            <h2 id="about-more-title" class="text-about-heading text-center">{content.more.title}</h2>
+
+            <figure class="love-portrait">
+              <Image src={Portrait} alt={content.more.portraitAlt} />
+            </figure>
+          </div>
+
+          <LoveGallery />
+        </div>
+      </div>
+    </section>
+
+    <section class="flex flex-col justify-center items-center my-40">
+      <CopyEmail copiedLabel={content.contact.copiedLabel} />
+      <div class="icons flex items-center gap-10 mt-4">
+        <IconHover
+          href="https://github.com/taka0330ko"
+          aria-label="GitHub profile"
+          label="GitHub"
+        >
+          <GithubIcon />
+        </IconHover>
+
+        <IconHover
+          href="https://www.linkedin.com/in/takanarikondo/"
+          aria-label="LinkedIn profile"
+          label="LinkedIn"
+        >
+          <LinkedinIcon />
+        </IconHover>
+
+        <IconHover
+          href="mailto:gtakanari0330@gmail.com"
+          aria-label={content.contact.emailAriaLabel}
+          label="Email"
+        >
+          <Mail />
+        </IconHover>
+      </div>
+      <div class="mt-16 flex w-full justify-center">
+        <RippleEffectLogo client:visible />
+      </div>
+    </section>
+</main>
+
+<style>
+  #about-hero {
+    min-height: 100svh;
+    overflow: hidden;
+  }
+
+  .about-main-inner {
+    padding-inline: 1.5rem;
+  }
+
+  .about-hero-grid {
+    min-height: calc(100svh - 6rem);
+    padding-block: clamp(2rem, 6vh, 5rem);
+  }
+
+  .about-intro {
+    z-index: 1;
+    align-self: end;
+  }
+
+  .about-intro h1 {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 400;
+    line-height: 0.9;
+  }
+
+  .about-intro h1:lang(ja) {
+  font-size: clamp(2.75rem, 5vw, 5rem);
+  line-height: 1.1;
+  text-wrap: none;
+}
+
+  .about-intro p {
+    margin-top: 1.5rem;
+    color: var(--text-heading-default);
+    font-size: clamp(1.125rem, 2vw, 1.75rem);
+    line-height: 1.35;
+  }
+
+  .about-my-pic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .about-bg {
+    --edge-fade: clamp(2rem, 5vw, 5rem);
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+    -webkit-mask-image:
+      linear-gradient(
+        to right,
+        transparent,
+        #000 var(--edge-fade),
+        #000 calc(100% - var(--edge-fade)),
+        transparent
+      ),
+      linear-gradient(
+        to bottom,
+        transparent,
+        #000 var(--edge-fade),
+        #000 calc(100% - var(--edge-fade)),
+        transparent
+      );
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(
+        to right,
+        transparent,
+        #000 var(--edge-fade),
+        #000 calc(100% - var(--edge-fade)),
+        transparent
+      ),
+      linear-gradient(
+        to bottom,
+        transparent,
+        #000 var(--edge-fade),
+        #000 calc(100% - var(--edge-fade)),
+        transparent
+      );
+    mask-composite: intersect;
+  }
+
+  .about-bg :global(.about-ring) {
+    --ring-position: absolute;
+    --ring-width: clamp(40rem, 60vw, 75rem);
+    opacity: 0.6;
+  }
+
+  .about-bg :global(.about-ring-top-right) {
+    top: 0;
+    right: 0;
+    transform: translate(35%, -35%);
+  }
+
+  .about-bg :global(.about-ring-bottom-left) {
+    bottom: 0;
+    left: 0;
+    transform: translate(-35%, 35%);
+  }
+
+  .about-bg :global(.about-ring span) {
+    inset: 20%;
+  }
+
+  .about-bg :global(.about-ring-top-right .square-ring-spin) {
+    animation: about-ring-spin-cw 140s linear infinite;
+  }
+
+  .about-bg :global(.about-ring-bottom-left .square-ring-spin) {
+    animation: about-ring-spin-ccw 100s linear infinite;
+  }
+
+  @keyframes about-ring-spin-cw {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes about-ring-spin-ccw {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-bg :global(.about-ring-top-right .square-ring-spin),
+    .about-bg :global(.about-ring-bottom-left .square-ring-spin) {
+      animation: none;
+    }
+  }
+
+  .love-board {
+    --paper: #fff;
+    border-radius: 1rem;
+    padding: clamp(1.75rem, 4vw, 3.5rem);
+  }
+
+  .love-board h2 {
+    color: var(--text-heading-default);
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .love-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .love-profile {
+    position: sticky;
+    top: calc(6rem + clamp(0.75rem, 2vw, 1.5rem));
+    align-self: start;
+  }
+
+  .love-portrait {
+    width: 50%;
+    margin: 0 auto;
+    aspect-ratio: 2 / 3;
+    padding: 0.5rem;
+    background: var(--paper);
+    box-shadow: 6px 8px 10px rgb(58 58 63 / 25%);
+  }
+
+  .love-portrait :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (width < 640px) {
+    .love-profile {
+      position: static;
+    }
+
+    .love-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .love-portrait {
+      max-width: 14rem;
+      margin-inline: auto;
+    }
+  }
+
+  @media (width < 768px) {
+    .about-hero-grid {
+      justify-content: space-between;
+    }
+
+    .about-intro {
+      order: 2;
+      align-self: start;
+    }
+
+    .about-my-pic {
+      order: 1;
+      width: min(100%, 30rem);
+      margin-inline: auto;
+    }
+  }
+
+  @media (width >= 768px) {
+    .about-intro {
+      grid-column: 1 / span 4;
+      padding-bottom: clamp(1rem, 5vh, 4rem);
+    }
+
+    .about-my-pic {
+      grid-column: 7 / span 5;
+      align-self: center;
+    }
+  }
+
+</style>

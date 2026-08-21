@@ -3,8 +3,10 @@ import MyArrowDown from "../../assets/images/icons/CaretDown.svg";
 
 const pathname = Astro.url.pathname;
 const isJapanese = pathname === "/jp" || pathname.startsWith("/jp/");
-const currentLanguage = isJapanese ? "日本語" : "Eng";
-const anotherLanguage = isJapanese ? "Eng" : "日本語";
+const currentLanguage = isJapanese ? "日本語" : "English";
+const anotherLanguage = isJapanese ? "English" : "日本語";
+const currentLanguageCode = isJapanese ? "ja" : "en";
+const anotherLanguageCode = isJapanese ? "en" : "ja";
 const anotherLanguagePath = isJapanese
     ? pathname.replace(/^\/jp(?=\/|$)/, "") || "/"
     : `/jp${pathname === "/" ? "" : pathname}`;
@@ -18,7 +20,10 @@ const anotherLanguagePath = isJapanese
         aria-expanded="false"
         aria-controls="another-lang"
     >
-        {currentLanguage}<span class="language-arrow"><MyArrowDown /></span>
+        <span
+            lang={currentLanguageCode}
+            class:list={currentLanguageCode === "en" ? "font-heading" : "font-ja-body"}
+        >{currentLanguage}</span><span class="language-arrow"><MyArrowDown /></span>
     </button>
 
     <div
@@ -28,7 +33,11 @@ const anotherLanguagePath = isJapanese
     >
         <a
             href={anotherLanguagePath}
-            class="block whitespace-nowrap rounded-md px-3 py-2 hover:text-accent"
+            lang={anotherLanguageCode}
+            class:list={[
+                "block whitespace-nowrap rounded-md px-3 py-2 hover:text-accent",
+                anotherLanguageCode === "en" ? "font-heading" : "font-ja-body",
+            ]}
         >
             {anotherLanguage}
         </a>

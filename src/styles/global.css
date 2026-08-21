@@ -26,6 +26,8 @@
 
   --font-satoshi: "Satoshi";
   --font-general-sans: "General Sans";
+  --font-japanese-heading: "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
+  --font-japanese-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
 
   /* motion token */
   --spring-default: linear(0, 0.0107, 0.0398, 0.0834, 0.138, 0.2003, 0.2677, 0.3379, 0.4089, 0.4791, 0.5471, 0.612, 0.6731, 0.7297, 0.7815, 0.8283, 0.87, 0.9068, 0.9388, 0.9662, 0.9892, 1.0083, 1.0237, 1.0357, 1.0449, 1.0514, 1.0556, 1.058, 1.0587, 1.0581, 1.0563, 1.0538, 1.0506, 1.0469,
@@ -146,6 +148,8 @@
   /* Font */
   --font-heading: var(--font-satoshi);
   --font-body: var(--font-general-sans);
+  --font-ja-heading: var(--font-japanese-heading);
+  --font-ja-body: var(--font-japanese-body);
 
   /* Main typography tokens */
   --text-body: 1.1rem;
@@ -169,6 +173,32 @@
   --text-hero: clamp(2.2rem, 5vw, 4.5rem);
   --text-hero--line-height: 1.1;
   --text-hero--letter-spacing: -0.03em;
+
+  /* Japanese typography tokens
+     Usage: text-ja-body, text-ja-caption, text-ja-title, etc. */
+  --text-ja-caption: 0.8125rem;
+  --text-ja-caption--line-height: 1.7;
+  --text-ja-caption--letter-spacing: 0.02em;
+
+  --text-ja-body: clamp(1rem, 1.4vw, 1.0625rem);
+  --text-ja-body--line-height: 1.9;
+  --text-ja-body--letter-spacing: 0.02em;
+
+  --text-ja-subtitle: clamp(1.125rem, 1.8vw, 1.25rem);
+  --text-ja-subtitle--line-height: 1.65;
+  --text-ja-subtitle--letter-spacing: 0.01em;
+
+  --text-ja-title: clamp(1.375rem, 2.4vw, 1.625rem);
+  --text-ja-title--line-height: 1.5;
+  --text-ja-title--letter-spacing: 0;
+
+  --text-ja-display: clamp(1.75rem, 3.5vw, 2.5rem);
+  --text-ja-display--line-height: 1.35;
+  --text-ja-display--letter-spacing: -0.01em;
+
+  --text-ja-hero: clamp(2rem, 5vw, 4rem);
+  --text-ja-hero--line-height: 1.25;
+  --text-ja-hero--letter-spacing: -0.02em;
 
   /* About typography tokens */
   --text-ab-heading-capital: clamp(2.25rem, 5vw, 3rem);
@@ -283,6 +313,24 @@
     text-wrap: pretty;
     font-family: var(--font-body);
     @apply text-body;
+  }
+
+  :lang(ja) {
+    font-family: var(--font-japanese-body);
+    font-feature-settings: "palt" 1;
+    font-kerning: normal;
+  }
+
+  :lang(ja):is(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--font-japanese-heading);
+  }
+
+  h2:lang(ja) {
+    @apply text-ja-display
+  }
+
+  p:lang(ja) {
+    @apply text-ja-body;
   }
 
   img,

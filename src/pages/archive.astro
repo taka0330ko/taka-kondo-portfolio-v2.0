@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import RippleEffectMoon from "../components/webGL/RippleEffectMoon";
+import RippleEffectLogo from "../components/webGL/RippleEffectLogo";
 import ArchiveMasonryGrid from "../components/layout/ArchiveMasonryGrid.astro";
 import { archive } from "../data/archiveList";
 import IconHover from "../components/ui/IconHover.astro";
@@ -60,6 +61,9 @@ import CopyEmail from "../components/ui/CopyEmail.astro";
                         >
                             <Mail />
                         </IconHover>
+                    </div>
+                    <div class="mt-16 flex w-full justify-center">
+                        <RippleEffectLogo client:visible />
                     </div>
                 </section>
     </main>
