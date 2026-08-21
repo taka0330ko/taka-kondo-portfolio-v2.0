@@ -12,8 +12,10 @@ import StoreMapNavigationVideo from "../assets/images/projects/store-navigation/
 import UKGThumbnail from "../assets/images/projects/UKG/UKG-thumbnail.webp";
 import UKGVideo from "../assets/images/projects/UKG/videos/main-thumbnail.webm";
 import UKGVideoMp4 from "../assets/images/projects/UKG/videos/main-thumbnail.mp4";
+import { homeEn } from "../content/en/home";
 
 type Project = {
+  slug: keyof typeof homeEn.projects;
   href: string;
   coverVideo: string | undefined;
   coverVideoFallback?: string;
@@ -27,65 +29,39 @@ type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "store-map",
+    ...homeEn.projects["store-map"],
     href: "/store-map",
     cover: StoreMapNavigationThumbnail,
     coverVideo: StoreMapNavigationVideo,
-    title: "Walmart Grocery Store Map Navigation",
-    description:
-      "Mobile app concept that helps shoppers locate products and navigate grocery stores through an interactive indoor map.",
-    summaryList: [
-      "Designed the interface within a strict enterprise design system and established reusable design tokens",
-      "Built a scalable design-to-code workflow using Figma MCP and Claude to automate SVG map naming and ID generation",
-      "Developed an interactive React Native prototype to validate navigation and product discovery flows"
-    ],
-    tag: "Product Design",
     isReady: true,
   },
   {
+    slug: "ukg",
+    ...homeEn.projects.ukg,
     href: "/ukg",
     cover: UKGThumbnail,
     coverVideo: UKGVideo,
     coverVideoFallback: UKGVideoMp4,
-    title: "UKG Payroll Verification Redesign",
-    description:
-      "Researched and redesigned the payroll verification experience for UKG, based on real user interviews and feedback",
-    summaryList: [
-      "Redesigned a payroll experience that was difficult to verify, enabling users to confidently validate their payroll information",
-      "Conducted end-to-end UX work including user research, comparative testing, UI design, and prototyping",
-      "Introduced shift records and worked-hour breakdowns, improving user trust scores from 3.2 → 6.0"
-    ],
-    tag: "UI/UX case study",
     isReady: true,
   },
   {
+    slug: "billow",
+    ...homeEn.projects.billow,
     href: "/billow",
     cover: BillowThumbnail,
     coverVideo: BillowVideo,
     coverVideoFallback: BillowVideoMp4,
-    title: "Billow",
-    description: "AI chat–based dashboard built with Next.js, focusing on conversational UI and chat interaction design.",
-    summaryList: [
-      "Redesigned and rebuilt an existing hackathon project to create a more scalable architecture",
-      "Improved maintainability by organizing API logic, state management, and UI responsibilities",
-      "Practiced a development process that prioritized code understanding and architecture while leveraging AI tools"
-    ],
-    tag: "Web dev",
     isReady: true,
 
   },
   {
+    slug: "tastebuds",
+    ...homeEn.projects.tastebuds,
     href: "/tastebuds",
     cover: TastebudsThumbnail,
     coverVideo: TastebudsVideo,
     coverVideoFallback: TastebudsVideoMp4,
-    title: "Tastebuds - Food Blog Site",
-    description:
-      "Food blog project documenting my JavaScript journey from a Vanilla JS MVP to React and Next.js.",
-    summaryList: ["Migrated from vanilla JavaScript to React / Next.js, learning and implementing modern frontend architecture",
-      "Developed an understanding of component-based architecture and introduced dynamic routing to reduce repetitive code",
-      "Transitioned from static content management to a scalable data management structure powered by Supabase"
-    ],
-    tag: "Web dev",
     isReady: true,
 
   },

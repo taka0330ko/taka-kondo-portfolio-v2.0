@@ -4,46 +4,55 @@ import { Mail } from "@lucide/astro";
 import { GithubIcon, LinkedinIcon } from "../../data/icons";
 import IconHover from "../ui/IconHover.astro";
 import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
+import type { HeroContent } from "../../content/home.types";
+
+interface Props {
+  content: HeroContent;
+}
+
+const { content } = Astro.props;
 ---
 
 <div class="jp-hero-grid">
-  <div class="jp-hero-copy">
-    <h1 class="jp-hero-name">こんどう&nbsp;&nbsp;たかなり</h1>
-    <p class="jp-hero-role">UI/UX Design&nbsp; | &nbsp;Front End Development</p>
-  </div>
+  <div class="jp-hero-content mt-12">
+    <div class="jp-hero-copy">
+      <h1 class="jp-hero-name">{content.name}</h1>
+      <p class="jp-hero-role">{content.role}</p>
+    </div>
 
-  <div class="jp-hero-rings" aria-hidden="true">
-    <RippleEffectRings client:visible />
-  </div>
+    <div class="jp-hero-rings" aria-hidden="true">
+      <RippleEffectRings client:visible />
+    </div>
 
-  <div class="jp-hero-socials">
-    <IconHover
-      href="https://github.com/taka0330ko"
-      aria-label="GitHub profile"
-      label="GitHub"
-    >
-      <GithubIcon />
-    </IconHover>
+    <div class="jp-hero-socials">
+      <IconHover
+        href="https://github.com/taka0330ko"
+        aria-label="GitHub profile"
+        label="GitHub"
+      >
+        <GithubIcon />
+      </IconHover>
 
-    <IconHover
-      href="https://www.linkedin.com/in/takanarikondo/"
-      aria-label="LinkedIn profile"
-      label="LinkedIn"
-    >
-      <LinkedinIcon />
-    </IconHover>
+      <IconHover
+        href="https://www.linkedin.com/in/takanarikondo/"
+        aria-label="LinkedIn profile"
+        label="LinkedIn"
+      >
+        <LinkedinIcon />
+      </IconHover>
 
-    <IconHover
-      href="mailto:gtakanari0330@gmail.com"
-      aria-label="メールを送る"
-      label="Email"
-    >
-      <Mail />
-    </IconHover>
+      <IconHover
+        href="mailto:gtakanari0330@gmail.com"
+        aria-label={content.emailAriaLabel}
+        label="Email"
+      >
+        <Mail />
+      </IconHover>
+    </div>
   </div>
 
   <div class="jp-hero-cta">
-    <GoToProjectsLinkBtn />
+    <GoToProjectsLinkBtn label={content.projectsLabel} ariaLabel={content.projectsAriaLabel} />
   </div>
 </div>
 
@@ -53,25 +62,30 @@ import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
     min-height: calc(100svh - 9rem);
     max-width: 90rem;
     margin-inline: auto;
-    grid-template-areas:
-      "rings"
-      "copy"
-      "socials"
-      "cta";
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-content: center;
+    gap: clamp(2rem, 5vh, 4rem) 1.5rem;
+  }
+
+  .jp-hero-content {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 2rem;
   }
 
   .jp-hero-copy {
-    grid-area: copy;
+    order: 2;
+    min-width: 0;
     text-align: center;
   }
 
   .jp-hero-name {
     font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
-    font-size: clamp(2rem, 8vw, 3.25rem);
+    font-size: clamp(2.25rem, 4vw, 5.25rem);
     font-weight: 500;
-    letter-spacing: 0.22em;
+    letter-spacing: clamp(0.08em, 0.4vw, 0.22em);
     line-height: 1.4;
   }
 
@@ -79,19 +93,20 @@ import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
     margin-top: clamp(1.5rem, 4vh, 3.25rem);
     color: var(--color-heading-default);
     font-family: var(--font-body);
-    font-size: clamp(0.9rem, 2.6vw, 1.25rem);
+    font-size: clamp(0.9rem, 1.6vw, 1.25rem);
     letter-spacing: 0.14em;
   }
 
   .jp-hero-rings {
-    grid-area: rings;
+    order: 1;
     display: flex;
-    justify-content: center;
+    width: 100%;
     min-width: 0;
+    justify-content: center;
   }
 
   .jp-hero-socials {
-    grid-area: socials;
+    order: 3;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,7 +114,7 @@ import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
   }
 
   .jp-hero-cta {
-    grid-area: cta;
+    grid-column: 1 / -1;
     display: flex;
     justify-content: center;
   }
@@ -107,35 +122,32 @@ import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
   @media (width >= 768px) {
     .jp-hero-grid {
       min-height: calc(100svh - 8.5rem);
+    }
+
+    .jp-hero-content {
+      display: grid;
       grid-template-columns: repeat(12, minmax(0, 1fr));
-      grid-template-rows: minmax(20rem, 1fr) minmax(5rem, auto) minmax(6rem, auto);
-      grid-template-areas:
-        "copy copy copy copy copy copy copy rings rings rings rings rings"
-        "copy copy copy copy copy copy copy socials socials socials socials socials"
-        ". . . . . cta cta . . . . .";
-      column-gap: 1.5rem;
-      row-gap: clamp(1.5rem, 4vh, 3.5rem);
+      align-items: center;
+      gap: 1.5rem;
     }
 
     .jp-hero-copy {
-      align-self: end;
-      padding-bottom: clamp(0rem, 5vh, 3rem);
-      text-align: left;
-    }
-
-    .jp-hero-rings {
+      grid-column: 1 / span 7;
+      grid-row: 1 / span 2;
       align-self: center;
     }
 
-    .jp-hero-socials,
-    .jp-hero-cta {
-      align-self: start;
+    .jp-hero-rings {
+      grid-column: 8 / -1;
+      grid-row: 1;
     }
 
-    .jp-hero-name {
-      white-space: nowrap;
+    .jp-hero-socials {
+      grid-column: 8 / -1;
+      grid-row: 2;
     }
 
+    .jp-hero-name,
     .jp-hero-role {
       white-space: nowrap;
     }

@@ -4,6 +4,13 @@ import { Mail } from "@lucide/astro";
 import { GithubIcon, LinkedinIcon } from "../../data/icons";
 import IconHover from "../ui/IconHover.astro";
 import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
+import type { HeroContent } from "../../content/home.types";
+
+interface Props {
+  content: HeroContent;
+}
+
+const { content } = Astro.props;
 ---
 
 <div class="home-hero-grid">
@@ -43,7 +50,7 @@ import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
 
     <IconHover
       href="mailto:gtakanari0330@gmail.com"
-      aria-label="Send email"
+      aria-label={content.emailAriaLabel}
       label="Email"
     >
       <Mail />
@@ -51,7 +58,7 @@ import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
   </div>
 
   <div class="hero-cta">
-    <GoToProjectsLinkBtn />
+    <GoToProjectsLinkBtn label={content.projectsLabel} ariaLabel={content.projectsAriaLabel} />
   </div>
 </div>
 

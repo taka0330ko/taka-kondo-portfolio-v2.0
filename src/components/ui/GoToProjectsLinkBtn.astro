@@ -1,9 +1,18 @@
+---
+interface Props {
+    label?: string;
+    ariaLabel?: string;
+}
+
+const { label = "Go to Projects", ariaLabel = label } = Astro.props;
+---
+
 <a
     href="#projects"
-    aria-label="Go to Projects"
+    aria-label={ariaLabel}
     class="scroll-projects-btn flex shrink-0 items-center justify-center px-3 py-2"
 >
-    <span class="btn-text">Go to Projects</span>
+    <span class="btn-text">{label}</span>
 
     <span class="btn-icon">
         <svg viewBox="0 0 24 24" aria-hidden="true">

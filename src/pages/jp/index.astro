@@ -7,21 +7,27 @@ import IconHover from "../../components/ui/IconHover.astro";
 import { projects } from "../../data/projects";
 import { GithubIcon, LinkedinIcon } from "../../data/icons";
 import { Mail } from "@lucide/astro";
+import { homeJa } from "../../content/ja/home";
+
+const localizedProjects = projects.map((project) => ({
+  ...project,
+  ...homeJa.projects[project.slug],
+}));
 ---
 
 <Layout
-  title="近藤嵩成 | UI/UXデザイナー・フロントエンド開発者"
-  description="UI/UXデザインとフロントエンド開発に取り組む近藤嵩成のポートフォリオです。"
+  title={homeJa.meta.title}
+  description={homeJa.meta.description}
 >
   <main>
     <section class="home-hero">
-      <JapaneseHero />
+      <JapaneseHero content={homeJa.hero} />
     </section>
 
     <section id="projects" class="mx-auto max-w-350 px-4 md:px-8">
       <h2 class="sr-only pb-16">Projects</h2>
       <div class="grid gap-24">
-        {projects.map((project) => (
+        {localizedProjects.map((project) => (
           <MainProjectCard
             href={project.href}
             cover={project.cover}
@@ -32,13 +38,15 @@ import { Mail } from "@lucide/astro";
             summaryList={project.summaryList}
             tag={project.tag}
             isReady={project.isReady}
+            readMoreLabel={homeJa.projectCard.readMore}
+            comingSoonLabel={homeJa.projectCard.comingSoon}
           />
         ))}
       </div>
     </section>
 
     <section class="my-40 flex flex-col items-center justify-center">
-      <CopyEmail />
+      <CopyEmail copiedLabel={homeJa.contact.copiedLabel} />
       <div class="icons mt-4 flex items-center gap-10">
         <IconHover
           href="https://github.com/taka0330ko"
@@ -58,7 +66,7 @@ import { Mail } from "@lucide/astro";
 
         <IconHover
           href="mailto:gtakanari0330@gmail.com"
-          aria-label="メールを送る"
+          aria-label={homeJa.contact.emailAriaLabel}
           label="Email"
         >
           <Mail />

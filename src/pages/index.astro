@@ -7,13 +7,14 @@ import MainProjectCard from '../components/ui/MainProjectCard.astro';
 import IconHover from '../components/ui/IconHover.astro';
 import { GithubIcon, LinkedinIcon } from '../data/icons';
 import { Mail } from '@lucide/astro';
+import { homeEn } from '../content/en/home';
 
 ---
 
-<Layout>
+<Layout title={homeEn.meta.title} description={homeEn.meta.description}>
 <main>
 	<section class="home-hero">
-      <HeroTextBlock/>
+      <HeroTextBlock content={homeEn.hero}/>
 	</section>
 
   <section id="projects" class="max-w-350 mx-auto px-4 md:px-8" >
@@ -31,13 +32,15 @@ import { Mail } from '@lucide/astro';
             summaryList={project.summaryList}
             tag={project.tag} 
             isReady={project.isReady}
+            readMoreLabel={homeEn.projectCard.readMore}
+            comingSoonLabel={homeEn.projectCard.comingSoon}
                      />
         )
       })}
     </div>
   </section>
 <section class="flex flex-col justify-center items-center my-40">
-    <CopyEmail />
+    <CopyEmail copiedLabel={homeEn.contact.copiedLabel} />
     <div class="icons flex items-center gap-10 mt-4">
       <IconHover
         href="https://github.com/taka0330ko"
@@ -57,7 +60,7 @@ import { Mail } from '@lucide/astro';
 
       <IconHover
         href="mailto:gtakanari0330@gmail.com"
-        aria-label="Send email"
+        aria-label={homeEn.contact.emailAriaLabel}
         label="Email"
       >
         <Mail />

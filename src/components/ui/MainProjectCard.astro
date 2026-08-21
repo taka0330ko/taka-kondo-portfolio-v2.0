@@ -15,9 +15,11 @@ type Props = {
     summaryList: string[];
     tag: string;
     isReady: boolean;
+    readMoreLabel?: string;
+    comingSoonLabel?: string;
 };
 
-const { href, cover, coverVideo, coverVideoFallback, title, description, summaryList, tag, isReady } =
+const { href, cover, coverVideo, coverVideoFallback, title, description, summaryList, tag, isReady, readMoreLabel = "Click To Read More", comingSoonLabel = "Coming Soon ..." } =
     Astro.props as Props;
 const cardHref = isReady ? href : undefined;
 ---
@@ -83,8 +85,8 @@ const cardHref = isReady ? href : undefined;
                     class="flex justify-end items-end gap-4 mt-16 lg:mt-32 px-6 pb-6 transition-all duration-300 self-end group-hover:translate-x-1 group-hover:opacity-100"
                 >
                 {isReady? 
-                (<p class="text-heading-default underline underline-offset-4 decoration-current">Click To Read More</p><Arrow class="text-foreground w-16" />): 
-                (<p class="text-heading-default underline underline-offset-4 decoration-current">Coming Soon ...</p>)}
+                (<p class="text-heading-default underline underline-offset-4 decoration-current">{readMoreLabel}</p><Arrow class="text-foreground w-16" />): 
+                (<p class="text-heading-default underline underline-offset-4 decoration-current">{comingSoonLabel}</p>)}
                  
                 </div>
             </div>

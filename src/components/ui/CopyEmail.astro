@@ -1,12 +1,14 @@
 ---
 import { Copy } from "@lucide/astro"
 const email = "gtakanari0330@gmail.com";
+const { copiedLabel = "Copied!" } = Astro.props;
 ---
 
           <button
           id="copy-button"
           type="button"
           data-email={email}
+          data-copied-label={copiedLabel}
           class="cursor-pointer px-4 py-2 bg-linear-to-br from-white/30 to-white/0 backdrop-blur-lg  border border-white/20 shadow-lg rounded-full text-hea flex gap-4">
              <span id="copy-button-text" class='text-heading-default'>{email}</span>
              <Copy 
@@ -26,7 +28,7 @@ const email = "gtakanari0330@gmail.com";
     
             copyEmailBtn.addEventListener("click", async() =>{
             await navigator.clipboard.writeText(email);
-            emailText.textContent = "Copied!"
+            emailText.textContent = copyEmailBtn.getAttribute("data-copied-label") || "Copied!"
             setTimeout(()=> {
                 emailText.textContent = email;
             }, 1500)
