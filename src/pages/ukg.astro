@@ -1,6 +1,8 @@
 ---
 // Page layout
 import Layout from "../layouts/Layout.astro";
+import { ukgJa, ukgJaMeta } from "../content/ja/ukg";
+import { homeJa } from "../content/ja/home";
 
 // Astro utilities
 import Image from "astro/components/Image.astro";
@@ -25,6 +27,19 @@ import TailwindIcon from "../assets/images/icons/stacks/tailwind.svg";
 // Project data
 import { postsDataCode } from "../data/ukgCode";
 import { projects } from "../data/projects";
+
+const isJapanese = Astro.url.pathname === "/jp/ukg";
+const t = (text: string) => isJapanese ? (ukgJa[text] ?? text) : text;
+const relatedProjects = projects
+    .filter((project) =>
+        ["/ukg", "/tastebuds", "/billow"].includes(project.href) &&
+        project.href !== "/ukg"
+    )
+    .slice(0, 2)
+    .map((project) => isJapanese
+        ? { ...project, ...homeJa.projects[project.slug], href: project.slug === "store-map" ? "/jp/store-map" : project.href }
+        : project
+    );
 
 // Hero media
 import UKGVideo from "../assets/images/projects/UKG/videos/demo_video.webm";
@@ -71,30 +86,30 @@ import WorkCellUI from "../assets/images/projects/UKG/workcell-ui.webp";
 import HighFide from "../assets/images/projects/UKG/high-fide.webp";
 import Testers from "../assets/images/projects/UKG/testers.webp";
 
-export const ukgSections = [
-    { label: "Overview", href: "#Overview" },
-    { label: "Research", href: "#Research" },
-    { label: "UI Design", href: "#UI-design" },
-    { label: "Prototype Dev", href: "#Prototype-dev" },
-    { label: "User Feedback", href: "#User-feedback" },
-    { label: "Reflection", href: "#Reflection" },
+const ukgSections = [
+    { label: t("Overview"), href: "#Overview" },
+    { label: t("Research"), href: "#Research" },
+    { label: t("UI Design"), href: "#UI-design" },
+    { label: t("Prototype Development"), href: "#Prototype-dev" },
+    { label: t("User Feedback"), href: "#User-feedback" },
+    { label: t("Reflection"), href: "#Reflection" },
 ];
 ---
 
-<Layout>
-    <main class="mt-30 md:mt-40">
+<Layout title={isJapanese ? ukgJaMeta.title : undefined} description={isJapanese ? ukgJaMeta.description : undefined}>
+    <main class:list={["mt-30 md:mt-40", { "case-study-ja": isJapanese }]}>
         <!-- Breadcrumb -->
         <div class="container pl-8">
-            <BreadCrumb>UKG Redesign Project</BreadCrumb>
+            <BreadCrumb>{t("UKG Redesign Project")}</BreadCrumb>
         </div>
         <section id="hero" aria-labelledby="ukg-redesign-overview">
             <div class="grid grid-cols-12 grid-container items-start">
                 <div class="col-span-8">
                     <h1 class="mt-8">
-                        “How can I verify my work hours...?”
+                        {t("“How can I verify my work hours...?”")}
                     </h1>
                     <p class="mt-8">
-                        The existing payroll screen showed total hours, but provided no way to verify them.
+                        {t("The existing payroll screen showed total hours, but provided no way to verify them.")}
                     </p>
                     <div class="mt-8 md:my-8">
                         <GlassPill
@@ -139,20 +154,20 @@ export const ukgSections = [
                         <dt
                             class="text-caption uppercase tracking-wide text-body-default"
                         >
-                            Role
+                            {t("Role")}
                         </dt>
                         <dd class="text-body text-heading-default">
-                            UX Researcher / UI Designer / Front-end Developer
+                            {t("UX Researcher / UI Designer / Front-end Developer")}
                         </dd>
                     </div>
                     <div class="grid gap-1">
                         <dt
                             class="text-caption uppercase tracking-wide text-body-default"
                         >
-                            Timeline
+                            {t("Timeline")}
                         </dt>
                         <dd class="text-body  text-heading-default">
-                            One month, Apr-May, 2026
+                            {t("One month, Apr-May, 2026")}
                         </dd>
                     </div>
                 </dl>
@@ -177,7 +192,7 @@ export const ukgSections = [
                     <!-- Overview Section -->
                     <section id="Overview" class="mt-16">
                         <h2 class="text-cs-section font-medium">
-                            <span class="heading-accent-bar">Overview</span>
+                            <span class="heading-accent-bar">{t("Overview")}</span>
                         </h2>
                         <div
                             class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
@@ -189,7 +204,7 @@ export const ukgSections = [
                             <h3
                                 class="mt-2 max-w-5xl text-cs-h1 font-normal leading-tight"
                             >
-                                Redesigning the payroll experience of "UKG Pro" to help employees understand and verify their payroll information.
+                                {t("Redesigning the payroll experience of \"UKG Pro\" to help employees understand and verify their payroll information.")}
                             </h3>
 
                             <div
@@ -211,9 +226,7 @@ export const ukgSections = [
                                     <p
                                         class="mt-3 text-cs-body leading-snug text-heading-default"
                                     >
-                                        An employee platform for managing work
-                                        hours, accessing payroll information,
-                                        and reviewing pay statements.
+                                        {t("An employee platform for managing work hours, accessing payroll information, and reviewing pay statements.")}
                                     </p>
                                 </div>
                                 <figure>
@@ -225,7 +238,7 @@ export const ukgSections = [
                                     <figcaption
                                         class="mt-4 text-cs-caption text-heading-default"
                                     >
-                                        The UKG main page I actually use
+                                        {t("The UKG main page I actually use")}
                                     </figcaption>
                                 </figure>
                             </div>
@@ -235,19 +248,14 @@ export const ukgSections = [
                                 <h4
                                     class="mt-5 text-cs-h2 font-normal leading-tight"
                                 >
-                                    Toward a More Transparent Payroll Experience
+                                    {t("Toward a More Transparent Payroll Experience")}
                                     <TrendingUp
                                         class="ml-2 inline-block size-6 align-[-0.125em] text-foreground"
                                     />
                                 </h4>
                                 <p class="mt-4 text-cs-body leading-snug">
-                                    This project began with UX research focused
-                                    on UKG Pro, which I actively use at my
-                                    part-time workplace primarily to review pay
-                                    statements. <br />
-                                    The goal of the redesign was to improve transparency
-                                    and verifiability within the payroll checking
-                                    experience.
+                                    {t("This project began with UX research focused on UKG Pro, which I actively use at my part-time workplace primarily to review pay statements.")} <br />
+                                    {t("The goal of the redesign was to improve transparency and verifiability within the payroll checking experience.")}
                                 </p>
                             </div>
 
@@ -260,20 +268,12 @@ export const ukgSections = [
                                         <h3
                                             class="mt-4 text-cs-h2 font-normal leading-tight"
                                         >
-                                            A User-Centered Design Process
+                                            {t("A User-Centered Design Process")}
                                         </h3>
                                         <p
                                             class="mt-4 text-cs-body leading-snug"
                                         >
-                                            In this project, I first analyzed
-                                            pain points through interviews and
-                                            surveys conducted with real users,
-                                            including my coworkers. Based on
-                                            these insights, I designed the UI in
-                                            Figma, built a prototype using
-                                            AI-assisted development tools, and
-                                            gathered feedback through
-                                            participant evaluations.
+                                            {t("In this project, I first analyzed pain points through interviews and surveys conducted with real users, including my coworkers. Based on these insights, I designed the UI in Figma, built a prototype using AI-assisted development tools, and gathered feedback through participant evaluations.")}
                                         </p>
                                     </div>
                                     <div
@@ -296,7 +296,7 @@ export const ukgSections = [
                                         <h4
                                             class="text-cs-body font-normal leading-snug"
                                         >
-                                            UX Research<br />
+                                            {t("UX Research")}<br />
                                             (Interview & Form)
                                         </h4>
                                         <div class="flex justify-center">
@@ -324,7 +324,7 @@ export const ukgSections = [
                                         <h4
                                             class="text-cs-body font-normal leading-snug"
                                         >
-                                            UI design
+                                            {t("UI design")}
                                         </h4>
                                         <div class="flex justify-center">
                                             <img
@@ -351,7 +351,7 @@ export const ukgSections = [
                                         <h4
                                             class="text-cs-body font-normal leading-snug"
                                         >
-                                            Prototype Development
+                                            {t("Prototype Development")}
                                         </h4>
                                         <div class="flex justify-center">
                                             <img
@@ -374,7 +374,7 @@ export const ukgSections = [
                                         <h4
                                             class="text-cs-body font-normal leading-snug"
                                         >
-                                            User Feedback
+                                            {t("User Feedback")}
                                         </h4>
                                         <div class="flex justify-center">
                                             <img
@@ -392,7 +392,7 @@ export const ukgSections = [
                     <!-- Research Section -->
                     <section id="Research" class="mt-32">
                         <h2 class="text-cs-section font-medium">
-                            <span class="heading-accent-bar">Research</span>
+                            <span class="heading-accent-bar">{t("Research")}</span>
                         </h2>
                         <div
                             class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
@@ -409,15 +409,10 @@ export const ukgSections = [
                         <div class="mx-auto mt-12 max-w-220">
                             <!-- <p class="caption-pill">Finding</p> -->
                             <h2 class="text-cs-h2 mt-5">
-                                A challenge uncovered through everyday
-                                conversations with coworkers
+                                {t("A challenge uncovered through everyday conversations with coworkers")}
                             </h2>
                             <p class="text-cs-body mt-5">
-                                During a regular day at work, a conversation
-                                about checking payroll in UKG revealed a shared
-                                frustration among my coworkers and myself. To
-                                better understand the issue, I conducted
-                                interviews with other coworkers.
+                                {t("During a regular day at work, a conversation about checking payroll in UKG revealed a shared frustration among my coworkers and myself. To better understand the issue, I conducted interviews with other coworkers.")}
                             </p>
                         </div>
 
@@ -429,14 +424,13 @@ export const ukgSections = [
                                 <blockquote
                                     class="border-l-4 border-body-default/10 pl-6 text-[clamp(1.375rem,6vw,1.75rem)] italic leading-snug text-heading-default md:col-start-1 md:col-span-2 md:pl-8 md:text-[1.5rem]"
                                 >
-                                    “I can see the total hours worked, but I
-                                    can’t see the breakdown.”
+                                    {t("“I can see the total hours worked, but I can’t see the breakdown.”")}
                                 </blockquote>
                                 <div
                                     class="flex flex-col items-center justify-end gap-8 md:row-start-2"
                                 >
                                     <p class="text-center text-cs-caption">
-                                        Grocery Staff
+                                        {t("Grocery Staff")}
                                     </p>
                                     <Image
                                         class="w-30 md:w-48"
@@ -463,9 +457,7 @@ export const ukgSections = [
                                 <blockquote
                                     class="border-l-4 border-body-default/10 pl-6 text-[clamp(1.375rem,6vw,1.75rem)] italic leading-snug text-heading-default md:col-start-1 md:col-span-2 md:pl-8 md:text-[1.5rem]"
                                 >
-                                    “The punch records should exist somewhere,
-                                    but I can’t verify them in UKG Pro. <br
-                                    />The schedule only shows assigned shifts.”
+                                    {t("“The punch records should exist somewhere, but I can’t verify them in UKG Pro. The schedule only shows assigned shifts.”")}
                                 </blockquote>
                                 <div
                                     class="flex flex-col items-center justify-end gap-8 md:row-start-2"
@@ -473,7 +465,7 @@ export const ukgSections = [
                                     <p
                                         class="text-center text-heading-default text-cs-caption"
                                     >
-                                        Cashier
+                                        {t("Cashier")}
                                     </p>
                                     <Image
                                         class="w-30 md:w-48"
@@ -496,12 +488,10 @@ export const ukgSections = [
                         <div class="mt-46">
                             <div class="mx-auto mt-12 max-w-220">
                                 <h2 class="text-cs-h2">
-                                    Existing User Journey Pain Points
+                                    {t("Existing User Journey Pain Points")}
                                 </h2>
                                 <p class="text-cs-body mt-4">
-                                    Users cannot verify how payroll hours are
-                                    calculated, forcing them to rely on manual
-                                    estimation instead of system transparency.
+                                    {t("Users cannot verify how payroll hours are calculated, forcing them to rely on manual estimation instead of system transparency.")}
                                 </p>
                             </div>
                             <div class="mt-16 grid gap-12">
@@ -523,8 +513,7 @@ export const ukgSections = [
                                         <p
                                             class="pr-6 text-cs-body leading-snug text-heading-default md:max-w-88 md:pr-12"
                                         >
-                                            Confirm that payroll hours were
-                                            calculated accurately
+                                            {t("Confirm that payroll hours were calculated accurately")}
                                         </p>
                                     </div>
                                     <div
@@ -544,8 +533,7 @@ export const ukgSections = [
                                         <p
                                             class="text-cs-body leading-snug text-heading-default md:max-w-88"
                                         >
-                                            The user leaves without knowing the
-                                            exact payroll calculation
+                                            {t("The user leaves without knowing the exact payroll calculation")}
                                         </p>
                                     </div>
                                 </div>
@@ -568,13 +556,10 @@ export const ukgSections = [
                                 </div>
                                 <div class="mx-auto mt-8 max-w-220">
                                 <h2 class="text-cs-h2">
-                                    Research Findings
+                                    {t("Research Findings")}
                                 </h2>
                                 <p class="text-cs-body mt-4">
-                                    Conducted a survey to further validate
-                                        existing pain points and identify strong
-                                        user demand for better visibility into
-                                        payroll records.
+                                    {t("Conducted a survey to further validate existing pain points and identify strong user demand for better visibility into payroll records.")}
                                 </p>
                             </div>
 
@@ -597,28 +582,22 @@ export const ukgSections = [
                                     <div
                                         class="flex items-center gap-4 justify-center mb-4"
                                     >
-                                        <h4>Main findings</h4>
+                                        <h4>{t("Main findings")}</h4>
                                         <NotebookPen />
                                     </div>
                                     <ul class="list-disc pl-5">
                                         <li>
-                                            80% of participants said they would
-                                            not feel confident verifying payroll
-                                            calculations if an error occurred.
+                                            {t("80% of participants said they would not feel confident verifying payroll calculations if an error occurred.")}
                                         </li>
                                         <li class="mt-4">
-                                            90% of participants wanted access to
-                                            actual clock-in and clock-out
-                                            records.
+                                            {t("90% of participants wanted access to actual clock-in and clock-out records.")}
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <p class="mt-16 text-cs-body mx-auto max-w-220">
-                            Users lacked confidence in payroll calculations
-                            because the system did not provide enough visibility
-                            into payroll records and actual worked hours.
+                            {t("Users lacked confidence in payroll calculations because the system did not provide enough visibility into payroll records and actual worked hours.")}
                         </p>
 
                         <div class="mt-32">
@@ -627,9 +606,7 @@ export const ukgSections = [
                             >
                                 <p class="caption-pill">DESIGN CHALLENGE</p>
                                 <h2 class="text-cs-h2">
-                                    Improve payroll transparency by providing
-                                    visibility into clock-in and clock-out
-                                    records.
+                                    {t("Improve payroll transparency by providing visibility into clock-in and clock-out records.")}
                                 </h2>
                             </div>
 
@@ -650,10 +627,7 @@ export const ukgSections = [
                                             class="w-32"
                                         />
                                             <p class="text-cs-body">
-                                                As an employee, I want to review my
-                                                clock-in and clock-out history so
-                                                that I can verify how my payroll
-                                                hours were calculated.
+                                                {t("As an employee, I want to review my clock-in and clock-out history so that I can verify how my payroll hours were calculated.")}
                                             </p>
                                     </div>
                                 </div>
@@ -663,7 +637,7 @@ export const ukgSections = [
                     <!-- UI Design Section -->
                     <section id="UI-design" class="mt-64">
                         <h2 class="text-cs-section font-medium">
-                            <span class="heading-accent-bar">UI Design</span>
+                            <span class="heading-accent-bar">{t("UI Design")}</span>
                         </h2>
                         <div
                             class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
@@ -674,18 +648,16 @@ export const ukgSections = [
                             alt="UI Design illustration"
                             class="w-48 mx-auto my-16"
                         />
-                        <div class="max-w-220 mx-auto">
+                        <div class="cs-copy-block max-w-220 mx-auto">
                             <h2 class="text-cs-h2">
-                                Designing the UI Around UKG’s New Brand Identity
+                                {t("Designing the UI Around UKG’s New Brand Identity")}
                             </h2>
                             
                             <p class="mt-4">
-                                In 2025, UKG introduced a refreshed visual identity.
+                                {t("In 2025, UKG introduced a refreshed visual identity.")}
                             </p>
                             <p>
-                                The redesign explored how the updated visual
-                                identity could be applied more consistently across
-                                the payroll experience.
+                                {t("The redesign explored how the updated visual identity could be applied more consistently across the payroll experience.")}
                             </p>
                             <div
                                 class="flex items-center justify-center gap-4 md:gap-12 mt-8"
@@ -709,11 +681,8 @@ export const ukgSections = [
                         </div>
 
                         <div class="mx-auto max-w-220 mt-32 grid gap-6">
-                            <p>
-                                Since the official design system was not
-                                publicly available, visual styles and UI
-                                patterns were independently analyzed from UKG’s
-                                public website.
+                            <p class="cs-copy-block">
+                                {t("Since the official design system was not publicly available, visual styles and UI patterns were independently analyzed from UKG’s public website.")}
                             </p>
                             <div class="mx-auto max-w-280">
                                 <Image
@@ -733,7 +702,7 @@ export const ukgSections = [
                                 class="mx-auto mt-8 w-full max-w-120 rounded-lg"
                             />
                             <p class="text-center">
-                                Primitive color tokens derived from the analysis
+                                {t("Primitive color tokens derived from the analysis")}
                             </p>
                             <div>
                                 <Image
@@ -742,17 +711,7 @@ export const ukgSections = [
                                     class="mt-8 w-full max-w-full rounded-lg"
                                 />
                                 <p class="mt-16">
-                                    Rather than connecting raw color values
-                                    directly to the UI, I designed a
-                                    hierarchical structure consisting of
-                                    Primitive → Semantic → Component (optional).
-                                    I placed particular emphasis on Semantic
-                                    Tokens, as defining intent and meaning
-                                    instead of visual values helps create more
-                                    consistent design rules. Since this project
-                                    contained relatively few repeated UI
-                                    patterns, Component Tokens were introduced
-                                    only where they provided additional value.
+                                    {t("Rather than connecting raw color values directly to the UI, I designed a hierarchical structure consisting of Primitive → Semantic → Component (optional). I placed particular emphasis on Semantic Tokens, as defining intent and meaning instead of visual values helps create more consistent design rules. Since this project contained relatively few repeated UI patterns, Component Tokens were introduced only where they provided additional value.")}
                                 </p>
                                 <div class="horizontal-scroll mt-16 flex gap-4">
                                     <Image
@@ -809,16 +768,17 @@ export const ukgSections = [
                                         />
                                     </div>
                                     <div>
-                                        <h4>Calendar</h4>
-                                        <p class="mt-6">
-                                            Using darker horizontal grid lines than
-                                            vertical lines improves readability and
-                                            makes time progression easier to scan.
-                                        </p>
-                                        <p class="mt-6">
-                                            Emphasizing date numbers makes dates
-                                            easier to identify at a glance.
-                                        </p>
+                                        <h4 lang="en">Calendar</h4>
+                                        <ul class="mt-6 grid gap-6">
+                                            <li class="flex items-start gap-3">
+                                                <span aria-hidden="true" class="shrink-0 font-semibold text-heading-default">✓</span>
+                                                <span>{t("Using darker horizontal grid lines than vertical lines improves readability and makes time progression easier to scan.")}</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <span aria-hidden="true" class="shrink-0 font-semibold text-heading-default">✓</span>
+                                                <span>{t("Emphasizing date numbers makes dates easier to identify at a glance.")}</span>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                                 <div
@@ -832,18 +792,17 @@ export const ukgSections = [
                                         />
                                     </div>
                                     <div>
-                                        <h4>Work time cell</h4>
-                                        <p class="mt-6">
-                                            Representing clock-in records as a
-                                            top-to-bottom timeline creates a clearer
-                                            sense of chronological flow.
-                                        </p>
-                                        <p class="mt-6">
-                                            Timeline colors and work cell variations
-                                            improve visibility for attendance
-                                            anomalies, including lateness and
-                                            overtime.
-                                        </p>
+                                        <h4 lang="en">Work time cell</h4>
+                                        <ul class="mt-6 grid gap-6">
+                                            <li class="flex items-start gap-3">
+                                                <span aria-hidden="true" class="shrink-0 font-semibold text-heading-default">✓</span>
+                                                <span>{t("Representing clock-in records as a top-to-bottom timeline creates a clearer sense of chronological flow.")}</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <span aria-hidden="true" class="shrink-0 font-semibold text-heading-default">✓</span>
+                                                <span>{t("Timeline colors and work cell variations improve visibility for attendance anomalies, including lateness and overtime.")}</span>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -853,7 +812,7 @@ export const ukgSections = [
                     <section id="Prototype-dev" class="mt-64">
                         <h2 class="text-cs-section font-medium">
                             <span class="heading-accent-bar"
-                                >Prototype Development</span
+                                >{t("Prototype Development")}</span
                             >
                         </h2>
                         <div
@@ -869,21 +828,13 @@ export const ukgSections = [
                         </div>
 
                         <div class="mx-auto mt-12 max-w-220">
-                            <h3>Rapid prototyping with React and Codex.</h3>
+                            <h3>{t("Rapid prototyping with React and Codex.")}</h3>
                             <p class="mt-8">
-                                Rather than stopping at static Figma screens, I
-                                built a functional prototype in React to test
-                                the interaction model in a more realistic
-                                environment. Codex helped me move faster by
-                                supporting mock data setup and interaction
-                                implementation, making it possible to recreate a
-                                testable experience in a short timeframe.
+                                {t("Rather than stopping at static Figma screens, I built a functional prototype in React to test the interaction model in a more realistic environment. Codex helped me move faster by supporting mock data setup and interaction implementation, making it possible to recreate a testable experience in a short timeframe.")}
                             </p>
 
                             <p class="mt-8">
-                                I also translated the design tokens defined in
-                                Figma into CSS, creating a consistent workflow
-                                from design decisions to implementation.
+                                {t("I also translated the design tokens defined in Figma into CSS, creating a consistent workflow from design decisions to implementation.")}
                             </p>
 
                             <div class="mx-auto mt-12 max-w-160">
@@ -919,7 +870,7 @@ export const ukgSections = [
                     <!-- Testing -->
                     <section id="User-feedback" class="mt-64">
                         <h2 class="text-cs-section font-medium">
-                            <span class="heading-accent-bar">User Feedback</span
+                            <span class="heading-accent-bar">{t("User Feedback")}</span
                             >
                         </h2>
                         <div
@@ -938,20 +889,13 @@ export const ukgSections = [
                         <div class="mx-auto mt-12 max-w-220">
                             <p class="caption-pill">Verification</p>
                             <h2 class="text-cs-h2 mt-5">
-                                Did the redesign actually improve transparency?
+                                {t("Did the redesign actually improve transparency?")}
                             </h2>
                             <p class="text-cs-body mt-5">
-                                To evaluate whether the redesign improved
-                                transparency during payroll verification, a
-                                comparative usability test was conducted
-                                comparing the existing UKG interface with the
-                                redesigned experience.
+                                {t("To evaluate whether the redesign improved transparency during payroll verification, a comparative usability test was conducted comparing the existing UKG interface with the redesigned experience.")}
                             </p>
                             <p class="text-cs-body mt-5">
-                                Participants completed the same tasks based on a
-                                shared work scenario, while measuring their
-                                understanding of payroll information, trust, and
-                                confidence in verifying payroll accuracy.
+                                {t("Participants completed the same tasks based on a shared work scenario, while measuring their understanding of payroll information, trust, and confidence in verifying payroll accuracy.")}
                             </p>
                         </div>
 
@@ -969,8 +913,7 @@ export const ukgSections = [
                                             Test type
                                         </dt>
                                         <dd class="mt-1 text-cs-body">
-                                            Comparative usability testing
-                                            (Moderated)
+                                            {t("Comparative usability testing (Moderated)")}
                                         </dd>
                                     </div>
                                     <div>
@@ -980,8 +923,7 @@ export const ukgSections = [
                                             Participants
                                         </dt>
                                         <dd class="mt-1 text-cs-body">
-                                            UKG Pro users working at
-                                            supermarkets
+                                            {t("UKG Pro users working at supermarkets")}
                                         </dd>
                                     </div>
                                     <div>
@@ -991,7 +933,7 @@ export const ukgSections = [
                                             Sample size
                                         </dt>
                                         <dd class="mt-1 text-cs-body">
-                                            5 participants
+                                            {t("5 participants")}
                                         </dd>
                                     </div>
                                 </dl>
@@ -1004,62 +946,41 @@ export const ukgSections = [
                             />
                         </div>
 
-                        <div class="mx-auto mt-12 max-w-220">
+                        <div class="cs-copy-block mx-auto mt-12 max-w-220">
                             <p class="caption-pill">Findings</p>
                             <div class="mt-8 container">
                                 <h3 class="text-cs-h2 font-normal">
-                                    Users became more confident verifying
-                                    payroll information
+                                    {t("Users became more confident verifying payroll information")}
                                 </h3>
                                 <p class="mt-4 text-cs-body">
-                                    Participants using the redesigned version
-                                    were able to verify payroll information with
-                                    greater confidence compared to the existing
-                                    interface.
+                                    {t("Participants using the redesigned version were able to verify payroll information with greater confidence compared to the existing interface.")}
                                 </p>
                             </div>
 
                             <div class="mt-20 container">
                                 <h3 class="text-cs-h2 font-normal">
-                                    Visibility of supporting information
-                                    increased trust
+                                    {t("Visibility of supporting information increased trust")}
                                 </h3>
                                 <p class="mt-4 text-cs-body">
-                                    Trust scores improved from 3.8 to 6.8 after
-                                    introducing supporting information such as
-                                    worked hour breakdowns and clock-in/out
-                                    records. These findings suggest that
-                                    improving transparency increased trust in
-                                    payroll information.
+                                    {t("Trust scores improved from 3.8 to 6.8 after introducing supporting information such as worked hour breakdowns and clock-in/out records. These findings suggest that improving transparency increased trust in payroll information.")}
                                 </p>
                             </div>
                         </div>
                     </section>
                     <section id="Reflection" class="mt-64">
                         <h2 class="text-cs-section font-medium">
-                            <span class="heading-accent-bar">Reflection</span>
+                            <span class="heading-accent-bar">{t("Reflection")}</span>
                         </h2>
                         <div
                             class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
                         >
                         </div>
-                        <div class="mt-20 container">
+                        <div class="cs-copy-block mt-20 container">
                             <h3 class="text-cs-h2 font-normal">
-                                Learning the Challenges of User-Centered Design
+                                {t("Learning the Challenges of User-Centered Design")}
                             </h3>
                             <p class="mt-4 text-cs-body">
-                                Through this project, I learned that
-                                user-centered design is not easy. Users are not
-                                all the same. At my workplace, people of
-                                different ages and backgrounds use the system,
-                                so my assumptions were not always correct. For
-                                example, the work hour cell UI was not as clear
-                                for everyone as I expected. At the same time,
-                                finding these problems showed me the value of
-                                talking to real users. This project taught me
-                                that UX design is not only about creating
-                                screens, but also about listening to users and
-                                testing ideas repeatedly.
+                                {t("Through this project, I learned that user-centered design is not easy. Users are not all the same. At my workplace, people of different ages and backgrounds use the system, so my assumptions were not always correct. For example, the work hour cell UI was not as clear for everyone as I expected. At the same time, finding these problems showed me the value of talking to real users. This project taught me that UX design is not only about creating screens, but also about listening to users and testing ideas repeatedly.")}
                             </p>
                         </div>
                     </section>
@@ -1069,20 +990,12 @@ export const ukgSections = [
 
         <!-- Other Projects -->
         <section class="p-4 md:p-16">
-            <h2 class="text-center p-16">Other Projects</h2>
+            <h2 class="text-center p-16">{t("Other Projects")}</h2>
             <div
                 class="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-4 max-w-400 mx-auto"
             >
                 {
-                    projects
-                        .filter(
-                            (project) =>
-                                ["/ukg", "/tastebuds", "/billow"].includes(
-                                    project.href,
-                                ) && project.href !== "/ukg",
-                        )
-                        .slice(0, 2)
-                        .map((project) => {
+                    relatedProjects.map((project) => {
                             return (
                                 <Card
                                     href={project.href}
@@ -1107,7 +1020,7 @@ export const ukgSections = [
     document.addEventListener("astro:page-load", () => {
         // This script stays loaded across ClientRouter navigations,
         // so bail out on every page except this one.
-        if (window.location.pathname.replace(/\/$/, "") !== "/ukg") return;
+        if (!["/ukg", "/jp/ukg"].includes(window.location.pathname.replace(/\/$/, ""))) return;
 
         const refresh = () =>
             requestAnimationFrame(() => ScrollTrigger.refresh());

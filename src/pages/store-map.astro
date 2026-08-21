@@ -34,7 +34,11 @@ const relatedProjects = projects
     .filter((project) => project.href !== "/store-map")
     .slice(0, 2)
     .map((project) => isJapanese
-        ? { ...project, ...homeJa.projects[project.slug] }
+        ? {
+            ...project,
+            ...homeJa.projects[project.slug],
+            href: project.slug === "ukg" ? "/jp/ukg" : project.href,
+          }
         : project
     );
 
@@ -89,7 +93,7 @@ const storeMapSections = [
 ---
 
 <Layout title={isJapanese ? storeMapJaMeta.title : undefined} description={isJapanese ? storeMapJaMeta.description : undefined}>
-    <main class:list={["mt-30 md:mt-40", { "store-map-ja": isJapanese }]}>
+    <main class:list={["mt-30 md:mt-40", { "case-study-ja": isJapanese }]}>
         <!-- Breadcrumb -->
         <div class="container pl-8">
             <BreadCrumb>{t("Grocery Store Map Navigation")}</BreadCrumb>
