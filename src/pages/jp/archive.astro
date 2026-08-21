@@ -1,0 +1,9 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ArchivePage from "../../components/features/ArchivePage.astro";
+import { archiveJa } from "../../content/ja/archive";
+---
+
+<Layout title={archiveJa.meta.title} description={archiveJa.meta.description}>
+    <ArchivePage content={archiveJa} />
+</Layout>

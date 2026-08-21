@@ -9,7 +9,7 @@ const localizedPathname = isJapanese
     : pathname;
 const projectsHref = isJapanese ? "/jp#projects" : "/#projects";
 const aboutHref = isJapanese ? "/jp/about" : "/about";
-const archiveHref = "/archive";
+const archiveHref = isJapanese ? "/jp/archive" : "/archive";
 const isAboutPage = localizedPathname === "/about";
 const isArchivePage = localizedPathname === "/archive";
 const isProjectsPage = [

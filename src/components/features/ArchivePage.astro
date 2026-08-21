@@ -1,0 +1,58 @@
+---
+import RippleEffectMoon from "../webGL/RippleEffectMoon";
+import RippleEffectLogo from "../webGL/RippleEffectLogo";
+import ArchiveMasonryGrid from "../layout/ArchiveMasonryGrid.astro";
+import IconHover from "../ui/IconHover.astro";
+import CopyEmail from "../ui/CopyEmail.astro";
+import { archive } from "../../data/archiveList";
+import { GithubIcon, LinkedinIcon } from "../../data/icons";
+import { Mail } from "@lucide/astro";
+import type { ArchiveContent } from "../../content/archive.types";
+
+interface Props { content: ArchiveContent }
+const { content } = Astro.props;
+---
+
+<main>
+    <section id="archive-hero" aria-labelledby="archive-title">
+        <div class="archive-hero-grid grid-container">
+            <div class="archive-intro">
+                <h1 id="archive-title">{content.hero.title}</h1>
+                <p>{content.hero.introLines.map((line) => <>{line}<br /></>)}</p>
+            </div>
+            <div class="archive-moon mt-16 md:mt-0"><RippleEffectMoon client:visible /></div>
+        </div>
+    </section>
+    <section id="archive-main" class="pt-64 md:pt-84 pb-24">
+        <div class="archive-main-inner"><ArchiveMasonryGrid archive={archive} /></div>
+    </section>
+    <section class="flex flex-col justify-center items-center my-40">
+        <CopyEmail copiedLabel={content.contact.copiedLabel} />
+        <div class="icons flex items-center gap-10 mt-4">
+            <IconHover href="https://github.com/taka0330ko" aria-label="GitHub profile" label="GitHub"><GithubIcon /></IconHover>
+            <IconHover href="https://www.linkedin.com/in/takanarikondo/" aria-label="LinkedIn profile" label="LinkedIn"><LinkedinIcon /></IconHover>
+            <IconHover href="mailto:gtakanari0330@gmail.com" aria-label={content.contact.emailAriaLabel} label="Email"><Mail /></IconHover>
+        </div>
+        <div class="mt-16 flex w-full justify-center"><RippleEffectLogo client:visible /></div>
+    </section>
+</main>
+
+<style>
+    #archive-hero { min-height: 100svh; overflow: hidden; }
+    #archive-main { background-color: transparent; background-image: linear-gradient(180deg, var(--archive-gradient-edge) 0%, var(--archive-gradient-center) 35%, var(--archive-gradient-center) 75%, var(--archive-gradient-edge) 100%); }
+    .archive-main-inner { padding-inline: 1.5rem; }
+    .archive-hero-grid { min-height: calc(100svh - 6rem); padding-block: clamp(2rem, 6vh, 5rem); }
+    .archive-intro { z-index: 1; align-self: end; }
+    .archive-intro h1 { font-family: var(--font-satoshi), sans-serif; font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 400; line-height: 0.9; }
+    .archive-intro p { margin-top: 1.5rem; color: var(--text-heading-default); font-size: clamp(1.125rem, 2vw, 1.75rem); line-height: 1.35; }
+    .archive-moon { display: flex; align-items: center; justify-content: center; min-width: 0; }
+    @media (width < 768px) {
+        .archive-hero-grid { justify-content: space-between; }
+        .archive-intro { order: 2; align-self: start; }
+        .archive-moon { order: 1; width: min(100%, 30rem); margin-inline: auto; }
+    }
+    @media (width >= 768px) {
+        .archive-intro { grid-column: 1 / span 4; padding-bottom: clamp(1rem, 5vh, 4rem); }
+        .archive-moon { grid-column: 7 / span 5; align-self: center; }
+    }
+</style>
