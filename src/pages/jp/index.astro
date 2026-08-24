@@ -19,7 +19,9 @@ const localizedProjects = projects.map((project) => ({
     ? "/jp/store-map"
     : project.slug === "ukg"
       ? "/jp/ukg"
-      : project.href,
+      : project.slug === "billow"
+        ? "/jp/billow"
+        : project.href,
 }));
 ---
 

@@ -1,6 +1,8 @@
 ---
 // Layout
 import Layout from "../layouts/Layout.astro";
+import { billowJa, billowJaMeta } from "../content/ja/billow";
+import { homeJa } from "../content/ja/home";
 
 //UI
 import BreadCrumb from "../components/ui/BreadCrumb.astro";
@@ -40,48 +42,66 @@ import {
 import DefinitionCard from "../components/ui/DefinitionCard.astro";
 import { NextJS, ReactLogo, Tailwind, TypeScript } from "../data/icons";
 
-export const billowSections = [
-    { label: "Overview", href: "#Overview" },
-    { label: "Problem", href: "#Problem" },
-    { label: "Approach", href: "#Approach" },
-    { label: "Reflection", href: "#Reflection" },
+const isJapanese = Astro.url.pathname === "/jp/billow";
+const t = (text: string) => isJapanese ? (billowJa[text] ?? text) : text;
+
+const billowSections = [
+    { label: t("Overview"), href: "#Overview" },
+    { label: t("Problem"), href: "#Problem" },
+    { label: t("Approach"), href: "#Approach" },
+    { label: t("Reflection"), href: "#Reflection" },
 ];
 
 // Definition card content
-export const cardContents = [
+const cardContents = [
     {
         title: "View",
-        body: "Responsible for rendering the UI and layout, with no business logic",
-        ex: "e.g. message list, chat input form, loading indicator",
+        body: t("Responsible for rendering the UI and layout, with no business logic"),
+        ex: t("e.g. message list, chat input form, loading indicator"),
         className: "bg-blue-300",
         data: "view",
     },
     {
         title: "Logic",
-        body: "Manages chat flow, side effects, and user interactions",
-        ex: "e.g. handling message submission, managing loading state, triggering AI responses",
+        body: t("Manages chat flow, side effects, and user interactions"),
+        ex: t("e.g. handling message submission, managing loading state, triggering AI responses"),
         className: "bg-green-300",
         data: "logic",
     },
     {
         title: "Service",
-        body: "Encapsulates AI communication and external API calls",
-        ex: "e.g. calling AI API, formatting requests, parsing responses",
+        body: t("Encapsulates AI communication and external API calls"),
+        ex: t("e.g. calling AI API, formatting requests, parsing responses"),
         className: "bg-yellow-300",
         data: "service",
     },
     {
         title: "State",
-        body: "Manages shared conversation data across components",
-        ex: "e.g. chat messages store, current chat room state, global state (Zustand)",
+        body: t("Manages shared conversation data across components"),
+        ex: t("e.g. chat messages store, current chat room state, global state (Zustand)"),
         className: "bg-red-300",
         data: "state",
     },
 ];
+
+const relatedProjects = projects
+    .filter((project) =>
+        ["/ukg", "/tastebuds", "/billow"].includes(project.href) &&
+        project.href !== "/billow"
+    )
+    .slice(0, 2)
+    .map((project) => isJapanese
+        ? {
+            ...project,
+            ...homeJa.projects[project.slug],
+            href: project.slug === "ukg" ? "/jp/ukg" : project.href,
+        }
+        : project
+    );
 ---
 
-<Layout>
-    <main class="mt-30 md:mt-40">
+<Layout title={isJapanese ? billowJaMeta.title : undefined} description={isJapanese ? billowJaMeta.description : undefined}>
+    <main class:list={["billow-case-study mt-30 md:mt-40", { "case-study-ja": isJapanese }]}>
         <div class="container pl-8">
             <BreadCrumb>Billow</BreadCrumb>
         </div>
@@ -89,10 +109,10 @@ export const cardContents = [
             <div class="grid grid-cols-12 grid-container items-start">
                 <div class="col-span-8">
                     <h1 id="billow-overview" class="mt-8">
-                        AI Chat Base Subscription Management Dashboard
+                        {t("AI Chat Base Subscription Management Dashboard")}
                     </h1>
                     <p class="flex mt-8">
-                        Originally built during a hackathon, the first version prioritized speed over structure, resulting in tightly coupled UI, state, and API logic that became difficult to debug and scale. Through rebuilding the project, I learned the importance of separation of concerns and restructured the application into a more maintainable and scalable AI dashboard.
+                        {t("Originally built during a hackathon, the first version prioritized speed over structure, resulting in tightly coupled UI, state, and API logic that became difficult to debug and scale. Through rebuilding the project, I learned the importance of separation of concerns and restructured the application into a more maintainable and scalable AI dashboard.")}
                     </p>
                     <div class="mt-8 md:my-8">
                         <GlassPill
@@ -118,7 +138,7 @@ export const cardContents = [
                         <dt
                             class="text-caption uppercase tracking-wide text-body-default"
                         >
-                            Core Stacks
+                            {t("Core Stacks")}
                         </dt>
                         <dd
                             class="flex items-center gap-2"
@@ -134,20 +154,20 @@ export const cardContents = [
                         <dt
                             class="text-caption uppercase tracking-wide text-body-default"
                         >
-                            Role
+                            {t("Role")}
                         </dt>
                         <dd class="text-body text-heading-default">
-                            UI Designer / Front-end Developer
+                            {t("UI Designer / Front-end Developer")}
                         </dd>
                     </div>
                     <div class="grid gap-1">
                         <dt
                             class="text-caption uppercase tracking-wide text-body-default"
                         >
-                            Timeline
+                            {t("Timeline")}
                         </dt>
                         <dd class="text-body text-heading-default">
-                            One month, Apr-May, 2026ding
+                            {t("One month, Apr-May, 2026ding")}
                         </dd>
                     </div>
                 </dl>
@@ -171,19 +191,14 @@ export const cardContents = [
                 <div class="px-4 md:px-8 md:col-start-3 col-span-10">
                     <section id="Overview" class="">
                         <h2 class="font-semibold">
-                            <span class="heading-accent-bar">Overview</span>
+                            <span class="heading-accent-bar">{t("Overview")}</span>
                         </h2>
                         <div class="text-box">
                             <h3 class="pb-16">
-                                From Hackathon Prototype to Scalable
-                                Architecture
+                                {t("From Hackathon Prototype to Scalable Architecture")}
                             </h3>
                             <p>
-                                This project was originally developed during a
-                                hackathon in collaboration with a designer
-                                partner. Due to the speed-focused nature of the
-                                development, the initial implementation revealed
-                                limitations in structure and state management.
+                                {t("This project was originally developed during a hackathon in collaboration with a designer partner. Due to the speed-focused nature of the development, the initial implementation revealed limitations in structure and state management.")}
                             </p>
                             <div
                                 class="overflow-auto flex md:justify-center gap-4 mx-auto pt-8 horizontal-scroll"
@@ -200,27 +215,18 @@ export const cardContents = [
                                 />
                             </div>
                             <p class="pt-8">
-                                I later revisited the project from both a design
-                                and architectural perspective. Rather than
-                                simply replicating the UI, I restructured the
-                                system around managing complex state and
-                                interactions, rebuilding it into a scalable
-                                front-end architecture.
+                                {t("I later revisited the project from both a design and architectural perspective. Rather than simply replicating the UI, I restructured the system around managing complex state and interactions, rebuilding it into a scalable front-end architecture.")}
                             </p>
                         </div>
                     </section>
                     <section id="Problem">
                         <h2 class="font-semibold">
-                            <span class="heading-accent-bar">Problem</span>
+                            <span class="heading-accent-bar">{t("Problem")}</span>
                         </h2>
                         <div class="text-box">
-                            <h3>Works, but Not Scalable</h3>
+                            <h3>{t("Works, but Not Scalable")}</h3>
                             <p>
-                                In the hackathon version, the priority was to
-                                quickly deliver a working AI chat experience. As
-                                a result, UI rendering, state management, send
-                                logic, and API communication were all
-                                concentrated within a single component.
+                                {t("In the hackathon version, the priority was to quickly deliver a working AI chat experience. As a result, UI rendering, state management, send logic, and API communication were all concentrated within a single component.")}
                             </p>
                             <div
                                 class="lg:flex items-center gap-16 justify-center py-8"
@@ -241,7 +247,7 @@ export const cardContents = [
                                         <TriangleAlert
                                             class="text-heading-default"
                                         />
-                                        <h4>Everything in One Component</h4>
+                                        <h4>{t("Everything in One Component")}</h4>
                                     </span>
                                     <Image
                                         class="max-w-80 max-h-80"
@@ -251,24 +257,18 @@ export const cardContents = [
                                 </div>
                             </div>
                             <p>
-                                While this structure was sufficient for a
-                                prototype, the boundaries between
-                                responsibilities were unclear, and separation of
-                                concerns was lacking. API communication, local
-                                state, event handling, and UI rendering were
-                                tightly coupled, which made the code difficult
-                                to read, maintain, and scale.
+                                {t("While this structure was sufficient for a prototype, the boundaries between responsibilities were unclear, and separation of concerns was lacking. API communication, local state, event handling, and UI rendering were tightly coupled, which made the code difficult to read, maintain, and scale.")}
                             </p>
                             <div class="max-w-200 mx-auto mt-16">
                                 <p class="py-4 text-center">
-                                    Simplified version of the original code ↓
+                                    {t("Simplified version of the original code ↓")}
                                 </p>
                                 <CodeWindow code={summaryCodeMVP} lang="js" />
                             </div>
                         </div>
                         <section id="Approach" class="">
                             <h2 class="font-semibold">
-                                <span class="heading-accent-bar">Approach</span>
+                                <span class="heading-accent-bar">{t("Approach")}</span>
                             </h2>
                             <div class="text-box">
                                 <section>
@@ -277,17 +277,10 @@ export const cardContents = [
                                     >
                                         <div class="col-span-2">
                                             <h3 class="mb-4">
-                                                Architecture Decision
+                                                {t("Architecture Decision")}
                                             </h3>
                                             <p>
-                                                To make the chat feature
-                                                scalable, I first defined clear
-                                                responsibility boundaries for
-                                                the architecture. Instead of
-                                                separating code by file size or
-                                                UI sections, I reorganized it by
-                                                concern: View, Logic, Service,
-                                                and State.
+                                                {t("To make the chat feature scalable, I first defined clear responsibility boundaries for the architecture. Instead of separating code by file size or UI sections, I reorganized it by concern: View, Logic, Service, and State.")}
                                             </p>
                                         </div>
                                         <div
@@ -300,7 +293,7 @@ export const cardContents = [
                                 <section class="mt-16">
                                     <!-- title and carousel box -->
                                     <div>
-                                        <h3 class="mb-4">Definition</h3>
+                                        <h3 class="mb-4">{t("Definition")}</h3>
                                         <!-- carousel box -->
                                         <div
                                             data-definition-card-group
@@ -315,8 +308,7 @@ export const cardContents = [
                                     <div class="w-full mt-8">
                                         <div data-panel="view">
                                             <h4 class="mb-4 text-center">
-                                                View: Assembles and renders the
-                                                UI
+                                                {t("View: Assembles and renders the UI")}
                                             </h4>
                                             <CodeWindow
                                                 code={viewCode}
@@ -325,8 +317,7 @@ export const cardContents = [
                                         </div>
                                         <div data-panel="logic">
                                             <h4 class="mb-4 text-center">
-                                                Logic: Controls message
-                                                submission and side effects
+                                                {t("Logic: Controls message submission and side effects")}
                                             </h4>
                                             <CodeWindow
                                                 code={logicCode}
@@ -335,8 +326,7 @@ export const cardContents = [
                                         </div>
                                         <div data-panel="service">
                                             <h4 class="mb-4 text-center">
-                                                Service: Abstracts AI
-                                                communication
+                                                {t("Service: Abstracts AI communication")}
                                             </h4>
                                             <CodeWindow
                                                 code={serviceCode}
@@ -345,8 +335,7 @@ export const cardContents = [
                                         </div>
                                         <div data-panel="state">
                                             <h4 class="mb-4 text-center">
-                                                State: Shares conversation data
-                                                across components
+                                                {t("State: Shares conversation data across components")}
                                             </h4>
                                             <CodeWindow
                                                 code={stateCode}
@@ -356,63 +345,26 @@ export const cardContents = [
                                     </div>
                                 </section>
                                 <p class="mt-16">
-                                    As the feature evolved to support multiple
-                                    chat rooms, conversation data needed to be
-                                    shared beyond a single component. This made
-                                    local state insufficient, so shared
-                                    conversation data was moved into a
-                                    centralized Zustand store.
+                                    {t("As the feature evolved to support multiple chat rooms, conversation data needed to be shared beyond a single component. This made local state insufficient, so shared conversation data was moved into a centralized Zustand store.")}
                                 </p>
                             </div>
                         </section>
                         <section id="Reflection">
                             <h2 class="font-semibold">
                                 <span class="heading-accent-bar"
-                                    >Reflection</span
+                                    >{t("Reflection")}</span
                                 >
                             </h2>
                             <section class="text-box">
-                                <h3>Reevaluating the Development Process</h3>
+                                <h3>{t("Reevaluating the Development Process")}</h3>
                                 <p class="mt-4">
-                                    When I was developing the application during
-                                    the hackathon, I prioritized getting it up
-                                    and running so much that I didn’t fully
-                                    grasp the importance of structural design.
-                                    As I revisited this project, my
-                                    understanding of the importance of design,
-                                    and my approach to AI changed significantly.
-                                    Rather than simply letting AI create
-                                    “something that sort of works,” I’ve started
-                                    using it as a tool to assist my
-                                    decision-making, guided by a clear design
-                                    intent. While AI tools can quickly generate
-                                    working code, I’ve come to realize that
-                                    understanding the underlying architecture is
-                                    essential for writing code that is
-                                    maintainable, readable, and scalable. I’ve
-                                    also come to find the process of designing
-                                    while organizing the structure itself to be
-                                    quite engaging.
+                                    {t("When I was developing the application during the hackathon, I prioritized getting it up and running so much that I didn’t fully grasp the importance of structural design. As I revisited this project, my understanding of the importance of design, and my approach to AI changed significantly. Rather than simply letting AI create “something that sort of works,” I’ve started using it as a tool to assist my decision-making, guided by a clear design intent. While AI tools can quickly generate working code, I’ve come to realize that understanding the underlying architecture is essential for writing code that is maintainable, readable, and scalable. I’ve also come to find the process of designing while organizing the structure itself to be quite engaging.")}
                                 </p>
                                 <h3 class="mt-8">
-                                    The Gap Between Design and Implementation
+                                    {t("The Gap Between Design and Implementation")}
                                 </h3>
                                 <p class="mt-4">
-                                    This project also gave me an opportunity to
-                                    reconsider the gap between design and
-                                    implementation. Even when wireframes and
-                                    style guides are well-organized in Figma,
-                                    reproducing them accurately as a consistent
-                                    UI requires careful implementation
-                                    decisions. I was reminded that the process
-                                    of bridging design and implementation cannot
-                                    yet be fully automated; adjustments and
-                                    judgments made by human eyes remain
-                                    indispensable and continue to play a vital
-                                    role. This project went beyond mere
-                                    refactoring; it served as an opportunity to
-                                    reevaluate how we utilize AI and how we
-                                    translate design intent into implementation.
+                                    {t("This project also gave me an opportunity to reconsider the gap between design and implementation. Even when wireframes and style guides are well-organized in Figma, reproducing them accurately as a consistent UI requires careful implementation decisions. I was reminded that the process of bridging design and implementation cannot yet be fully automated; adjustments and judgments made by human eyes remain indispensable and continue to play a vital role. This project went beyond mere refactoring; it served as an opportunity to reevaluate how we utilize AI and how we translate design intent into implementation.")}
                                 </p>
                             </section>
                         </section>
@@ -423,20 +375,12 @@ export const cardContents = [
 
         <!-- Other Projects -->
         <section class="p-4 md:p-16">
-            <h2 class="text-center p-16">Other Projects</h2>
+            <h2 class="text-center p-16">{t("Other Projects")}</h2>
             <div
                 class="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-4 max-w-400 mx-auto"
             >
                 {
-                    projects
-                        .filter(
-                            (project) =>
-                                ["/ukg", "/tastebuds", "/billow"].includes(
-                                    project.href,
-                                ) && project.href !== "/billow",
-                        )
-                        .slice(0, 2)
-                        .map((project) => {
+                    relatedProjects.map((project) => {
                             return (
                                 <Card
                                     href={project.href}
@@ -461,7 +405,7 @@ export const cardContents = [
     document.addEventListener("astro:page-load", () => {
         // This script stays loaded across ClientRouter navigations,
         // so bail out on every page except this one.
-        if (window.location.pathname.replace(/\/$/, "") !== "/billow") return;
+        if (!["/billow", "/jp/billow"].includes(window.location.pathname.replace(/\/$/, ""))) return;
 
         const refresh = () =>
             requestAnimationFrame(() => ScrollTrigger.refresh());

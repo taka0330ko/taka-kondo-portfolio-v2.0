@@ -457,6 +457,13 @@
     max-inline-size: var(--measure-cs-ja-body);
   }
 
+  /* Center Billow's Japanese copy blocks while keeping the text left-aligned. */
+  .billow-case-study.case-study-ja .text-box :where(h3, p:not(.caption-pill)) {
+    width: 100%;
+    max-inline-size: var(--measure-cs-ja-body);
+    margin-inline: auto;
+  }
+
   .case-study-ja div:has(> .caption-pill) > :is(h2, h3, h4, p:not(.caption-pill)) {
     margin-inline: auto !important;
     max-inline-size: var(--measure-cs-ja-body) !important;
