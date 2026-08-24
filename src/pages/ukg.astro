@@ -37,7 +37,7 @@ const relatedProjects = projects
     )
     .slice(0, 2)
     .map((project) => isJapanese
-        ? { ...project, ...homeJa.projects[project.slug], href: project.slug === "store-map" ? "/jp/store-map" : project.href }
+        ? { ...project, ...homeJa.projects[project.slug], href: `/jp${project.href}` }
         : project
     );
 

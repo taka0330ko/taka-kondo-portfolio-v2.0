@@ -13,7 +13,7 @@ export const aboutJa = {
   },
   sections: {
     whatIDo: {
-      title: "私のしごと",
+      title: "私のつよみ",
       body: "Figma上でのデザインにとどまらず、アイデアをコードでインタラクティブなプロトタイプへ落とし込み、実際のユーザーと検証しながら、フィードバックをもとに体験を改善します。",
     },
     coreValue: {

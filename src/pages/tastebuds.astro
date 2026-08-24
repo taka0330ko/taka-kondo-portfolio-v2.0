@@ -79,9 +79,7 @@ const relatedProjects = projects
         ? {
             ...project,
             ...homeJa.projects[project.slug],
-            href: ["ukg", "billow"].includes(project.slug)
-                ? `/jp/${project.slug}`
-                : project.href,
+            href: `/jp${project.href}`,
         }
         : project
     );

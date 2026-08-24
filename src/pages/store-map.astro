@@ -37,7 +37,7 @@ const relatedProjects = projects
         ? {
             ...project,
             ...homeJa.projects[project.slug],
-            href: project.slug === "ukg" ? "/jp/ukg" : project.href,
+            href: `/jp${project.href}`,
           }
         : project
     );
