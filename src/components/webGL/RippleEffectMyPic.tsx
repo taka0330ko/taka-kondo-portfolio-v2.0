@@ -264,6 +264,7 @@ function RippleEffectMyPic() {
             color.rgb += spec * uGlint;
 
             gl_FragColor = color;
+            #include <colorspace_fragment>
           }
         `,
         transparent: true,
