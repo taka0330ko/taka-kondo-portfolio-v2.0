@@ -205,6 +205,7 @@ function RippleEffectMoon() {
 
             color.rgb += glint * uGlint * color.a;
             gl_FragColor = color;
+            #include <colorspace_fragment>
           }
         `,
         transparent: true,
