@@ -1,5 +1,6 @@
 ---
 import MyArrowDown from "../../assets/images/icons/CaretDown.svg";
+import { Globe } from "@lucide/astro";
 
 const pathname = Astro.url.pathname;
 const isJapanese = pathname === "/jp" || pathname.startsWith("/jp/");
@@ -16,10 +17,11 @@ const anotherLanguagePath = isJapanese
     <button
         id="language-switch"
         type="button"
-        class="flex cursor-pointer items-center gap-1 hover:text-accent"
+        class="flex cursor-pointer items-center gap-2 hover:text-accent"
         aria-expanded="false"
         aria-controls="another-lang"
     >
+        <Globe class="h-5 w-5 shrink-0" aria-hidden="true" />
         <span
             lang={currentLanguageCode}
             class:list={currentLanguageCode === "en" ? "font-heading" : "font-ja-body"}
@@ -28,7 +30,7 @@ const anotherLanguagePath = isJapanese
 
     <div
         id="another-lang"
-        class="absolute left-0 top-full z-10 pt-2"
+        class="absolute left-7 top-full z-10 pt-2"
         hidden
     >
         <a

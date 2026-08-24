@@ -21,7 +21,9 @@ const localizedProjects = projects.map((project) => ({
       ? "/jp/ukg"
       : project.slug === "billow"
         ? "/jp/billow"
-        : project.href,
+        : project.slug === "tastebuds"
+          ? "/jp/tastebuds"
+          : project.href,
 }));
 ---
 

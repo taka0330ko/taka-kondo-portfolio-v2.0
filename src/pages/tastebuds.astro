@@ -1,6 +1,8 @@
 ---
 // Layout
 import Layout from "../layouts/Layout.astro";
+import { tastebudsJa, tastebudsJaMeta } from "../content/ja/tastebuds";
+import { homeJa } from "../content/ja/home";
 
 // Icons
 import { ArrowUpRight, Github } from "@lucide/astro";
@@ -57,16 +59,36 @@ import {
 } from "../data/icons.ts";
 import Image from "astro/components/Image.astro";
 
-export const tastebudsSections = [
-    { label: "Overview", href: "#Overview" },
+const isJapanese = Astro.url.pathname === "/jp/tastebuds";
+const t = (text: string) => isJapanese ? (tastebudsJa[text] ?? text) : text;
+
+const tastebudsSections = [
+    { label: t("Overview"), href: "#Overview" },
     { label: "MVP", href: "#MVP" },
-    { label: "Redevelopment", href: "#Redevelopment" },
-    { label: "Reflection", href: "#Reflection" },
+    { label: t("Redevelopment"), href: "#Redevelopment" },
+    { label: t("Reflection"), href: "#Reflection" },
 ];
+
+const relatedProjects = projects
+    .filter((project) =>
+        ["/ukg", "/tastebuds", "/billow"].includes(project.href) &&
+        project.href !== "/tastebuds"
+    )
+    .slice(0, 2)
+    .map((project) => isJapanese
+        ? {
+            ...project,
+            ...homeJa.projects[project.slug],
+            href: ["ukg", "billow"].includes(project.slug)
+                ? `/jp/${project.slug}`
+                : project.href,
+        }
+        : project
+    );
 ---
 
-<Layout>
-    <main class="mt-30 md:mt-40">
+<Layout title={isJapanese ? tastebudsJaMeta.title : undefined} description={isJapanese ? tastebudsJaMeta.description : undefined}>
+    <main class:list={["mt-30 md:mt-40", { "case-study-ja": isJapanese }]}>
         <div class="container pl-8">
             <BreadCrumb>Tastebuds</BreadCrumb>
         </div>
@@ -74,16 +96,10 @@ export const tastebudsSections = [
             <div class="grid grid-cols-12 grid-container items-start">
                 <div class="col-span-8">
                     <h1 id="tastebuds-overview" class="mt-8 leading-[1.05]">
-                       “TASTEBUDS" Food Blog <br /> My Journey from JavaScript to React
+                       {t("“TASTEBUDS” Food Blog — My Journey from JavaScript to React")}
                     </h1>
                     <p class="mt-8">
-                        Learning frontend fundamentals by rebuilding a food blog from <span
-                            class="text-accent"
-                        >
-                            vanilla JavaScript
-                        </span>to<span class="text-accent"
-                            > React and Next.js.</span
-                        >
+                        {t("Learning frontend fundamentals by rebuilding a food blog from vanilla JavaScript to React and Next.js.")}
                     </p>
                     <div class="mt-8 md:my-8 flex flex-wrap justify-between  items-center gap-10">
                         <GlassPill
@@ -97,7 +113,7 @@ export const tastebudsSections = [
                                 aria-hidden="true"
                                 focusable="false"
                             />
-                            Prototype
+                            {t("Prototype")}
                             <span class="sr-only">(opens in a new tab)</span>
                         </GlassPill>
 
@@ -128,7 +144,7 @@ export const tastebudsSections = [
                             <dt
                                 class="text-caption uppercase tracking-wide text-body-default"
                             >
-                                Rebuild:
+                                {t("Rebuild:")}
                             </dt>
                             <dd
                                 class="flex flex-wrap items-center gap-2"
@@ -147,20 +163,20 @@ export const tastebudsSections = [
                             <dt
                                 class="text-caption uppercase tracking-wide text-body-default"
                             >
-                                Role
+                                {t("Role")}
                             </dt>
                             <dd class="text-body  text-heading-default">
-                                Web Developer / Web Designer
+                                {t("Web Developer / Web Designer")}
                             </dd>
                         </div>
                         <div class="grid gap-1">
                             <dt
                                 class="text-caption uppercase tracking-wide text-body-default"
                             >
-                                Timeline
+                                {t("Timeline")}
                             </dt>
                             <dd class="text-body text-heading-default">
-                                Two months, Oct-Dec, 2025
+                                {t("Two months, Oct-Dec, 2025")}
                             </dd>
                         </div>
                     </div>
@@ -186,28 +202,14 @@ export const tastebudsSections = [
                     <!-- Overview Section -->
                     <section id="Overview">
                         <h2 class="font-semibold">
-                            <span class="heading-accent-bar">Overview</span>
+                            <span class="heading-accent-bar">{t("Overview")}</span>
                         </h2>
-                        <h3 class="pt-32">From Class Project to Rebuild</h3>
+                        <h3 class="pt-32">{t("From Class Project to Rebuild")}</h3>
                         <p class="pt-24">
-                            TASTEBUDS began as a social media marketing project
-                            with my classmates,
-                            <span class="text-accent text-xl">
-                                a food blog featuring restaurants and cafés in
-                                Vancouver.</span
-                            >
+                            {t("TASTEBUDS began as a social media marketing project with my classmates, a food blog featuring restaurants and cafés in Vancouver.")}
                         </p>
                         <p class="pt-16">
-                            At first, I had not learned React yet, so I built
-                            the site using <span class="text-accent text-xl">
-                                HTML, CSS (Sass), and vanilla JavaScript.</span
-                            > As development progressed, I wanted a more efficient
-                            workflow, which led me to learn <span
-                                class="text-accent text-xl"
-                                >React and Next.js.</span
-                            >
-                            I also redesigned the UI in Figma and rebuilt the project
-                            from the ground up.
+                            {t("At first, I had not learned React yet, so I built the site using HTML, CSS (Sass), and vanilla JavaScript. As development progressed, I wanted a more efficient workflow, which led me to learn React and Next.js. I also redesigned the UI in Figma and rebuilt the project from the ground up.")}
                         </p>
                     </section>
 
@@ -223,18 +225,9 @@ export const tastebudsSections = [
                                 <div
                                     class="col-span-1 flex flex-col justify-between m-auto"
                                 >
-                                    <h3 class="pt-16">Built on Fundamentals</h3>
+                                    <h3 class="pt-16">{t("Built on Fundamentals")}</h3>
                                     <p class="pt-8">
-                                        For the MVP, I built the project using
-                                        fundamental web technologies. As I
-                                        manually created blog cards with static
-                                        HTML, I started to wonder, “Is there a
-                                        more efficient way to replicate these?”
-                                        This question led me to explore building
-                                        a reusable structure using built-in
-                                        browser features to dynamically generate
-                                        content. This approach reduced
-                                        repetition and improved scalability.
+                                        {t("For the MVP, I built the project using fundamental web technologies. As I manually created blog cards with static HTML, I started to wonder, “Is there a more efficient way to replicate these?” This question led me to explore building a reusable structure using built-in browser features to dynamically generate content. This approach reduced repetition and improved scalability.")}
                                     </p>
                                 </div>
                                 <div class="flex flex-col gap-4">
@@ -251,7 +244,7 @@ export const tastebudsSections = [
                                                 aria-hidden="true"
                                                 focusable="false"
                                             />
-                                            Live Site
+                                            {t("Live Site")}
                                             <span class="sr-only"
                                                 >(opens in a new tab)</span
                                             >
@@ -308,11 +301,9 @@ export const tastebudsSections = [
                         </section>
                         <!-- My approach -->
                         <section id="my-approach" class="mt-64">
-                            <h3>My approach</h3>
+                            <h3>{t("My approach")}</h3>
                             <p class="py-16 text-subtitle">
-                                Using Vanilla JavaScript and the
-                                &lt;template&gt; element, I built a reusable
-                                card component.
+                                {t("Using Vanilla JavaScript and the <template> element, I built a reusable card component.")}
                             </p>
 
                             <!-- Code Steps -->
@@ -330,8 +321,7 @@ export const tastebudsSections = [
                                                 >1</span
                                             >
                                             <h4 class="leading-none">
-                                                Create a data structure for
-                                                posts
+                                                {t("Create a data structure for posts")}
                                             </h4>
                                         </div>
                                         <div class="code-view pt-8 mb-8">
@@ -355,9 +345,7 @@ export const tastebudsSections = [
                                                 >2</span
                                             >
                                             <h4 class="leading-none">
-                                                Use the <code
-                                                    >&lt;template&gt;</code
-                                                > element
+                                                {t("Use the <template> element")}
                                             </h4>
                                         </div>
                                         <div class="code-view pt-8 mb-8">
@@ -381,8 +369,7 @@ export const tastebudsSections = [
                                                 >3</span
                                             >
                                             <h4 class="leading-none">
-                                                Generate cards dynamically with
-                                                JavaScript
+                                                {t("Generate cards dynamically with JavaScript")}
                                             </h4>
                                         </div>
                                         <div class="code-view pt-8">
@@ -400,23 +387,18 @@ export const tastebudsSections = [
                     <!-- My approach end // -->
 
                     <section id="learning" class="mt-64">
-                        <h3>Learning and Challenges</h3>
+                        <h3>{t("Learning and Challenges")}</h3>
                         <p class="py-16">
-                            Through the MVP, I learned the basics of DOM
-                            manipulation, reusable UI design, and separating
-                            structure, data, and styles.
+                            {t("Through the MVP, I learned the basics of DOM manipulation, reusable UI design, and separating structure, data, and styles.")}
                         </p>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div class="col-start-1">
                                 <p>
-                                    At the same time, state management became
-                                    complex, routing was hard to maintain, and
-                                    the architecture didn’t scale well.
+                                    {t("At the same time, state management became complex, routing was hard to maintain, and the architecture didn’t scale well.")}
                                 </p>
                                 <p class="pt-8">
-                                    This led me to rebuild the project with
-                                    Next.js.
+                                    {t("This led me to rebuild the project with Next.js.")}
                                 </p>
                             </div>
                             <div
@@ -435,7 +417,7 @@ export const tastebudsSections = [
                             <section id="redevelopment-intro">
                                 <h2 class="font-semibold">
                                     <span class="heading-accent-bar"
-                                        >Redevelopment</span
+                                        >{t("Redevelopment")}</span
                                     >
                                 </h2>
                                 <div
@@ -443,27 +425,10 @@ export const tastebudsSections = [
                                 >
                                     <div class="col-span-1 flex flex-col">
                                         <h3 class="pt-16">
-                                            Scaling the Architecture
+                                            {t("Scaling the Architecture")}
                                         </h3>
                                         <p class="pt-8">
-                                            To improve the scalability of the
-                                            project, I redesigned the
-                                            application using <span
-                                                class="text-accent"
-                                                >React and Next.js.</span
-                                            >
-                                            <br />
-                                            The UI was rebuilt as React components,
-                                            allowing the interface to be generated
-                                            declaratively from data.
-                                            <br />
-                                            I also introduced Next.js to better organize
-                                            the page structure and implement routing
-                                            for individual posts, resulting in a more
-                                            <span class="text-accent">
-                                                maintainable and extensible
-                                                architecture.</span
-                                            >
+                                            {t("To improve the scalability of the project, I redesigned the application using React and Next.js. The UI was rebuilt as React components, allowing the interface to be generated declaratively from data. I also introduced Next.js to better organize the page structure and implement routing for individual posts, resulting in a more maintainable and extensible architecture.")}
                                         </p>
                                     </div>
                                     <div class="flex flex-col gap-4">
@@ -480,7 +445,7 @@ export const tastebudsSections = [
                                                     aria-hidden="true"
                                                     focusable="false"
                                                 />
-                                                Live Site
+                                                {t("Live Site")}
                                                 <span class="sr-only"
                                                     >(opens in a new tab)</span
                                                 >
@@ -541,31 +506,20 @@ export const tastebudsSections = [
                                 id="structured-content-management"
                                 class="mt-64"
                             >
-                                <h3>Structured Content Management</h3>
+                                <h3>{t("Structured Content Management")}</h3>
                                 <p class="pt-16">
-                                    In the MVP, blog content was stored as a
-                                    front-end data array. While this worked for
-                                    an early prototype, it required manual
-                                    updates whenever a new post was added, which
-                                    made content management less efficient as
-                                    the project expanded.
+                                    {t("In the MVP, blog content was stored as a front-end data array. While this worked for an early prototype, it required manual updates whenever a new post was added, which made content management less efficient as the project expanded.")}
                                 </p>
                                 <div class="grid grid-cols-3 items-center">
                                     <p class="py-8 col-start-1 col-span-2">
-                                        This led me to rethink how post data
-                                        should be handled. To create a more
-                                        scalable structure, I separated content
-                                        from the application code and migrated
-                                        post management to Supabase.
+                                        {t("This led me to rethink how post data should be handled. To create a more scalable structure, I separated content from the application code and migrated post management to Supabase.")}
                                     </p>
                                     <Supabase
                                         class="w-12 h-12 col-start-3 mx-auto"
                                     />
                                 </div>
                                 <p class="py-8">
-                                    This made the workflow easier to maintain
-                                    and created a foundation that could later
-                                    evolve into a CMS-like system.
+                                    {t("This made the workflow easier to maintain and created a foundation that could later evolve into a CMS-like system.")}
                                 </p>
                                 <!-- Code Steps -->
                                 <ol class="steps mt-24">
@@ -584,8 +538,7 @@ export const tastebudsSections = [
                                                     >1</span
                                                 >
                                                 <h4 class="leading-none">
-                                                    Design the post data
-                                                    structure
+                                                    {t("Design the post data structure")}
                                                 </h4>
                                             </div>
                                             <div class="code-view pt-8 mb-8">
@@ -611,7 +564,7 @@ export const tastebudsSections = [
                                                     >2</span
                                                 >
                                                 <h4 class="leading-none">
-                                                    Retrieve posts from Supabase
+                                                    {t("Retrieve posts from Supabase")}
                                                 </h4>
                                             </div>
                                             <div class="code-view pt-8 mb-8">
@@ -624,24 +577,17 @@ export const tastebudsSections = [
                                     </li>
                                 </ol>
                                 <p>
-                                    Based on this structured data, UI components
-                                    can dynamically generate blog cards and
-                                    article pages.
+                                    {t("Based on this structured data, UI components can dynamically generate blog cards and article pages.")}
                                 </p>
                             </section>
                             <section id="rendering" class="mt-64">
-                                <h3>Rendering Architecture</h3>
+                                <h3>{t("Rendering Architecture")}</h3>
                                 <div
                                     class="grid grid-cols-1 md:grid-cols-2 gap-8"
                                 >
                                     <div class="col-start-1 my-auto">
                                         <p>
-                                            The UI was rebuilt using reusable
-                                            React components. Post data is
-                                            passed into card components to
-                                            generate article cards, creating a
-                                            structure that can easily scale as
-                                            more content is added.
+                                            {t("The UI was rebuilt using reusable React components. Post data is passed into card components to generate article cards, creating a structure that can easily scale as more content is added.")}
                                         </p>
                                     </div>
                                     <div
@@ -659,15 +605,10 @@ export const tastebudsSections = [
                                     <li>
                                         <div class="flex flex-col py-16">
                                             <h4>
-                                                PatternA: Curated layout for the
-                                                homepage
+                                                {t("PatternA: Curated layout for the homepage")}
                                             </h4>
                                             <p class="pt-4">
-                                                To highlight the latest
-                                                articles, the homepage selects
-                                                specific posts from the dataset
-                                                and displays them in a curated
-                                                layout.
+                                                {t("To highlight the latest articles, the homepage selects specific posts from the dataset and displays them in a curated layout.")}
                                             </p>
                                         </div>
                                         <div
@@ -693,14 +634,10 @@ export const tastebudsSections = [
                                     <li class="mt-8">
                                         <div class="flex flex-col py-16">
                                             <h4>
-                                                PatternB: Dynamic rendering for
-                                                the blog archive
+                                                {t("PatternB: Dynamic rendering for the blog archive")}
                                             </h4>
                                             <p class="pt-4">
-                                                On the blog page, filtered post
-                                                data is mapped into card
-                                                components to dynamically
-                                                generate the article list.
+                                                {t("On the blog page, filtered post data is mapped into card components to dynamically generate the article list.")}
                                             </p>
                                         </div>
                                         <div
@@ -727,53 +664,36 @@ export const tastebudsSections = [
                             </section>
 
                             <section id="dynamic-routing" class="mt-48">
-                                <h3 class="py-12">Dynamic Routing</h3>
+                                <h3 class="py-12">{t("Dynamic Routing")}</h3>
 
                                 <p>
-                                    <span class="text-heading-default"
-                                        >Previous Problem:</span
-                                    > In the MVP, each article was managed as a separate
-                                    page, making the structure difficult to scale
-                                    as content grew.
+                                    <span class="text-heading-default">{t("Previous Problem:")}</span>
+                                    {t("In the MVP, each article was managed as a separate page, making the structure difficult to scale as content grew.")}
                                 </p>
                                 <p class="pt-8">
-                                    <span class="text-heading-default"
-                                        >Solution:</span
-                                    > I implemented Next.js Dynamic Routing using
-                                    the /blog/[slug] route structure, allowing pages
-                                    to be generated from a single shared template.
+                                    <span class="text-heading-default">{t("Solution:")}</span>
+                                    {t("I implemented Next.js Dynamic Routing using the /blog/[slug] route structure, allowing pages to be generated from a single shared template.")}
                                 </p>
                                 <div class="py-16">
                                     <CodeWindow code={Folders} lang="html" />
                                 </div>
 
                                 <p>
-                                    <span class="text-heading-default"
-                                        >Result:</span
-                                    > By fetching content based on the slug, new articles
-                                    can be added without creating new pages, improving
-                                    scalability and maintainability.
+                                    <span class="text-heading-default">{t("Result:")}</span>
+                                    {t("By fetching content based on the slug, new articles can be added without creating new pages, improving scalability and maintainability.")}
                                 </p>
                             </section>
 
                             <section id="Reflection" class="mt-64">
                                 <h2 class="font-semibold">
                                     <span class="heading-accent-bar"
-                                        >Reflection</span
+                                        >{t("Reflection")}</span
                                     >
                                 </h2>
                                 <div class="py-8">
-                                    <h3 class="">Learning Through Iteration</h3>
+                                    <h3 class="">{t("Learning Through Iteration")}</h3>
                                     <p class="pt-4">
-                                        Through this project, I started from the
-                                        fundamentals of JavaScript and
-                                        continuously explored better ways to
-                                        build features. I iterated through
-                                        researching, experimenting, and refining
-                                        my approach, and found the process of
-                                        trial and error itself both engaging and
-                                        rewarding as my understanding gradually
-                                        deepened.
+                                        {t("Through this project, I started from the fundamentals of JavaScript and continuously explored better ways to build features. I iterated through researching, experimenting, and refining my approach, and found the process of trial and error itself both engaging and rewarding as my understanding gradually deepened.")}
                                     </p>
                                 </div>
                                 <div
@@ -781,23 +701,10 @@ export const tastebudsSections = [
                                 >
                                     <div class="col-start-1 col-span-2 my-auto">
                                         <h3 class="">
-                                            Understanding the Limits of
-                                            AI-Assisted Development
+                                            {t("Understanding the Limits of AI-Assisted Development")}
                                         </h3>
                                         <p class="pt-4">
-                                            I also experimented with building
-                                            admin and CMS-like features using
-                                            AI. However, this experience made me
-                                            realize that being able to implement
-                                            functionality is not the same as
-                                            fully understanding the underlying
-                                            architecture. In parts of the CMS,
-                                            multiple features ended up being
-                                            combined into a single component,
-                                            which made the structure harder to
-                                            maintain and scale. This highlighted
-                                            the importance of component design
-                                            and separation of concerns.
+                                            {t("I also experimented with building admin and CMS-like features using AI. However, this experience made me realize that being able to implement functionality is not the same as fully understanding the underlying architecture. In parts of the CMS, multiple features ended up being combined into a single component, which made the structure harder to maintain and scale. This highlighted the importance of component design and separation of concerns.")}
                                         </p>
                                     </div>
                                     <div
@@ -810,13 +717,9 @@ export const tastebudsSections = [
                                         />
                                     </div>
                                     <div class="py-8 md:col-span-5">
-                                        <h3 class="">Moving Forward</h3>
+                                        <h3 class="">{t("Moving Forward")}</h3>
                                         <p class="pt-4">
-                                            Moving forward, I aim to deepen my
-                                            understanding of architecture while
-                                            using AI more intentionally, with
-                                            the goal of building more scalable
-                                            and maintainable systems.
+                                            {t("Moving forward, I aim to deepen my understanding of architecture while using AI more intentionally, with the goal of building more scalable and maintainable systems.")}
                                         </p>
                                     </div>
                                 </div>
@@ -829,20 +732,12 @@ export const tastebudsSections = [
 
         <!-- Other Projects -->
         <section class="p-4 md:p-16">
-            <h2 class="text-center p-16">Other Projects</h2>
+            <h2 class="text-center p-16">{t("Other Projects")}</h2>
             <div
                 class="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-4 max-w-400 mx-auto"
             >
                 {
-                    projects
-                        .filter(
-                            (project) =>
-                                ["/ukg", "/tastebuds", "/billow"].includes(
-                                    project.href,
-                                ) && project.href !== "/tastebuds",
-                        )
-                        .slice(0, 2)
-                        .map((project) => {
+                    relatedProjects.map((project) => {
                             return (
                                 <Card
                                     href={project.href}
@@ -867,7 +762,7 @@ export const tastebudsSections = [
     document.addEventListener("astro:page-load", () => {
         // This script stays loaded across ClientRouter navigations,
         // so bail out on every page except this one.
-        if (window.location.pathname.replace(/\/$/, "") !== "/tastebuds")
+        if (!["/tastebuds", "/jp/tastebuds"].includes(window.location.pathname.replace(/\/$/, "")))
             return;
 
         const refresh = () =>
