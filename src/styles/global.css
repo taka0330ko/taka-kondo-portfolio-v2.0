@@ -244,7 +244,8 @@
   /* Store Map Japanese case-study utilities */
   --text-cs-ja-hero: clamp(2rem, 4.5vw, 3.75rem);
   --text-cs-ja-hero--line-height: 1.35;
-  --text-cs-ja-h1: clamp(1.875rem, 4vw, 2.625rem);
+  /* 日本語版ではcs-h1はcs-h2と同じサイズに落とす */
+  --text-cs-ja-h1: clamp(1.5rem, 3vw, 1.875rem);
   --text-cs-ja-h1--line-height: var(--leading-cs-ja-heading);
   --text-cs-ja-h2: clamp(1.5rem, 3vw, 1.875rem);
   --text-cs-ja-h2--line-height: var(--leading-cs-ja-heading);
@@ -409,6 +410,12 @@
     @apply inline-flex rounded-sm bg-heading-default px-2 py-1 text-cs-caption uppercase leading-none text-background
   }
 
+}
+
+/* Language-specific case-study styles come after Tailwind's utility layer, so
+   they override shared utilities through the cascade without !important. */
+@layer case-study {
+
   /* Japanese typography is scoped to the Store Map case study only. */
   .case-study-ja {
     font-family: var(--font-cs-ja);
@@ -418,16 +425,16 @@
 
   .case-study-ja > section:first-of-type h1 {
     font-family: var(--font-cs-ja);
-    font-size: var(--text-cs-ja-hero) !important;
-    font-weight: 500 !important;
-    line-height: 1.35 !important;
+    font-size: var(--text-cs-ja-hero);
+    font-weight: 500;
+    line-height: 1.35;
     letter-spacing: var(--tracking-cs-ja-heading);
   }
 
   .case-study-ja :where(.text-cs-h1, .text-cs-h2, .text-cs-h3, .text-cs-section) {
     font-family: var(--font-cs-ja);
-    font-weight: 500 !important;
-    line-height: var(--leading-cs-ja-heading) !important;
+    font-weight: 500;
+    line-height: var(--leading-cs-ja-heading);
     letter-spacing: var(--tracking-cs-ja-heading);
   }
 
@@ -437,16 +444,16 @@
     font-family: var(--font-cs-ja);
   }
 
-  .case-study-ja .text-cs-h1 { font-size: var(--text-cs-ja-h1) !important; }
-  .case-study-ja .text-cs-h2 { font-size: var(--text-cs-ja-h2) !important; }
-  .case-study-ja .text-cs-h3 { font-size: var(--text-cs-ja-h3) !important; }
-  .case-study-ja .text-cs-section { font-size: var(--text-cs-ja-section) !important; }
+  .case-study-ja .text-cs-h1 { font-size: var(--text-cs-ja-h1); }
+  .case-study-ja .text-cs-h2 { font-size: var(--text-cs-ja-h2); }
+  .case-study-ja .text-cs-h3 { font-size: var(--text-cs-ja-h3); }
+  .case-study-ja .text-cs-section { font-size: var(--text-cs-ja-section); }
 
   .case-study-ja :where(.text-cs-body, p:not(.caption-pill), li) {
     font-family: var(--font-cs-ja);
-    font-size: var(--text-cs-ja-body) !important;
-    font-weight: var(--weight-cs-ja-body) !important;
-    line-height: var(--leading-cs-ja-body) !important;
+    font-size: var(--text-cs-ja-body);
+    font-weight: var(--weight-cs-ja-body);
+    line-height: var(--leading-cs-ja-body);
     letter-spacing: var(--tracking-cs-ja-body);
     line-break: strict;
     overflow-wrap: anywhere;
@@ -465,8 +472,8 @@
   }
 
   .case-study-ja div:has(> .caption-pill) > :is(h2, h3, h4, p:not(.caption-pill)) {
-    margin-inline: auto !important;
-    max-inline-size: var(--measure-cs-ja-body) !important;
+    margin-inline: auto;
+    max-inline-size: var(--measure-cs-ja-body);
     width: 100%;
   }
 
@@ -482,8 +489,8 @@
 
   .case-study-ja .cs-copy-block {
     width: 100%;
-    max-inline-size: var(--measure-cs-ja-body) !important;
-    margin-inline: auto !important;
+    max-inline-size: var(--measure-cs-ja-body);
+    margin-inline: auto;
   }
 
   .case-study-ja article h3 {
@@ -494,24 +501,28 @@
   }
 
   .case-study-ja p:not(.caption-pill) + p:not(.caption-pill) {
-    margin-top: var(--spacing-cs-ja-paragraph) !important;
+    margin-top: var(--spacing-cs-ja-paragraph);
   }
 
   .case-study-ja .text-cs-caption {
     font-family: var(--font-cs-ja);
-    font-size: var(--text-cs-ja-small) !important;
-    line-height: 1.5 !important;
+    font-size: var(--text-cs-ja-small);
+    line-height: 1.5;
   }
 
   .case-study-ja .caption-pill {
     font-family: var(--font-general-sans), sans-serif;
-    font-size: var(--text-cs-caption) !important;
-    font-weight: 400 !important;
-    line-height: 1 !important;
+    font-size: var(--text-cs-caption);
+    font-weight: 400;
+    line-height: 1;
     letter-spacing: normal;
     font-feature-settings: normal;
     font-kerning: auto;
   }
+
+}
+
+@layer components {
 
   /* Timeline on project pages */
   .timeline-number {
