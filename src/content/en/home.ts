@@ -31,7 +31,7 @@ export const homeEn = {
         "Built a scalable design-to-code workflow using Figma MCP and Claude to automate SVG map naming and ID generation",
         "Developed an interactive React Native prototype to validate navigation and product discovery flows",
       ],
-      tag: "Product Design",
+      tag: "UI/UX case study",
     },
     ukg: {
       title: "UKG Payroll Verification Redesign",

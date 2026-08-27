@@ -23,7 +23,7 @@ export const homeJa = {
   },
   projects: {
     "store-map": {
-      title: "店内商品ロケーター",
+      title: "商品位置検索アプリ",
       description:
         "商品検索から売り場の確認までを、インタラクティブな店内マップでスムーズに行えるモバイルアプリを作成しました。",
       summaryList: [
@@ -31,7 +31,7 @@ export const homeJa = {
         "Figma MCPとClaudeでSVGマップを実装可能なデータに整え、デザインと開発をつなぐワークフローを構築",
         "React Nativeでプロトタイプを開発し2種類のUIでユーザーテストを実行",
       ],
-      tag: "プロダクトデザイン",
+      tag: "UI/UX ケーススタディ",
     },
     ukg: {
       title: "給与確認アプリのリデザイン",
