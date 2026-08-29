@@ -17,7 +17,7 @@ const anotherLanguagePath = isJapanese
     <button
         id="language-switch"
         type="button"
-        class="flex cursor-pointer items-center gap-2 hover:text-accent"
+        class="flex cursor-pointer text-foreground transition-colors items-center gap-2 hover:text-accent"
         aria-expanded="false"
         aria-controls="another-lang"
     >
@@ -30,14 +30,14 @@ const anotherLanguagePath = isJapanese
 
     <div
         id="another-lang"
-        class="absolute left-7 top-full z-10 pt-2"
+        class="absolute left-7 top-full z-10 pt-0.5"
         hidden
     >
         <a
             href={anotherLanguagePath}
             lang={anotherLanguageCode}
             class:list={[
-                "block whitespace-nowrap rounded-md py-2 hover:text-accent",
+                "block whitespace-nowrap rounded-md text-foreground transition-colors hover:text-accent",
                 anotherLanguageCode === "en" ? "font-heading" : "font-ja-body",
             ]}
         >

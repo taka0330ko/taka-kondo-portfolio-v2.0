@@ -73,9 +73,9 @@ function RippleEffectRings() {
           next.minFilter = THREE.LinearFilter
           next.magFilter = THREE.LinearFilter
           next.generateMipmaps = false
-          if ("colorSpace" in next) {
-            next.colorSpace = THREE.SRGBColorSpace
-          }
+          // Preserve the texture's authored RGB values. This custom shader
+          // writes sampled colors directly and has no matching sRGB output
+          // conversion, so marking the texture as sRGB would darken it.
 
           const image = next.image as HTMLImageElement
           const textureWidth = image.naturalWidth || image.width || 1
