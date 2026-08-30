@@ -58,13 +58,13 @@ import IconCustomer from "../assets/images/projects/store-navigation/icon-custom
 import IconStaff from "../assets/images/projects/store-navigation/icon-staff.svg";
 import UserFlow from "../assets/images/projects/store-navigation/userflow.webp";
 
-// Design Constraints media
+// 1. Design Constraints media
 import ColorPalette from "../assets/images/projects/store-navigation/color-palette-primary-brand-colors.webp";
 import FigmaTokensPanel from "../assets/images/projects/store-navigation/figma-variables-color-tokens-panel.webp";
 import TokenMappingDiagram from "../assets/images/projects/store-navigation/design-tokens-semantic-mapping-diagram.webp";
 import ItemFoundView from "../assets/images/projects/store-navigation/store-map-app-item-found-view.webp";
 
-// AI Assisted Workflow media
+// 2. AI Assisted Workflow media
 import MapPixcel from "../assets/images/projects/store-navigation/map-pixcel.webp";
 import FigmaMcp from "../assets/images/projects/store-navigation/figma-mcp.webp";
 import MapOnFigma from "../assets/images/projects/store-navigation/figma-map.webp";
@@ -85,9 +85,9 @@ import TomatoFoundPic from "../assets/images/projects/store-navigation/store-map
 const storeMapSections = [
     { label: t("Overview"), href: "#Overview" },
     { label: t("Context & Opportunity"), href: "#Context-opportunity" },
-    { label: t("Design Constraints"), href: "#Design-constraints" },
-    { label: t("AI Assisted Workflow"), href: "#AI-assisted-workflow" },
-    { label: t("Testing"), href: "#Testing" },
+    { label: t("1. Design Constraints"), href: "#Design-constraints" },
+    { label: t("2. AI Assisted Workflow"), href: "#AI-assisted-workflow" },
+    { label: t("3. In-store testing"), href: "#Testing" },
     { label: t("Reflection"), href: "#Reflection" },
 ];
 ---
@@ -209,7 +209,7 @@ const storeMapSections = [
                             <div class="max-w-240 mx-auto">
                                 <p class="caption-pill">About this project</p>
                                 <h3
-                                    class="mt-2 max-w-5xl text-cs-h1 font-normal leading-tight"
+                                    class="mt-2 text-cs-h1 font-normal leading-tight"
                                 >
                                     {t("Designing a seamless grocery shopping experience by combining product search with in-store navigation.")}
                                 </h3>
@@ -249,11 +249,8 @@ const storeMapSections = [
 
                             <div class="mt-24 grid gap-12 md:grid-cols-3">
                                 <div class="grid gap-6 md:first:pl-0">
-                                    <h4 class="text-cs-h3 flex gap-4">
-                                        <span class="feature-number">01</span>
-                                        <span class="text-cs-h3"
-                                            >{t("Design Constraints")}</span
-                                        >
+                                    <h4 class="text-cs-h3">
+                                        {t("1. Design Constraints")}
                                     </h4>
                                     <div
                                         class="grid grid-cols-5 md:grid-cols-1"
@@ -275,11 +272,8 @@ const storeMapSections = [
                                     > -->
                                 </div>
                                 <div class="grid gap-6 md:pl-8">
-                                    <h4 class="text-cs-h3 flex gap-4">
-                                        <span class="feature-number">02</span>
-                                        <span class="text-cs-h3">
-                                            {t("AI Assisted Workflow")}</span
-                                        >
+                                    <h4 class="text-cs-h3">
+                                        {t("2. AI Assisted Workflow")}
                                     </h4>
                                     <div
                                         class="grid grid-cols-5 md:grid-cols-1"
@@ -297,11 +291,8 @@ const storeMapSections = [
                                     </div>
                                 </div>
                                 <div class="grid gap-6 md:pl-8">
-                                    <h4 class="text-cs-h3 flex gap-4">
-                                        <span class="feature-number">03</span>
-                                        <span class="text-cs-h3"
-                                            >{t("Testing with a Coded Prototype")}</span
-                                        >
+                                    <h4 class="text-cs-h3">
+                                        {t("3. Testing with a Coded Prototype")}
                                     </h4>
                                     <div
                                         class="grid grid-cols-5 md:grid-cols-1"
@@ -431,11 +422,11 @@ const storeMapSections = [
                             </div>
                         </div>
                     </section>
-                    <!-- Design Constraints Section -->
+                    <!-- 1. Design Constraints Section -->
                     <section id="Design-constraints" class="mt-32">
                         <h2 class="text-cs-section font-medium">
                             <span class="heading-accent-bar"
-                                >{t("Design Constraints")}</span
+                                >{t("1. Design Constraints")}</span
                             >
                         </h2>
                         <div
@@ -548,11 +539,11 @@ const storeMapSections = [
                             </div>
                         </div>
                     </section>
-                    <!-- AI Assisted Workflow Section -->
+                    <!-- 2. AI Assisted Workflow Section -->
                     <section id="AI-assisted-workflow" class="mt-32">
                         <h2 class="text-cs-section font-medium">
                             <span class="heading-accent-bar"
-                                >{t("AI Assisted Workflow")}</span
+                                >{t("2. AI Assisted Workflow")}</span
                             >
                         </h2>
                         <div
@@ -679,7 +670,7 @@ const storeMapSections = [
                     <!-- Testing Section -->
                     <section id="Testing" class="mt-32">
                         <h2 class="text-cs-section font-medium">
-                            <span class="heading-accent-bar">{t("Testing")}</span>
+                            <span class="heading-accent-bar">{t("3. In-store testing")}</span>
                         </h2>
                         <div
                             class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
@@ -995,7 +986,7 @@ const storeMapSections = [
                                 {t("Design is the process of balancing constraints, trade-offs, and user needs.")}
                             </h3>
                             <p class="mt-6 text-cs-body leading-snug">
-                                {t("This project taught me that the quality of a design is defined not by the number of possibilities, but by the ability to prioritize within constraints. By working through design constraints and trade-offs, I learned to evaluate decisions based not on visual novelty, but on reusability, implementation feasibility, and their impact on the user experience.")}
+                                {t("This project taught me that the quality of a design is defined not by the number of possibilities, but by the ability to prioritize within constraints. By working through 1. Design Constraints and trade-offs, I learned to evaluate decisions based not on visual novelty, but on reusability, implementation feasibility, and their impact on the user experience.")}
                             </p>
                             <p class="mt-6 text-cs-body leading-snug">
                                 {t("I also realized that while AI has significantly accelerated the process of turning ideas into tangible solutions, speed alone has little value. What truly matters is using that extra time to validate assumptions, iterate on ideas, and make better-informed design decisions. This experience changed my understanding of efficient design. It is not about reducing effort. It is about spending more time on the decisions that create the greatest impact.")}

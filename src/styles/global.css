@@ -27,10 +27,10 @@
   --font-satoshi: "Satoshi";
   --font-general-sans: "General Sans";
   --font-japanese-heading: "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
-  --font-japanese-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
+  --font-japanese-body: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
 
   /* Japanese case-study typography */
-  --font-case-study-ja: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
+  --font-case-study-ja: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
   --leading-cs-ja-heading: 1.45;
   --leading-cs-ja-body: 1.9;
   --weight-cs-ja-body: 350;
@@ -58,7 +58,7 @@
   --brand-blue-800: oklch(0.4028 0.1572 273.81);
   --brand-blue-900: oklch(0.3248 0.104 274.74);
 
-  --brand-blue-300-opacity: rgba(85, 113, 220, 0.3);
+  --brand-blue-300-opacity: rgba(85, 113, 220, 0.2);
 
   --brand-teal-100: oklch(0.9495 0.0423 191.01);
   --brand-teal-200: oklch(0.9026 0.0791 193.86);
@@ -94,7 +94,7 @@
   --text-heading-default: var(--brand-gray-50);
   --text-body-default: var(--brand-gray-400);
   --text-accent: var(--brand-teal-400);
-  --five-lines: var(--brand-teal-300-opacity);
+  --accent-bg-lines: var(--brand-teal-300-opacity);
   --header-gradient-from: rgba(0, 0, 0, 0.3);
   --header-gradient-to: rgba(0, 0, 0, 0);
   --card-gradient-from: rgba(255, 255, 255, 0.3);
@@ -120,7 +120,7 @@
   --text-heading-default: var(--brand-gray-900);
   --text-body-default: var(--brand-gray-600);
   --text-accent: var(--brand-blue-500);
-  --five-lines: var(--brand-blue-300-opacity);
+  --accent-bg-lines: var(--brand-blue-300-opacity);
   --header-gradient-from: rgba(255, 255, 255, 0.3);
   --header-gradient-to: rgba(255, 255, 255, 0);
   --card-gradient-from: rgba(255, 255, 255, 0.8);
@@ -147,7 +147,7 @@
   --color-heading-default: var(--text-heading-default);
   --color-body-default: var(--text-body-default);
   --color-accent: var(--text-accent);
-  --color-five-lines: var(--five-lines);
+  --color-five-lines: var(--accent-bg-lines);
   --color-foreground: var(--foreground-color);
   --color-foreground-inverse: var(--foreground-inverse);
   --color-footer: var(--footer-bg);
@@ -207,7 +207,7 @@
   --text-ja-display--line-height: 1.35;
   --text-ja-display--letter-spacing: -0.01em;
 
-  --text-ja-hero: clamp(2rem, 5vw, 4rem);
+  --text-ja-hero: clamp(2rem, 5vw, 3rem);
   --text-ja-hero--line-height: 1.25;
   --text-ja-hero--letter-spacing: -0.02em;
 
@@ -242,7 +242,7 @@
   /* 14px → 16px */
 
   /* Store Map Japanese case-study utilities */
-  --text-cs-ja-hero: clamp(2rem, 4.5vw, 3.75rem);
+  --text-cs-ja-hero: clamp(2rem, calc(1.714rem + 1.429vw), 3rem);
   --text-cs-ja-hero--line-height: 1.35;
   /* 日本語版ではcs-h1はcs-h2と同じサイズに落とす */
   --text-cs-ja-h1: clamp(1.5rem, 3vw, 1.875rem);
@@ -291,7 +291,7 @@
   }
 
   ::selection {
-    background-color: var(--five-lines);
+    background-color: var(--accent-bg-lines);
   }
 
   /* Reset */
@@ -354,6 +354,10 @@
     font-family: var(--font-japanese-heading);
   }
 
+  h1:lang(ja) {
+    @apply text-cs-ja-hero
+  }
+
   h2:lang(ja) {
     @apply text-ja-display
   }
@@ -378,7 +382,7 @@
 
   a,
   button {
-    -webkit-tap-highlight-color: var(--five-lines);
+    -webkit-tap-highlight-color: var(--accent-bg-lines);
   }
 
   button,
@@ -426,14 +430,14 @@
   .case-study-ja > section:first-of-type h1 {
     font-family: var(--font-cs-ja);
     font-size: var(--text-cs-ja-hero);
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.35;
     letter-spacing: var(--tracking-cs-ja-heading);
   }
 
   .case-study-ja :where(.text-cs-h1, .text-cs-h2, .text-cs-h3, .text-cs-section) {
     font-family: var(--font-cs-ja);
-    font-weight: 500;
+    font-weight: 400;
     line-height: var(--leading-cs-ja-heading);
     letter-spacing: var(--tracking-cs-ja-heading);
   }

@@ -4,10 +4,8 @@ import { Globe } from "@lucide/astro";
 
 const pathname = Astro.url.pathname;
 const isJapanese = pathname === "/jp" || pathname.startsWith("/jp/");
-const currentLanguage = isJapanese ? "日本語" : "English";
-const anotherLanguage = isJapanese ? "English" : "日本語";
-const currentLanguageCode = isJapanese ? "ja" : "en";
-const anotherLanguageCode = isJapanese ? "en" : "ja";
+const currentLanguage = isJapanese ? "JP" : "EN";
+const anotherLanguage = isJapanese ? "EN" : "JP";
 const anotherLanguagePath = isJapanese
     ? pathname.replace(/^\/jp(?=\/|$)/, "") || "/"
     : `/jp${pathname === "/" ? "" : pathname}`;
@@ -21,25 +19,24 @@ const anotherLanguagePath = isJapanese
         aria-expanded="false"
         aria-controls="another-lang"
     >
-        <Globe class="h-5 w-5 shrink-0" aria-hidden="true" />
-        <span
-            lang={currentLanguageCode}
-            class:list={currentLanguageCode === "en" ? "font-heading" : "font-ja-body"}
-        >{currentLanguage}</span><span class="language-arrow"><MyArrowDown /></span>
+        <Globe class="h-5 w-5 shrink-0" stroke-width={1} aria-hidden="true" />
+        <span class="font-heading underline underline-offset-4 w-[2ch]">{currentLanguage}</span><span class="language-arrow"><MyArrowDown /></span>
     </button>
 
     <div
         id="another-lang"
-        class="absolute left-7 top-full z-10 pt-0.5"
+        class="absolute left-7 top-full z-10 pt-1.5"
         hidden
     >
+
+<!-- 
+    クリック領域の拡大
+    p-3：クリック領域を四方向に12px拡大
+    -m-3：余白を相殺し、文字の表示位置を維持 
+-->
         <a
             href={anotherLanguagePath}
-            lang={anotherLanguageCode}
-            class:list={[
-                "block whitespace-nowrap rounded-md text-foreground transition-colors hover:text-accent",
-                anotherLanguageCode === "en" ? "font-heading" : "font-ja-body",
-            ]}
+            class="-m-3 block whitespace-nowrap p-3 font-heading text-foreground transition-colors hover:text-accent hover:underline"
         >
             {anotherLanguage}
         </a>
