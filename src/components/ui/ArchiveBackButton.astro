@@ -1,0 +1,19 @@
+---
+import { ArrowLeft } from "@lucide/astro";
+import GlassPill from "./GlassPill.astro";
+
+const isJapanese = Astro.url.pathname === "/jp" || Astro.url.pathname.startsWith("/jp/");
+const href = isJapanese ? "/jp/archive" : "/archive";
+const label = isJapanese ? "一覧に戻る" : "Back to archive";
+---
+
+<div class="mx-auto flex w-full max-w-360 justify-center px-8 pt-12 md:pt-16">
+    <GlassPill
+        href={href}
+        aria-label={label}
+        className="py-2"
+    >
+        <ArrowLeft slot="before" size={16} aria-hidden="true" />
+        {label}
+    </GlassPill>
+</div>

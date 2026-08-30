@@ -11,15 +11,17 @@ const projectsHref = isJapanese ? "/jp#projects" : "/#projects";
 const aboutHref = isJapanese ? "/jp/about" : "/about";
 const archiveHref = isJapanese ? "/jp/archive" : "/archive";
 const isAboutPage = localizedPathname === "/about";
-const isArchivePage = localizedPathname === "/archive";
+const isArchivePage = [
+    "/archive",
+    "/xeno",
+    "/stone-and-honey",
+].includes(localizedPathname);
 const isProjectsPage = [
     "/",
     "/ukg",
     "/tastebuds",
     "/billow",
     "/store-map",
-    "/xeno",
-    "/stone-and-honey",
 ].includes(localizedPathname);
 ---
 

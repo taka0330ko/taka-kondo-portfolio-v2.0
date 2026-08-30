@@ -1,8 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import BreadCrumb from "../components/ui/BreadCrumb.astro";
 import Card from "../components/ui/Card.astro";
+import ArchiveBackButton from "../components/ui/ArchiveBackButton.astro";
 import { projects } from "../data/projects";
+import { homeJa } from "../content/ja/home";
+import { xenoJa, xenoJaMeta } from "../content/ja/xeno";
 
 //Images
 import HeroImage from "../assets/images/projects/xeno/Hero-image.jpg";
@@ -10,54 +12,69 @@ import AppMockUp from "../assets/images/projects/xeno/App-Mockup.jpg";
 import TypoColor from "../assets/images/projects/xeno/Typiography-Color.jpg";
 import XenoThumbnail from "../assets/images/projects/xeno/xeno-thumbnail.jpg";
 import { Image } from "astro:assets";
+
+const isJapanese = Astro.url.pathname === "/jp/xeno";
+const t = (text: string) => isJapanese ? (xenoJa[text] ?? text) : text;
+
+const relatedProjects = projects
+    .filter((project) =>
+        ["/ukg", "/tastebuds", "/billow"].includes(project.href) &&
+        project.href !== "/xeno"
+    )
+    .slice(0, 2)
+    .map((project) => isJapanese
+        ? {
+            ...project,
+            ...homeJa.projects[project.slug],
+            href: `/jp${project.href}`,
+        }
+        : project
+    );
 ---
 
-<Layout>
-    <main class="px-8 pt-32 pb-24 md:pt-40 md:pb-32">
+<Layout title={isJapanese ? xenoJaMeta.title : undefined} description={isJapanese ? xenoJaMeta.description : undefined}>
+    <main class:list={["px-8 pt-20 pb-24 md:pb-32", { "case-study-ja": isJapanese }]}>
         <section class="mx-auto flex max-w-360 flex-col gap-20 md:gap-28">
-            <div class="grid gap-10 md:grid-cols-12 md:items-end">
+            <Image
+                src={HeroImage}
+                alt="XENO activewear ecommerce app hero image"
+                class="aspect-video w-full max-w-none pointer-events-none"
+            />
+
+            <div class="grid gap-10 md:grid-cols-12 md:items-start">
                 <div class="md:col-span-8">
-                    <!-- <BreadCrumb>XENO</BreadCrumb> -->
                     <h1 class="max-w-220">
-                        XENO redefines activewear shopping with AI
-                        personalization and seamless recommendations.
+                        {t("XENO redefines activewear shopping with AI personalization and seamless recommendations.")}
                     </h1>
                 </div>
                 <div class="md:col-span-4 md:flex md:justify-end">
                     <dl class="grid gap-4 border-l border-accent pl-6 md:min-w-64">
                         <div class="grid gap-1">
                             <dt class="text-caption uppercase tracking-wide text-body-default">
-                                Industry
+                                {t("Industry")}
                             </dt>
                             <dd class="text-title font-medium text-heading-default">
-                                Ecommerce
+                                {t("Ecommerce")}
                             </dd>
                         </div>
                         <div class="grid gap-1">
                             <dt class="text-caption uppercase tracking-wide text-body-default">
-                                Category
+                                {t("Category")}
                             </dt>
                             <dd class="text-title font-medium text-heading-default">
-                                Mobile App
+                                {t("Mobile App")}
                             </dd>
                         </div>
                     </dl>
                 </div>
             </div>
 
-            <Image
-                src={HeroImage}
-                alt="XENO activewear ecommerce app hero image"
-                class="w-full rounded-lg"
-            />
 
             <div class="grid gap-8 md:grid-cols-2 md:items-start">
                 <div class="flex flex-col gap-6">
-                    <h2>Designed for smarter movement.</h2>
+                    <h2>{t("Designed for smarter movement.")}</h2>
                     <p>
-                        Discover, match, and shop activewear through a smarter,
-                        more personalized experience designed to fit your
-                        movement, preferences, and lifestyle.
+                        {t("Discover, match, and shop activewear through a smarter, more personalized experience designed to fit your movement, preferences, and lifestyle.")}
                     </p>
                 </div>
                 <Image
@@ -75,11 +92,9 @@ import { Image } from "astro:assets";
 
             <div class="grid gap-8 md:grid-cols-12 md:items-center">
                 <div class="md:col-span-4">
-                    <h2>Personalized from first tap.</h2>
+                    <h2>{t("Personalized from first tap.")}</h2>
                     <p class="mt-6">
-                        From the first tap, XENO understands your preferences
-                        and helps you discover the right activewear through
-                        personalized recommendations and a seamless experience.
+                        {t("From the first tap, XENO understands your preferences and helps you discover the right activewear through personalized recommendations and a seamless experience.")}
                     </p>
                 </div>
                 <Image
@@ -90,20 +105,15 @@ import { Image } from "astro:assets";
             </div>
         </section>
 
+        <ArchiveBackButton />
+
         <section class="pt-24 md:pt-32">
-            <h2 class="text-center p-16">Other Projects</h2>
+            <h2 class="text-center p-16">{t("Other Projects")}</h2>
             <div
                 class="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-4 max-w-400 mx-auto"
             >
                 {
-                    projects
-                        .filter(
-                            (project) =>
-                                ["/ukg", "/tastebuds", "/billow"].includes(
-                                    project.href,
-                                ) && project.href !== "/xeno",
-                        )
-                        .slice(0, 2)
+                    relatedProjects
                         .map((project) => {
                             return (
                                 <Card

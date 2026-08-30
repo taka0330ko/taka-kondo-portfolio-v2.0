@@ -11,6 +11,11 @@ import type { ArchiveContent } from "../../content/archive.types";
 
 interface Props { content: ArchiveContent }
 const { content } = Astro.props;
+const isJapanese = Astro.url.pathname === "/jp/archive";
+const localizedArchive = archive.map((item) => ({
+    ...item,
+    href: isJapanese && item.href.startsWith("/") ? `/jp${item.href}` : item.href,
+}));
 ---
 
 <main>
@@ -24,7 +29,7 @@ const { content } = Astro.props;
         </div>
     </section>
     <section id="archive-main" class="pt-64 md:pt-84 pb-24">
-        <div class="archive-main-inner"><ArchiveMasonryGrid archive={archive} /></div>
+        <div class="archive-main-inner"><ArchiveMasonryGrid archive={localizedArchive} /></div>
     </section>
     <section class="flex flex-col justify-center items-center my-40">
         <CopyEmail copiedLabel={content.contact.copiedLabel} />

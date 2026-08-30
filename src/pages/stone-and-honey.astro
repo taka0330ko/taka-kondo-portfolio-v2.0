@@ -1,48 +1,75 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import BreadCrumb from "../components/ui/BreadCrumb.astro";
 import Card from "../components/ui/Card.astro";
+import ArchiveBackButton from "../components/ui/ArchiveBackButton.astro";
 import { projects } from "../data/projects";
+import { homeJa } from "../content/ja/home";
+import {
+    stoneAndHoneyJa,
+    stoneAndHoneyJaMeta,
+} from "../content/ja/stone-and-honey";
 
 //Images
-import HeroImage from "../assets/images/projects/stone-and-honey/Hero-image.jpg";
-import AppMockUp from "../assets/images/projects/stone-and-honey/Mockup-items.jpg";
-import JarMockup from "../assets/images/projects/stone-and-honey/Mockup-jar.jpg";
-import TrackMockup from "../assets/images/projects/stone-and-honey/MOckup-track.jpg";
-import MoodBoard from "../assets/images/projects/stone-and-honey/Moad-board.jpg";
-import LogoSheet from "../assets/images/projects/stone-and-honey/logos.jpg";
-import PackagingSlide from "../assets/images/projects/stone-and-honey/Slide 16_9 - 33.jpg";
-import TypoColor from "../assets/images/projects/stone-and-honey/typo-color.jpg";
+import HeroImage from "../assets/images/projects/stone-and-honey/hero.webp";
+import PackagingDisplay from "../assets/images/projects/stone-and-honey/packaging-display.webp";
+import CustomerHoldingJar from "../assets/images/projects/stone-and-honey/customer-holding-jar.webp";
+import BrandWords from "../assets/images/projects/stone-and-honey/brand-words.webp";
+import MoodBoard from "../assets/images/projects/stone-and-honey/mood-board.webp";
+import TypographyColor from "../assets/images/projects/stone-and-honey/typography-color.webp";
+import LogoDirection1 from "../assets/images/projects/stone-and-honey/logo-direction-1.webp";
+import LogoDirection2 from "../assets/images/projects/stone-and-honey/logo-direction-2.webp";
+import LogoDirection3 from "../assets/images/projects/stone-and-honey/logo-direction-3.webp";
+import FinalLogoDesign from "../assets/images/projects/stone-and-honey/final-logo-design.webp";
+import MerchandiseMockup from "../assets/images/projects/stone-and-honey/merchandise-mockup.webp";
 import { Image } from "astro:assets";
+
+const isJapanese = Astro.url.pathname === "/jp/stone-and-honey";
+const t = (text: string) => isJapanese ? (stoneAndHoneyJa[text] ?? text) : text;
+
+const relatedProjects = projects
+    .filter((project) =>
+        ["/ukg", "/tastebuds", "/billow"].includes(project.href) &&
+        project.href !== "/stone-and-honey"
+    )
+    .slice(0, 2)
+    .map((project) => isJapanese
+        ? {
+            ...project,
+            ...homeJa.projects[project.slug],
+            href: `/jp${project.href}`,
+        }
+        : project
+    );
 ---
 
-<Layout>
-    <main class="px-8 pt-32 pb-24 md:pt-40 md:pb-32">
+<Layout title={isJapanese ? stoneAndHoneyJaMeta.title : undefined} description={isJapanese ? stoneAndHoneyJaMeta.description : undefined}>
+    <main class:list={["px-8 pt-20 pb-24 md:pb-32", { "case-study-ja": isJapanese }]}> 
         <section class="mx-auto flex max-w-360 flex-col gap-20 md:gap-28">
-            <div class="grid gap-10 md:grid-cols-12 md:items-end">
+            <Image
+                src={HeroImage}
+                alt="Stone & Honey brand presentation hero image"
+                class="aspect-video w-full max-w-none pointer-events-none"
+            />
+
+            <div class="grid gap-10 md:grid-cols-12 md:items-start">
                 <div class="md:col-span-8">
-                    <!-- <BreadCrumb>Stone & Honey</BreadCrumb> -->
                     <h1 class="max-w-220">
-                        Stone & Honey crafts clean, transparent nut butters from
-                        pure ingredients.
+                        {t("The branding challenge behind a nut butter brand.")}
                     </h1>
+                    <p class="mt-6">
+                        {t("The brief was simple: let the ingredients speak for themselves. No added sugar or oil — just the natural flavor of the nuts. Through transparent sourcing and seasonal blends, the goal was a brand trusted by people who care about what's inside the jar.")}
+                    </p>
                 </div>
                 <div class="md:col-span-4 md:flex md:justify-end">
                     <dl class="grid gap-4 border-l border-accent pl-6 md:min-w-64">
-                        <div class="grid gap-1">
+                        <div class="grid gap-2">
                             <dt class="text-caption uppercase tracking-wide text-body-default">
-                                Industry
+                                {t("Tools Used")}
                             </dt>
-                            <dd class="text-title font-medium text-heading-default">
-                                Food & Beverage
-                            </dd>
-                        </div>
-                        <div class="grid gap-1">
-                            <dt class="text-caption uppercase tracking-wide text-body-default">
-                                Category
-                            </dt>
-                            <dd class="text-title font-medium text-heading-default">
-                                Branding
+                            <dd class="flex items-center gap-2" aria-label="Photoshop, Illustrator, and Dimension">
+                                <span class="tool-badge tool-badge--ps">Ps</span>
+                                <span class="tool-badge tool-badge--ai">Ai</span>
+                                <span class="tool-badge tool-badge--dn">Dn</span>
                             </dd>
                         </div>
                     </dl>
@@ -50,88 +77,101 @@ import { Image } from "astro:assets";
             </div>
 
             <Image
-                src={HeroImage}
-                alt="Stone & Honey brand presentation hero image"
+                src={PackagingDisplay}
+                alt="Stone & Honey jar packaging displayed in a branded countertop box"
                 class="w-full rounded-lg"
             />
 
-            <div class="grid gap-8 md:grid-cols-2 md:items-start">
-                <div class="flex flex-col gap-6">
-                    <h2>Natural, simple, honest.</h2>
-                    <p>
-                        Made with carefully sourced ingredients and nothing unnecessary, our products focus on purity, transparency, and natural flavor.
-                    </p>
-                </div>
+            <div class="grid gap-8 md:grid-cols-12 md:items-start">
+                <p class="md:col-span-8">
+                    {t("The target audience is health-conscious men and women aged 25 to 50. Before buying, they check the ingredients, sourcing, and process, valuing purity, honest craftsmanship, and real quality over price.")}
+                </p>
+                <Image
+                    src={CustomerHoldingJar}
+                    alt="Customer reading the label on a Stone & Honey jar"
+                    class="w-full max-w-60 rounded-lg md:col-span-4 md:col-start-9 md:justify-self-end"
+                />
+            </div>
+
+            <div class="flex flex-col gap-8">
+                <h2>{t("Keywords")}</h2>
+                <Image
+                    src={BrandWords}
+                    alt="Brand word map: authentic, natural, minimal, transparent, pure, handcrafted, earthy, simplicity, honest, sincere"
+                    class="w-full rounded-lg"
+                />
+            </div>
+
+            <div class="flex flex-col gap-8">
+                <h2>{t("Mood board")}</h2>
                 <Image
                     src={MoodBoard}
                     alt="Stone & Honey mood board"
-                    class="w-full rounded-lg"
+                    class="w-full max-w-160 mx-auto rounded-lg"
                 />
             </div>
 
-            <div class="grid gap-8">
-                <Image
-                    src={TypoColor}
-                    alt="Stone & Honey typography and color system"
-                    class="w-full rounded-lg"
-                />
-                <Image
-                    src={LogoSheet}
-                    alt="Stone & Honey logo variations"
-                    class="w-full rounded-lg"
-                />
-            </div>
+            <Image
+                src={TypographyColor}
+                alt="Stone & Honey typography (Josefin Slab, Archivo) and color palette"
+                class="w-full rounded-lg"
+            />
 
-            <div class="grid gap-8 md:grid-cols-2">
-                <Image
-                    src={JarMockup}
-                    alt="Stone & Honey jar packaging mockup"
-                    class="w-full rounded-lg"
-                />
-                <Image
-                    src={AppMockUp}
-                    alt="Stone & Honey product items mockup"
-                    class="w-full rounded-lg"
-                />
-            </div>
-
-            <div class="grid gap-8 md:grid-cols-12 md:items-center">
-                <div class="md:col-span-4">
-                    <h2>Made to feel grounded.</h2>
-                    <p class="mt-6">
-                        Designed to bring you back to what matters, with simple ingredients and a naturally honest approach.
-                    </p>
-                </div>
-                <div class="grid gap-8 md:col-span-8">
-                    <Image
-                        src={PackagingSlide}
-                        alt="Stone & Honey packaging layout"
-                        class="w-full rounded-lg"
-                    />
-                    <Image
-                        src={TrackMockup}
-                        alt="Stone & Honey brand touchpoint mockup"
-                        class="w-full rounded-lg"
-                    />
+            <div class="flex flex-col gap-8">
+                <h2>{t("Logo directions")}</h2>
+                <div class="mx-auto flex w-full max-w-3xl flex-col gap-8">
+                    <div class="grid grid-cols-[1.5rem_minmax(0,1fr)] items-start gap-6">
+                        <span class="pt-1 text-title text-body-default">1</span>
+                        <Image
+                            src={LogoDirection1}
+                            alt="Logo direction 1: candle icon mark with Stone & Honey wordmark"
+                            class="w-full max-w-2xl rounded-lg"
+                        />
+                    </div>
+                    <div class="grid grid-cols-[1.5rem_minmax(0,1fr)] items-start gap-6">
+                        <span class="pt-1 text-title text-body-default">2</span>
+                        <Image
+                            src={LogoDirection2}
+                            alt="Logo direction 2: mountain line mark with Stone & Honey wordmark"
+                            class="w-full max-w-2xl rounded-lg"
+                        />
+                    </div>
+                    <div class="grid grid-cols-[1.5rem_minmax(0,1fr)] items-start gap-6">
+                        <span class="pt-1 text-title text-body-default">3</span>
+                        <Image
+                            src={LogoDirection3}
+                            alt="Logo direction 3: ST monogram grid mark with Stone & Honey wordmark"
+                            class="w-full max-w-2xl rounded-lg"
+                        />
+                    </div>
                 </div>
             </div>
 
+            <div class="flex flex-col gap-8">
+                <h2>{t("Final design")}</h2>
+                <Image
+                    src={FinalLogoDesign}
+                    alt="Final Stone & Honey logo system: wordmark and SH monogram across light and dark backgrounds"
+                    class="w-full rounded-lg"
+                />
+            </div>
+
+            <Image
+                src={MerchandiseMockup}
+                alt="Stone & Honey merchandise mockup: tote bag, cap, and jars"
+                class="w-full max-w-200 mx-auto rounded-lg"
+            />
         </section>
 
+        <ArchiveBackButton />
+
         <section class="pt-24 md:pt-32">
-            <h2 class="text-center p-16">Other Projects</h2>
+            <h2 class="text-center p-16">{t("Other Projects")}</h2>
             <div
                 class="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-4 max-w-400 mx-auto"
             >
                 {
-                    projects
-                        .filter(
-                            (project) =>
-                                ["/ukg", "/tastebuds", "/billow"].includes(
-                                    project.href,
-                                ) && project.href !== "/stone-and-honey",
-                        )
-                        .slice(0, 2)
+                    relatedProjects
                         .map((project) => {
                             return (
                                 <Card
@@ -148,3 +188,32 @@ import { Image } from "astro:assets";
         </section>
     </main>
 </Layout>
+
+<style>
+    .tool-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 0.25rem;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+    }
+
+    .tool-badge--ps {
+        background-color: #0c2436;
+        color: #4fb6f5;
+    }
+
+    .tool-badge--ai {
+        background-color: #3b0a0a;
+        color: #f79a1e;
+    }
+
+    .tool-badge--dn {
+        background-color: #0b3d0b;
+        color: #3edb53;
+    }
+</style>
