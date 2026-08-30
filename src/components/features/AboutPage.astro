@@ -163,7 +163,14 @@ const { content } = Astro.props;
     font-size: clamp(1.125rem, 2vw, 1.75rem);
     line-height: 1.35;
   }
-
+  p:lang(ja) {
+    margin-top: 1.5rem;
+    color: var(--text-body-default);
+    font-size: clamp(1.0625rem, 1.4vw, 1.125rem);
+    letter-spacing:0.065em;;
+    line-height: 1.9;
+    font-weight: 300;
+}
   .about-my-pic {
     display: flex;
     align-items: center;
