@@ -1028,8 +1028,8 @@ const storeMapSections = [
     // width to close the remaining gap, which also lets it grow bigger on
     // wide monitors instead of stopping at a fixed max-width.
     function bleedToViewportEdge() {
-        if (window.location.pathname.replace(/\/$/, "") !== "/store-map")
-            return;
+        const pathname = window.location.pathname.replace(/\/$/, "");
+        if (pathname !== "/store-map" && pathname !== "/jp/store-map") return;
 
         document
             .querySelectorAll<HTMLElement>(".js-bleed-right")
