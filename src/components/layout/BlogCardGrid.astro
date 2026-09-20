@@ -1,0 +1,55 @@
+---
+import BlogCard from "../ui/BlogCard.astro";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+    posts: {
+        href: string;
+        title: string;
+        description: string;
+        date: string;
+        cover?: ImageMetadata;
+        coverAlt?: string;
+        coverVideo?: string;
+        coverVideoFallback?: string;
+        transitionKey: string;
+    }[];
+    emptyLabel: string;
+}
+
+const { posts, emptyLabel } = Astro.props;
+---
+
+{
+    posts.length === 0 ? (
+        <p class="blog-grid-empty">{emptyLabel}</p>
+    ) : (
+        <div class="blog-grid">
+            {posts.map((post) => <BlogCard {...post} />)}
+        </div>
+    )
+}
+
+<style>
+    .blog-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+    }
+
+    .blog-grid-empty {
+        color: var(--text-body-default);
+    }
+
+    @media (width >= 640px) {
+        .blog-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (width >= 1024px) {
+        .blog-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+</style>

@@ -1,0 +1,70 @@
+/* ========================================
+   Fonts
+======================================== */
+@font-face {
+  font-family: "Satoshi";
+  src: url("../assets/fonts/Satoshi-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("../assets/fonts/GeneralSans-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@layer base {
+  /* Typography */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--text-heading-default);
+    line-height: 1.1;
+    /* text-wrap: balance; */
+    font-family: var(--font-heading);
+  }
+
+  h1 {
+    @apply text-hero;
+  }
+
+  h2 {
+    @apply text-display;
+  }
+
+  h3 {
+    @apply text-title font-medium;
+  }
+
+  h4 {
+    @apply text-subtitle;
+  }
+
+  p {
+    text-wrap: pretty;
+    font-family: var(--font-body);
+    @apply text-body;
+  }
+}
+
+@layer components {
+  .text-about-heading {
+    @apply text-ab-heading;
+    letter-spacing: 6px;
+    font-weight: 300;
+  }
+
+  .text-about-heading::first-letter {
+    @apply text-ab-heading-capital;
+  }
+
+  .text-about-body {
+    @apply text-ab-body;
+  }
+}

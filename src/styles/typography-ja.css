@@ -1,0 +1,24 @@
+/* Japanese typography overrides */
+@layer base {
+  :lang(ja) {
+    font-family: var(--font-japanese-body);
+    font-feature-settings: "palt" 1;
+    font-kerning: normal;
+  }
+
+  :lang(ja):is(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--font-japanese-heading);
+  }
+
+  h1:lang(ja) {
+    @apply text-cs-ja-hero;
+  }
+
+  h2:lang(ja) {
+    @apply text-ja-display;
+  }
+
+  p:lang(ja) {
+    @apply text-ja-body;
+  }
+}

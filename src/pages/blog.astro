@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import BlogPage from "../components/features/BlogPage.astro";
+import { blogEn } from "../content/en/blog";
+
+const entries = await getCollection(
+  "blog",
+  ({ data }) => data.locale === "en" && (import.meta.env.PROD ? !data.draft : true),
+);
+entries.sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+
+const posts = entries.map((entry) => ({
+  transitionKey: entry.id.replace(/^en\//, "").replace(/[^a-zA-Z0-9_-]/g, "-"),
+  href: `/blog/${entry.id.replace(/^en\//, "")}`,
+  title: entry.data.title,
+  description: entry.data.description,
+  date: entry.data.publishedAt.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
+  cover: entry.data.cover,
+  coverAlt: entry.data.coverAlt,
+  coverVideo: entry.data.coverVideo,
+  coverVideoFallback: entry.data.coverVideoFallback,
+}));
+---
+
+<Layout title={blogEn.meta.title} description={blogEn.meta.description}>
+    <BlogPage content={blogEn} posts={posts} />
+</Layout>

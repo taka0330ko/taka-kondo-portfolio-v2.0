@@ -37,6 +37,7 @@ const {
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:image" content="/og-image.png" />
+		<ClientRouter />
 
 		<!-- Google Analytics (GA4) -->
 		{enableAnalytics && (
@@ -84,7 +85,6 @@ const {
 		</script>
 	</head>
 	<body class="min-h-dvh">
-		<ClientRouter />
 		<GridBackGround />
 		<SiteHeader />
 		<slot />

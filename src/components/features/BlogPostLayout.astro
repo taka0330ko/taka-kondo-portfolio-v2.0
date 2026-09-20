@@ -1,0 +1,215 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+    title: string;
+    date: string;
+    tags: string[];
+    cover?: ImageMetadata;
+    coverAlt?: string;
+    coverVideo?: string;
+    coverVideoFallback?: string;
+    transitionKey: string;
+    backHref: string;
+    backLabel: string;
+}
+
+const { title, date, tags, cover, coverAlt, coverVideo, coverVideoFallback, transitionKey, backHref, backLabel } = Astro.props;
+---
+
+<article class="blog-post grid-container">
+    <div class="blog-post-inner col-span-full">
+        <header class="blog-post-header">
+            <time class="blog-post-date">{date}</time>
+            <h1 class="blog-post-title">{title}</h1>
+            {tags.length > 0 && (
+                <ul class="blog-post-tags">
+                    {tags.map((tag) => <li>{tag}</li>)}
+                </ul>
+            )}
+        </header>
+        {cover && (
+            <figure class="blog-post-cover">
+                <Image
+                    src={cover}
+                    alt={coverAlt ?? ""}
+                    style={`view-transition-name: blog-cover-${transitionKey};`}
+                />
+                {coverVideo && (
+                    <video class="blog-post-cover-video" muted autoplay loop playsinline preload="metadata" aria-hidden="true">
+                        <source src={coverVideo} type="video/webm" />
+                        {coverVideoFallback && <source src={coverVideoFallback} type="video/mp4" />}
+                    </video>
+                )}
+            </figure>
+        )}
+        <div class="blog-post-content">
+            <slot />
+        </div>
+        <a class="blog-post-back mt-16" href={backHref}>&larr; {backLabel}</a>
+    </div>
+</article>
+
+<script define:vars={{ backHref }}>
+    document.addEventListener("astro:before-preparation", (event) => {
+        if (event.to.pathname === backHref) {
+            document.querySelector(".blog-post-cover img")?.style.setProperty("view-transition-name", "none");
+        }
+    });
+</script>
+
+<style>
+    .blog-post {
+        padding-block: clamp(6rem, 10vh, 9rem) clamp(3rem, 6vh, 5rem);
+    }
+
+    .blog-post-inner {
+        max-width: 42rem;
+        min-width: 0;
+        margin-inline: auto;
+    }
+
+    .blog-post-back {
+        display: flex;
+        justify-content: end;
+        color: var(--text-body-default);
+        text-decoration: none;
+    }
+
+    .blog-post-back:hover {
+        text-decoration: underline;
+    }
+
+    .blog-post-header {
+        margin-top: 1.5rem;
+    }
+
+    .blog-post-date {
+        display: block;
+        color: var(--text-body-default);
+        font-size: 0.875rem;
+    }
+
+    .blog-post-title {
+        margin-top: 0.5rem;
+        font-family: var(--font-satoshi), sans-serif;
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 400;
+        line-height: 1.1;
+        color: var(--text-heading-default);
+    }
+
+    .blog-post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        list-style: none;
+        padding: 0;
+    }
+
+    .blog-post-tags li {
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        background: var(--brand-gray-100, #e6e6e6);
+        color: var(--text-body-default);
+        font-size: 0.75rem;
+    }
+
+    .blog-post-cover {
+        position: relative;
+        margin-top: 2rem;
+        overflow: hidden;
+    }
+
+    .blog-post-cover :global(img) {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .blog-post-cover-video {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        animation: reveal-cover-video 240ms ease-out 180ms forwards;
+    }
+
+    @keyframes reveal-cover-video {
+        to { opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .blog-post-cover-video {
+            animation: none;
+            opacity: 1;
+        }
+    }
+
+    .blog-post-content {
+        margin-top: 2rem;
+        color: var(--text-body-default);
+        line-height: 1.8;
+    }
+
+    .blog-post-content :global(h2),
+    .blog-post-content :global(h3) {
+        margin-top: 2em;
+        margin-bottom: 0.5em;
+        color: var(--text-heading-default);
+        font-family: var(--font-satoshi), sans-serif;
+    }
+
+    .blog-post-content :global(p) {
+        margin-top: 1em;
+    }
+
+    .blog-post-content :global(a) {
+        color: var(--text-heading-default);
+    }
+
+    .blog-post-content :global(ul),
+    .blog-post-content :global(ol) {
+        margin-top: 1em;
+        padding-left: 1.5em;
+    }
+
+    .blog-post-content :global(img) {
+        width: 100%;
+        height: auto;
+    }
+
+    .blog-post-content :global(pre) {
+        margin-top: 1em;
+        padding: 1rem;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .blog-post-content :global(code) {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.875em;
+        overflow-wrap: break-word;
+    }
+
+    .blog-post-content :global(pre code) {
+        overflow-wrap: normal;
+    }
+
+    @media (width < 480px) {
+        .blog-post-title {
+            font-size: clamp(1.75rem, 9vw, 2.5rem);
+        }
+
+        .blog-post-content :global(pre) {
+            padding: 0.75rem;
+            font-size: 0.8125rem;
+        }
+    }
+</style>

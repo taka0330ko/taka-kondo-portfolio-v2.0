@@ -10,12 +10,14 @@ const localizedPathname = isJapanese
 const projectsHref = isJapanese ? "/jp#projects" : "/#projects";
 const aboutHref = isJapanese ? "/jp/about" : "/about";
 const archiveHref = isJapanese ? "/jp/archive" : "/archive";
+const blogHref = isJapanese ? "/jp/blog" : "/blog";
 const isAboutPage = localizedPathname === "/about";
 const isArchivePage = [
     "/archive",
     "/xeno",
     "/stone-and-honey",
 ].includes(localizedPathname);
+const isBlogPage = localizedPathname === "/blog";
 const isProjectsPage = [
     "/",
     "/ukg",
@@ -55,6 +57,16 @@ const isProjectsPage = [
         Archive
         <span
           class={`absolute bottom-0 left-0 h-px w-full rounded-full transition-opacity ${isArchivePage ? 'bg-accent opacity-100' : 'bg-accent opacity-0'}`}
+        ></span>
+      </a>
+
+      <a
+        href={blogHref}
+        class={`relative text-2xl pb-1 transition-colors ${isBlogPage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
+      >
+        Blog
+        <span
+          class={`absolute bottom-0 left-0 h-px w-full rounded-full transition-opacity ${isBlogPage ? 'bg-accent opacity-100' : 'bg-accent opacity-0'}`}
         ></span>
       </a>
       <div class="icons flex items-center gap-4">

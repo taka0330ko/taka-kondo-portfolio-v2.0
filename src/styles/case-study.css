@@ -1,0 +1,106 @@
+/* ========================================
+   Components Layer
+   Mainly css components for Case Study
+======================================== */
+
+@layer components {
+
+  .frame {
+    @apply inset-shadow-sm bg-frame border-[0.1px] border-white/50
+  }
+
+  /* Heading on project pages */
+  .heading-accent-bar {
+    /* heading with left accent bar */
+    @apply relative inline-block pl-3 before:absolute before:left-0 before:top-0 before:w-1 before:h-full before:bg-accent;
+  }
+
+  .caption-pill {
+    @apply inline-flex rounded-sm bg-heading-default px-2 py-1 text-cs-caption uppercase leading-none text-background
+  }
+
+  /* Timeline on project pages */
+  .timeline-number {
+    @apply flex items-center justify-center left-0 w-8 h-8 rounded-full border border-frame-ring bg-frame text-sm font-medium
+  }
+
+  .step {
+    @apply grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-[3rem_minmax(0,_1fr)]
+  }
+
+  .step::after {
+    content: "";
+    @apply hidden md:block absolute h-full border border-frame-ring w-0.5 -z-10 left-4
+  }
+
+  .step:last-child::after {
+    content: none;
+  }
+
+  .glass-card {
+    background-image: linear-gradient(to bottom right, var(--card-gradient-from), var(--card-gradient-to));
+    @apply border border-frame-ring rounded-lg shadow-lg p-4
+  }
+
+  .horizontal-scroll {
+    @apply overflow-x-auto overflow-y-hidden pb-3;
+    --horizontal-scroll-track: transparent;
+    --horizontal-scroll-thumb: color-mix(in oklab, var(--color-accent) 70%, transparent);
+    --horizontal-scroll-thumb-hover: color-mix(in oklab, var(--color-accent) 85%, transparent);
+    scrollbar-width: thin;
+    scrollbar-color: var(--horizontal-scroll-thumb) var(--horizontal-scroll-track);
+  }
+
+  .horizontal-scroll::-webkit-scrollbar {
+    height: 14px;
+  }
+
+  .horizontal-scroll::-webkit-scrollbar-track {
+    border-radius: 999px;
+    background: var(--horizontal-scroll-track);
+  }
+
+  .horizontal-scroll::-webkit-scrollbar-thumb {
+    border: 3px solid var(--horizontal-scroll-track);
+    border-radius: 999px;
+    background: var(--horizontal-scroll-thumb);
+  }
+
+  .horizontal-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--horizontal-scroll-thumb-hover);
+  }
+
+  .panel-button {
+    position: relative;
+    isolation: isolate;
+    background-image: linear-gradient(to bottom right,
+        var(--card-gradient-from),
+        var(--card-gradient-to));
+    @apply min-w-72 shrink-0 basis-72 lg:min-w-0 lg:basis-auto w-full text-left appearance-none border border-frame-ring rounded-lg shadow-lg p-4 cursor-pointer;
+  }
+
+  .panel-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-image: linear-gradient(to bottom right,
+        var(--card-active-gradient-from),
+        var(--card-active-gradient-to));
+    opacity: 0;
+    transition: opacity 240ms ease;
+  }
+
+  .panel-button:hover::before {
+    opacity: 1;
+  }
+
+  .panel-button.is-active {
+    background-image: linear-gradient(to bottom right,
+        var(--card-active-gradient-from),
+        var(--card-active-gradient-to));
+  }
+
+
+}

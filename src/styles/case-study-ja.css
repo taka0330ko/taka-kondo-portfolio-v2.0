@@ -1,0 +1,109 @@
+/* Language-specific case-study styles come after Tailwind's utility layer, so
+   they override shared utilities through the cascade without !important. */
+@layer case-study {
+
+  /* Japanese typography is scoped to Japanese case-study pages. */
+  .case-study-ja {
+    font-family: var(--font-cs-ja);
+    font-feature-settings: "palt" 1;
+    font-kerning: normal;
+  }
+
+  .case-study-ja > section:first-of-type h1 {
+    font-family: var(--font-cs-ja);
+    font-size: var(--text-cs-ja-hero);
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: var(--tracking-cs-ja-heading);
+  }
+
+  .case-study-ja :where(.text-cs-h1, .text-cs-h2, .text-cs-h3, .text-cs-section) {
+    font-family: var(--font-cs-ja);
+    font-weight: 400;
+    line-height: var(--leading-cs-ja-heading);
+    letter-spacing: var(--tracking-cs-ja-heading);
+  }
+
+  /* Keep Japanese case-study headings in the shared sans-serif typeface.
+     Explicitly English headings such as "Calendar" retain Satoshi. */
+  .case-study-ja :where(h1, h2, h3, h4, h5, h6):not(:lang(en)) {
+    font-family: var(--font-cs-ja);
+  }
+
+  .case-study-ja .text-cs-h1 { font-size: var(--text-cs-ja-h1); }
+  .case-study-ja .text-cs-h2 { font-size: var(--text-cs-ja-h2); }
+  .case-study-ja .text-cs-h3 { font-size: var(--text-cs-ja-h3); }
+  .case-study-ja .text-cs-section { font-size: var(--text-cs-ja-section); }
+
+  .case-study-ja :where(.text-cs-body, p:not(.caption-pill), li) {
+    font-family: var(--font-cs-ja);
+    font-size: var(--text-cs-ja-body);
+    font-weight: var(--weight-cs-ja-body);
+    line-height: var(--leading-cs-ja-body);
+    letter-spacing: var(--tracking-cs-ja-body);
+    line-break: strict;
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
+  }
+
+  .case-study-ja p:not(.caption-pill) {
+    max-inline-size: var(--measure-cs-ja-body);
+  }
+
+  /* Center Billow's Japanese copy blocks while keeping the text left-aligned. */
+  .billow-case-study.case-study-ja .text-box :where(h3, p:not(.caption-pill)) {
+    width: 100%;
+    max-inline-size: var(--measure-cs-ja-body);
+    margin-inline: auto;
+  }
+
+  .case-study-ja div:has(> .caption-pill) > :is(h2, h3, h4, p:not(.caption-pill)) {
+    margin-inline: auto;
+    max-inline-size: var(--measure-cs-ja-body);
+    width: 100%;
+  }
+
+  .case-study-ja div:has(> .caption-pill) > .caption-pill {
+    margin-inline-start: max(0px, calc((100% - var(--measure-cs-ja-body)) / 2));
+  }
+
+  .case-study-ja .cs-user-story {
+    width: 100%;
+    max-inline-size: var(--measure-cs-ja-body);
+    margin-inline: auto;
+  }
+
+  .case-study-ja .cs-copy-block {
+    width: 100%;
+    max-inline-size: var(--measure-cs-ja-body);
+    margin-inline: auto;
+  }
+
+  .case-study-ja article h3 {
+    font-family: var(--font-cs-ja);
+    font-weight: 500;
+    line-height: var(--leading-cs-ja-heading);
+    letter-spacing: var(--tracking-cs-ja-heading);
+  }
+
+  .case-study-ja p:not(.caption-pill) + p:not(.caption-pill) {
+    margin-top: var(--spacing-cs-ja-paragraph);
+  }
+
+  .case-study-ja .text-cs-caption {
+    font-family: var(--font-cs-ja);
+    font-size: var(--text-cs-ja-small);
+    line-height: 1.5;
+  }
+
+  .case-study-ja .caption-pill {
+    font-family: var(--font-general-sans), sans-serif;
+    font-size: var(--text-cs-caption);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: normal;
+    font-feature-settings: normal;
+    font-kerning: auto;
+  }
+
+}
