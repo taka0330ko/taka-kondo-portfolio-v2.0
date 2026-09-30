@@ -1,0 +1,11 @@
+---
+import { readFileSync } from "node:fs";
+
+const viewerPath = new URL("../../../public/panorama/blog-03/viewer.html", import.meta.url);
+const viewerHtml = readFileSync(viewerPath, "utf8").replace(
+  "<head>",
+  '<head><base href="/panorama/blog-03/">',
+);
+---
+
+<Fragment set:html={viewerHtml} />

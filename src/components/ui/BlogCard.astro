@@ -32,9 +32,9 @@ const { href, title, description, date, cover, coverAlt, coverVideo, coverVideoF
                 style={`view-transition-name: blog-cover-${transitionKey};`}
             />
         )}
-        {coverVideo && (
+        {(coverVideo || coverVideoFallback) && (
             <video class="blog-card-video" muted loop playsinline preload="none" aria-hidden="true">
-                <source data-src={coverVideo} type="video/webm" />
+                {coverVideo && <source data-src={coverVideo} type="video/webm" />}
                 {coverVideoFallback && <source data-src={coverVideoFallback} type="video/mp4" />}
             </video>
         )}

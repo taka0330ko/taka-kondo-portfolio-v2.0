@@ -36,9 +36,9 @@ const { title, date, tags, cover, coverAlt, coverVideo, coverVideoFallback, tran
                     alt={coverAlt ?? ""}
                     style={`view-transition-name: blog-cover-${transitionKey};`}
                 />
-                {coverVideo && (
+                {(coverVideo || coverVideoFallback) && (
                     <video class="blog-post-cover-video" muted autoplay loop playsinline preload="metadata" aria-hidden="true">
-                        <source src={coverVideo} type="video/webm" />
+                        {coverVideo && <source src={coverVideo} type="video/webm" />}
                         {coverVideoFallback && <source src={coverVideoFallback} type="video/mp4" />}
                     </video>
                 )}
@@ -65,7 +65,8 @@ const { title, date, tags, cover, coverAlt, coverVideo, coverVideoFallback, tran
     }
 
     .blog-post-inner {
-        max-width: 42rem;
+        width: min(100%, 42rem);
+        max-width: 100%;
         min-width: 0;
         margin-inline: auto;
     }
@@ -152,9 +153,20 @@ const { title, date, tags, cover, coverAlt, coverVideo, coverVideoFallback, tran
     }
 
     .blog-post-content {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
         margin-top: 2rem;
         color: var(--text-body-default);
         line-height: 1.8;
+        overflow-wrap: anywhere;
+    }
+
+    .blog-post-content :global(p),
+    .blog-post-content :global(figure),
+    .blog-post-content :global(picture) {
+        max-width: 100%;
+        min-width: 0;
     }
 
     .blog-post-content :global(h2),
@@ -173,6 +185,19 @@ const { title, date, tags, cover, coverAlt, coverVideo, coverVideoFallback, tran
         color: var(--text-heading-default);
     }
 
+    .blog-post-content :global(.blog-demo-link) {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+        color: var(--text-accent);
+        text-underline-offset: 0.25em;
+    }
+
+    .blog-post-content :global(.blog-demo-link:hover) {
+        opacity: 0.7;
+    }
+
     .blog-post-content :global(ul),
     .blog-post-content :global(ol) {
         margin-top: 1em;
@@ -180,8 +205,17 @@ const { title, date, tags, cover, coverAlt, coverVideo, coverVideoFallback, tran
     }
 
     .blog-post-content :global(img) {
+        display: block;
         width: 100%;
+        max-width: 100%;
         height: auto;
+    }
+
+    .blog-post-content :global(iframe) {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        border: 0;
     }
 
     .blog-post-content :global(pre) {
