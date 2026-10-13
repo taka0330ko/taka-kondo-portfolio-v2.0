@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import RippleEffectLogo from '../components/webGL/RippleEffectLogo';
-import HeroTextBlock from '../components/features/HeroTextBlock.astro';
+import HeroVideo from '../components/features/HeroVideo.astro';
 import CopyEmail from '../components/ui/CopyEmail.astro';
 import { projects } from '../data/projects';
 import MainProjectCard from '../components/ui/MainProjectCard.astro';
@@ -14,9 +14,7 @@ import { homeEn } from '../content/en/home';
 
 <Layout title={homeEn.meta.title} description={homeEn.meta.description}>
 <main>
-	<section class="home-hero">
-      <HeroTextBlock content={homeEn.hero}/>
-	</section>
+	<HeroVideo title={homeEn.meta.title} description={homeEn.meta.description} lang="en" />
 
   <section id="projects" class="max-w-350 mx-auto px-4 md:px-8" >
     <h2 class="pb-16 sr-only">Projects</h2>
@@ -73,17 +71,3 @@ import { homeEn } from '../content/en/home';
   </section>
 </main>
 </Layout>
-
-<style>
-  .home-hero {
-    min-height: 100svh;
-    padding: 6rem 1rem 3rem;
-  }
-
-  @media (width >= 768px) {
-    .home-hero {
-      min-height: 100svh;
-      padding: 5.5rem 2rem 3rem;
-    }
-  }
-</style>

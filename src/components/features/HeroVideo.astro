@@ -1,0 +1,136 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  lang?: "en" | "ja";
+}
+
+const { title, description, lang = "en" } = Astro.props;
+---
+
+<section class="video-hero" aria-labelledby="home-title">
+  <div class="sr-only">
+    <h1 id="home-title">{title}</h1>
+    <p>{description}</p>
+  </div>
+  <video
+    class="hero-video"
+    width="1280"
+    height="720"
+    poster="/videos/hero/hero-poster.jpg"
+    preload="metadata"
+    muted
+    loop
+    playsinline
+    aria-label={lang === "ja" ? "近藤嵩成のデザイン・開発紹介動画" : "Takanari Kondo design and development introduction"}
+  >
+    <source src="/videos/hero/hero-video.mp4" type="video/mp4" />
+    <p>{description}</p>
+  </video>
+</section>
+
+<style>
+  .video-hero {
+    --hero-header-height: 5rem;
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 100svh;
+    padding-top: var(--hero-header-height);
+    margin-bottom: clamp(4rem, 8vw, 8rem);
+    background: #000;
+    /* Continue the black backing beneath the offset bottom fade. */
+    box-shadow: 0 4rem 0 #000;
+  }
+
+  .video-hero::before,
+  .video-hero::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    height: clamp(4rem, 12svh, 9rem);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .video-hero::before {
+    top: 0;
+    background: linear-gradient(to bottom, var(--bg-default), transparent);
+  }
+
+  .video-hero::after {
+    bottom: -4rem;
+    background: linear-gradient(to top, var(--bg-default), transparent);
+  }
+
+  .hero-video {
+    width: min(100%, calc((100svh - var(--hero-header-height)) * 1.777778));
+    height: calc(100svh - var(--hero-header-height));
+    object-fit: contain;
+    object-position: center top;
+    background: #000;
+  }
+
+  .hero-video.has-side-bars {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+</style>
+
+<script>
+  const setupHeroVideo = () => {
+    const video = document.querySelector<HTMLVideoElement>(".hero-video");
+    if (!video) return;
+
+    const hero = video.closest<HTMLElement>(".video-hero");
+    if (!hero) return;
+
+    const header = document.querySelector<HTMLElement>("body > header");
+    const updateHeaderHeight = () => {
+      if (header) {
+        hero.style.setProperty("--hero-header-height", `${header.getBoundingClientRect().height}px`);
+      }
+    };
+    const headerObserver = new ResizeObserver(updateHeaderHeight);
+    if (header) headerObserver.observe(header);
+    updateHeaderHeight();
+
+    const updateSideFade = () => {
+      const ratio = video.videoWidth && video.videoHeight
+        ? video.videoWidth / video.videoHeight
+        : 16 / 9;
+      const hasSideBars = hero.clientWidth > video.clientHeight * ratio + 1;
+      video.classList.toggle("has-side-bars", hasSideBars);
+    };
+    const resizeObserver = new ResizeObserver(updateSideFade);
+    resizeObserver.observe(hero);
+    resizeObserver.observe(video);
+    video.addEventListener("loadedmetadata", updateSideFade);
+    updateSideFade();
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePlayback = () => {
+      video.autoplay = !reducedMotion.matches;
+      if (reducedMotion.matches) {
+        video.pause();
+      } else {
+        video.muted = true;
+        void video.play().catch(() => {
+          // Keep the poster visible when autoplay is blocked.
+        });
+      }
+    };
+
+    updatePlayback();
+    reducedMotion.addEventListener("change", updatePlayback);
+    document.addEventListener("astro:before-swap", () => {
+      video.pause();
+      resizeObserver.disconnect();
+      headerObserver.disconnect();
+      video.removeEventListener("loadedmetadata", updateSideFade);
+      reducedMotion.removeEventListener("change", updatePlayback);
+    }, { once: true });
+  };
+
+  document.addEventListener("astro:page-load", setupHeroVideo);
+</script>

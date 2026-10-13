@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import JapaneseHero from "../../components/features/JapaneseHero.astro";
+import HeroVideo from "../../components/features/HeroVideo.astro";
 import RippleEffectLogo from "../../components/webGL/RippleEffectLogo";
 import CopyEmail from "../../components/ui/CopyEmail.astro";
 import MainProjectCard from "../../components/ui/MainProjectCard.astro";
@@ -32,9 +32,7 @@ const localizedProjects = projects.map((project) => ({
   description={homeJa.meta.description}
 >
   <main>
-    <section class="home-hero">
-      <JapaneseHero content={homeJa.hero} />
-    </section>
+    <HeroVideo title={homeJa.meta.title} description={homeJa.meta.description} lang="ja" />
 
     <section id="projects" class="mx-auto max-w-350 px-4 md:px-8">
       <h2 class="sr-only pb-16">Projects</h2>
@@ -90,16 +88,3 @@ const localizedProjects = projects.map((project) => ({
     </section>
   </main>
 </Layout>
-
-<style>
-  .home-hero {
-    min-height: 100svh;
-    padding: 6rem 1rem 3rem;
-  }
-
-  @media (width >= 768px) {
-    .home-hero {
-      padding: 5.5rem 2rem 3rem;
-    }
-  }
-</style>
