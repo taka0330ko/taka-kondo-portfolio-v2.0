@@ -15,16 +15,16 @@ const { title, description, lang = "en" } = Astro.props;
   </div>
   <video
     class="hero-video"
-    width="1280"
-    height="720"
-    poster="/videos/hero/hero-poster.jpg"
+    width="1980"
+    height="1080"
+    poster="/videos/hero/hero-poster-v2.jpg"
     preload="metadata"
     muted
     loop
     playsinline
     aria-label={lang === "ja" ? "近藤嵩成のデザイン・開発紹介動画" : "Takanari Kondo design and development introduction"}
   >
-    <source src="/videos/hero/hero-video.mp4" type="video/mp4" />
+    <source src="/videos/hero/hero-video-v2.mp4" type="video/mp4" />
     <p>{description}</p>
   </video>
 </section>
@@ -64,7 +64,7 @@ const { title, description, lang = "en" } = Astro.props;
   }
 
   .hero-video {
-    width: min(100%, calc((100svh - var(--hero-header-height)) * 1.777778));
+    width: min(100%, calc((100svh - var(--hero-header-height)) * 1.833333));
     height: calc(100svh - var(--hero-header-height));
     object-fit: contain;
     object-position: center top;
@@ -98,7 +98,7 @@ const { title, description, lang = "en" } = Astro.props;
     const updateSideFade = () => {
       const ratio = video.videoWidth && video.videoHeight
         ? video.videoWidth / video.videoHeight
-        : 16 / 9;
+        : 1980 / 1080;
       const hasSideBars = hero.clientWidth > video.clientHeight * ratio + 1;
       video.classList.toggle("has-side-bars", hasSideBars);
     };
