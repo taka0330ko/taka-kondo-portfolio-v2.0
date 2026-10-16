@@ -32,15 +32,20 @@ const { title, description, lang = "en" } = Astro.props;
 <style>
   .video-hero {
     --hero-header-height: 5rem;
+    --hero-surface: #000;
     position: relative;
     display: grid;
     place-items: center;
-    min-height: 100svh;
+    width: 100%;
     padding-top: var(--hero-header-height);
     margin-bottom: clamp(4rem, 8vw, 8rem);
-    background: #000;
-    /* Continue the black backing beneath the offset bottom fade. */
-    box-shadow: 0 4rem 0 #000;
+    background: var(--hero-surface);
+    /* Continue the hero backing beneath the offset bottom fade. */
+    box-shadow: 0 4rem 0 var(--hero-surface);
+  }
+
+  :global(html.light) .video-hero {
+    --hero-surface: #303238;
   }
 
   .video-hero::before,
@@ -64,16 +69,21 @@ const { title, description, lang = "en" } = Astro.props;
   }
 
   .hero-video {
-    width: min(100%, calc((100svh - var(--hero-header-height)) * 1.833333));
-    height: calc(100svh - var(--hero-header-height));
+    --hero-side-mask: linear-gradient(#000, #000);
+    display: block;
+    width: 100%;
+    height: auto;
     object-fit: contain;
     object-position: center top;
-    background: #000;
+    background: var(--hero-surface);
+    -webkit-mask-image: var(--hero-side-mask), linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent);
+    mask-image: var(--hero-side-mask), linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
   }
 
   .hero-video.has-side-bars {
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    --hero-side-mask: linear-gradient(to right, transparent, #000 2%, #000 98%, transparent);
   }
 </style>
 

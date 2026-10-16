@@ -45,18 +45,18 @@ const { content } = Astro.props;
         <SquareRing class="about-ring about-ring-top-right" />
         <SquareRing class="about-ring about-ring-bottom-left" />
       </div>
-      <div class="col-start-4 col-span-6">
+      <div class:list={["col-start-4 col-span-6", {"about-vision": content.sections.whatIDo.title === "My Vision"}]}>
         <h2 class="text-about-heading mb-8">{content.sections.whatIDo.title}</h2>
-        <p class="text-ab-body">
-          {content.sections.whatIDo.body}
-        </p>
+        {content.sections.whatIDo.body.split("\n\n").map((paragraph) => (
+          <p class="text-ab-body">{paragraph}</p>
+        ))}
       </div>
-      <div class="col-start-4 col-span-6 mt-32">
-        <h2 class="text-about-heading mb-8">{content.sections.coreValue.title}</h2>
-        <p class="text-ab-body">
-          {content.sections.coreValue.body}
-        </p>
-      </div>
+      {content.sections.coreValue && (
+        <div class="col-start-4 col-span-6 mt-32">
+          <h2 class="text-about-heading mb-8">{content.sections.coreValue.title}</h2>
+          <p class="text-ab-body">{content.sections.coreValue.body}</p>
+        </div>
+      )}
       <div class="col-start-4 col-span-6 mt-32">
         <h2 class="text-about-heading mb-8">{content.sections.education.title}</h2>
         <div class="flex justify-between">
@@ -118,6 +118,19 @@ const { content } = Astro.props;
 </main>
 
 <style>
+  .about-vision h2,
+  .about-vision h2::first-letter {
+    font-family: var(--font-satoshi), sans-serif;
+  }
+
+  .about-vision h2::first-letter {
+    font-size: inherit;
+  }
+
+  .about-vision p + p {
+    margin-top: 1.5rem;
+  }
+
   #about-hero {
     min-height: 100svh;
     overflow: hidden;

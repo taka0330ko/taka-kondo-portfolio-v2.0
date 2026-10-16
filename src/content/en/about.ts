@@ -13,12 +13,8 @@ export const aboutEn = {
   },
   sections: {
     whatIDo: {
-      title: "What I do",
-      body: "I don't stop at Figma. I use code to turn my ideas into interactive prototypes, test them with real users, and improve the experience based on what I learn.",
-    },
-    coreValue: {
-      title: "My core value",
-      body: "Whether in design, development, or anything else I do, I value understanding the fundamentals and systems first, building strong foundations before moving forward.",
+      title: "My Vision",
+      body: "As a designer in this new era, I want to explore approaches beyond established conventions and improve the way we create as a team. Advances in AI are changing how we approach UI/UX and product design compared with when I first set out to enter this field. I see this change as an opportunity to expand what I can do as a designer. The journey from an idea in my head to something people can experience, respond to, and help me improve is becoming shorter.\n\nAs we gain more ways to create, it becomes even more important to consider what we should make and who we are making it for. By listening to users and observing their behavior, I want to understand what they need and how they feel, and keep exploring ways to improve their experience.\n\nI bring together graphic design, motion graphics, 3D modeling, and frontend knowledge to turn that understanding into experiences people can use.",
     },
     education: {
       title: "Education",

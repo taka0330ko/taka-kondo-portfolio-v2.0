@@ -13,7 +13,7 @@ export type AboutContent = {
       title: string;
       body: string;
     };
-    coreValue: {
+    coreValue?: {
       title: string;
       body: string;
     };
