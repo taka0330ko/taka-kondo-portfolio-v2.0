@@ -2,13 +2,13 @@ import type { HomeContent } from "../home.types";
 
 export const homeJa = {
   meta: {
-    title: "近藤嵩成 | UI/UXデザイナー・フロントエンド開発者",
+    title: "近藤嵩成 | プロダクトデザイナー",
     description:
-      "UI/UXデザインとフロントエンド開発に取り組む近藤嵩成のポートフォリオです。",
+      "プロダクトデザイナー・近藤嵩成のポートフォリオ。グラフィック、モーション、Web・UI/UXデザインとフロントエンドの知識を組み合わせ、より良いユーザー体験を形にします。",
   },
   hero: {
     name: "こんどう　たかなり",
-    role: "UI/UX Design | Front End Development",
+    role: "Product Design | Front End Development",
     emailAriaLabel: "メールを送る",
     projectsLabel: "プロジェクトを見る",
     projectsAriaLabel: "プロジェクトを見る",

@@ -2,13 +2,13 @@ import type { HomeContent } from "../home.types";
 
 export const homeEn = {
   meta: {
-    title: "Takanari Kondo | UI/UX Designer building with code",
-    description:
-      "Portfolio of Takanari Kondo, a frontend developer and UI/UX designer focused on building fast, accessible, and visually refined web experiences.",
+    title: "Takanari Kondo | Product Designer",
+description:
+  "Portfolio of Takanari Kondo, a product designer combining graphic design, motion, web and UI/UX design, and frontend knowledge to create better user experiences.",
   },
   hero: {
     name: "Taka",
-    role: "UI/UX Design | Front End Development",
+    role: "Product Designer",
     emailAriaLabel: "Send email",
     projectsLabel: "Go to Projects",
     projectsAriaLabel: "Go to Projects",
