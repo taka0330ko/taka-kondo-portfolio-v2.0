@@ -1,7 +1,6 @@
 import type { ImageMetadata } from "astro";
 import BillowThumbnail from "../assets/images/projects/billow/billow-tumbnail.png";
-import BillowVideo from "../assets/images/projects/billow/videos/billow-cover-video.webm";
-import BillowVideoMp4 from "../assets/images/projects/billow/videos/billow-cover-video.mp4";
+import BillowVideo from "../assets/images/projects/billow/videos/billow-motion-thumbnail.mp4";
 import XENOThumbnail from "../assets/images/projects/xeno/xeno-thumbnail.jpg";
 import StoneAndHoneyThumbnail from "../assets/images/projects/stone-and-honey/stone-honey-thumbnail.jpg";
 import TastebudsThumbnail from "../assets/images/projects/tastebuds/foodblog-tumbnail.png";
@@ -51,7 +50,7 @@ export const projects: Project[] = [
     href: "/billow",
     cover: BillowThumbnail,
     coverVideo: BillowVideo,
-    coverVideoFallback: BillowVideoMp4,
+    coverVideoFallback: BillowVideo,
     isReady: true,
 
   },
