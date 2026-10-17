@@ -1,10 +1,14 @@
 ---
 import { Image } from "astro:assets";
+import "../../styles/about-experience.css";
 import RippleEffectMyPic from "../webGL/RippleEffectMyPic";
 import RippleEffectLogo from "../webGL/RippleEffectLogo";
 import SquareRing from "./SquareRing.astro";
 import CopyEmail from "../ui/CopyEmail.astro";
 import LoveGallery from "./LoveGallery.astro";
+import VkdsLogo from "../../assets/images/about/vkds-logo.png";
+import BcitLogo from "../../assets/images/about/bcit-logo.png";
+import BurstLogo from "../../assets/images/about/burst-creative-group.png";
 import Portrait from "../../assets/images/about/portrait-octopus-hat.webp";
 import { GithubIcon, LinkedinIcon } from "../../data/icons";
 import { Mail } from "@lucide/astro";
@@ -57,15 +61,40 @@ const { content } = Astro.props;
           <p class="text-ab-body">{content.sections.coreValue.body}</p>
         </div>
       )}
-      <div class="col-start-4 col-span-6 mt-32">
-        <h2 class="text-about-heading mb-8">{content.sections.education.title}</h2>
-        <div class="flex justify-between">
-          <p class="text-ab-body">
-            {content.sections.education.program}
-          </p>
-          <p>{content.sections.education.period}</p>
+      <section class="col-start-4 col-span-6 mt-32" aria-labelledby="about-experience-title">
+        <h2 id="about-experience-title" class="text-about-heading mb-8">{content.sections.experience.title}</h2>
+        {[
+          { ...content.sections.experience, logo: BurstLogo, logoClass: "" },
+          { ...content.sections.experience.additional, logo: VkdsLogo, logoClass: "education-logo-frame", type: undefined },
+        ].map((experience) => (
+          <div class="experience-entry">
+            <div class:list={["experience-logo-frame", experience.logoClass]}>
+              <Image src={experience.logo} alt="" width={192} height={192} />
+            </div>
+            <div class="experience-details">
+              <h3>{experience.role}</h3>
+              <div class="experience-company">
+                <span>{experience.company}</span>
+                {experience.type && <span class="experience-type">{experience.type}</span>}
+              </div>
+            </div>
+            {experience.period && <p class="experience-period">{experience.period}</p>}
+          </div>
+        ))}
+      </section>
+      <section class="col-start-4 col-span-6 mt-32" aria-labelledby="about-education-title">
+        <h2 id="about-education-title" class="text-about-heading mb-8">{content.sections.education.title}</h2>
+        <div class="experience-entry">
+          <div class="experience-logo-frame education-logo-frame">
+            <Image src={BcitLogo} alt="" width={144} height={144} />
+          </div>
+          <div class="experience-details">
+            <h3>{content.sections.education.program}</h3>
+            <div class="experience-company">{content.sections.education.school}</div>
+          </div>
+          <p class="experience-period">{content.sections.education.period}</p>
         </div>
-      </div>
+      </section>
     </section>
 
     <section id="about-more" aria-labelledby="about-more-title" class="grid-container">
@@ -118,14 +147,6 @@ const { content } = Astro.props;
 </main>
 
 <style>
-  .about-vision h2,
-  .about-vision h2::first-letter {
-    font-family: var(--font-satoshi), sans-serif;
-  }
-
-  .about-vision h2::first-letter {
-    font-size: inherit;
-  }
 
   .about-vision p + p {
     margin-top: 1.5rem;

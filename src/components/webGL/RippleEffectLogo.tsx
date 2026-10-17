@@ -157,12 +157,10 @@ function RippleEffectLogo() {
 
           void main() {
             vec4 ripple = texture2D(uSimulation, vUv);
-            // Reserve 4% transparent space on each horizontal side so the
-            // distorted logo can move without being clipped by the canvas.
-            vec2 sampleUv = vec2(
-              (vUv.x - 0.04) / 0.92,
-              vUv.y
-            ) + ripple.zw * uDistortion;
+            // Reserve the same proportional padding on both axes so the
+            // ripple has room without changing the original logo proportions.
+            vec2 sampleUv = (vUv - vec2(0.04)) / 0.92
+              + ripple.zw * uDistortion;
 
             if (
               sampleUv.x < 0.0 || sampleUv.x > 1.0 ||
@@ -358,7 +356,7 @@ function RippleEffectLogo() {
         src={logo.src}
         alt=""
         aria-hidden="true"
-        className="absolute inset-y-0 left-[4%] h-full w-[92%] transition-opacity duration-300"
+        className="absolute left-[4%] top-[4%] h-[92%] w-[92%] object-contain transition-opacity duration-300"
         data-logo-fallback
         draggable={false}
       />

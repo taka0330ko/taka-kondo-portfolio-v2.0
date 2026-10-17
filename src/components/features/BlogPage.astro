@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import RippleEffectImage from "../webGL/RippleEffectImage";
 import type { ImageMetadata } from "astro";
 import BlogObject from "../../assets/images/blog/blog-page-object.png";
 import BlogCardGrid from "../layout/BlogCardGrid.astro";
@@ -31,7 +31,15 @@ const { content, posts } = Astro.props;
                 <p>{content.hero.introLines.map((line) => <>{line}<br /></>)}</p>
             </div>
             <div class="blog-object mt-16 md:mt-0">
-                <Image src={BlogObject} alt={content.hero.imageAlt} />
+                <div class="blog-ripple">
+                    <RippleEffectImage
+                        src={BlogObject.src}
+                        alt={content.hero.imageAlt}
+                        aspectRatio={`${BlogObject.width} / ${BlogObject.height}`}
+                        padding={0.08}
+                        client:visible
+                    />
+                </div>
             </div>
         </div>
     </section>
@@ -92,9 +100,9 @@ const { content, posts } = Astro.props;
         min-width: 0;
     }
 
-    .blog-object :global(img) {
-        width: 80%;
-        height: auto;
+    .blog-ripple {
+        /* Keep the artwork size while extending the ripple canvas around it. */
+        width: calc(80% / 0.84);
     }
 
     @media (width < 768px) {

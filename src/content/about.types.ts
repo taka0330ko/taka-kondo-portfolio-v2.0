@@ -17,9 +17,18 @@ export type AboutContent = {
       title: string;
       body: string;
     };
+    experience: {
+      title: string;
+      additional: { company: string; role: string; period: string };
+      company: string;
+      role: string;
+      type: string;
+      period: string;
+    };
     education: {
       title: string;
       program: string;
+      school: string;
       period: string;
     };
   };

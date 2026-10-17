@@ -5,7 +5,9 @@
   /* Japanese typography is scoped to Japanese case-study pages. */
   .case-study-ja {
     font-family: var(--font-cs-ja);
-    font-feature-settings: "palt" 1;
+    /* Preserve full-width Japanese punctuation and its trailing space. */
+    font-feature-settings: "palt" 0, "halt" 0;
+    text-spacing-trim: space-all;
     font-kerning: normal;
   }
 

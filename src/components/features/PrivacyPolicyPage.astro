@@ -1,0 +1,68 @@
+---
+interface Props { locale?: "en" | "ja"; }
+const { locale = "en" } = Astro.props;
+const ja = locale === "ja";
+const sections = ja ? [
+  ["このポリシーについて", "Takanari Kondo（近藤貴成）のポートフォリオサイトにおける、訪問者の情報の取り扱いについて説明します。"],
+  ["アクセス解析", "本サイトの公開版では、サイトの利用状況を把握し、コンテンツや使いやすさを改善するため、Google Analytics 4（Google LLC）を使用しています。閲覧したページ、参照元、ブラウザ・端末に関する情報、操作などの利用データがGoogleに送信されることがあります。Google AnalyticsはCookieなどの技術を使用します。"],
+  ["Cookieと端末内の保存", "アクセス解析で使用されるCookieに加え、本サイトでは選択したライト・ダークテーマをブラウザのローカルストレージに保存します。これは表示設定を記憶するためのものです。ブラウザの設定からCookieの制限・削除やサイトデータの削除ができます。"],
+  ["メールでのご連絡", "メールでご連絡いただいた際の情報は、返信やご相談への対応に使用します。"],
+  ["外部サービスとリンク", "アクセス解析の情報はGoogleによって処理されます。情報の処理場所はお住まいの国と異なる場合があります。本サイトからリンクするGitHubやLinkedInなどの外部サイトには、それぞれのプライバシーポリシーが適用されます。"],
+  ["ポリシーの更新", "サイトの機能や情報の取り扱いの変更に応じて、このページを更新します。最終更新日はページ上部に記載します。"],
+] : [
+  ["About this policy", "This policy explains how information is handled when you visit Takanari Kondo’s portfolio website."],
+  ["Website analytics", "The published website uses Google Analytics 4, provided by Google LLC, to understand how the site is used and improve its content and usability. Usage data, such as pages visited, referral sources, browser and device information, and interactions, may be sent to Google. Google Analytics uses cookies and similar technologies."],
+  ["Cookies and local storage", "In addition to analytics cookies, this site stores your selected light or dark theme in your browser’s local storage to remember your display preference. You can restrict or delete cookies and clear site data through your browser settings."],
+  ["Email correspondence", "Information you provide by email is used to reply and respond to your questions or requests."],
+  ["External services and links", "Analytics information is processed by Google and may be processed in a country other than where you live. External sites linked from this website, including GitHub and LinkedIn, have their own privacy policies."],
+  ["Policy updates", "This page will be updated when the site’s features or information practices change. The last updated date appears at the top of this page."],
+];
+---
+
+<main class="privacy-page">
+  <article aria-labelledby="privacy-title">
+    <header class="privacy-header">
+      <p class="eyebrow" lang="en">TAKA KONDO / PRIVACY</p>
+      <h1 id="privacy-title">{ja ? "プライバシーポリシー" : "Privacy Policy"}</h1>
+      <p class="updated">{ja ? "最終更新日：" : "Last updated: "}<time datetime="2026-10-16">{ja ? "2026年10月16日" : "October 16, 2026"}</time></p>
+    </header>
+    <div class="privacy-content">
+      {sections.map(([title, body], index) => (
+        <section aria-labelledby={`privacy-section-${index}`}>
+          <h2 id={`privacy-section-${index}`}>{title}</h2>
+          <p>{body}</p>
+          {index === 1 && <p class="resource-links">
+            <a href="https://policies.google.com/privacy">{ja ? "Googleのプライバシーポリシー" : "Google’s Privacy Policy"}</a>
+            <a href="https://policies.google.com/technologies/partner-sites">{ja ? "Googleによるサイト利用情報の取り扱い" : "How Google uses information from partner sites"}</a>
+          </p>}
+          {index === 2 && <p class="resource-links"><a href="https://tools.google.com/dlpage/gaoptout">{ja ? "Google Analyticsオプトアウト アドオン" : "Google Analytics opt-out browser add-on"}</a></p>}
+        </section>
+      ))}
+      <section aria-labelledby="privacy-contact">
+        <h2 id="privacy-contact">{ja ? "お問い合わせ先" : "Contact"}</h2>
+        <p class="contact-intro">{ja
+          ? "個人情報の取り扱いに関するご質問や、メールで提供した情報の削除をご希望の場合は、下記までご連絡ください。"
+          : "If you have questions about how your personal information is handled or would like information you provided by email to be deleted, please contact me below."}</p>
+        <p>Takanari Kondo<br /><a href="mailto:gtakanari0330@gmail.com">gtakanari0330@gmail.com</a></p>
+      </section>
+    </div>
+  </article>
+</main>
+
+<style>
+  .privacy-page { max-width: 90rem; margin-inline: auto; padding: clamp(8rem, 16vh, 12rem) clamp(1.5rem, 5vw, 5rem) clamp(5rem, 10vh, 9rem); }
+  article { max-width: 52rem; margin-inline: auto; }
+  .privacy-header { padding-bottom: 3rem; border-bottom: 1px solid var(--text-body-default); }
+  .eyebrow { font-size: .75rem; letter-spacing: .16em; margin-bottom: 1.5rem; }
+  h1 { font-family: var(--font-satoshi), sans-serif; font-size: clamp(2.5rem, 7vw, 5.5rem); font-weight: 400; line-height: 1.1; letter-spacing: -.04em; overflow-wrap: anywhere; color: var(--text-heading-default); }
+  h1:lang(ja) { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.4; letter-spacing: 0; }
+  .updated { margin-top: 1.5rem; font-size: .875rem; }
+  .privacy-content { display: grid; gap: 2.5rem; padding-top: 3rem; }
+  h2 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 500; margin-bottom: .75rem; color: var(--text-heading-default); }
+  .privacy-content p { font-size: 1rem; line-height: 1.85; overflow-wrap: anywhere; }
+  .contact-intro { margin-bottom: 1rem; }
+  .resource-links { display: grid; justify-items: start; gap: .5rem; margin-top: 1rem; }
+  a { text-decoration: underline; text-underline-offset: .2em; }
+  a:hover { color: var(--text-accent); }
+  a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+</style>
