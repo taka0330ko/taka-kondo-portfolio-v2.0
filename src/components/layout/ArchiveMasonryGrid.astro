@@ -10,6 +10,7 @@ interface Props {
         cover: ImageMetadata;
         coverType?: "image" | "green-blob";
         coverVideo: string;
+        modalVideo?: string;
         title: string;
         placeholder?: boolean;
         height?: number;
@@ -17,6 +18,7 @@ interface Props {
 }
 
 const { archive } = Astro.props;
+const ja = Astro.url.pathname.startsWith("/jp/");
 const isExternalLink = (href: string) => /^https?:\/\//.test(href);
 ---
 
@@ -42,7 +44,16 @@ const isExternalLink = (href: string) => /^https?:\/\//.test(href);
                             aria-hidden="true"
                         />
                     ) : (
-                        item.href ? (
+                        item.modalVideo ? (
+                            <button type="button" class="archive-link archive-video-trigger"
+                                data-archive-video={item.modalVideo}
+                                data-video-title={item.title}
+                                data-prototype-href={item.href}
+                                aria-label={ja ? `${item.title}の動画を再生` : `Play ${item.title} video`}
+                                aria-haspopup="dialog" aria-controls="archive-video-dialog">
+                                <ArchiveCover cover={item.cover} coverType={item.coverType} title={item.title} />
+                            </button>
+                        ) : item.href ? (
                             <a
                                 class="archive-link"
                                 href={item.href}
@@ -72,7 +83,136 @@ const isExternalLink = (href: string) => /^https?:\/\//.test(href);
     }
 </Masonry>
 
+<dialog id="archive-video-dialog" aria-labelledby="archive-video-title">
+    <div class="video-modal-header">
+        <h2 id="archive-video-title">Green Sabon</h2>
+        <button type="button" data-video-close aria-label={ja ? "閉じる" : "Close"}>×</button>
+    </div>
+    <div class="video-modal-body">
+        <div class="video-modal-media">
+            <video controls playsinline preload="none" aria-label={ja ? "プロジェクト紹介動画" : "Project demo video"}></video>
+        </div>
+        <section class="video-modal-info" aria-labelledby="green-sabon-about">
+            <p class="video-info-label" lang="en">ABOUT THE APP</p>
+            <h3 id="green-sabon-about">{ja ? "AIでaltテキストを生成" : "AI alt text generator"}</h3>
+            <p class="video-info-description">{ja
+                ? "Green Sabonは、AIを使って画像の代替テキスト（altテキスト）を生成するWebアプリです。画像をアップロードして生成ボタンを押すと、画像の内容を説明するテキストが作られ、コピーして利用できます。"
+                : "Green Sabon is a web app that uses AI to generate alternative text for images. Upload an image, generate a description, and copy the result to use as alt text."}</p>
+            <p class="video-info-description">{ja
+                ? "画像を言葉で説明する作業をサポートし、Webコンテンツのアクセシビリティを考えるきっかけをつくります。"
+                : "It helps with the task of describing images and brings accessibility into the content creation process."}</p>
+            <div class="video-modal-footer">
+                <p>{ja ? "AI機能には" : "AI powered by "}<a href="https://puter.com/" target="_blank" rel="noopener noreferrer">Puter</a>{ja ? "を使用しています。" : "."}</p>
+                <a class="prototype-button" data-prototype-link href="https://green-sabon.vercel.app/" target="_blank" rel="noopener noreferrer">{ja ? "プロトタイプを見る" : "View prototype"}<span aria-hidden="true">↗</span></a>
+            </div>
+        </section>
+    </div>
+</dialog>
+
+<script>
+    let controller: AbortController | undefined;
+    function initArchiveVideo() {
+        controller?.abort();
+        controller = new AbortController();
+        const { signal } = controller;
+        const dialog = document.querySelector<HTMLDialogElement>("#archive-video-dialog");
+        const video = dialog?.querySelector("video");
+        const title = dialog?.querySelector("h2");
+        if (!dialog || !video || !title) return;
+        let previousOverflow = "";
+        let trigger: HTMLButtonElement | null = null;
+        const stop = () => {
+            video.pause();
+            video.removeAttribute("src");
+            video.load();
+            document.documentElement.style.overflow = previousOverflow;
+        };
+        document.querySelectorAll<HTMLButtonElement>("[data-archive-video]").forEach((button) => {
+            button.addEventListener("click", () => {
+                trigger = button;
+                title.textContent = button.dataset.videoTitle || "Project video";
+                video.src = button.dataset.archiveVideo!;
+                const prototypeLink = dialog.querySelector<HTMLAnchorElement>("[data-prototype-link]");
+                if (prototypeLink) prototypeLink.href = button.dataset.prototypeHref || "https://green-sabon.vercel.app/";
+                previousOverflow = document.documentElement.style.overflow;
+                document.documentElement.style.overflow = "hidden";
+                dialog.showModal();
+                video.play().catch(() => {});
+            }, { signal });
+        });
+        dialog.querySelector("[data-video-close]")?.addEventListener("click", () => dialog.close(), { signal });
+        dialog.addEventListener("click", (event) => {
+            if (event.target !== dialog) return;
+            const rect = dialog.getBoundingClientRect();
+            if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+        }, { signal });
+        dialog.addEventListener("close", () => { stop(); trigger?.focus(); }, { signal });
+        document.addEventListener("astro:before-swap", () => {
+            if (dialog.open) { stop(); dialog.close(); }
+            controller?.abort();
+        }, { once: true, signal });
+    }
+    document.addEventListener("astro:page-load", initArchiveVideo);
+    initArchiveVideo();
+</script>
+
 <style>
+    .archive-video-trigger { width: 100%; padding: 0; border: 0; background: transparent; text-align: inherit; cursor: pointer; }
+    .archive-video-trigger:focus-visible { outline: 2px solid var(--text-accent); outline-offset: 4px; border-radius: 8px; }
+    dialog {
+        --modal-bg: #111;
+        --modal-media-bg: #19191b;
+        --modal-border: color-mix(in srgb, var(--text-heading-default) 15%, transparent);
+        --modal-heading: var(--text-heading-default);
+        --modal-copy: var(--brand-gray-300);
+        --modal-label: #bfe8c1;
+    }
+    :global(html.light) dialog {
+        --modal-bg: var(--brand-white);
+        --modal-media-bg: var(--brand-gray-100);
+        --modal-copy: var(--text-body-default);
+        --modal-label: var(--brand-teal-800);
+    }
+    dialog { position: fixed; inset: 0; margin: auto; width: min(84rem, calc(100vw - 2rem)); max-width: none; max-height: calc(100dvh - 2rem); padding: 0; border: 1px solid var(--modal-border); border-radius: 1rem; background: var(--modal-bg); color: var(--modal-heading); box-shadow: 0 2rem 6rem #0008; }
+    dialog::backdrop { background: #000b; backdrop-filter: blur(8px); }
+    dialog[open] { animation: video-modal-enter 420ms cubic-bezier(.22, 1, .36, 1) both; }
+    dialog[open]::backdrop { animation: video-backdrop-enter 420ms ease-out both; }
+    @keyframes video-modal-enter {
+        from { opacity: 0; transform: translateY(12px) scale(.985); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes video-backdrop-enter {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        dialog[open], dialog[open]::backdrop { animation: none; }
+    }
+    .video-modal-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 1.25rem; }
+    .video-modal-header h2 { font-family: var(--font-satoshi), sans-serif; font-size: 1rem; font-weight: 400; color: var(--modal-heading); letter-spacing: 0; }
+    .video-modal-header h2::first-letter { font-size: inherit; }
+    .video-modal-header button { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: color-mix(in srgb, var(--modal-heading) 7%, transparent); color: var(--modal-heading); font-size: 1.75rem; line-height: 1; cursor: pointer; }
+    .video-modal-body { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(22rem, 1fr); align-items: stretch; }
+    .video-modal-media { display: flex; align-items: center; min-width: 0; padding: clamp(1rem, 2vw, 2rem); background: var(--modal-media-bg); }
+    .video-modal-info { display: flex; flex-direction: column; padding: clamp(1.5rem, 2.5vw, 2.5rem); border-left: 1px solid var(--modal-border); }
+    .video-info-label { margin: 0 0 1rem; font: 400 .6875rem/1.4 var(--font-satoshi), sans-serif; letter-spacing: .16em; color: var(--modal-label); }
+    .video-modal-info h3 { margin: 0 0 1.5rem; font-family: var(--font-satoshi), sans-serif; font-size: clamp(1.375rem, 1.8vw, 1.75rem); font-weight: 400; line-height: 1.35; letter-spacing: -.02em; color: var(--modal-heading); }
+    .video-modal-info h3:lang(ja) { font-family: var(--font-japanese-body); line-height: 1.6; letter-spacing: 0; }
+    .video-modal-info h3 span { display: block; word-break: keep-all; overflow-wrap: anywhere; }
+    .video-modal-info .video-info-description { margin: 0 0 1rem; color: var(--modal-copy); font-size: .9375rem; line-height: 1.8; letter-spacing: normal; }
+    .video-modal-footer { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: auto; padding-top: 1.5rem; }
+    .video-modal-footer p { margin: 0; font-size: .875rem; line-height: 1.6; color: var(--modal-copy); }
+    .video-modal-footer p a { color: var(--modal-heading); text-decoration: underline; text-underline-offset: .2em; }
+    .prototype-button { display: inline-flex; align-items: center; justify-content: center; gap: 1.5rem; padding: .75rem 1.25rem; border-radius: 999px; background: #bfe8c1; color: #17251a; font-size: .9375rem; }
+    .prototype-button:hover { background: #d5f3d7; }
+    dialog video { display: block; width: 100%; max-height: calc(100dvh - 8rem); background: #000; }
+    @media (width < 1050px) {
+        .video-modal-body { grid-template-columns: 1fr; }
+        .video-modal-info { border-left: 0; border-top: 1px solid var(--modal-border); }
+        dialog video { max-height: 50dvh; }
+        .video-modal-footer { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+    }
+
     :global(.archive-masonry) {
         gap: 12px;
     }

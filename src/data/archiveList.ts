@@ -16,6 +16,7 @@ type ArchiveItem = {
     cover: ImageMetadata,
     coverType?: "image" | "green-blob",
     coverVideo: string,
+    modalVideo?: string,
     title: string,
     placeholder: boolean,
     height: number
@@ -37,8 +38,9 @@ export const archive: ArchiveItem[] = [
         href: "https://green-sabon.vercel.app/",
         cover: GreenSabonCover,
         coverType: "green-blob",
+        modalVideo: "/videos/archive/green-sabon-demo.mp4",
         coverVideo: "",
-        title: "",
+        title: "Green Sabon",
         placeholder: false,
         height: 320
     },
