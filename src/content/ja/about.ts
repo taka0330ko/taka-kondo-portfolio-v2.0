@@ -26,8 +26,8 @@ export const aboutJa = {
     },
     education: {
       title: "学歴",
-      program: "ニューメディアデザイン・Web開発",
-      school: "ブリティッシュコロンビア工科大学（BCIT）",
+      program: "New Media Design and Web Development",
+      school: "British Columbia Institute of Technology",
       period: "2025 - 在学中",
     },
   },
