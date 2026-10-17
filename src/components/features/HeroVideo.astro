@@ -15,29 +15,34 @@ const { title, description, lang = "en" } = Astro.props;
   </div>
   <video
     class="hero-video"
-    width="1980"
+    width="1920"
     height="1080"
-    poster="/videos/hero/hero-poster-v2.jpg"
+    poster="/videos/hero/hero-poster-v4.jpg"
     preload="metadata"
     muted
     loop
     playsinline
     aria-label={lang === "ja" ? "近藤嵩成のデザイン・開発紹介動画" : "Takanari Kondo design and development introduction"}
   >
-    <source src="/videos/hero/hero-video-v2.mp4" type="video/mp4" />
+    <source src="/videos/hero/hero-video-v4-1080p.mp4" type="video/mp4" />
     <p>{description}</p>
   </video>
 </section>
 
 <style>
+  /* Prevent elastic scrolling from exposing the page backing on Home. */
+  :global(html:has(.video-hero)),
+  :global(body:has(.video-hero)) {
+    overscroll-behavior-y: none;
+  }
+
   .video-hero {
-    --hero-header-height: 5rem;
     --hero-surface: #000;
     position: relative;
     display: grid;
     place-items: center;
     width: 100%;
-    padding-top: var(--hero-header-height);
+    padding-top: 0;
     margin-bottom: clamp(4rem, 8vw, 8rem);
     background: var(--hero-surface);
     /* Continue the hero backing beneath the offset bottom fade. */
@@ -48,7 +53,6 @@ const { title, description, lang = "en" } = Astro.props;
     --hero-surface: #303238;
   }
 
-  .video-hero::before,
   .video-hero::after {
     content: "";
     position: absolute;
@@ -56,11 +60,6 @@ const { title, description, lang = "en" } = Astro.props;
     height: clamp(4rem, 12svh, 9rem);
     z-index: 1;
     pointer-events: none;
-  }
-
-  .video-hero::before {
-    top: 0;
-    background: linear-gradient(to bottom, var(--bg-default), transparent);
   }
 
   .video-hero::after {
@@ -76,8 +75,8 @@ const { title, description, lang = "en" } = Astro.props;
     object-fit: contain;
     object-position: center top;
     background: var(--hero-surface);
-    -webkit-mask-image: var(--hero-side-mask), linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent);
-    mask-image: var(--hero-side-mask), linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent);
+    -webkit-mask-image: var(--hero-side-mask), linear-gradient(to bottom, #000 0%, #000 96%, transparent);
+    mask-image: var(--hero-side-mask), linear-gradient(to bottom, #000 0%, #000 96%, transparent);
     -webkit-mask-composite: source-in;
     mask-composite: intersect;
   }
@@ -95,20 +94,10 @@ const { title, description, lang = "en" } = Astro.props;
     const hero = video.closest<HTMLElement>(".video-hero");
     if (!hero) return;
 
-    const header = document.querySelector<HTMLElement>("body > header");
-    const updateHeaderHeight = () => {
-      if (header) {
-        hero.style.setProperty("--hero-header-height", `${header.getBoundingClientRect().height}px`);
-      }
-    };
-    const headerObserver = new ResizeObserver(updateHeaderHeight);
-    if (header) headerObserver.observe(header);
-    updateHeaderHeight();
-
     const updateSideFade = () => {
       const ratio = video.videoWidth && video.videoHeight
         ? video.videoWidth / video.videoHeight
-        : 1980 / 1080;
+        : 1920 / 1080;
       const hasSideBars = hero.clientWidth > video.clientHeight * ratio + 1;
       video.classList.toggle("has-side-bars", hasSideBars);
     };
@@ -136,7 +125,6 @@ const { title, description, lang = "en" } = Astro.props;
     document.addEventListener("astro:before-swap", () => {
       video.pause();
       resizeObserver.disconnect();
-      headerObserver.disconnect();
       video.removeEventListener("loadedmetadata", updateSideFade);
       reducedMotion.removeEventListener("change", updatePlayback);
     }, { once: true });

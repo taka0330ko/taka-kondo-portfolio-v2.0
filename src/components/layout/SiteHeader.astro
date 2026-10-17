@@ -31,7 +31,7 @@ const isProjectsPage = [
 ].includes(localizedPathname);
 ---
 
-<header class="fixed top-0 z-99 w-full bg-linear-to-br bg-theme-gradient px-8 py-4 md:py-2 backdrop-blur-sm">
+<header data-home={localizedPathname === "/" ? "true" : undefined} data-at-top={localizedPathname === "/" ? "true" : undefined} data-over-hero={localizedPathname === "/" ? "true" : undefined} class="fixed top-0 z-99 w-full px-8 py-4 md:py-2 backdrop-blur-sm">
   <nav class="mx-auto max-w-360 items-center gap-y-2 flex md:h-16 justify-between">
     <a href={homeHref} class="relative z-100 inline-block" aria-label="Home">
       <Logo class="h-auto w-36 md:w-48" />
@@ -51,7 +51,7 @@ const isProjectsPage = [
 
       <a
         href={aboutHref}
-        class={`relative pb-1 transition-colors ${isAboutPage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
+        class={`header-top-white relative pb-1 transition-colors ${isAboutPage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
       >
         About
         <span
@@ -61,7 +61,7 @@ const isProjectsPage = [
 
       <a
         href={archiveHref}
-        class={`relative pb-1 transition-colors ${isArchivePage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
+        class={`header-top-white relative pb-1 transition-colors ${isArchivePage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
       >
         Archive
         <span
@@ -72,7 +72,7 @@ const isProjectsPage = [
       <a
         href={blogHref}
         aria-current={isBlogPage ? "true" : undefined}
-        class={`relative pb-1 transition-colors ${isBlogPage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
+        class={`header-top-white relative pb-1 transition-colors ${isBlogPage ? 'text-accent' : 'text-foreground hover:text-accent'}`}
       >
         Blog
         <span
@@ -96,7 +96,51 @@ const isProjectsPage = [
   <MobileMenuPanel/>
 </header>
 
+<script>
+  const setupHeaderBackground = () => {
+    const header = document.querySelector<HTMLElement>('header[data-home="true"]');
+    if (!header) return;
+
+    const updateBackground = () => {
+      header.toggleAttribute("data-at-top", window.scrollY <= 0);
+      const hero = document.querySelector<HTMLElement>(".video-hero");
+      const headerRect = header.getBoundingClientRect();
+      const heroRect = hero?.getBoundingClientRect();
+      header.toggleAttribute("data-over-hero", Boolean(heroRect && heroRect.bottom > headerRect.top && heroRect.top < headerRect.bottom));
+    };
+    updateBackground();
+    window.addEventListener("scroll", updateBackground, { passive: true });
+    window.addEventListener("pageshow", updateBackground);
+    window.addEventListener("resize", updateBackground);
+    const hero = document.querySelector<HTMLElement>(".video-hero");
+    const observer = new ResizeObserver(updateBackground);
+    if (hero) observer.observe(hero);
+    observer.observe(header);
+    document.addEventListener("astro:before-swap", () => {
+      window.removeEventListener("scroll", updateBackground);
+      window.removeEventListener("pageshow", updateBackground);
+      window.removeEventListener("resize", updateBackground);
+      observer.disconnect();
+    }, { once: true });
+  };
+
+  document.addEventListener("astro:page-load", setupHeaderBackground);
+</script>
+
 <style>
+  header[data-home="true"][data-at-top] {
+    background-color: transparent;
+    background-image: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  header[data-home="true"][data-over-hero] .header-top-white:not(:hover),
+  header[data-home="true"][data-over-hero] .language-control :global(#language-switch:not(:hover)),
+  header[data-home="true"][data-over-hero] .language-control :global(#another-lang a:not(:hover)) {
+    color: #fff;
+  }
+
   @media (max-width: 480px) {
     .header-controls {
       display: grid;
