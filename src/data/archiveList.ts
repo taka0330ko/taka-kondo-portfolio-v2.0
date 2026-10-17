@@ -38,7 +38,7 @@ export const archive: ArchiveItem[] = [
         href: "https://green-sabon.vercel.app/",
         cover: GreenSabonCover,
         coverType: "green-blob",
-        modalVideo: "/videos/archive/green-sabon-demo.mp4",
+        modalVideo: "/videos/archive/green-sabon-demo-v2.mp4",
         coverVideo: "",
         title: "Green Sabon",
         placeholder: false,

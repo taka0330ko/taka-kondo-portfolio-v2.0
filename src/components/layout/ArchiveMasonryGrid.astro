@@ -90,7 +90,7 @@ const isExternalLink = (href: string) => /^https?:\/\//.test(href);
     </div>
     <div class="video-modal-body">
         <div class="video-modal-media">
-            <video controls playsinline preload="none" aria-label={ja ? "プロジェクト紹介動画" : "Project demo video"}></video>
+            <video autoplay muted loop playsinline preload="none" aria-label={ja ? "プロジェクト紹介動画" : "Project demo video"}></video>
         </div>
         <section class="video-modal-info" aria-labelledby="green-sabon-about">
             <p class="video-info-label" lang="en">ABOUT THE APP</p>
@@ -131,6 +131,7 @@ const isExternalLink = (href: string) => /^https?:\/\//.test(href);
             button.addEventListener("click", () => {
                 trigger = button;
                 title.textContent = button.dataset.videoTitle || "Project video";
+                video.muted = true;
                 video.src = button.dataset.archiveVideo!;
                 const prototypeLink = dialog.querySelector<HTMLAnchorElement>("[data-prototype-link]");
                 if (prototypeLink) prototypeLink.href = button.dataset.prototypeHref || "https://green-sabon.vercel.app/";
@@ -173,7 +174,7 @@ const isExternalLink = (href: string) => /^https?:\/\//.test(href);
         --modal-copy: var(--text-body-default);
         --modal-label: var(--brand-teal-800);
     }
-    dialog { position: fixed; inset: 0; margin: auto; width: min(84rem, calc(100vw - 2rem)); max-width: none; max-height: calc(100dvh - 2rem); padding: 0; border: 1px solid var(--modal-border); border-radius: 1rem; background: var(--modal-bg); color: var(--modal-heading); box-shadow: 0 2rem 6rem #0008; }
+    dialog { position: fixed; inset: 0; margin: auto; width: min(84rem, calc(100vw - 2rem)); max-width: none; max-height: calc(100dvh - 2rem); padding: 0; border: 1px solid var(--modal-border); border-radius: .375rem; background: var(--modal-bg); color: var(--modal-heading); box-shadow: 0 2rem 6rem #0008; }
     dialog::backdrop { background: #000b; backdrop-filter: blur(8px); }
     dialog[open] { animation: video-modal-enter 420ms cubic-bezier(.22, 1, .36, 1) both; }
     dialog[open]::backdrop { animation: video-backdrop-enter 420ms ease-out both; }
@@ -193,7 +194,7 @@ const isExternalLink = (href: string) => /^https?:\/\//.test(href);
     .video-modal-header h2::first-letter { font-size: inherit; }
     .video-modal-header button { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: color-mix(in srgb, var(--modal-heading) 7%, transparent); color: var(--modal-heading); font-size: 1.75rem; line-height: 1; cursor: pointer; }
     .video-modal-body { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(22rem, 1fr); align-items: stretch; }
-    .video-modal-media { display: flex; align-items: center; min-width: 0; padding: clamp(1rem, 2vw, 2rem); background: var(--modal-media-bg); }
+    .video-modal-media { display: flex; align-items: center; justify-content: center; min-width: 0; padding: clamp(1rem, 2vw, 2rem); background: var(--modal-media-bg); }
     .video-modal-info { display: flex; flex-direction: column; padding: clamp(1.5rem, 2.5vw, 2.5rem); border-left: 1px solid var(--modal-border); }
     .video-info-label { margin: 0 0 1rem; font: 400 .6875rem/1.4 var(--font-satoshi), sans-serif; letter-spacing: .16em; color: var(--modal-label); }
     .video-modal-info h3 { margin: 0 0 1.5rem; font-family: var(--font-satoshi), sans-serif; font-size: clamp(1.375rem, 1.8vw, 1.75rem); font-weight: 400; line-height: 1.35; letter-spacing: -.02em; color: var(--modal-heading); }
@@ -205,7 +206,7 @@ const isExternalLink = (href: string) => /^https?:\/\//.test(href);
     .video-modal-footer p a { color: var(--modal-heading); text-decoration: underline; text-underline-offset: .2em; }
     .prototype-button { display: inline-flex; align-items: center; justify-content: center; gap: 1.5rem; padding: .75rem 1.25rem; border-radius: 999px; background: #bfe8c1; color: #17251a; font-size: .9375rem; }
     .prototype-button:hover { background: #d5f3d7; }
-    dialog video { display: block; width: 100%; max-height: calc(100dvh - 8rem); background: #000; }
+    dialog video { display: block; width: 100%; height: auto; max-width: 100%; max-height: calc(100dvh - 10rem); object-fit: contain; object-position: center; background: var(--modal-media-bg); }
     @media (width < 1050px) {
         .video-modal-body { grid-template-columns: 1fr; }
         .video-modal-info { border-left: 0; border-top: 1px solid var(--modal-border); }
