@@ -34,8 +34,13 @@ const localizedProjects = projects.map((project) => ({
   <main>
     <HeroVideo title={homeJa.meta.title} description={homeJa.meta.description} lang="ja" />
 
-    <section id="projects" class="mx-auto max-w-350 px-4 md:px-8">
-      <h2 class="sr-only pb-16">Projects</h2>
+    <section id="projects" class="mx-auto max-w-350 px-4 pt-8 md:px-8 md:pt-16">
+      <div class="mb-10 flex flex-wrap items-end justify-between gap-x-8 gap-y-5 md:mb-16">
+        <h2 class="font-heading text-[clamp(3.5rem,10.5vw,10rem)] font-light leading-[0.95] tracking-[-0.055em] text-foreground/40" lang="en">Selected Projects</h2>
+        <p class="ml-auto pb-1 text-right font-heading text-xs font-medium leading-tight tracking-[0.08em] text-foreground/40 md:text-sm" lang="en">
+          DISCOVER<br />LEARN<br />REFINE
+        </p>
+      </div>
       <div class="grid gap-24">
         {localizedProjects.map((project) => (
           <MainProjectCard
