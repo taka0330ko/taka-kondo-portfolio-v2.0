@@ -13,11 +13,14 @@ const { title, description, lang = "en" } = Astro.props;
     <h1 id="home-title">{title}</h1>
     <p>{description}</p>
   </div>
+  <picture class="hero-poster" aria-hidden="true">
+    <source media="(max-width: 767px)" srcset="/videos/hero/hero-poster-mobile-6c9f64b66402.webp" width="810" height="1440" />
+    <img src="/videos/hero/hero-poster-desktop-e17fca3cd242.webp" width="1920" height="1080" alt="" loading="eager" fetchpriority="high" />
+  </picture>
   <video
     class="hero-video"
     width="1920"
     height="1080"
-    poster="/videos/hero/hero-poster-v4.jpg"
     preload="metadata"
     muted
     loop
@@ -68,7 +71,8 @@ const { title, description, lang = "en" } = Astro.props;
     background: linear-gradient(to top, var(--bg-default), transparent);
   }
 
-  .hero-video {
+  .hero-video,
+  .hero-poster {
     --hero-side-mask: linear-gradient(#000, #000);
     display: block;
     width: 100%;
@@ -82,9 +86,40 @@ const { title, description, lang = "en" } = Astro.props;
     mask-composite: intersect;
   }
 
+  .hero-poster {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-poster img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .video-hero.has-video-frame .hero-poster {
+    visibility: hidden;
+  }
+
   @media (max-width: 767px) {
-    .hero-video {
+    .video-hero {
       aspect-ratio: 9 / 16;
+    }
+
+    .hero-video,
+    .hero-poster {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 9 / 16;
+    }
+
+    .hero-poster img {
+      aspect-ratio: 9 / 16;
+      object-fit: contain;
     }
   }
 
@@ -114,11 +149,18 @@ const { title, description, lang = "en" } = Astro.props;
     video.addEventListener("loadedmetadata", updateSideFade);
     updateSideFade();
 
+    const showVideo = () => hero.classList.add("has-video-frame");
+    const showPoster = () => hero.classList.remove("has-video-frame");
+    video.addEventListener("playing", showVideo);
+    video.addEventListener("emptied", showPoster);
+    video.addEventListener("error", showPoster);
+
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const updatePlayback = () => {
       video.autoplay = !reducedMotion.matches;
       if (reducedMotion.matches) {
         video.pause();
+        showPoster();
       } else {
         video.muted = true;
         void video.play().catch(() => {
@@ -132,9 +174,6 @@ const { title, description, lang = "en" } = Astro.props;
       const mobile = mobileViewport.matches;
       video.width = mobile ? 1080 : 1920;
       video.height = mobile ? 1920 : 1080;
-      video.poster = mobile
-        ? "/videos/hero/hero-poster-mobile-v1.jpg"
-        : "/videos/hero/hero-poster-v4.jpg";
       if (reload) video.load();
       updateSideFade();
       updatePlayback();
@@ -145,6 +184,9 @@ const { title, description, lang = "en" } = Astro.props;
     reducedMotion.addEventListener("change", updatePlayback);
     document.addEventListener("astro:before-swap", () => {
       video.pause();
+      video.removeEventListener("playing", showVideo);
+      video.removeEventListener("emptied", showPoster);
+      video.removeEventListener("error", showPoster);
       mobileViewport.removeEventListener("change", onViewportChange);
       resizeObserver.disconnect();
       video.removeEventListener("loadedmetadata", updateSideFade);

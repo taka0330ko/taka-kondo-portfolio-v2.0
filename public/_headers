@@ -3,3 +3,15 @@
 
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
+
+/videos/hero/hero-video-v4-1080p-silent.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/videos/hero/hero-video-mobile-v1-silent.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/videos/hero/hero-poster-desktop-e17fca3cd242.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/videos/hero/hero-poster-mobile-6c9f64b66402.webp
+  Cache-Control: public, max-age=31536000, immutable
