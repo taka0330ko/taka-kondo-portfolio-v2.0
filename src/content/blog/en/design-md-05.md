@@ -2,7 +2,7 @@
 locale: "en"
 title: "Aiming for 100% Figma Fidelity with Design.md"
 description: "Comparing three Codex implementations to see how Figma design tokens, a detailed design.md, and natural-language revisions affect fidelity."
-publishedAt: 2026-10-22T12:00:00-07:00
+publishedAt: 2026-10-20T12:00:00-07:00
 cover: "../../../assets/images/blog/05-Design-md/design-md-thumbnail.webp"
 coverAlt: "A design-token infographic slides into an envelope, followed by a large serif Design.md title"
 coverVideoFallback: "/videos/blog/design-md-05-thumbnail.mp4"

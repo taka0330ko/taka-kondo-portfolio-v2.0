@@ -2,7 +2,7 @@
 locale: "ja"
 title: "Design.mdでFigmaの忠実度100%を目指した話"
 description: "Figmaのデザイントークンとdesign.mdを使い、Codexによる実装の再現度を3つのバージョンで比較しました。"
-publishedAt: 2026-10-22T12:00:00-07:00
+publishedAt: 2026-10-20T12:00:00-07:00
 cover: "../../../assets/images/blog/05-Design-md/design-md-thumbnail.webp"
 coverAlt: "デザイントークンの図が封筒に入り、中央にDesign.mdの文字が現れるアニメーション"
 coverVideoFallback: "/videos/blog/design-md-05-thumbnail.mp4"
