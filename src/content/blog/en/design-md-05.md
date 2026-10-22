@@ -20,8 +20,6 @@ I reviewed the color tokens, added spacing tokens, and aimed to use tokens where
 
 I used this plugin to create Design.md:
 
-[Figma DESIGN.md Generator - TypeUI](https://github.com/bergside/design-md-figma)
-
 [Plugin on Figma Community](https://www.figma.com/community/plugin/1612814320994608244/design-md-generator)
 
 ![The Figma design and its design-token setup](../../../assets/images/blog/05-Design-md/figma-setup.webp)
@@ -32,11 +30,11 @@ First, I gave Codex the Figma link, an image of the design, and the generated De
 
 ![The first generated implementation of the pay overview screen](../../../assets/images/blog/05-Design-md/implementation-v1.webp)
 
-[View the v1 implementation](https://ukg-pay-overview-design-md.vercel.app/v1/)
-
 Visually, the result was reproduced to a high standard. The spacing, color, radius, and font-size tokens also appeared to be respected. However, closing the sidebar revealed elements I had not designed in Figma, hover behavior differed from what I expected, and the responsive layout needed more work. Having designed the UI myself, I noticed several rough edges.
 
 Still, there were only a handful of these issues, and my impression was that they would not take too long to fix.
+
+[View the v1 implementation](https://ukg-pay-overview-design-md.vercel.app/v1/)
 
 ### v2: More detailed specifications
 
@@ -44,9 +42,9 @@ Next, I described the front-end implementation in more detail in Design.md: whic
 
 ![The second implementation, generated with a more detailed stack and interaction specification](../../../assets/images/blog/05-Design-md/implementation-v2.webp)
 
-[View the v2 implementation](https://ukg-pay-overview-design-md.vercel.app/v2/)
-
 The appearance did not change much from the first attempt, and generation took longer, although I could see a small improvement in the interactive behavior.
+
+[View the v2 implementation](https://ukg-pay-overview-design-md.vercel.app/v2/)
 
 ### v3: Refining through conversation with the AI agent
 

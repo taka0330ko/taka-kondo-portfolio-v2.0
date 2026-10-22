@@ -17,8 +17,6 @@ draft: false
 ![FigmaのPrimitive・Semantic・Componentsの変数と、各画面サイズの給与確認画面](../../../assets/images/blog/05-Design-md/figma-tokens-and-screens.webp)
 
 Design.mdを作成するにあたって使用したプラグインはこちらです。
-[Figma DESIGN.md Generator - TypeUI](https://github.com/bergside/design-md-figma)
-
 [Figma Communityのプラグイン](https://www.figma.com/community/plugin/1612814320994608244/design-md-generator)
 
 ![Figmaのデザインとデザイントークンの設定](../../../assets/images/blog/05-Design-md/figma-setup.webp)
@@ -29,9 +27,9 @@ Design.mdを作成するにあたって使用したプラグインはこちら�
 
 ![design.mdを使って生成したv1の給与確認画面](../../../assets/images/blog/05-Design-md/implementation-v1.webp)
 
-[v1の実装を見る](https://ukg-pay-overview-design-md.vercel.app/v1/)
-
 その結果、見た目に関してはかなりの高水準で再現され、設定したspacing、color、radius、font sizeのtokenも、ちゃんと守られているように見えます。しかしsidebarを閉じた時にFigmaでデザインしていないものが現れたり、hover時の挙動は期待していたものではなかったり、responsive対応が甘かったり、UIデザインをした本人だからこそ気になる粗もいくつかありました。ただしこれらは数え切れるほどで、修正にはそこまで時間を要さないという印象です。
+
+[v1の実装を見る](https://ukg-pay-overview-design-md.vercel.app/v1/)
 
 ### v2：仕様を詳しく
 
@@ -39,9 +37,9 @@ Design.mdを作成するにあたって使用したプラグインはこちら�
 
 ![使用スタックと挙動を指定して生成したv2の給与確認画面](../../../assets/images/blog/05-Design-md/implementation-v2.webp)
 
-[v2の実装を見る](https://ukg-pay-overview-design-md.vercel.app/v2/)
-
 見た目自体は1回目とそこまで変わらず、出力に時間もかかったものの、少しだけinteractiveな部分に改善が見られます。
+
+[v2の実装を見る](https://ukg-pay-overview-design-md.vercel.app/v2/)
 
 ### v3：AIエージェントとの対話で調整
 
