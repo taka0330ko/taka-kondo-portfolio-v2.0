@@ -59,3 +59,5 @@ This felt like the limit of asking for a complete implementation in one pass wit
 For a static website whose appearance does not change in response to user interaction, I would expect a single prompt to achieve a fairly high level of fidelity. The more rigorously the design system is defined in Figma, the more accurate the result should be.
 
 For a dashboard like this one, however, appearance alone is not enough: the behavior also needs to be communicated. Even after revisions, interactions can still differ from what I intended, so iteration and QA take time. I think a stronger understanding of front-end development can help reduce the time spent on those revisions.
+
+The Design.md files used and the results of each version are collected on the [comparison site](https://ukg-pay-overview-design-md.vercel.app/).
