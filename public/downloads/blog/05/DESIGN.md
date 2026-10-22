@@ -10,7 +10,7 @@ generated_at: 2026-10-19T05:49:15.357Z
 ## Source
 - Figma file: UKG Pro Redesign
 - Figma page: Page 1
-- Extracted at: 2026-10-22T05:49:15.357Z
+- Extracted at: 2026-10-19T05:49:15.357Z
 
 ## Variable Collections
 - Semantic

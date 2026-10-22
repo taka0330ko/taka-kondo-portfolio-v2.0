@@ -21,7 +21,7 @@ Design.mdを作成するにあたって使用したプラグインはこちら�
 
 ![Figmaのデザインとデザイントークンの設定](../../../assets/images/blog/05-Design-md/figma-setup.webp)
 
-<a href="/downloads/blog/05/DESIGN.md" download="DESIGN.md" target="_blank" rel="noopener noreferrer">出力したDESIGN.mdをダウンロード</a>
+<a class="blog-download-link" href="/downloads/blog/05/DESIGN.md?v=c1973d801e" download="DESIGN.md" target="_blank" rel="noopener noreferrer"><span>出力したDESIGN.mdをダウンロード</span><svg class="blog-download-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4" /></svg></a>
 
 ### v1：まずは実装
 

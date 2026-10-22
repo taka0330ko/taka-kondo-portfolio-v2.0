@@ -152,6 +152,16 @@
     text-decoration: none;
 }
 
+.blog-post-content .blog-download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+}
+
+.blog-post-content .blog-download-icon {
+    flex: none;
+}
+
 .blog-post-content .blog-demo-link {
     display: inline-flex;
     align-items: center;
