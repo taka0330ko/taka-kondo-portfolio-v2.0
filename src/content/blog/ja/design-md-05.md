@@ -21,6 +21,8 @@ Design.mdを作成するにあたって使用したプラグインはこちら�
 
 ![Figmaのデザインとデザイントークンの設定](../../../assets/images/blog/05-Design-md/figma-setup.webp)
 
+<a href="/downloads/blog/05/DESIGN.md" download="DESIGN.md" target="_blank" rel="noopener noreferrer">出力したDESIGN.mdをダウンロード</a>
+
 ### v1：まずは実装
 
 まずはCodexにFigmaのリンク、デザインの見た目の画像、そして作成したDesign.mdを渡しました。

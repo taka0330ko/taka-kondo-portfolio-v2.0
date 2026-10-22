@@ -24,6 +24,8 @@ I used this plugin to create Design.md:
 
 ![The Figma design and its design-token setup](../../../assets/images/blog/05-Design-md/figma-setup.webp)
 
+<a href="/downloads/blog/05/DESIGN.md" download="DESIGN.md" target="_blank" rel="noopener noreferrer">Download the generated DESIGN.md</a>
+
 ### v1: The first implementation
 
 First, I gave Codex the Figma link, an image of the design, and the generated Design.md.
