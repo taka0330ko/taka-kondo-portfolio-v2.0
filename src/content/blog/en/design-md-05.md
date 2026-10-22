@@ -20,7 +20,7 @@ I reviewed the color tokens, added spacing tokens, and aimed to use tokens where
 
 I used this plugin to create Design.md:
 
-[Plugin on Figma Community](https://www.figma.com/community/plugin/1612814320994608244/design-md-generator)
+<a href="https://www.figma.com/community/plugin/1612814320994608244/design-md-generator" target="_blank" rel="noopener noreferrer">Plugin on Figma Community</a>
 
 ![The Figma design and its design-token setup](../../../assets/images/blog/05-Design-md/figma-setup.webp)
 
@@ -34,7 +34,7 @@ Visually, the result was reproduced to a high standard. The spacing, color, radi
 
 Still, there were only a handful of these issues, and my impression was that they would not take too long to fix.
 
-[View the v1 implementation](https://ukg-pay-overview-design-md.vercel.app/v1/)
+<a href="https://ukg-pay-overview-design-md.vercel.app/v1/" target="_blank" rel="noopener noreferrer">View the v1 implementation</a>
 
 ### v2: More detailed specifications
 
@@ -44,13 +44,13 @@ Next, I described the front-end implementation in more detail in Design.md: whic
 
 The appearance did not change much from the first attempt, and generation took longer, although I could see a small improvement in the interactive behavior.
 
-[View the v2 implementation](https://ukg-pay-overview-design-md.vercel.app/v2/)
+<a href="https://ukg-pay-overview-design-md.vercel.app/v2/" target="_blank" rel="noopener noreferrer">View the v2 implementation</a>
 
 ### v3: Refining through conversation with the AI agent
 
 This felt like the limit of asking for a complete implementation in one pass with design.md. From there, I refined the implementation by describing the changes to the AI agent in plain language, without editing the Figma design or code myself. I think those revisions took at least an hour in total.
 
-[View the v3 implementation](https://ukg-pay-overview-design-md.vercel.app/v3/)
+<a href="https://ukg-pay-overview-design-md.vercel.app/v3/" target="_blank" rel="noopener noreferrer">View the v3 implementation</a>
 
 ### Fidelity and behavior
 
@@ -58,4 +58,4 @@ For a static website whose appearance does not change in response to user intera
 
 For a dashboard like this one, however, appearance alone is not enough: the behavior also needs to be communicated. Even after revisions, interactions can still differ from what I intended, so iteration and QA take time. I think a stronger understanding of front-end development can help reduce the time spent on those revisions.
 
-The Design.md files used and the results of each version are collected on the [comparison site](https://ukg-pay-overview-design-md.vercel.app/).
+The Design.md files used and the results of each version are collected on the <a href="https://ukg-pay-overview-design-md.vercel.app/" target="_blank" rel="noopener noreferrer">comparison site</a>.
