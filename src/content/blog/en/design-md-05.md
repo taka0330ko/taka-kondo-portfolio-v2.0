@@ -48,9 +48,9 @@ Next, I described the front-end implementation in more detail in Design.md: whic
 
 The appearance did not change much from the first attempt, and generation took longer, although I could see a small improvement in the interactive behavior.
 
-### v3: Natural-language revisions
+### v3: Refining through conversation with the AI agent
 
-This felt like the limit of asking for a complete implementation in one pass with design.md, so I moved on to requesting individual changes in natural language to refine the appearance and behavior. I think those revisions took at least an hour in total.
+This felt like the limit of asking for a complete implementation in one pass with design.md. From there, I refined the implementation by describing the changes to the AI agent in plain language, without editing the Figma design or code myself. I think those revisions took at least an hour in total.
 
 [View the v3 implementation](https://ukg-pay-overview-design-md.vercel.app/v3/)
 

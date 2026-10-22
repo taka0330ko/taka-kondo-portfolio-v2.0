@@ -181,44 +181,6 @@ const { title, date, tags, cover, coverAlt, coverVideo, coverVideoFallback, tran
         margin-top: 1em;
     }
 
-    .blog-post-content :global(a) {
-        color: var(--text-accent);
-        text-decoration: underline;
-        text-decoration-thickness: 1px;
-        text-underline-offset: 0.22em;
-    }
-
-    .blog-post-content :global(a:hover) {
-        text-decoration-thickness: 2px;
-    }
-
-    .blog-post-content :global(a:focus-visible) {
-        outline: 2px solid var(--text-accent);
-        outline-offset: 4px;
-        border-radius: 2px;
-    }
-
-    .blog-post-content :global(p a[href^="http"]:not(.blog-demo-link)::after) {
-        content: "↗" / "";
-        display: inline-block;
-        margin-inline-start: 0.3em;
-        font-size: 0.9em;
-        text-decoration: none;
-    }
-
-    .blog-post-content :global(.blog-demo-link) {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-top: 1.5rem;
-        color: var(--text-accent);
-        text-underline-offset: 0.25em;
-    }
-
-    .blog-post-content :global(.blog-demo-link:hover) {
-        opacity: 0.7;
-    }
-
     .blog-post-content :global(ul),
     .blog-post-content :global(ol) {
         margin-top: 1em;
