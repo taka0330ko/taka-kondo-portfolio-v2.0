@@ -10,9 +10,13 @@ tags: ["Design", "Figma", "AI", "Development"]
 draft: false
 ---
 
+### Revisiting the Figma design
+
 This started when I revisited the pay overview screen of a dashboard I had designed. I noticed areas where my design skills had fallen short and thought, “I could have done this differently.” So I decided to revisit the design in Figma from the ground up.
 
 I reviewed the color tokens, added spacing tokens, and aimed to use tokens wherever possible in the frames. Besides making future design changes easier, I thought this might help AI understand the Figma design more clearly.
+
+![Figma variables organized into Primitive, Semantic, and Components collections alongside pay overview layouts at different screen sizes](../../../assets/images/blog/05-Design-md/figma-tokens-and-screens.webp)
 
 I used this plugin to create Design.md:
 
@@ -21,6 +25,8 @@ I used this plugin to create Design.md:
 [Plugin on Figma Community](https://www.figma.com/community/plugin/1612814320994608244/design-md-generator)
 
 ![The Figma design and its design-token setup](../../../assets/images/blog/05-Design-md/figma-setup.webp)
+
+### v1: The first implementation
 
 First, I gave Codex the Figma link, an image of the design, and the generated Design.md.
 
@@ -32,15 +38,23 @@ Visually, the result was reproduced to a high standard. The spacing, color, radi
 
 Still, there were only a handful of these issues, and my impression was that they would not take too long to fix.
 
+### v2: More detailed specifications
+
 Next, I described the front-end implementation in more detail in Design.md: which libraries and stack to use, such as React + Vite and Highcharts, and specific calendar settings, such as a height of 360px with 15px representing one hour. I then asked for another implementation.
 
 ![The second implementation, generated with a more detailed stack and interaction specification](../../../assets/images/blog/05-Design-md/implementation-v2.webp)
 
 [View the v2 implementation](https://ukg-pay-overview-design-md.vercel.app/v2/)
 
-The appearance did not change much from the first attempt, and generation took longer, although I could see a small improvement in the interactive behavior. This felt like the limit of asking for a complete implementation in one pass with design.md, so I moved on to requesting individual changes in natural language to refine the appearance and behavior. I think those revisions took at least an hour in total.
+The appearance did not change much from the first attempt, and generation took longer, although I could see a small improvement in the interactive behavior.
+
+### v3: Natural-language revisions
+
+This felt like the limit of asking for a complete implementation in one pass with design.md, so I moved on to requesting individual changes in natural language to refine the appearance and behavior. I think those revisions took at least an hour in total.
 
 [View the v3 implementation](https://ukg-pay-overview-design-md.vercel.app/v3/)
+
+### Fidelity and behavior
 
 For a static website whose appearance does not change in response to user interaction, I would expect a single prompt to achieve a fairly high level of fidelity. The more rigorously the design system is defined in Figma, the more accurate the result should be.
 
