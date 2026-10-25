@@ -9,8 +9,8 @@ import TastebudsVideoMp4 from "../assets/images/projects/tastebuds/videos/foodbl
 import StoreMapNavigationThumbnail from "../assets/images/projects/store-navigation/store-map-thumbnail.webp";
 import StoreMapNavigationVideo from "../assets/images/projects/store-navigation/videos/store-map-thumbnail.webm"
 import UKGThumbnail from "../assets/images/projects/UKG/UKG-thumbnail.webp";
-import UKGVideo from "../assets/images/projects/UKG/videos/main-thumbnail.webm";
-import UKGVideoMp4 from "../assets/images/projects/UKG/videos/main-thumbnail.mp4";
+import UKGVideo from "../assets/images/projects/UKG/videos/dashboard-motion-thumbnail.mp4";
+import UKGVideoMp4 from "../assets/images/projects/UKG/videos/dashboard-motion-thumbnail.mp4";
 import { homeEn } from "../content/en/home";
 
 type Project = {

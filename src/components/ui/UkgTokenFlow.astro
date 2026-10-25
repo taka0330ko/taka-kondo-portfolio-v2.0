@@ -1,0 +1,66 @@
+---
+import WeekToggle from '../../assets/images/projects/UKG/WeekToggle.svg?url';
+import PaydayBtn from '../../assets/images/projects/UKG/PaydayBtn.svg?url';
+const boxes = [
+ {x:30,y:270,w:150,text:'#00786F'},
+ {x:230,y:270,w:200,text:'Color/teal/700'},
+ {x:480,y:270,w:270,text:'color/action/secondary'},
+ {x:820,y:160,w:230,text:'toggle/btn'},
+ {x:820,y:380,w:230,text:'button/secondary'},
+];
+const paths = ['M180 295H230','M430 295H480','M750 295H780V185H820','M780 295V405H820','M1050 185H1110','M1050 405H1110'];
+---
+<div class="token-flow" data-token-flow>
+ <div class="flow-scroll" tabindex="0" role="region" aria-label="Design token flow: one action color branches into WeekToggle and PaydayBtn">
+ <svg viewBox="0 90 1400 560" role="img" aria-labelledby="token-flow-title">
+ <title id="token-flow-title">#00786F → Color/teal/700 → color/action/secondary → toggle/btn and button/secondary</title>
+ <defs>{paths.map((d,i)=><mask id={`ukg-flow-mask-${i}`} maskUnits="userSpaceOnUse" x="0" y="0" width="1400" height="650"><path data-flow-line d={d} fill="none" stroke="white" stroke-width="8" /></mask>)}</defs>
+ {paths.map((d,i)=><path d={d} fill="none" stroke="#00786F" stroke-width="2" stroke-dasharray="6 7" mask={`url(#ukg-flow-mask-${i})`} />)}
+ {boxes.map((box,i)=><g data-flow-node={i}><rect x={box.x} y={box.y} width={box.w} height="50" rx="5" class="flow-box" style="fill: var(--bg-default); stroke: var(--text-body-default); stroke-opacity: 0.45;" />{i===0 && <rect x={box.x+13} y={box.y+15} width="20" height="20" rx="2" fill="#00786F"/>}<text x={box.x+box.w/2+(i===0?12:0)} y={box.y+30} text-anchor="middle" class="flow-text" style="fill: var(--text-heading-default);">{box.text}</text></g>)}
+ <g data-flow-node="4">
+ <image href={WeekToggle} x="1110" y="163" width="250" height="42" />
+ <text x="1235" y="239" text-anchor="middle" class="flow-ui-label" style="fill: var(--text-body-default);">WeekToggle</text>
+ <image href={PaydayBtn} x="1110" y="380" width="250" height="56" />
+ <text x="1235" y="468" text-anchor="middle" class="flow-ui-label" style="fill: var(--text-body-default);">PaydayBtn</text>
+ </g>
+ {[{x:105,y:360,label:'Raw value'},{x:330,y:360,label:'Primitive token'},{x:615,y:360,label:'Semantic token'},{x:935,y:465,label:'Component token'},{x:1235,y:495,label:'UI'}].map(col=><g><path d={`M${col.x} ${col.y}V565`} class="flow-guide"/><text x={col.x} y="602" text-anchor="middle" class="flow-label" style="fill: var(--text-heading-default);">{col.label}</text></g>)}
+ </svg>
+ </div>
+</div>
+<style>
+ .token-flow { color: var(--text-heading-default); border: 1px solid color-mix(in srgb,currentColor 12%,transparent); border-radius: 0.5rem; padding: 1rem; background: var(--frame-bg-color); }
+ .flow-scroll { overflow-x: auto; }
+ svg { display: block; width: 100%; min-width: 760px; height: auto; }
+ .flow-box { fill: var(--bg-default); stroke: color-mix(in srgb,currentColor 28%,transparent); }
+ .flow-text { fill: currentColor; font-size: 17px; font-family: Arial,sans-serif; }
+ .flow-label { fill: currentColor; font-size: 20px; font-family: Arial,sans-serif; }
+ .flow-ui-label { fill: currentColor; opacity: 0.7; font-size: 14px; font-family: Arial,sans-serif; }
+ .flow-guide { stroke: currentColor; opacity: 0.25; stroke-width: 1; fill: none; }
+</style>
+<script>
+ import gsap from 'gsap';
+ import {ScrollTrigger} from 'gsap/ScrollTrigger';
+ gsap.registerPlugin(ScrollTrigger);
+ let context: ReturnType<typeof gsap.context> | undefined;
+ function initTokenFlow() {
+  context?.revert();
+  context=gsap.context(()=> {
+   document.querySelectorAll<HTMLElement>('[data-token-flow]').forEach(flow=> {
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const lines=flow.querySelectorAll('[data-flow-line]');
+    const nodes=flow.querySelectorAll('[data-flow-node]');
+    lines.forEach(line => {
+     const length=(line as SVGPathElement).getTotalLength();
+     gsap.set(line,{attr:{'stroke-dasharray':`${length} ${length}`,'stroke-dashoffset':length}});
+    });
+    const tl=gsap.timeline({repeat:-1,repeatDelay:6,scrollTrigger:{trigger:flow,start:'top 80%',toggleActions:'play pause resume reset'}});
+    tl.from(nodes[0],{autoAlpha:0,duration:0.25},0);
+    lines.forEach((line,i)=>tl.to(line,{attr:{'stroke-dashoffset':0},duration:0.5,ease:'power1.inOut'},[0.3,0.9,1.5,1.5,2.2,2.2][i]));
+    nodes.forEach((node,i)=>{if(i) tl.from(node,{autoAlpha:0,duration:0.4},[0,0.65,1.25,1.95,1.95,2.7][i]);});
+   });
+  });
+ }
+ initTokenFlow();
+ document.addEventListener('astro:page-load',initTokenFlow);
+ document.addEventListener('astro:before-swap',()=>context?.revert());
+</script>

@@ -1,0 +1,62 @@
+---
+import Regular from '../../assets/images/projects/UKG/preview-cell1.svg?url';
+import Early from '../../assets/images/projects/UKG/preview-cell4.svg?url';
+import Late from '../../assets/images/projects/UKG/preview-cell2.svg?url';
+import Overtime from '../../assets/images/projects/UKG/preview-cell3.svg?url';
+import RegularCard from '../../assets/images/projects/UKG/preview-detail1.svg?url';
+import EarlyCard from '../../assets/images/projects/UKG/preview-detail4.svg?url';
+import LateCard from '../../assets/images/projects/UKG/preview-detail2.svg?url';
+import OvertimeCard from '../../assets/images/projects/UKG/preview-detail3.svg?url';
+const states=[{label:'Regular',cell:Regular,card:RegularCard,height:71},{label:'Early leave',cell:Early,card:EarlyCard,height:54},{label:'Late',cell:Late,card:LateCard,height:116},{label:'Overtime',cell:Overtime,card:OvertimeCard,height:138}];
+---
+<div data-work-cells class="work-cells-demo" aria-label="Work time cell variants">
+ {states.map(state=><div class="cell-example">
+   <span class="state-label">{state.label}</span>
+   <div class="cell-stage">
+    <button class="work-cell" type="button" aria-label={`${state.label}: show shift details`} style={`--cell-height:${state.height}px`}>
+      <img src={state.cell} width="80" height={state.height} alt={`${state.label} work time cell`} />
+    </button>
+    <span class="cell-cursor" aria-hidden="true"></span>
+    <div class="detail-card" role="tooltip"><img src={state.card} width="188" height="177" alt={`${state.label} clock-in, break, clock-out and total hours`} /></div>
+   </div>
+ </div>)}
+</div>
+<style>
+.work-cells-demo{--cell-width:80px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;width:100%;max-width:540px;margin:0 auto;padding:100px 8px 24px;box-sizing:border-box}
+.cell-example{min-width:0;text-align:center}.state-label{display:block;font-size:12px;line-height:1.3;margin-bottom:22px;font-weight:400;white-space:nowrap}.cell-stage{position:relative;height:145px;display:flex;justify-content:center;align-items:flex-start}.work-cell{display:block;width:var(--cell-width);height:var(--cell-height);padding:0;border:0;background:transparent;border-radius:4px;overflow:hidden;clip-path:inset(0 round 4px);cursor:none!important;transition:transform .15s}.work-cell img{width:100%;height:100%;display:block;pointer-events:none}.work-cell:hover,.work-cell:focus-visible{transform:scale(1.04)}.work-cell:focus-visible{outline:2px solid #30cebb;outline-offset:4px}
+.detail-card{position:fixed;z-index:1000;width:220px;max-width:calc(100vw - 24px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .12s,visibility .12s}.detail-card img{width:100%;height:auto;border-radius:7px;box-shadow:0 10px 28px #00302e24;display:block}.detail-card.is-active{visibility:visible;opacity:1}
+.cell-cursor{position:fixed;z-index:1001;width:16px;height:16px;border-radius:50%;background:#30cebb;opacity:0;pointer-events:none;transform:translate(-50%,-50%)}.cell-cursor.is-pointer{opacity:.8}
+@media(max-width:480px){.work-cells-demo{grid-template-columns:repeat(2,minmax(0,1fr));gap:70px 20px;padding-top:90px;max-width:300px}.detail-card{width:188px}}
+@media(hover:none),(pointer:coarse){.work-cell{cursor:pointer}.cell-cursor{display:none}}
+@media(prefers-reduced-motion:reduce){.work-cell,.detail-card{transition:none}}
+</style>
+<script>
+function initWorkCells(){
+ document.querySelectorAll<HTMLElement>('[data-work-cells]').forEach(demo=>{
+  if(demo.dataset.ready)return;demo.dataset.ready='true';
+  demo.querySelectorAll<HTMLElement>('.cell-stage').forEach(stage=>{
+   const button=stage.querySelector<HTMLButtonElement>('.work-cell')!;
+   const card=stage.querySelector<HTMLElement>('.detail-card')!;
+   const cursor=stage.querySelector<HTMLElement>('.cell-cursor')!;
+   card.dataset.workCellOverlay='';cursor.dataset.workCellOverlay='';
+   document.body.append(card,cursor);
+   const hide=()=>{card.classList.remove('is-active');cursor.classList.remove('is-pointer')};
+   window.addEventListener('scroll',hide,{passive:true});
+   function position(x:number,y:number){
+    const rect=card.getBoundingClientRect();
+    card.style.left=`${Math.max(12,Math.min(innerWidth-rect.width-12,x-rect.width/2))}px`;
+    card.style.top=`${Math.max(12,y-rect.height-16)}px`;
+    cursor.style.left=`${x}px`;cursor.style.top=`${y}px`;
+   }
+   button.addEventListener('pointerenter',event=>{if(event.pointerType==='touch')return;card.classList.add('is-active');cursor.classList.add('is-pointer');position(event.clientX,event.clientY)});
+   button.addEventListener('pointermove',event=>{if(event.pointerType!=='touch')position(event.clientX,event.clientY)});
+   button.addEventListener('pointerleave',hide);
+   button.addEventListener('focus',()=>{const rect=button.getBoundingClientRect();card.classList.add('is-active');position(rect.left+rect.width/2,rect.top)});
+   button.addEventListener('blur',hide);
+   button.addEventListener('keydown',event=>{if(event.key==='Escape')hide()});
+  });
+ });
+}
+document.addEventListener('astro:before-swap',()=>document.querySelectorAll('[data-work-cell-overlay]').forEach(el=>el.remove()));
+initWorkCells();document.addEventListener('astro:page-load',initWorkCells);
+</script>

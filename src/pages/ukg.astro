@@ -12,13 +12,19 @@ import BreadCrumb from "../components/ui/BreadCrumb.astro";
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
 import Card from "../components/ui/Card.astro";
 import CodeWindow from "../components/ui/CodeWindow.astro";
+import ColorTokens from "../assets/images/projects/UKG/semantic-color-tokens.png";
+import FontSizeTokens from "../assets/images/projects/UKG/semantic-font-size-tokens.png";
+import SpacingTokens from "../assets/images/projects/UKG/semantic-spacing-tokens.png";
+import RadiusTokens from "../assets/images/projects/UKG/semantic-radius-tokens.png";
+import UkgWorkCellsDemo from "../components/ui/UkgWorkCellsDemo.astro";
+import UkgCalendarDemo from "../components/ui/UkgCalendarDemo.astro";
 import ProjectMainVideo from "../components/ui/ProjectMainVideo.astro";
 import GlassPill from "../components/ui/GlassPill.astro";
 import BeforeAfterToggle from "../components/ui/BeforeAfterToggle.astro";
 import ToolPill from "../components/ui/ToolPill.astro";
 
 // Icons
-import { ArrowUpRight, Notebook, NotebookPen, TrendingUp } from "@lucide/astro";
+import { ArrowUpRight, Notebook, NotebookPen, ZoomIn, X } from "@lucide/astro";
 import GoogleFormIcon from "../assets/images/icons/stacks/google-form.svg";
 import FigmaIcon from "../assets/images/icons/stacks/figma.svg";
 import ReactIcon from "../assets/images/icons/stacks/react.svg";
@@ -42,10 +48,8 @@ const relatedProjects = projects
     );
 
 // Hero media
-import UKGVideo from "../assets/images/projects/UKG/videos/demo_video.webm";
-import UKGVideoMp4 from "../assets/images/projects/UKG/videos/demo_video.mp4";
-import UKGVideoPoster from "../assets/images/projects/UKG/videos/demo_video-poster.webp";
-import MyUKGPage from "../assets/images/projects/UKG/my-ukg-page.webp";
+import UKGHeroVideo from "../assets/images/projects/UKG/videos/dashboard-motion-thumbnail.mp4";
+import UKGVideo from "../assets/images/projects/UKG/videos/prototype-walkthrough.mp4";
 
 // Research media
 import Survey from "../assets/images/projects/UKG/survey.webp";
@@ -55,7 +59,6 @@ import Schedule from "../assets/images/projects/UKG/schedle.webp";
 import TotalHours from "../assets/images/projects/UKG/total-hours.webp";
 import SadIcon from "../assets/images/projects/UKG/sad.svg";
 import SmileIcon from "../assets/images/projects/UKG/smile.svg";
-import JourneyMap from "../assets/images/projects/UKG/journey-map.webp";
 
 // Process layer graphics
 import UXResearchLayer from "../assets/images/projects/UKG/ux-research-layer.svg";
@@ -64,26 +67,20 @@ import InterviewLayer from "../assets/images/projects/UKG/interview-layer.svg";
 import FormLayer from "../assets/images/projects/UKG/form-layer.svg";
 import DevLayer from "../assets/images/projects/UKG/dev-layer.svg";
 import TestingLayer from "../assets/images/projects/UKG/testing-layer.svg";
-import Arrow from "../assets/images/projects/UKG/arrow.svg";
 
 // Design process media
 import MidFide from "../assets/images/projects/UKG/mid-fide.webp";
-import OldLogo from "../assets/images/projects/UKG/ukg-old-logo.png";
+import MyUKGPage from "../assets/images/projects/UKG/my-ukg-page.webp";
 import NewLogo from "../assets/images/projects/UKG/ukg-new-logo.png";
-import DevTool from "../assets/images/projects/UKG/dev-tool.webp";
 
 // Design system media
-import PrimitiveColors from "../assets/images/projects/UKG/color-primitive.webp";
-import DesignSystem from "../assets/images/projects/UKG/design-system.webp";
-import PrimitiveTokens from "../assets/images/projects/UKG/primitive-tokens.webp";
-import SemanticTokens from "../assets/images/projects/UKG/semantic-tokens.webp";
-import ComponentsTokens from "../assets/images/projects/UKG/components-tokens.webp";
 
 // Prototype and testing media
+import BrandDirectionPreview from "../assets/images/projects/UKG/brand-direction-preview.png";
+import BrandPreviousLogo from "../assets/images/projects/UKG/brand-previous-logo.png";
+import UkgTokenFlow from "../components/ui/UkgTokenFlow.astro";
 import OriginalDesign from "../assets/images/projects/UKG/original-design.webp";
-import CalendarUI from "../assets/images/projects/UKG/calendar-ui.webp";
-import WorkCellUI from "../assets/images/projects/UKG/workcell-ui.webp";
-import HighFide from "../assets/images/projects/UKG/high-fide.webp";
+import HighFide from "../assets/images/projects/UKG/final-redesign-sidebar-expanded.png";
 import Testers from "../assets/images/projects/UKG/testers.webp";
 
 const ukgSections = [
@@ -105,10 +102,15 @@ const ukgSections = [
         <section id="hero" aria-labelledby="ukg-redesign-overview">
             <div class="grid grid-cols-12 grid-container items-start">
                 <div class="col-span-8">
-                    <h1 class="mt-8">
-                        {t("“How can I verify my work hours...?”")}
+                    <h1 id="ukg-redesign-overview" class="mt-8 ukg-hero-title">
+                        {isJapanese
+                            ? t("“How can I verify my work hours...?”")
+                                .replace("。", "。\n")
+                                .split("\n")
+                                .map((line) => <span class="ukg-hero-title-line">{line}</span>)
+                            : t("“How can I verify my work hours...?”")}
                     </h1>
-                    <p class="mt-8">
+                    <p class="mt-8 ukg-hero-description">
                         {t("The existing payroll screen showed total hours, but provided no way to verify them.")}
                     </p>
                     <div class="mt-8 md:my-8">
@@ -116,14 +118,14 @@ const ukgSections = [
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Open UKG prototype in a new tab"
-                            href="https://ukg-pro-redesign.vercel.app/"
+                            href="https://ukg-pay-overview-design-md.vercel.app/v3/"
                         >
                             <ArrowUpRight
                                 slot="after"
                                 aria-hidden="true"
                                 focusable="false"
                             />
-                            Prototype
+                            {isJapanese ? "作ったものを見る" : "Prototype"}
                             <span class="sr-only">(opens in a new tab)</span>
                         </GlassPill>
                     </div>
@@ -172,7 +174,7 @@ const ukgSections = [
                     </div>
                 </dl>
                 <div class="order-2 md:order-3 col-span-12">
-                    <ProjectMainVideo src={UKGVideo} fallbackSrc={UKGVideoMp4} poster={UKGVideoPoster.src} />
+                    <ProjectMainVideo src={UKGHeroVideo} />
                 </div>
             </div>
         </section>
@@ -200,6 +202,7 @@ const ukgSections = [
                         </div>
 
                         <div class="mt-12">
+                            <div class="ukg-project-intro">
                             <p class="caption-pill">About this project</p>
                             <h3
                                 class="mt-2 max-w-5xl text-cs-h1 font-normal leading-tight"
@@ -207,185 +210,99 @@ const ukgSections = [
                                 {t("Redesigning the payroll experience of \"UKG Pro\" to help employees understand and verify their payroll information.")}
                             </h3>
 
-                            <div
-                                class="mt-16 grid gap-10 rounded-lg bg-text-block p-6 md:grid-cols-2 md:items-center md:p-12"
-                            >
-                                <div class="max-w-md">
-                                    <div
-                                        class="flex items-center justify-center"
-                                    >
-                                        <Image
-                                            alt=""
-                                            src={NewLogo}
-                                            class="h-auto w-100 object-contain"
-                                        />
-                                    </div>
-                                    <h4 class="mt-10 text-cs-h2 font-normal">
-                                        About UKG Pro
-                                    </h4>
-                                    <p
-                                        class="mt-3 text-cs-body leading-snug text-heading-default"
-                                    >
-                                        {t("An employee platform for managing work hours, accessing payroll information, and reviewing pay statements.")}
-                                    </p>
-                                </div>
-                                <figure>
-                                    <Image
-                                        src={MyUKGPage}
-                                        alt="UKG Pro dashboard displayed on a laptop screen"
-                                        class="w-full rounded-sm"
-                                    />
-                                    <figcaption
-                                        class="mt-4 text-cs-caption text-heading-default"
-                                    >
-                                        {t("The UKG main page I actually use")}
-                                    </figcaption>
-                                </figure>
+                            {isJapanese && (
+                                <p class="ukg-project-context">アルバイト先で実際に使っているサービスを対象に、従業員の視点から給与確認画面を見直しました。</p>
+                            )}
+
                             </div>
 
-                            <div class="mt-28">
+                            <div class="ukg-about-card mt-8 bg-text-block">
+                                <div class="ukg-about-copy">
+                                    <div class="ukg-about-header">
+                                        <h4 class="ukg-about-heading">
+                                            {isJapanese ? "UKG Proとは" : "About UKG Pro"}
+                                        </h4>
+
+                                    </div>
+                                    <p class="ukg-about-description">
+                                        {isJapanese
+                                            ? "勤務時間の管理やシフト、給与明細の確認ができる従業員向けサービスです。"
+                                            : t("An employee platform for managing work hours, accessing payroll information, and reviewing pay statements.")}
+                                    </p>
+                                    <a
+                                        href="https://www.ukg.com/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="ukg-about-link"
+                                    >
+                                        {isJapanese ? "UKG公式サイトを見る" : "Visit UKG website"}
+                                        <ArrowUpRight class="size-4" aria-hidden="true" />
+                                        <span class="sr-only">{isJapanese ? "（新しいタブで開きます）" : "(opens in a new tab)"}</span>
+                                    </a>
+
+                                </div>
+                                <div class="ukg-carousel" data-ukg-carousel role="region" aria-label={isJapanese ? "UKGの紹介画像" : "UKG gallery"} aria-roledescription="carousel">
+                                    <div class="ukg-carousel-viewport">
+                                    <div class="ukg-carousel-stage">
+                                        <figure data-slide class="ukg-carousel-slide">
+                                            <Image alt="UKG" src={NewLogo} class="ukg-about-logo" />
+                                        </figure>
+                                        <figure data-slide class="ukg-carousel-slide" aria-hidden="true" inert>
+                                            <Image src={MyUKGPage} alt={isJapanese ? "UKG Proのホーム画面" : "UKG Pro home screen"} class="ukg-carousel-photo" />
+                                            <figcaption>{isJapanese ? "アルバイト先で実際に使っているUKG Proのホーム画面" : "The UKG home screen I use at work"}</figcaption>
+                                        </figure>
+                                    </div>
+                                    </div>
+                                    <div class="ukg-carousel-controls">
+                                        <button type="button" data-prev aria-label={isJapanese ? "前の画像" : "Previous image"}>←</button>
+                                        <span data-counter aria-live="polite" aria-atomic="true">1 / 2</span>
+                                        <button type="button" data-next aria-label={isJapanese ? "次の画像" : "Next image"}>→</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ukg-goal mt-28">
                                 <p class="caption-pill">Goal</p>
-                                <h4
-                                    class="mt-5 text-cs-h2 font-normal leading-tight"
-                                >
-                                    {t("Toward a More Transparent Payroll Experience")}
-                                    <TrendingUp
-                                        class="ml-2 inline-block size-6 align-[-0.125em] text-foreground"
-                                    />
+                                <h4 class="ukg-goal-heading">
+                                    {isJapanese ? "「給与の計算過程が分かる画面にしたい」" : t("Toward a More Transparent Payroll Experience")}
                                 </h4>
-                                <p class="mt-4 text-cs-body leading-snug">
-                                    {t("This project began with UX research focused on UKG Pro, which I actively use at my part-time workplace primarily to review pay statements.")} <br />
-                                    {t("The goal of the redesign was to improve transparency and verifiability within the payroll checking experience.")}
+                                <button type="button" class="ukg-image-trigger ukg-goal-zoom" data-image-zoom aria-haspopup="dialog" aria-controls="ukg-image-dialog" aria-label={isJapanese ? "画面を拡大する" : "Enlarge screenshot"}>
+                                    <Image
+                                        src={OriginalDesign}
+                                        alt={isJapanese ? "改善前のUKG Pro給与確認画面。合計勤務時間は表示されるが、日ごとの内訳は確認できない。" : "Original UKG Pro payroll overview"}
+                                        class="ukg-goal-image"
+                                    />
+                                    <span class="ukg-image-zoom-icon"><ZoomIn class="size-5" aria-hidden="true" /></span>
+                                </button>
+                                <p class="ukg-goal-description">
+                                    {isJapanese
+                                        ? "このプロジェクトは、そんな従業員の声をヒントに、利用体験を改善できる点を探るところから始めました。その過程を踏まえ、給与情報の根拠を理解し、自分で確かめられる体験に改善することを目標としました。"
+                                        : `${t("This project began with UX research focused on UKG Pro, which I actively use at my part-time workplace primarily to review pay statements.")} ${t("The goal of the redesign was to improve transparency and verifiability within the payroll checking experience.")}`}
                                 </p>
                             </div>
 
-                            <div class="mt-32">
-                                <div
-                                    class="grid grid-cols-1 gap-12 md:grid-cols-[minmax(0,1fr)_minmax(26rem,0.95fr)] md:items-start"
-                                >
-                                    <div>
-                                        <p class="caption-pill">My Approach</p>
-                                        <h3
-                                            class="mt-4 text-cs-h2 font-normal leading-tight"
-                                        >
-                                            {t("A User-Centered Design Process")}
-                                        </h3>
-                                        <p
-                                            class="mt-4 text-cs-body leading-snug"
-                                        >
-                                            {t("In this project, I first analyzed pain points through interviews and surveys conducted with real users, including my coworkers. Based on these insights, I designed the UI in Figma, built a prototype using AI-assisted development tools, and gathered feedback through participant evaluations.")}
-                                        </p>
-                                    </div>
-                                    <div
-                                        class="grid grid-cols-[3rem_minmax(0,1fr)_1fr] items-center gap-x-5 gap-y-8 md:gap-x-8 mx-auto"
-                                    >
-                                        <!-- Step 1 -->
-                                        <div
-                                            class="relative flex w-10 justify-center"
-                                        >
-                                            <div
-                                                class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
-                                            >
-                                                1
-                                            </div>
-                                            <div
-                                                class="absolute left-1/2 top-full h-28 w-px -translate-x-1/2 bg-accent/30"
-                                            >
-                                            </div>
-                                        </div>
-                                        <h4
-                                            class="text-cs-body font-normal leading-snug"
-                                        >
-                                            {t("UX Research")}<br />
-                                            (Interview & Form)
-                                        </h4>
-                                        <div class="flex justify-center">
-                                            <img
-                                                class="w-36"
-                                                src={UXResearchLayer.src}
-                                                alt="UX Research illustration"
-                                                loading="lazy"
-                                            />
-                                        </div>
-                                        <!-- Step 2 -->
-                                        <div
-                                            class="relative flex w-10 justify-center"
-                                        >
-                                            <div
-                                                class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
-                                            >
-                                                2
-                                            </div>
-                                            <div
-                                                class="absolute left-1/2 top-full h-28 w-px -translate-x-1/2 bg-accent/30"
-                                            >
-                                            </div>
-                                        </div>
-                                        <h4
-                                            class="text-cs-body font-normal leading-snug"
-                                        >
-                                            {t("UI design")}
-                                        </h4>
-                                        <div class="flex justify-center">
-                                            <img
-                                                class="w-36"
-                                                src={UIDesignLayer.src}
-                                                alt="UI design illustration"
-                                                loading="lazy"
-                                            />
-                                        </div>
-                                        <!-- Step 3 -->
-                                        <div
-                                            class="relative flex w-10 justify-center"
-                                        >
-                                            <div
-                                                class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
-                                            >
-                                                3
-                                            </div>
-                                            <div
-                                                class="absolute left-1/2 top-full h-28 w-px -translate-x-1/2 bg-accent/30"
-                                            >
-                                            </div>
-                                        </div>
-                                        <h4
-                                            class="text-cs-body font-normal leading-snug"
-                                        >
-                                            {t("Prototype Development")}
-                                        </h4>
-                                        <div class="flex justify-center">
-                                            <img
-                                                class="w-36"
-                                                src={DevLayer.src}
-                                                alt="Prototype development illustration"
-                                                loading="lazy"
-                                            />
-                                        </div>
-                                        <!-- Step 4 -->
-                                        <div
-                                            class="relative flex w-10 justify-center"
-                                        >
-                                            <div
-                                                class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
-                                            >
-                                                4
-                                            </div>
-                                        </div>
-                                        <h4
-                                            class="text-cs-body font-normal leading-snug"
-                                        >
-                                            {t("User Feedback")}
-                                        </h4>
-                                        <div class="flex justify-center">
-                                            <img
-                                                class="w-36"
-                                                src={TestingLayer.src}
-                                                alt="User Feedback illustration"
-                                                loading="lazy"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="ukg-approach mt-28">
+                                <p class="caption-pill">My Approach</p>
+                                <h3 class="ukg-approach-heading">{t("A User-Centered Design Process")}</h3>
+                                <p class="ukg-approach-description">
+                                    {t("In this project, I first analyzed pain points through interviews and surveys conducted with real users, including my coworkers. Based on these insights, I designed the UI in Figma, built a prototype using AI-assisted development tools, and gathered feedback through participant evaluations.")}
+                                </p>
+                                <ol class="ukg-approach-steps">
+                                    {[
+                                        { label: t("UX Research"), image: UXResearchLayer, detail: isJapanese ? "インタビュー・アンケート" : "Interview & Survey" },
+                                        { label: t("UI design"), image: UIDesignLayer, detail: "" },
+                                        { label: t("Prototype Development"), image: DevLayer, detail: "" },
+                                        { label: t("User Feedback"), image: TestingLayer, detail: "" },
+                                    ].map((step, index) => (
+                                        <li class="ukg-approach-step">
+                                            {index < 3 && <span class="ukg-approach-connector" aria-hidden="true"></span>}
+                                            <span class="ukg-approach-number">{index + 1}</span>
+                                            <img src={step.image.src} alt="" loading="lazy" class="ukg-approach-illustration" />
+                                            <h4>{step.label}</h4>
+                                            {step.detail && <span class="ukg-approach-detail">{step.detail}</span>}
+                                        </li>
+                                    ))}
+                                </ol>
                             </div>
                         </div>
                     </section>
@@ -398,171 +315,48 @@ const ukgSections = [
                             class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
                         >
                         </div>
-                        <div class="flex justify-center my-8">
-                            <Image
-                                class="w-56"
-                                src={InterviewLayer}
-                                alt="Interview research illustration"
-                                loading="lazy"
-                            />
-                        </div>
-                        <div class="mx-auto mt-12 max-w-220">
-                            <!-- <p class="caption-pill">Finding</p> -->
-                            <h2 class="text-cs-h2 mt-5">
-                                {t("A challenge uncovered through everyday conversations with coworkers")}
-                            </h2>
-                            <p class="text-cs-body mt-5">
-                                {t("During a regular day at work, a conversation about checking payroll in UKG revealed a shared frustration among my coworkers and myself. To better understand the issue, I conducted interviews with other coworkers.")}
-                            </p>
+                        <div class="ukg-research-lead">
+                            <div class="ukg-research-intro">
+                                <h2 class="text-cs-h2">
+                                    {t("A challenge uncovered through everyday conversations with coworkers")}
+                                </h2>
+                                <p class="text-cs-body">
+                                    {t("During a regular day at work, a conversation about checking payroll in UKG revealed a shared frustration among my coworkers and myself. To better understand the issue, I conducted interviews with other coworkers.")}
+                                </p>
+                            </div>
+                            <Image class="ukg-research-lead-image" src={InterviewLayer} alt="Interview research illustration" loading="lazy" />
                         </div>
 
-                        <div class="my-16 grid gap-12">
-                            <article
-                                class="grid gap-8 bg-text-block py-8 px-4 md:gap-10 rounded-lg md:grid-cols-[16rem_minmax(0,1fr)] md:px-16 md:py-16"
-                            >
-                                <h3 class="sr-only">Interview 1</h3>
-                                <blockquote
-                                    class="border-l-4 border-body-default/10 pl-6 text-[clamp(1.375rem,6vw,1.75rem)] italic leading-snug text-heading-default md:col-start-1 md:col-span-2 md:pl-8 md:text-[1.5rem]"
-                                >
-                                    {t("“I can see the total hours worked, but I can’t see the breakdown.”")}
-                                </blockquote>
-                                <div
-                                    class="flex flex-col items-center justify-end gap-8 md:row-start-2"
-                                >
-                                    <p class="text-center text-cs-caption">
-                                        {t("Grocery Staff")}
-                                    </p>
-                                    <Image
-                                        class="w-30 md:w-48"
-                                        src={GroceryStaff}
-                                        alt="Grocery staff persona illustration"
-                                        loading="lazy"
-                                    />
-                                </div>
-                                <div
-                                    class="mx-auto mt-4 w-full max-w-120 md:row-start-2 md:mt-0"
-                                >
-                                    <Image
-                                        class="w-full rounded-sm shadow-lg"
-                                        src={TotalHours}
-                                        alt="UKG screenshot showing total hours worked without breakdown"
-                                    />
-                                </div>
-                            </article>
-
-                            <article
-                                class="grid gap-8 bg-text-block py-8 px-4 md:gap-10 rounded-lg md:grid-cols-[16rem_minmax(0,1fr)] md:px-16 md:py-16"
-                            >
-                                <h3 class="sr-only">Interview 2</h3>
-                                <blockquote
-                                    class="border-l-4 border-body-default/10 pl-6 text-[clamp(1.375rem,6vw,1.75rem)] italic leading-snug text-heading-default md:col-start-1 md:col-span-2 md:pl-8 md:text-[1.5rem]"
-                                >
-                                    {t("“The punch records should exist somewhere, but I can’t verify them in UKG Pro. The schedule only shows assigned shifts.”")}
-                                </blockquote>
-                                <div
-                                    class="flex flex-col items-center justify-end gap-8 md:row-start-2"
-                                >
-                                    <p
-                                        class="text-center text-heading-default text-cs-caption"
-                                    >
-                                        {t("Cashier")}
-                                    </p>
-                                    <Image
-                                        class="w-30 md:w-48"
-                                        src={Cashier}
-                                        alt="Cashier persona illustration"
-                                        loading="lazy"
-                                    />
-                                </div>
-                                <div
-                                    class="mx-auto mt-4 w-full max-w-170 md:row-start-2 md:mt-0"
-                                >
-                                    <Image
-                                        class="w-full rounded-sm shadow-lg"
-                                        src={Schedule}
-                                        alt="UKG schedule view showing assigned shifts only, without punch records"
-                                    />
-                                </div>
-                            </article>
+                        <div class="ukg-interviews my-16">
+                            {[
+                                { quote: "“I can see the total hours worked, but I can’t see the breakdown.”", role: "Grocery Staff", person: GroceryStaff, screen: TotalHours, alt: "UKG screenshot showing total hours worked without breakdown" },
+                                { quote: "“The punch records should exist somewhere, but I can’t verify them in UKG Pro. The schedule only shows assigned shifts.”", role: "Cashier", person: Cashier, screen: Schedule, alt: "UKG schedule showing assigned shifts without punch records" },
+                            ].map((interview, index) => (
+                                <article class="ukg-interview">
+                                    <h3 class="sr-only">Interview {index + 1}</h3>
+                                    <div class="ukg-interview-copy">
+                                        <blockquote>{t(interview.quote)}</blockquote>
+                                        <div class="ukg-interview-person">
+                                            <Image src={interview.person} alt="" loading="lazy" />
+                                            <span>{t(interview.role)}</span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="ukg-image-trigger" data-image-zoom aria-haspopup="dialog" aria-controls="ukg-image-dialog" aria-label={isJapanese ? "画面を拡大する" : "Enlarge screenshot"}>
+                                        <Image src={interview.screen} alt={interview.alt} class="ukg-interview-screen" loading="lazy" />
+                                        <span class="ukg-image-zoom-icon"><ZoomIn class="size-5" aria-hidden="true" /></span>
+                                    </button>
+                                </article>
+                            ))}
                         </div>
                         <div class="mt-46">
-                            <div class="mx-auto mt-12 max-w-220">
-                                <h2 class="text-cs-h2">
-                                    {t("Existing User Journey Pain Points")}
-                                </h2>
-                                <p class="text-cs-body mt-4">
-                                    {t("Users cannot verify how payroll hours are calculated, forcing them to rely on manual estimation instead of system transparency.")}
-                                </p>
-                            </div>
-                            <div class="mt-16 grid gap-12">
-                                <div class="my-4 grid grid-cols-2">
-                                    <div
-                                        class="z-10 flex min-w-0 flex-col items-start gap-4 bg-text-block px-4 py-8 [clip-path:polygon(0_0,86%_0,100%_50%,86%_100%,0_100%)] md:gap-8 md:px-20 md:py-14"
-                                    >
-                                        <p
-                                            class="inline-flex rounded-sm bg-heading-default px-2 py-1 text-xs uppercase leading-none text-background md:text-cs-caption"
-                                        >
-                                            User Intent
-                                        </p>
-                                        <span
-                                            aria-hidden="true"
-                                            class="h-6 w-6 bg-heading-default mask-(--smile-icon-url) mask-no-repeat mask-contain md:h-9 md:w-9"
-                                            style={`--smile-icon-url: url('${SmileIcon.src}')`}
-                                        >
-                                        </span>
-                                        <p
-                                            class="pr-6 text-cs-body leading-snug text-heading-default md:max-w-88 md:pr-12"
-                                        >
-                                            {t("Confirm that payroll hours were calculated accurately")}
-                                        </p>
-                                    </div>
-                                    <div
-                                        class="-ml-[14%] flex min-w-0 flex-col items-start gap-4 bg-text-block/50 px-4 py-8 pl-[calc(14%+1rem)] md:gap-8 md:px-20 md:py-14 md:pl-[calc(14%+5rem)]"
-                                    >
-                                        <p
-                                            class="inline-flex rounded-sm bg-heading-default px-2 py-1 text-xs uppercase leading-none text-background md:text-cs-caption"
-                                        >
-                                            Outcome
-                                        </p>
-                                        <img
-                                            class="h-6 w-auto md:h-9"
-                                            src={SadIcon.src}
-                                            alt=""
-                                            loading="lazy"
-                                        />
-                                        <p
-                                            class="text-cs-body leading-snug text-heading-default md:max-w-88"
-                                        >
-                                            {t("The user leaves without knowing the exact payroll calculation")}
-                                        </p>
-                                    </div>
+                            <div class="ukg-research-lead">
+                                <div class="ukg-research-intro">
+                                    <h2 class="text-cs-h2">{t("Research Findings")}</h2>
+                                    <p class="text-cs-body">
+                                        {t("Conducted a survey to further validate existing pain points and identify strong user demand for better visibility into payroll records.")}
+                                    </p>
                                 </div>
-                                <div class="horizontal-scroll">
-                                    <Image
-                                        class="min-w-240 rounded-lg md:min-w-0"
-                                        src={JourneyMap}
-                                        alt="Existing user journey map showing payroll review phases, actions, thoughts, emotions, and friction points"
-                                    />
-                                </div>
-                            </div>
-                            <div class="mt-48">
-                                <div class="mx-auto w-56">
-                                    <Image
-                                        class="w-full"
-                                        src={FormLayer}
-                                        alt="Survey form illustration representing research findings phase"
-                                        loading="lazy"
-                                    />
-                                </div>
-                                <div class="mx-auto mt-8 max-w-220">
-                                <h2 class="text-cs-h2">
-                                    {t("Research Findings")}
-                                </h2>
-                                <p class="text-cs-body mt-4">
-                                    {t("Conducted a survey to further validate existing pain points and identify strong user demand for better visibility into payroll records.")}
-                                </p>
-                            </div>
-
+                                <Image class="ukg-research-lead-image" src={FormLayer} alt="Survey form illustration representing research findings phase" loading="lazy" />
                             </div>
 
                             <div
@@ -596,41 +390,65 @@ const ukgSections = [
                                 </div>
                             </div>
                         </div>
-                        <p class="mt-16 text-cs-body mx-auto max-w-220">
-                            {t("Users lacked confidence in payroll calculations because the system did not provide enough visibility into payroll records and actual worked hours.")}
-                        </p>
 
-                        <div class="mt-32">
-                            <div
-                                class="mb-16 flex flex-col gap-4 justify-center items-start max-w-220 mx-auto"
-                            >
-                                <p class="caption-pill">DESIGN CHALLENGE</p>
+                        <div class="mt-28">
+                            <div class="ukg-research-intro mx-auto mt-12">
                                 <h2 class="text-cs-h2">
-                                    {t("Improve payroll transparency by providing visibility into clock-in and clock-out records.")}
+                                    {t("Existing User Journey Pain Points")}
                                 </h2>
+                                <p class="text-cs-body mt-4">
+                                    {t("Users cannot verify how payroll hours are calculated, forcing them to rely on manual estimation instead of system transparency.")}
+                                </p>
                             </div>
+                            <ol class="ukg-pain-flow" aria-label={isJapanese ? "給与確認で行き詰まる流れの例" : "Example payroll verification journey"}>
+                                {[
+                                    { title: isJapanese ? "前回との違いに気づく" : "Notice a difference", body: isJapanese ? "同じシフトのはずなのに、前回は32時間。今回は29.18333時間。" : "The shifts seem the same, but the total changed from 32 to 29.18333 hours." },
+                                    { title: isJapanese ? "打刻記録を確認したい" : "Try to check punch records", body: isJapanese ? "「打刻を忘れた日がある？」日ごとの記録を見て確かめたい。" : "Was a punch missed? Check daily records to find out." },
+                                    { title: isJapanese ? "記録が見られず、原因がわからない" : "Cannot identify the cause", body: isJapanese ? "表示されるのは合計時間だけ。差の理由を確認できないまま終わる。" : "Only total hours are visible, leaving the difference unexplained." },
+                                ].map((step, index) => (
+                                    <li class="ukg-pain-step">
+                                        <div class="ukg-pain-meta">
+                                            <span class="ukg-pain-number" aria-hidden="true">0{index + 1}</span>
+                                            <svg class="ukg-pixel-face" viewBox="0 0 24 24" role="img" aria-label={isJapanese ? ["疑問", "不安", "困り果てる"][index] : ["Skeptical", "Worried", "Distressed"][index]} shape-rendering="crispEdges">
+                                                <path d="M6 2h12v2h2v2h2v12h-2v2h-2v2H6v-2H4v-2H2V6h2V4h2z" fill="none" />
+                                                <path d="M6 2h12v2H6zM4 4h2v2H4zM18 4h2v2h-2zM2 6h2v12H2zM20 6h2v12h-2zM4 18h2v2H4zM18 18h2v2h-2zM6 20h12v2H6z" fill="currentColor" />
+                                                {index === 0 && <g fill="currentColor"><path d="M6 6h6v2H6zM14 8h4v2h-4zM8 9h2v3H8zM15 10h2v2h-2zM8 16h8v2H8z" /></g>}
+                                                {index === 1 && <><path d="M6 7h4v2H6zM14 7h4v2h-4zM8 10h2v2H8zM14 10h2v2h-2zM9 15h6v2H9zM7 17h2v2H7zM15 17h2v2h-2z" fill="currentColor" /><path d="M18 10h2v4h-2zM17 14h4v3h-4z" fill="#55BCE8" /></>}
+                                                {index === 2 && <g fill="currentColor"><path d="M6 7h2v2H6zM8 9h3v2H8zM6 11h2v2H6zM16 7h2v2h-2zM13 9h3v2h-3zM16 11h2v2h-2zM8 15h8v2H8zM6 17h12v2H6z" /></g>}
+                                            </svg>
+                                        </div>
+                                        <h3>{step.title}</h3>
+                                        <p>{step.body}</p>
+                                    </li>
+                                ))}
+                            </ol>
+                        </div>
 
-                            <div class="mt-16">
-                                <div class="max-w-150 mx-auto">
-                                    <Image
-                                        src={MidFide}
-                                        alt="Mid-fidelity wireframe showing proposed design for payroll transparency feature"
-                                        class="h-auto w-full rounded-lg"
-                                    />
+                        <div class="ukg-design-direction mt-32">
+                            <p class="caption-pill">DESIGN CHALLENGE</p>
+                            <h2 class="ukg-direction-heading">{isJapanese ? "日ごとの打刻記録から、勤務時間の内訳を確かめられる画面へ" : t("Improve payroll transparency by providing visibility into clock-in and clock-out records.")}</h2>
+
+                            <section class="ukg-user-story" aria-labelledby="ukg-story-heading">
+                                <div class="ukg-story-intro">
+                                    <h3 id="ukg-story-heading">{isJapanese ? "ユーザーストーリーの決定" : "User story"}</h3>
                                 </div>
-
-                                <div class="mt-8">
-                                    <div class="flex gap-16 max-w-220 mx-auto items-center">
-                                       <Image
-                                            src={GroceryStaff}
-                                            alt=""
-                                            class="w-32"
-                                        />
-                                            <p class="text-cs-body">
-                                                {t("As an employee, I want to review my clock-in and clock-out history so that I can verify how my payroll hours were calculated.")}
-                                            </p>
+                                <div class="ukg-story-content">
+                                    <Image src={GroceryStaff} alt="" class="ukg-story-person" />
+                                    <div class="ukg-story-text">
+                                        <blockquote>{isJapanese ? "従業員として、出退勤の打刻履歴を確認したい。給与に反映された勤務時間が、どのように計算されたのかを自分で確かめるために。" : "As an employee, I want to review my clock-in and clock-out history so that I can verify how my payroll hours were calculated."}</blockquote>
+                                        {isJapanese && <p class="ukg-story-english" lang="en">As an employee, I want to review my clock-in and clock-out history so that I can verify how my payroll hours were calculated.</p>}
                                     </div>
                                 </div>
+                            </section>
+                            <div class="ukg-direction-layout">
+                            <p class="ukg-direction-description">{isJapanese ? "給与確認画面に、出退勤時刻と日ごとの勤務時間を追加。予定されたシフトと実際の記録を照らし合わせ、勤務時間のずれや打刻漏れに気づける構成を目指しました。" : "The proposed screen adds daily worked hours and clock-in/out records, allowing employees to compare scheduled shifts with actual records."}</p>
+                            <figure class="ukg-direction-figure">
+                                <button type="button" class="ukg-image-trigger ukg-direction-zoom" data-image-zoom aria-haspopup="dialog" aria-controls="ukg-image-dialog" aria-label={isJapanese ? "画面案を拡大する" : "Enlarge wireframe"}>
+                                    <Image src={MidFide} alt={isJapanese ? "日ごとの勤務時間と打刻記録を追加した給与確認画面のワイヤーフレーム" : "Payroll wireframe with daily hours and punch records"} class="ukg-direction-image" />
+                                    <span class="ukg-image-zoom-icon"><ZoomIn class="size-5" aria-hidden="true" /></span>
+                                </button>
+
+                            </figure>
                             </div>
                         </div>
                     </section>
@@ -643,98 +461,94 @@ const ukgSections = [
                             class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
                         >
                         </div>
-                        <Image
-                            src={UIDesignLayer}
-                            alt="UI Design illustration"
-                            class="w-48 mx-auto my-16"
-                        />
-                        <div class="cs-copy-block max-w-220 mx-auto">
-                            <h2 class="text-cs-h2">
-                                {t("Designing the UI Around UKG’s New Brand Identity")}
-                            </h2>
-                            
-                            <p class="mt-4">
-                                {t("In 2025, UKG introduced a refreshed visual identity.")}
-                            </p>
-                            <p>
-                                {t("The redesign explored how the updated visual identity could be applied more consistently across the payroll experience.")}
-                            </p>
-                            <div
-                                class="flex items-center justify-center gap-4 md:gap-12 mt-8"
-                            >
-                                <Image
-                                    src={OldLogo}
-                                    alt="Previous UKG logo design"
-                                    class="w-24 object-contain md:w-40"
-                                />
-                                <Image
-                                    src={Arrow}
-                                    alt="Arrow showing logo evolution"
-                                    class="w-8 opacity-50 md:w-16"
-                                />
-                                <Image
-                                    src={NewLogo}
-                                    alt="Redesigned UKG logo with updated visual identity"
-                                    class="w-24 object-contain md:w-40"
-                                />
+                        <div class="ukg-brand-design">
+                            <div class="ukg-brand-lead">
+                            <div>
+                            <h3>{isJapanese ? "UKGらしさを保ちながら、使いやすさを改善する" : "Improving usability while preserving UKG’s visual identity"}</h3>
+                            <p>{isJapanese ? "2025年にUKGのブランドデザインが刷新される一方、普段使っていた給与確認画面には以前のデザインが残っていました。そこで、使いやすさの改善とあわせて、新しいブランドの色やUI表現を取り入れることにしました。" : "The added information should feel like a natural part of UKG. Colors and UI patterns from the public website informed the design, preserving the brand’s visual identity."}</p>
+                            </div>
+                            <Image src={UIDesignLayer} alt="UI Design illustration" class="ukg-research-lead-image" />
+                            </div>
+                            <div class="ukg-brand-comparison" role="group" aria-label={isJapanese ? "ブランド刷新と画面の見直し" : "Brand refresh and interface exploration"}>
+                                <figure class="ukg-brand-logo-example">
+                                    <Image src={BrandPreviousLogo} alt="Previous UKG brand logo" />
+                                    <figcaption>{isJapanese ? "以前のブランド" : "Previous brand"}</figcaption>
+                                </figure>
+                                <span class="ukg-brand-arrow" aria-hidden="true">⟶</span>
+                                <figure class="ukg-brand-logo-example">
+                                    <Image src={NewLogo} alt="Refreshed UKG brand logo" />
+                                    <figcaption>{isJapanese ? "新しいブランド" : "Refreshed brand"}</figcaption>
+                                </figure>
+                                <figure>
+                                    <Image src={OriginalDesign} alt="Existing UKG payroll screen" />
+                                    <figcaption>{isJapanese ? "既存の給与確認画面" : "Existing payroll screen"}</figcaption>
+                                </figure>
+                                <span class="ukg-brand-arrow" aria-hidden="true">⟶</span>
+                                <figure>
+                                    <Image src={BrandDirectionPreview} alt="Exploring a payroll screen aligned with the refreshed UKG brand" />
+                                    <figcaption>{isJapanese ? "新しいブランドに合わせ、画面の表現を検討" : "Exploring the updated visual direction"}</figcaption>
+                                </figure>
+                            </div>
+                            <h4>{isJapanese ? "見た目の一貫性を、デザイントークンで支える" : "Supporting consistency with design tokens"}</h4>
+                            <p>{isJapanese ? "公式のデザインシステムを参照できなかったため、公開サイトから分析した色をトークンとして整理。背景・文字・強調などの用途に応じて使い分け、画面全体で表現がぶれないようにしました。" : "Without access to the official design system, I organized colors analyzed from the public website into tokens for backgrounds, text, and emphasis, keeping their use consistent across the screen."}</p>
+                        </div>
+
+                        <div class="ukg-token-design">
+                            <UkgTokenFlow />
+                            <p>{isJapanese ? "色の値を定義するPrimitive、用途を定義するSemantic、必要な箇所に適用するComponentの3層で整理しました。特にSemanticで色の役割を明確にし、Figmaから実装まで一貫して使えるようにしています。" : "Tokens were organized into Primitive values, Semantic roles, and Component tokens where needed. Semantic roles keep color usage consistent from Figma to implementation."}</p>
+                            <div class="ukg-token-examples">
+                                <Image src={ColorTokens} alt="Semantic color tokens in Figma" />
+                                <Image src={FontSizeTokens} alt="Semantic font size tokens in Figma" />
+                                <Image src={SpacingTokens} alt="Semantic spacing tokens in Figma" />
+                                <Image src={RadiusTokens} alt="Semantic radius tokens in Figma" />
                             </div>
                         </div>
 
-                        <div class="mx-auto max-w-220 mt-32 grid gap-6">
-                            <p class="cs-copy-block">
-                                {t("Since the official design system was not publicly available, visual styles and UI patterns were independently analyzed from UKG’s public website.")}
-                            </p>
-                            <div class="mx-auto max-w-280">
-                                <Image
-                                    src={DevTool}
-                                    alt="Browser developer tools used to inspect UKG website visual styles"
-                                    class="w-full max-w-full rounded-lg"
-                                />
-                            </div>
-                            <Image
-                                src={Arrow}
-                                alt="Downward arrow indicating transformation"
-                                class="transform rotate-90 mx-auto"
-                            />
-                            <Image
-                                src={PrimitiveColors}
-                                alt="Extracted primitive color palette from UKG website analysis"
-                                class="mx-auto mt-8 w-full max-w-120 rounded-lg"
-                            />
-                            <p class="text-center">
-                                {t("Primitive color tokens derived from the analysis")}
-                            </p>
-                            <div>
-                                <Image
-                                    src={DesignSystem}
-                                    alt="Design system hierarchy showing Primitive, Semantic, and Component tokens"
-                                    class="mt-8 w-full max-w-full rounded-lg"
-                                />
-                                <p class="mt-16">
-                                    {t("Rather than connecting raw color values directly to the UI, I designed a hierarchical structure consisting of Primitive → Semantic → Component (optional). I placed particular emphasis on Semantic Tokens, as defining intent and meaning instead of visual values helps create more consistent design rules. Since this project contained relatively few repeated UI patterns, Component Tokens were introduced only where they provided additional value.")}
-                                </p>
-                                <div class="horizontal-scroll mt-16 flex gap-4">
-                                    <Image
-                                        src={PrimitiveTokens}
-                                        alt="Primitive color tokens showing raw color values"
-                                        class="mx-auto w-full max-w-80 rounded-lg"
-                                    />
-                                    <Image
-                                        src={SemanticTokens}
-                                        alt="Semantic tokens showing intent-based color naming"
-                                        class="mx-auto w-full max-w-80 rounded-lg"
-                                    />
-                                    <Image
-                                        src={ComponentsTokens}
-                                        alt="Component tokens applied to UI elements"
-                                        class="mx-auto w-full max-w-80 rounded-lg"
-                                    />
+                        <div class="ukg-ui-details mx-auto w-full">
+                            <h2 class="mt-32 text-cs-h2 text-left">{isJapanese ? "作成したUI" : "UI Detail"}</h2>
+                            <div class="mt-8 grid gap-16">
+                                <div
+                                    class="grid gap-8 md:grid-cols-[1.1fr_1fr] md:items-center"
+                                >
+                                    <div>
+                                        <UkgCalendarDemo />
+                                    </div>
+                                    <div>
+                                        <h4 lang="en">Calendar</h4>
+                                        <ul class="mt-6 grid gap-6">
+                                            <li class="flex items-start gap-3">
+                                                <span aria-hidden="true" class="shrink-0 font-semibold text-heading-default">✓</span>
+                                                <span>{t("Using darker horizontal grid lines than vertical lines improves readability and makes time progression easier to scan.")}</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <span aria-hidden="true" class="shrink-0 font-semibold text-heading-default">✓</span>
+                                                <span>{t("Emphasizing date numbers makes dates easier to identify at a glance.")}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div
+                                    class="grid gap-8 md:grid-cols-[1.1fr_1fr] md:items-center"
+                                >
+                                    <UkgWorkCellsDemo />
+                                    <div>
+                                        <h4 lang="en">Work time cell</h4>
+                                        <ul class="mt-6 grid gap-6">
+                                            <li class="flex items-start gap-3">
+                                                <span aria-hidden="true" class="shrink-0 font-semibold text-heading-default">✓</span>
+                                                <span>{t("Representing clock-in records as a top-to-bottom timeline creates a clearer sense of chronological flow.")}</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <span aria-hidden="true" class="shrink-0 font-semibold text-heading-default">✓</span>
+                                                <span>{t("Timeline colors and work cell variations improve visibility for attendance anomalies, including lateness and overtime.")}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="mt-32 mx-auto w-full">
-                            <h2 class="mb-4 text-cs-h2">Final design</h2>
+                        <div class="ukg-final-design mt-32 mx-auto w-full">
+                            <h2 class="mb-4 text-cs-h2">{isJapanese ? "最終デザイン" : "Final Design"}</h2>
                             <BeforeAfterToggle
                                 class="flex flex-col items-center h-150"
                             >
@@ -753,59 +567,6 @@ const ukgSections = [
                                     />
                                 </div>
                             </BeforeAfterToggle>
-                        </div>
-                        <div class="mx-auto w-full">
-                            <h2 class="mt-32 text-cs-h2">UI Detail</h2>
-                            <div class="mt-8 grid gap-16">
-                                <div
-                                    class="grid gap-16 md:grid-cols-[1.4fr_1fr] md:items-center"
-                                >
-                                    <div class="bg-frame border-gray-100 p-4 rounded-lg">
-                                        <Image
-                                            src={CalendarUI}
-                                            alt="Final calendar UI showing an hours breakdown chart and weekly totals"
-                                            class="mx-auto w-full max-w-110 rounded-lg"
-                                        />
-                                    </div>
-                                    <div>
-                                        <h4 lang="en">Calendar</h4>
-                                        <ul class="mt-6 grid gap-6">
-                                            <li class="flex items-start gap-3">
-                                                <span aria-hidden="true" class="shrink-0 font-semibold text-heading-default">✓</span>
-                                                <span>{t("Using darker horizontal grid lines than vertical lines improves readability and makes time progression easier to scan.")}</span>
-                                            </li>
-                                            <li class="flex items-start gap-3">
-                                                <span aria-hidden="true" class="shrink-0 font-semibold text-heading-default">✓</span>
-                                                <span>{t("Emphasizing date numbers makes dates easier to identify at a glance.")}</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div
-                                    class="grid gap-16 md:grid-cols-[1.4fr_1fr] md:items-center"
-                                >
-                                    <div class="bg-frame border-gray-100 p-4 rounded-lg">
-                                        <Image
-                                            src={WorkCellUI}
-                                            alt="Work cell UI showing time entry variations for regular hours, late clock-in, and overtime states"
-                                            class="mx-auto w-full max-w-130 rounded-lg bg-(--brand-gray-200)"
-                                        />
-                                    </div>
-                                    <div>
-                                        <h4 lang="en">Work time cell</h4>
-                                        <ul class="mt-6 grid gap-6">
-                                            <li class="flex items-start gap-3">
-                                                <span aria-hidden="true" class="shrink-0 font-semibold text-heading-default">✓</span>
-                                                <span>{t("Representing clock-in records as a top-to-bottom timeline creates a clearer sense of chronological flow.")}</span>
-                                            </li>
-                                            <li class="flex items-start gap-3">
-                                                <span aria-hidden="true" class="shrink-0 font-semibold text-heading-default">✓</span>
-                                                <span>{t("Timeline colors and work cell variations improve visibility for attendance anomalies, including lateness and overtime.")}</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </section>
                     <!-- Prototype Development Section -->
@@ -849,21 +610,21 @@ const ukgSections = [
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Open UKG prototype in a new tab"
-                                    href="https://ukg-pro-redesign.vercel.app/"
+                                    href="https://ukg-pay-overview-design-md.vercel.app/v3/"
                                 >
                                     <ArrowUpRight
                                         slot="after"
                                         aria-hidden="true"
                                         focusable="false"
                                     />
-                                    View prototype
+                                    {isJapanese ? "プロトタイプを見る" : "View prototype"}
                                     <span class="sr-only"
                                         >(opens in a new tab)</span
                                     >
                                 </GlassPill>
                             </div>
-                            <div class="mt-6 overflow-hidden rounded-lg">
-                                <ProjectMainVideo src={UKGVideo} fallbackSrc={UKGVideoMp4} poster={UKGVideoPoster.src} />
+                            <div class="ukg-prototype-video mt-6 overflow-hidden rounded-lg">
+                                <ProjectMainVideo src={UKGVideo} />
                             </div>
                         </div>
                     </section>
@@ -1010,6 +771,10 @@ const ukgSections = [
             </div>
         </section>
     </main>
+    <dialog id="ukg-image-dialog" class="ukg-image-dialog" aria-label={isJapanese ? "画面の拡大表示" : "Enlarged screenshot"}>
+        <button type="button" data-image-close class="ukg-image-close" aria-label={isJapanese ? "閉じる" : "Close"}><X class="size-6" /></button>
+        <img data-enlarged-image alt="" />
+    </dialog>
 </Layout>
 
 <script>
@@ -1046,3 +811,413 @@ const ukgSections = [
         setTimeout(refresh, 300);
     });
 </script>
+
+<style>
+    @layer case-study {
+        .case-study-ja #hero .ukg-hero-title {
+            font-size: clamp(1.625rem, 3vw, 2.75rem);
+            line-height: 1.5;
+            letter-spacing: 0.02em;
+            text-wrap: pretty;
+        }
+
+        .ukg-hero-title-line {
+            display: block;
+        }
+
+        .case-study-ja .ukg-hero-description {
+            max-inline-size: none;
+        }
+    }
+</style>
+
+<style>
+    .ukg-about-card {
+        display: grid;
+        width: 100%;
+        max-width: 60rem;
+        margin-inline: auto;
+        gap: 2rem;
+        padding: clamp(1.5rem, 4vw, 3rem);
+        align-items: center;
+    }
+    .ukg-about-copy { min-width: 0; }
+    .ukg-about-header { margin-bottom: 1rem; }
+    .ukg-about-heading {
+        margin: 0;
+        font-size: clamp(1.25rem, 1.6vw, 1.5rem);
+        font-weight: 500;
+        line-height: 1.4;
+    }
+    .ukg-about-description { margin: 0; }
+    .ukg-about-logo {
+        display: block;
+        width: 100%;
+        max-width: 20rem;
+        height: auto;
+        justify-self: center;
+        border-radius: 0.25rem;
+    }
+    .ukg-about-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        margin-top: 1.25rem;
+        font-size: 0.875rem;
+        text-decoration: underline;
+        text-underline-offset: 0.25em;
+    }
+    @layer case-study {
+        .case-study-ja .ukg-about-card p {
+            max-inline-size: none;
+            font-size: 0.9375rem;
+            line-height: 1.85;
+            letter-spacing: 0.01em;
+        }
+    }
+    .ukg-project-intro { width: 100%; max-width: 60rem; margin-inline: auto; }
+    .ukg-project-intro > .caption-pill { margin-inline: 0; }
+    .ukg-project-intro > h3 {
+        width: 100%; max-inline-size: none; margin-inline: 0;
+        font-size: clamp(1.5rem, 2.3vw, 2rem); line-height: 1.55;
+    }
+    .ukg-project-intro > .ukg-project-context {
+        width: 100%; max-inline-size: none; margin: 0.75rem 0 0;
+        font-size: 1rem; line-height: 1.85; text-align: justify;
+    }
+    @media (min-width: 640px) {
+        .ukg-about-card { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 2.5rem; }
+    }
+</style>
+
+<style>
+    .ukg-carousel { width: 100%; min-width: 0; max-width: 22rem; justify-self: center; }
+    .ukg-carousel-viewport { overflow: hidden; }
+    .ukg-carousel-stage {
+        display: flex;
+        align-items: center;
+        min-height: 13rem;
+        transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .ukg-carousel-slide { flex: 0 0 100%; min-width: 0; margin: 0; }
+    @media (prefers-reduced-motion: reduce) {
+        .ukg-carousel-stage { transition: none; }
+    }
+    .ukg-carousel-slide .ukg-about-logo { margin-inline: auto; }
+    .ukg-carousel-photo { display: block; width: 100%; height: auto; border-radius: 0.25rem; }
+    .ukg-carousel-slide figcaption { margin-top: 0.625rem; font-size: 0.75rem; line-height: 1.6; text-align: center; }
+    .ukg-carousel-controls { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 0.75rem; }
+    .ukg-carousel-controls button { width: 2.5rem; height: 2.5rem; border: 1px solid color-mix(in srgb, currentColor 25%, transparent); border-radius: 50%; cursor: pointer; }
+    .ukg-carousel-controls button:hover { background: color-mix(in srgb, currentColor 8%, transparent); }
+    .ukg-carousel-controls button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+    .ukg-carousel-controls span { font-size: 0.75rem; font-variant-numeric: tabular-nums; }
+</style>
+<script>
+    function setupUkgCarousel() {
+        document.querySelectorAll<HTMLElement>("[data-ukg-carousel]").forEach((carousel) => {
+            if (carousel.dataset.ready) return;
+            carousel.dataset.ready = "true";
+            const slides = Array.from(carousel.querySelectorAll<HTMLElement>("[data-slide]"));
+            const counter = carousel.querySelector<HTMLElement>("[data-counter]");
+            let index = 0;
+            function show(next: number) {
+                index = (next + slides.length) % slides.length;
+                const track = carousel.querySelector<HTMLElement>(".ukg-carousel-stage");
+                if (track) track.style.transform = `translateX(-${index * 100}%)`;
+                slides.forEach((slide, i) => {
+                    slide.setAttribute("aria-hidden", String(i !== index));
+                    slide.inert = i !== index;
+                });
+                if (counter) counter.textContent = `${index + 1} / ${slides.length}`;
+            }
+            carousel.querySelector("[data-prev]")?.addEventListener("click", () => show(index - 1));
+            carousel.querySelector("[data-next]")?.addEventListener("click", () => show(index + 1));
+        });
+    }
+    setupUkgCarousel();
+    document.addEventListener("astro:page-load", setupUkgCarousel);
+</script>
+
+<style>
+    .ukg-goal { width: 100%; max-width: 60rem; margin-inline: auto; }
+    .ukg-goal > .caption-pill { margin-inline: 0; }
+    .ukg-goal > .ukg-goal-heading {
+        width: 100%; max-inline-size: none; margin: 1rem 0 0;
+        font-size: clamp(1.375rem, 2.1vw, 1.875rem); font-weight: 400;
+        line-height: 1.5; text-wrap: pretty;
+    }
+    .ukg-goal-image { display: block; width: 100%; max-width: 38rem; height: auto; margin: 1.75rem auto 0; border-radius: 0.375rem; }
+    .ukg-goal > .ukg-goal-description {
+        width: 100%; max-inline-size: none; margin: 1.75rem 0 0;
+        font-size: 1rem; line-height: 1.9; letter-spacing: 0.01em;
+    }
+    @media (max-width: 639px) {
+        .ukg-goal-image { width: 100%; margin-top: 1.5rem; }
+        .ukg-goal > .ukg-goal-description { margin-top: 1.5rem; }
+    }
+</style>
+
+<style>
+    .ukg-approach { width: 100%; max-width: 60rem; margin-inline: auto; }
+    .ukg-approach > .caption-pill { margin-inline: 0; }
+    .ukg-approach > .ukg-approach-heading {
+        width: 100%; max-inline-size: none; margin: 1rem 0 0;
+        font-size: clamp(1.375rem, 2.1vw, 1.875rem); font-weight: 400; line-height: 1.5;
+    }
+    .ukg-approach > .ukg-approach-description {
+        width: 100%; max-inline-size: none; margin: 1.75rem 0 0;
+        font-size: 1rem; line-height: 1.9; letter-spacing: 0.01em;
+    }
+    .ukg-approach-steps {
+        --step-number: 2.25rem;
+        --step-gap: 1.5rem;
+        display: grid; grid-template-columns: minmax(0, 1fr);
+        gap: var(--step-gap); padding: 0; margin: 2.5rem auto 0;
+        max-width: 36rem; list-style: none;
+    }
+    .ukg-approach-step {
+        position: relative; display: grid;
+        grid-template-columns: var(--step-number) minmax(0, 1fr) 9rem;
+        align-items: center; column-gap: 2rem; min-height: 8rem; min-width: 0;
+    }
+    .ukg-approach-number {
+        grid-column: 1; grid-row: 1; z-index: 1;
+        display: grid; place-items: center; width: var(--step-number); height: var(--step-number);
+        border-radius: 50%; background: var(--color-accent); color: white; font-size: 1rem;
+    }
+    .ukg-approach-connector {
+        position: absolute; left: calc(var(--step-number) / 2); top: 50%;
+        width: 1px; height: calc(100% + var(--step-gap));
+        background: color-mix(in srgb, var(--color-accent) 45%, transparent);
+        transform-origin: top center;
+    }
+    .ukg-approach-illustration { display: block; grid-column: 3; grid-row: 1; width: 9rem; height: 8rem; object-fit: contain; }
+    .ukg-approach-step h4 { grid-column: 2; grid-row: 1; margin: 0; font-size: 1rem; line-height: 1.6; font-weight: 400; }
+    .ukg-approach-step:has(.ukg-approach-detail) h4 { transform: translateY(-0.75rem); }
+    .ukg-approach-detail { grid-column: 2; grid-row: 1; transform: translateY(1.25rem); font-size: 0.8125rem; line-height: 1.6; opacity: 0.75; }
+    @media (max-width: 639px) {
+        .ukg-approach-steps { --step-number: 2rem; --step-gap: 1rem; }
+        .ukg-approach-step { grid-template-columns: var(--step-number) minmax(0, 1fr) 5rem; column-gap: 0.75rem; min-height: 7rem; }
+        .ukg-approach-illustration { width: 5rem; height: 6rem; }
+        .ukg-approach-detail { font-size: 0.6875rem; }
+    }
+</style>
+
+<script>
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger);
+    let approachContext: ReturnType<typeof gsap.context> | undefined;
+    function setupApproachAnimation() {
+        approachContext?.revert();
+        const steps = document.querySelector<HTMLOListElement>(".ukg-approach-steps");
+        if (!steps || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        approachContext = gsap.context(() => {
+            const rows = Array.from(steps.querySelectorAll<HTMLElement>(".ukg-approach-step"));
+            const timeline = gsap.timeline({ scrollTrigger: { trigger: steps, start: "top 78%", once: true } });
+            rows.forEach((row, index) => {
+                const content = row.querySelectorAll(".ukg-approach-number, h4, .ukg-approach-illustration, .ukg-approach-detail");
+                const line = row.querySelector(".ukg-approach-connector");
+                timeline.from(content, { autoAlpha: 0, y: "-=14", duration: 0.25, ease: "power2.out" }, index * 0.3);
+                if (line) timeline.from(line, { scaleY: 0, duration: 0.2, ease: "power1.inOut" }, index * 0.3 + 0.15);
+            });
+        }, steps);
+        ScrollTrigger.refresh();
+    }
+    setupApproachAnimation();
+    document.addEventListener("astro:page-load", setupApproachAnimation);
+    document.addEventListener("astro:before-swap", () => { approachContext?.revert(); approachContext = undefined; });
+</script>
+
+<style>
+    .ukg-research-intro { width: 100%; max-width: 60rem; margin-inline: auto; }
+    .ukg-research-intro > h2 {
+        font-size: clamp(1.375rem, 2.1vw, 1.875rem);
+        font-weight: 400; line-height: 1.5;
+    }
+    .ukg-research-intro > p {
+        width: 100%; max-inline-size: none;
+        font-size: 1rem; line-height: 1.9; letter-spacing: 0.01em;
+        margin-top: 1.75rem;
+    }
+</style>
+
+<style>
+    .ukg-interviews { width: 100%; max-width: 60rem; margin-inline: auto; display: grid; gap: 2.5rem; }
+    .ukg-interview { display: grid; gap: 1.5rem; align-items: center; padding: 1.5rem 0; }
+    .ukg-interview + .ukg-interview { border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
+    .ukg-interview-copy { min-width: 0; }
+    .ukg-interview blockquote { margin: 0; padding-left: 1rem; border-left: 2px solid var(--color-accent); font-size: clamp(1.0625rem, 1.5vw, 1.25rem); font-style: normal; line-height: 1.8; }
+    .ukg-interview-person { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.25rem; font-size: 0.8125rem; }
+    .ukg-interview-person img { width: 4rem; height: 4rem; object-fit: contain; }
+    .ukg-interview-screen { display: block; width: 100%; max-width: 24rem; height: auto; justify-self: center; border-radius: 0.25rem; }
+    @media (min-width: 768px) { .ukg-interview { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; } }
+</style>
+
+<style>
+    .ukg-image-trigger { position: relative; display: block; width: 100%; max-width: 24rem; justify-self: center; padding: 0; cursor: pointer; border-radius: 0.25rem; }
+    .ukg-image-zoom-icon { position: absolute; bottom: 0.75rem; right: 0.75rem; display: grid; place-items: center; width: 2.5rem; height: 2.5rem; background: rgb(255 255 255 / 92%); color: #171717; border-radius: 50%; box-shadow: 0 2px 12px #0002; opacity: 0; transform: translateY(4px); transition: opacity 200ms, transform 200ms; }
+    .ukg-image-trigger:hover .ukg-image-zoom-icon, .ukg-image-trigger:focus-visible .ukg-image-zoom-icon { opacity: 1; transform: none; }
+    .ukg-image-trigger:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+    .ukg-image-dialog { position: fixed; inset: 0; width: 100vw; max-width: none; height: 100dvh; max-height: none; padding: 3.5rem 1.5rem 1.5rem; margin: 0; border: 0; background: transparent; overflow: hidden; }
+    .ukg-image-dialog[open] { display: grid; place-items: center; }
+    .ukg-image-dialog::backdrop { background: rgb(10 15 20 / 72%); backdrop-filter: blur(5px); animation: ukg-backdrop-in 300ms ease-out; }
+    .ukg-image-dialog > img { display: block; width: auto; height: auto; max-width: min(90vw, 1200px); max-height: calc(100dvh - 6rem); object-fit: contain; border-radius: 0.375rem; box-shadow: 0 16px 64px #0004; }
+    .ukg-image-close { position: absolute; top: 1rem; right: 1.5rem; display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: #fff; color: #171717; cursor: pointer; }
+    @keyframes ukg-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+    @media (hover: none) { .ukg-image-zoom-icon { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .ukg-image-dialog::backdrop { animation: none; } }
+</style>
+<script>
+    function setupUkgImageZoom() {
+        const dialog = document.querySelector<HTMLDialogElement>("#ukg-image-dialog");
+        const expanded = dialog?.querySelector<HTMLImageElement>("[data-enlarged-image]");
+        if (!dialog || !expanded || dialog.dataset.ready) return;
+        dialog.dataset.ready = "true";
+        const modal = dialog;
+        const image = expanded;
+        let source: HTMLImageElement | null = null;
+        let trigger: HTMLButtonElement | null = null;
+        let busy = false;
+        let savedOverflow = "";
+        const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        function thumbnailTransform() {
+            const from = source!.getBoundingClientRect();
+            const to = image.getBoundingClientRect();
+            return `translate(${from.left + from.width / 2 - to.left - to.width / 2}px, ${from.top + from.height / 2 - to.top - to.height / 2}px) scale(${from.width / to.width}, ${from.height / to.height})`;
+        }
+        document.querySelectorAll<HTMLButtonElement>("[data-image-zoom]").forEach((button) => {
+            button.addEventListener("click", async () => {
+                if (busy || modal.open) return;
+                source = button.querySelector("img");
+                if (!source) return;
+                trigger = button;
+                image.src = source.currentSrc || source.src;
+                image.alt = source.alt;
+                busy = true;
+                try { await image.decode(); } catch {}
+                savedOverflow = document.documentElement.style.overflow;
+                document.documentElement.style.overflow = "hidden";
+                modal.showModal();
+                const transform = thumbnailTransform();
+                source.style.visibility = "hidden";
+                await image.animate([{ transform, opacity: 0.6 }, { transform: "none", opacity: 1 }], { duration: reduced() ? 0 : 380, easing: "cubic-bezier(.22,1,.36,1)" }).finished;
+                busy = false;
+            });
+        });
+        async function closeImage() {
+            if (busy || !modal.open) return;
+            busy = true;
+            if (source) await image.animate([{ transform: "none", opacity: 1 }, { transform: thumbnailTransform(), opacity: 0.5 }], { duration: reduced() ? 0 : 280, easing: "cubic-bezier(.4,0,.2,1)" }).finished;
+            modal.close();
+            busy = false;
+        }
+        modal.querySelector("[data-image-close]")?.addEventListener("click", closeImage);
+        modal.addEventListener("click", (event) => { if (event.target === modal) closeImage(); });
+        modal.addEventListener("cancel", (event) => { event.preventDefault(); closeImage(); });
+        modal.addEventListener("close", () => {
+            if (source) source.style.visibility = "";
+            document.documentElement.style.overflow = savedOverflow;
+            trigger?.focus({ preventScroll: true });
+        });
+        document.addEventListener("astro:before-swap", () => { if (modal.open) modal.close(); }, { once: true });
+    }
+    setupUkgImageZoom();
+    document.addEventListener("astro:page-load", setupUkgImageZoom);
+</script>
+
+<style>
+    .ukg-image-trigger.ukg-goal-zoom { width: 100%; max-width: 38rem; margin: 1.75rem auto 0; }
+    .ukg-goal-zoom .ukg-goal-image { width: 100%; margin: 0; }
+    @media (max-width: 639px) { .ukg-image-trigger.ukg-goal-zoom { margin-top: 1.5rem; } }
+</style>
+
+<style>
+    .ukg-pain-flow { display: grid; gap: 1.5rem; width: 100%; max-width: 60rem; margin: 2.5rem auto 0; padding: 0; list-style: none; }
+    .ukg-pain-step { position: relative; padding: 1.25rem 0 0; border-top: 2px solid color-mix(in srgb, currentColor 20%, transparent); }
+    .ukg-pain-number { font-size: 0.75rem; opacity: 0.65; font-variant-numeric: tabular-nums; }
+    .ukg-pain-step > h3 { margin: 0.75rem 0; font-size: 1.0625rem; font-weight: 500; line-height: 1.6; }
+    .ukg-pain-step > p { max-inline-size: none; margin: 0; font-size: 0.9375rem; line-height: 1.8; }
+    @media (min-width: 768px) {
+        .ukg-pain-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; }
+        .ukg-pain-step:not(:last-child)::after { content: "→"; position: absolute; right: -1.75rem; top: 2.75rem; opacity: 0.5; }
+    }
+</style>
+
+<style>
+    .ukg-research-lead { display: grid; width: 100%; max-width: 60rem; margin: 3rem auto 0; gap: 2rem; align-items: center; }
+    .ukg-research-lead-image { width: 12rem; height: auto; justify-self: center; }
+    @media (min-width: 768px) {
+        .ukg-research-lead { grid-template-columns: minmax(0, 1fr) 12rem; gap: 3rem; }
+    }
+</style>
+
+<style>
+    .ukg-pain-meta { display: flex; align-items: center; justify-content: space-between; min-height: 2.5rem; }
+    .ukg-pixel-face { width: 2.5rem; height: 2.5rem; color: var(--text-heading-default); }
+</style>
+
+<style>
+    .ukg-design-direction { width: 100%; max-width: 60rem; margin-inline: auto; }
+    .ukg-design-direction > .caption-pill { margin-inline: 0; }
+    .ukg-design-direction > .ukg-direction-heading { width: 100%; max-inline-size: none; margin: 1rem 0 0; font-size: clamp(1.375rem, 2.1vw, 1.875rem); font-weight: 400; line-height: 1.5; text-wrap: pretty; }
+    .ukg-design-direction > .ukg-direction-description { max-inline-size: none; margin: 1.75rem 0 0; font-size: 1rem; line-height: 1.9; }
+    .ukg-user-story { margin-top: 2.5rem; padding-block: 1.5rem; border-block: 1px solid color-mix(in srgb, currentColor 18%, transparent); }
+    .ukg-story-intro h3 { font-size: 0.875rem; font-weight: 500; }
+    .ukg-story-intro > p { max-inline-size: none; margin-top: 0.5rem; font-size: 0.875rem; line-height: 1.8; }
+    .ukg-story-content { display: flex; gap: 1.25rem; align-items: center; margin-top: 1.25rem; }
+    .ukg-story-person { width: 4.5rem; height: auto; flex-shrink: 0; }
+    .ukg-story-content blockquote { margin: 0; font-size: 1rem; line-height: 1.9; }
+    .ukg-direction-figure { margin: 2.5rem auto 0; width: 100%; max-width: 38rem; }
+    .ukg-image-trigger.ukg-direction-zoom { max-width: none; }
+    .ukg-direction-image { display: block; width: 100%; height: auto; border-radius: 0.375rem; }
+    .ukg-direction-figure figcaption { margin-top: 0.75rem; font-size: 0.75rem; line-height: 1.8; text-align: center; }
+</style>
+
+<style>
+    .ukg-story-text { min-width: 0; }
+    .ukg-story-text > .ukg-story-english { max-inline-size: none; margin-top: 0.75rem; font-size: 0.875rem; line-height: 1.7; color: var(--text-body-default); }
+</style>
+
+<style>
+    .ukg-direction-layout { display: grid; gap: 1.5rem; align-items: center; margin-top: 2.5rem; }
+    .ukg-direction-layout > .ukg-direction-description { max-inline-size: none; margin: 0; font-size: 1rem; line-height: 1.9; }
+    .ukg-direction-layout > .ukg-direction-figure { width: 100%; max-width: none; margin: 0; min-width: 0; }
+    @media (min-width: 768px) { .ukg-direction-layout { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 2.5rem; } }
+</style>
+
+<style>
+    .ukg-brand-design { width: 100%; max-width: 60rem; margin: 3rem auto 0; }
+    .ukg-brand-design > h3 { font-size: clamp(1.375rem, 2.1vw, 1.875rem); font-weight: 400; line-height: 1.5; }
+    .ukg-brand-design > h4 { margin-top: 2rem; font-size: 1.125rem; font-weight: 500; line-height: 1.6; }
+    .ukg-brand-design > p { width: 100%; max-inline-size: none; margin-top: 1rem; font-size: 1rem; line-height: 1.9; }
+</style>
+
+<style>
+    .ukg-prototype-video :global(video) { aspect-ratio: auto; object-fit: contain; }
+    .ukg-final-design { width: 100%; max-width: 60rem; margin-inline: auto; }
+    .ukg-ui-details { width: 100%; max-width: 60rem; margin-inline: auto; }
+    .ukg-token-design { width: 100%; max-width: 60rem; margin: 2rem auto 0; }
+    .ukg-token-hierarchy { display: block; width: 100%; height: auto; border-radius: 0.375rem; }
+    .ukg-token-design > p { max-inline-size: none; margin-top: 1.5rem; font-size: 1rem; line-height: 1.9; }
+    .ukg-token-examples { display: flex; gap: 1rem; margin-top: 2rem; overflow-x: auto; align-items: flex-start; padding-bottom: 1rem; scroll-snap-type: x proximity; }
+    .ukg-token-examples img { display: block; flex: 0 0 auto; width: min(28rem, 85%); height: auto; border-radius: 0.375rem; scroll-snap-align: start; }
+
+</style>
+
+<style>
+    .ukg-brand-lead { display: grid; align-items: center; gap: 2rem; }
+    .ukg-brand-lead h3 { font-size: clamp(1.375rem, 2.1vw, 1.875rem); font-weight: 400; line-height: 1.5; }
+    .ukg-brand-lead p { max-inline-size: none; margin-top: 1rem; font-size: 1rem; line-height: 1.9; }
+    @media (min-width: 768px) { .ukg-brand-lead { grid-template-columns: minmax(0, 1fr) 12rem; gap: 3rem; } }
+</style>
+
+<style>
+    .ukg-brand-comparison { display: grid; grid-template-columns: minmax(0,1fr) 3rem minmax(0,1fr); gap: 2rem 1.5rem; align-items: center; margin: 2.5rem 0 3rem; }
+    .ukg-brand-comparison figure { margin: 0; min-width: 0; text-align: center; }
+    .ukg-brand-comparison img { display: block; width: 100%; height: auto; border-radius: 0.25rem; }
+    .ukg-brand-logo-example img { width: 100%; max-width: 12rem; height: 7rem; object-fit: contain; margin-inline: auto; }
+    .ukg-brand-comparison figcaption { margin-top: 0.75rem; font-size: 0.75rem; line-height: 1.6; color: var(--text-body-default); }
+    .ukg-brand-arrow { text-align: center; font-size: 2.5rem; font-weight: 300; color: var(--text-body-default); }
+    @media (max-width: 639px) { .ukg-brand-comparison { gap: 1.5rem 0.5rem; grid-template-columns: minmax(0,1fr) 1.5rem minmax(0,1fr); } .ukg-brand-arrow { font-size: 1.5rem; } .ukg-brand-logo-example img { height: 5rem; } }
+</style>
