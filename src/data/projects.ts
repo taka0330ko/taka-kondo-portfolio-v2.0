@@ -28,20 +28,20 @@ type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "store-map",
-    ...homeEn.projects["store-map"],
-    href: "/store-map",
-    cover: StoreMapNavigationThumbnail,
-    coverVideo: StoreMapNavigationVideo,
-    isReady: true,
-  },
-  {
     slug: "ukg",
     ...homeEn.projects.ukg,
     href: "/ukg",
     cover: UKGThumbnail,
     coverVideo: UKGVideo,
     coverVideoFallback: UKGVideoMp4,
+    isReady: true,
+  },
+  {
+    slug: "store-map",
+    ...homeEn.projects["store-map"],
+    href: "/store-map",
+    cover: StoreMapNavigationThumbnail,
+    coverVideo: StoreMapNavigationVideo,
     isReady: true,
   },
   {

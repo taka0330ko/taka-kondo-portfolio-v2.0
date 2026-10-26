@@ -11,6 +11,7 @@ import Image from "astro/components/Image.astro";
 import BreadCrumb from "../components/ui/BreadCrumb.astro";
 import CaseStudySidebar from "../components/ui/CaseStudySidebar.astro";
 import Card from "../components/ui/Card.astro";
+import DesignMdCover from "../assets/images/blog/05-Design-md/design-md-thumbnail.webp";
 import CodeWindow from "../components/ui/CodeWindow.astro";
 import ColorTokens from "../assets/images/projects/UKG/semantic-color-tokens.png";
 import FontSizeTokens from "../assets/images/projects/UKG/semantic-font-size-tokens.png";
@@ -81,6 +82,10 @@ import BrandPreviousLogo from "../assets/images/projects/UKG/brand-previous-logo
 import UkgTokenFlow from "../components/ui/UkgTokenFlow.astro";
 import OriginalDesign from "../assets/images/projects/UKG/original-design.webp";
 import HighFide from "../assets/images/projects/UKG/final-redesign-sidebar-expanded.png";
+import HoverCardInteraction from "../assets/images/projects/UKG/hover-card-interaction.png";
+import ReflectionInitialCard from "../assets/images/projects/UKG/shift-card-exploration-initial.png";
+import ShiftCardOptionB from "../assets/images/projects/UKG/shift-card-option-b.png";
+import ShiftCardOptionC from "../assets/images/projects/UKG/shift-card-option-c.png";
 import Testers from "../assets/images/projects/UKG/testers.webp";
 
 const ukgSections = [
@@ -103,12 +108,12 @@ const ukgSections = [
             <div class="grid grid-cols-12 grid-container items-start">
                 <div class="col-span-8">
                     <h1 id="ukg-redesign-overview" class="mt-8 ukg-hero-title">
-                        {isJapanese
-                            ? t("“How can I verify my work hours...?”")
-                                .replace("。", "。\n")
-                                .split("\n")
-                                .map((line) => <span class="ukg-hero-title-line">{line}</span>)
-                            : t("“How can I verify my work hours...?”")}
+                        {isJapanese ? (
+                            <>
+                                <span class="ukg-hero-title-line ukg-hero-title-context">合計時間はわかる。</span>
+                                <span class="ukg-hero-title-line">でも、内訳が見えない。</span>
+                            </>
+                        ) : t("“How can I verify my work hours...?”")}
                     </h1>
                     <p class="mt-8 ukg-hero-description">
                         {t("The existing payroll screen showed total hours, but provided no way to verify them.")}
@@ -201,6 +206,7 @@ const ukgSections = [
                         >
                         </div>
 
+
                         <div class="mt-12">
                             <div class="ukg-project-intro">
                             <p class="caption-pill">About this project</p>
@@ -235,7 +241,7 @@ const ukgSections = [
                                         rel="noopener noreferrer"
                                         class="ukg-about-link"
                                     >
-                                        {isJapanese ? "UKG公式サイトを見る" : "Visit UKG website"}
+                                        {isJapanese ? "UKG公式サイト" : "Visit UKG website"}
                                         <ArrowUpRight class="size-4" aria-hidden="true" />
                                         <span class="sr-only">{isJapanese ? "（新しいタブで開きます）" : "(opens in a new tab)"}</span>
                                     </a>
@@ -305,7 +311,7 @@ const ukgSections = [
                                 </ol>
                             </div>
                         </div>
-                    </section>
+                                        </section>
                     <!-- Research Section -->
                     <section id="Research" class="mt-32">
                         <h2 class="text-cs-section font-medium">
@@ -315,6 +321,11 @@ const ukgSections = [
                             class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
                         >
                         </div>
+
+                        <div class="mt-12 flex justify-center">
+                            <Image src={UXResearchLayer} alt="Research illustration" class="w-52" />
+                        </div>
+
                         <div class="ukg-research-lead">
                             <div class="ukg-research-intro">
                                 <h2 class="text-cs-h2">
@@ -324,7 +335,6 @@ const ukgSections = [
                                     {t("During a regular day at work, a conversation about checking payroll in UKG revealed a shared frustration among my coworkers and myself. To better understand the issue, I conducted interviews with other coworkers.")}
                                 </p>
                             </div>
-                            <Image class="ukg-research-lead-image" src={InterviewLayer} alt="Interview research illustration" loading="lazy" />
                         </div>
 
                         <div class="ukg-interviews my-16">
@@ -356,7 +366,6 @@ const ukgSections = [
                                         {t("Conducted a survey to further validate existing pain points and identify strong user demand for better visibility into payroll records.")}
                                     </p>
                                 </div>
-                                <Image class="ukg-research-lead-image" src={FormLayer} alt="Survey form illustration representing research findings phase" loading="lazy" />
                             </div>
 
                             <div
@@ -451,7 +460,7 @@ const ukgSections = [
                             </figure>
                             </div>
                         </div>
-                    </section>
+                                        </section>
                     <!-- UI Design Section -->
                     <section id="UI-design" class="mt-64">
                         <h2 class="text-cs-section font-medium">
@@ -461,13 +470,18 @@ const ukgSections = [
                             class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
                         >
                         </div>
+
+                        <div class="mt-12 flex justify-center">
+                            <Image src={UIDesignLayer} alt="UI Design illustration" class="w-52" />
+                        </div>
+
                         <div class="ukg-brand-design">
                             <div class="ukg-brand-lead">
                             <div>
                             <h3>{isJapanese ? "UKGらしさを保ちながら、使いやすさを改善する" : "Improving usability while preserving UKG’s visual identity"}</h3>
                             <p>{isJapanese ? "2025年にUKGのブランドデザインが刷新される一方、普段使っていた給与確認画面には以前のデザインが残っていました。そこで、使いやすさの改善とあわせて、新しいブランドの色やUI表現を取り入れることにしました。" : "The added information should feel like a natural part of UKG. Colors and UI patterns from the public website informed the design, preserving the brand’s visual identity."}</p>
                             </div>
-                            <Image src={UIDesignLayer} alt="UI Design illustration" class="ukg-research-lead-image" />
+
                             </div>
                             <div class="ukg-brand-comparison" role="group" aria-label={isJapanese ? "ブランド刷新と画面の見直し" : "Brand refresh and interface exploration"}>
                                 <figure class="ukg-brand-logo-example">
@@ -547,26 +561,17 @@ const ukgSections = [
                                 </div>
                             </div>
                         </div>
-                        <div class="ukg-final-design mt-32 mx-auto w-full">
-                            <h2 class="mb-4 text-cs-h2">{isJapanese ? "最終デザイン" : "Final Design"}</h2>
-                            <BeforeAfterToggle
-                                class="flex flex-col items-center h-150"
-                            >
-                                <div slot="before" class="max-w-200 mx-auto">
-                                    <Image
-                                        src={OriginalDesign}
-                                        alt="Original UKG payroll design"
-                                        class="w-full mt-8 rounded-lg"
-                                    />
-                                </div>
-                                <div slot="after" class="max-w-200 mx-auto">
-                                    <Image
-                                        src={HighFide}
-                                        alt="Redesigned UKG payroll interface with improved transparency"
-                                        class="w-full mt-8 rounded-lg"
-                                    />
-                                </div>
-                            </BeforeAfterToggle>
+                                            <div class="ukg-figma-file mt-12">
+                            <details>
+                                <summary>{isJapanese ? "Figmaファイル" : "Figma file"}</summary>
+                                <iframe
+                                    src="https://embed.figma.com/design/B6KBm39R79Trh50NnRaFzZ/UKG-Pro-Redesign?node-id=0-1&amp;embed-host=portfolio"
+                                    title={isJapanese ? "UKG ProリデザインのFigmaファイル" : "UKG Pro redesign Figma file"}
+                                    loading="lazy"
+                                    allowfullscreen
+                                ></iframe>
+                            </details>
+                            <a href="https://www.figma.com/design/B6KBm39R79Trh50NnRaFzZ/UKG-Pro-Redesign?node-id=0-1" target="_blank" rel="noopener noreferrer">{isJapanese ? "Figmaで開く" : "Open in Figma"}<ArrowUpRight size={16} aria-hidden="true" /></a>
                         </div>
                     </section>
                     <!-- Prototype Development Section -->
@@ -580,6 +585,7 @@ const ukgSections = [
                             class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
                         >
                         </div>
+
                         <div class="mt-12 flex justify-center">
                             <Image
                                 src={DevLayer}
@@ -588,46 +594,31 @@ const ukgSections = [
                             />
                         </div>
 
-                        <div class="mx-auto mt-12 max-w-220">
-                            <h3>{t("Rapid prototyping with React and Codex.")}</h3>
-                            <p class="mt-8">
-                                {t("Rather than stopping at static Figma screens, I built a functional prototype in React to test the interaction model in a more realistic environment. Codex helped me move faster by supporting mock data setup and interaction implementation, making it possible to recreate a testable experience in a short timeframe.")}
-                            </p>
-
-                            <p class="mt-8">
-                                {t("I also translated the design tokens defined in Figma into CSS, creating a consistent workflow from design decisions to implementation.")}
-                            </p>
-
-                            <div class="mx-auto mt-12 max-w-160">
-                                <CodeWindow
-                                    code={postsDataCode}
-                                    lang="css"
-                                    showExpand={false}
-                                />
+                        <div class="ukg-prototype-content">
+                            <h3 class="ukg-prototype-heading">{t("A prototype for checking changes to work hours")}</h3>
+                            <p class="ukg-prototype-copy">{t("For user testing, I built a React prototype where participants could switch between weeks and hover over a shift to see its clock-in and clock-out records.")}</p>
+                            <p class="ukg-prototype-copy">{t("I prepared work data covering late arrivals, early departures, and overtime so participants could compare their scheduled and actual hours. By observing their interactions, I explored whether they could find the information they needed and understand the work cards.")}</p>
+                            <div class="ukg-prototype-source">
+                                <a href="https://github.com/taka0330ko/ukg-pro-redesign" target="_blank" rel="noopener noreferrer">{isJapanese ? "テスト時のプロトタイプのコード" : "View the prototype code used for testing"}<ArrowUpRight size={16} aria-hidden="true" /></a>
                             </div>
-                            <div class="mt-16 flex justify-start">
-                                <GlassPill
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Open UKG prototype in a new tab"
-                                    href="https://ukg-pay-overview-design-md.vercel.app/v3/"
-                                >
-                                    <ArrowUpRight
-                                        slot="after"
-                                        aria-hidden="true"
-                                        focusable="false"
-                                    />
-                                    {isJapanese ? "プロトタイプを見る" : "View prototype"}
-                                    <span class="sr-only"
-                                        >(opens in a new tab)</span
-                                    >
-                                </GlassPill>
-                            </div>
-                            <div class="ukg-prototype-video mt-6 overflow-hidden rounded-lg">
-                                <ProjectMainVideo src={UKGVideo} />
-                            </div>
+                            <p class="ukg-prototype-copy">{t("For the testing prototype, I planned and built the CSS structure myself using Tailwind theme tokens as a foundation. I organized values by purpose so they could be used consistently across components.")}</p>
+                            <details class="ukg-prototype-code">
+                                <summary>{t("View implementation example")}</summary>
+                                <div class="mt-6">
+                                    <CodeWindow code={postsDataCode} lang="css" showExpand={false} />
+                                </div>
+                            </details>
+                            <aside class="ukg-blog-update" aria-label={isJapanese ? "追記・関連記事" : "Additional reading"}>
+                                <p class="ukg-blog-update-date"><time datetime="2026-10-20">2026/10/20</time> {isJapanese ? "追記" : "Update"}</p>
+                                <p class="ukg-blog-update-intro">{isJapanese ? "テスト後、デザインを見直し、Design.mdの記述や追加の指示で実装の再現度がどう変わるかを比較しました。" : "After testing, I revisited the design and compared how Design.md detail and follow-up instructions affected implementation fidelity."}</p>
+                                <a class="ukg-blog-mini-card" href={isJapanese ? "/jp/blog/design-md-05" : "/blog/design-md-05"}>
+                                    <video src="/videos/blog/design-md-05-thumbnail.mp4" poster={DesignMdCover.src} autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+                                    <span class="ukg-blog-mini-title">{isJapanese ? "Design.mdでFigmaの忠実度100%を目指した話" : "Aiming for 100% Figma Fidelity with Design.md"}</span>
+                                    <ArrowUpRight size={18} aria-hidden="true" />
+                                </a>
+                            </aside>
                         </div>
-                    </section>
+                                        </section>
                     <!-- Testing -->
                     <section id="User-feedback" class="mt-64">
                         <h2 class="text-cs-section font-medium">
@@ -647,24 +638,24 @@ const ukgSections = [
                             />
                         </div>
 
-                        <div class="mx-auto mt-12 max-w-220">
+                        <div class="ukg-feedback-aligned mx-auto mt-12 max-w-220">
                             <p class="caption-pill">Verification</p>
                             <h2 class="text-cs-h2 mt-5">
-                                {t("Did the redesign actually improve transparency?")}
+                                {t("How did users feel about the new payroll experience?")}
                             </h2>
                             <p class="text-cs-body mt-5">
-                                {t("To evaluate whether the redesign improved transparency during payroll verification, a comparative usability test was conducted comparing the existing UKG interface with the redesigned experience.")}
+                                {t("Five participants reviewed payroll information in the existing interface and the redesign using a shared work scenario involving a late arrival, an early departure, and overtime.")}
                             </p>
                             <p class="text-cs-body mt-5">
-                                {t("Participants completed the same tasks based on a shared work scenario, while measuring their understanding of payroll information, trust, and confidence in verifying payroll accuracy.")}
+                                {t("After the tasks, participants rated their understanding of payroll information, trust, and confidence in checking its accuracy.")}
                             </p>
                         </div>
 
                         <div
-                            class="mt-16 grid items-center gap-10 rounded-lg bg-frame px-6 py-12 md:grid-cols-[minmax(18rem,0.9fr)_minmax(0,1.4fr)] md:gap-16 md:px-12 md:py-16"
+                            class="ukg-feedback-aligned mx-auto mt-10 grid max-w-220 items-center gap-6 md:grid-cols-2 md:gap-8"
                         >
                             <div
-                                class="rounded-lg bg-text-block p-6 md:max-w-110"
+                                class="min-w-0"
                             >
                                 <dl class="space-y-6">
                                     <div>
@@ -674,7 +665,7 @@ const ukgSections = [
                                             Test type
                                         </dt>
                                         <dd class="mt-1 text-cs-body">
-                                            {t("Comparative usability testing (Moderated)")}
+                                            {t("Comparative usability testing")}
                                         </dd>
                                     </div>
                                     <div>
@@ -702,29 +693,32 @@ const ukgSections = [
 
                             <Image
                                 src={Testers}
-                                alt="Moderated usability testing sessions with supermarket staff using the UKG Pro redesign on a laptop"
-                                class="mx-auto w-full max-w-150"
+                                alt="Usability testing sessions with supermarket staff using the UKG Pro redesign on a laptop"
+                                class="mx-auto w-full max-w-90"
                             />
                         </div>
 
-                        <div class="cs-copy-block mx-auto mt-12 max-w-220">
+                        <div class="ukg-feedback-aligned ukg-feedback-summary mx-auto mt-16 max-w-220">
                             <p class="caption-pill">Findings</p>
-                            <div class="mt-8 container">
-                                <h3 class="text-cs-h2 font-normal">
-                                    {t("Users became more confident verifying payroll information")}
-                                </h3>
-                                <p class="mt-4 text-cs-body">
-                                    {t("Participants using the redesigned version were able to verify payroll information with greater confidence compared to the existing interface.")}
-                                </p>
+                            <h3 class="text-cs-h2 mt-6">{t("Feedback from testing")}</h3>
+                            <p class="ukg-feedback-note">{t("Participant feedback, summarized")}</p>
+                            <div class="ukg-feedback-group">
+                                <h4>{t("Checking work records")}</h4>
+                                <div class="ukg-feedback-voices">
+                                    <p>{t("It helps to see the clock-in and clock-out times. With just the total hours, I could not check when I actually worked.")}</p>
+                                    <p>{t("I can check the clock-out time on a day I worked overtime to see whether that extra time is included.")}</p>
+                                </div>
                             </div>
-
-                            <div class="mt-20 container">
-                                <h3 class="text-cs-h2 font-normal">
-                                    {t("Visibility of supporting information increased trust")}
-                                </h3>
-                                <p class="mt-4 text-cs-body">
-                                    {t("Trust scores improved from 3.8 to 6.8 after introducing supporting information such as worked hour breakdowns and clock-in/out records. These findings suggest that improving transparency increased trust in payroll information.")}
-                                </p>
+                            <div class="ukg-feedback-group ukg-card-feedback">
+                                <div>
+                                    <h4>{t("The card needed a clearer explanation")}</h4>
+                                    <p class="ukg-feedback-concern">{t("At first, I could not tell what this card was showing.")}</p>
+                                    <p class="ukg-feedback-takeaway">{t("The feedback highlighted a need to clarify what the card shows and how to read it.")}</p>
+                                </div>
+                                <figure>
+                                    <Image src={ReflectionInitialCard} alt={t("Initial work record card")} loading="lazy" />
+                                    <figcaption>{t("Initial work record card")}</figcaption>
+                                </figure>
                             </div>
                         </div>
                     </section>
@@ -736,13 +730,78 @@ const ukgSections = [
                             class="h-px mt-4 min-w-0 flex-1 bg-body-default/35"
                         >
                         </div>
-                        <div class="cs-copy-block mt-20 container">
-                            <h3 class="text-cs-h2 font-normal">
-                                {t("Learning the Challenges of User-Centered Design")}
-                            </h3>
-                            <p class="mt-4 text-cs-body">
-                                {t("Through this project, I learned that user-centered design is not easy. Users are not all the same. At my workplace, people of different ages and backgrounds use the system, so my assumptions were not always correct. For example, the work hour cell UI was not as clear for everyone as I expected. At the same time, finding these problems showed me the value of talking to real users. This project taught me that UX design is not only about creating screens, but also about listening to users and testing ideas repeatedly.")}
-                            </p>
+                        <div class="ukg-card-reflection mt-20">
+                            <h3 class="text-cs-h2 font-normal">{t("The challenge of designing for everyone")}</h3>
+                            <p class="mt-4 text-cs-body">{t("Younger participants quickly understood the card, while some older participants did not immediately recognize it as a way to check clock records.")}</p>
+                            <p class="ukg-reflection-example">{isJapanese ? "改善を検討した例：打刻記録のカード" : "One design exploration: the work-record card"}</p>
+                            <div class="ukg-card-explorations">
+                                <figure>
+                                    <div class="ukg-exploration-image"><Image src={ReflectionInitialCard} alt={t("Initial design")} loading="lazy" /></div>
+                                    <figcaption><h4>{t("Initial design")}</h4></figcaption>
+                                </figure>
+                                <figure>
+                                    <div class="ukg-exploration-image"><Image src={ShiftCardOptionB} alt={t("Exploration B")} loading="lazy" /></div>
+                                    <figcaption><h4>{t("Exploration B")}</h4></figcaption>
+                                </figure>
+                                <figure>
+                                    <div class="ukg-exploration-image"><Image src={ShiftCardOptionC} alt={t("Exploration C")} loading="lazy" /></div>
+                                    <figcaption><h4>{t("Exploration C")}</h4></figcaption>
+                                </figure>
+                            </div>
+                            <p class="text-cs-body mt-6">{t("I refined the card by reducing information and clarifying its hierarchy. The process taught me to revisit design assumptions by observing where users hesitate.")}</p>
+                        </div>
+                        <div class="ukg-hover-reflection mt-12">
+                            <div>
+                                <h3 class="text-cs-h2 font-normal">{t("There is still room for improvement")}</h3>
+                                <p class="text-cs-body mt-4">{t("Some participants did not realize that hovering over a shift revealed its clock records. The interaction needs rethinking, with clearer cues or a click-to-open alternative to test.")}</p>
+                            </div>
+                            <figure class="ukg-hover-example">
+                                <Image src={HoverCardInteraction} alt={isJapanese ? "ホバーで打刻記録を表示する画面" : "Clock records displayed on hover"} loading="lazy" />
+                            </figure>
+                        </div>
+                        <div class="ukg-final-design mt-32 mx-auto w-full">
+                            <h2 class="mb-4 text-cs-h2">{isJapanese ? "最終デザイン" : "Final Design"}</h2>
+                            <BeforeAfterToggle
+                                class="flex flex-col items-center h-150"
+                            >
+                                <div slot="before" class="max-w-200 mx-auto">
+                                    <Image
+                                        src={OriginalDesign}
+                                        alt="Original UKG payroll design"
+                                        class="w-full mt-8 rounded-lg"
+                                    />
+                                </div>
+                                <div slot="after" class="max-w-200 mx-auto">
+                                    <Image
+                                        src={HighFide}
+                                        alt="Redesigned UKG payroll interface with improved transparency"
+                                        class="w-full mt-8 rounded-lg"
+                                    />
+                                </div>
+                            </BeforeAfterToggle>
+                        </div>
+                        <div class="ukg-final-design mx-auto w-full">
+                            <div class="mt-16 flex justify-start">
+                                <GlassPill
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Open UKG prototype in a new tab"
+                                    href="https://ukg-pay-overview-design-md.vercel.app/v3/"
+                                >
+                                    <ArrowUpRight
+                                        slot="after"
+                                        aria-hidden="true"
+                                        focusable="false"
+                                    />
+                                    {isJapanese ? "プロトタイプを見る" : "View prototype"}
+                                    <span class="sr-only"
+                                        >(opens in a new tab)</span
+                                    >
+                                </GlassPill>
+                            </div>
+                            <div class="ukg-prototype-video mt-6 overflow-hidden rounded-lg">
+                                <ProjectMainVideo src={UKGVideo} />
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -1148,7 +1207,7 @@ const ukgSections = [
     .ukg-research-lead { display: grid; width: 100%; max-width: 60rem; margin: 3rem auto 0; gap: 2rem; align-items: center; }
     .ukg-research-lead-image { width: 12rem; height: auto; justify-self: center; }
     @media (min-width: 768px) {
-        .ukg-research-lead { grid-template-columns: minmax(0, 1fr) 12rem; gap: 3rem; }
+        .ukg-research-lead { grid-template-columns: minmax(0, 1fr); }
     }
 </style>
 
@@ -1209,7 +1268,7 @@ const ukgSections = [
     .ukg-brand-lead { display: grid; align-items: center; gap: 2rem; }
     .ukg-brand-lead h3 { font-size: clamp(1.375rem, 2.1vw, 1.875rem); font-weight: 400; line-height: 1.5; }
     .ukg-brand-lead p { max-inline-size: none; margin-top: 1rem; font-size: 1rem; line-height: 1.9; }
-    @media (min-width: 768px) { .ukg-brand-lead { grid-template-columns: minmax(0, 1fr) 12rem; gap: 3rem; } }
+    @media (min-width: 768px) { .ukg-brand-lead { grid-template-columns: minmax(0, 1fr); } }
 </style>
 
 <style>
@@ -1220,4 +1279,130 @@ const ukgSections = [
     .ukg-brand-comparison figcaption { margin-top: 0.75rem; font-size: 0.75rem; line-height: 1.6; color: var(--text-body-default); }
     .ukg-brand-arrow { text-align: center; font-size: 2.5rem; font-weight: 300; color: var(--text-body-default); }
     @media (max-width: 639px) { .ukg-brand-comparison { gap: 1.5rem 0.5rem; grid-template-columns: minmax(0,1fr) 1.5rem minmax(0,1fr); } .ukg-brand-arrow { font-size: 1.5rem; } .ukg-brand-logo-example img { height: 5rem; } }
+</style>
+
+
+<style>
+    .ukg-feedback-summary .ukg-feedback-note { margin: 1rem 0 0; font-size: .875rem; opacity: .65; }
+    .ukg-feedback-summary .ukg-feedback-group { margin-top: 2rem; }
+    .ukg-feedback-summary h4 { margin: 0; font-size: 1.125rem; font-weight: 500; line-height: 1.6; }
+    .ukg-feedback-summary .ukg-feedback-voices { display: grid; gap: 1rem; margin-top: 1rem; }
+    .ukg-feedback-summary .ukg-feedback-voices p,
+    .ukg-feedback-summary .ukg-feedback-concern { margin: 0; padding-left: 1rem; border-left: 2px solid #6478ee; font-size: 1rem; line-height: 1.9; }
+    .ukg-feedback-summary .ukg-feedback-concern { margin-top: 1rem; }
+    .ukg-feedback-summary .ukg-feedback-takeaway { margin: 1rem 0 0; font-size: 1rem; line-height: 1.9; }
+    .ukg-feedback-summary .ukg-card-feedback { display: grid; gap: 1.5rem; align-items: start; padding-top: 2rem; border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
+    .ukg-feedback-summary figure { width: 100%; max-width: 13rem; margin: 0; }
+    .ukg-feedback-summary figure img { display: block; width: 100%; height: auto; }
+    .ukg-feedback-summary figcaption { margin-top: .5rem; font-size: .75rem; line-height: 1.6; opacity: .65; }
+    @media (min-width: 768px) { .ukg-feedback-summary .ukg-card-feedback { grid-template-columns: minmax(0, 1fr) 13rem; gap: 2rem; } }
+</style>
+
+<style>
+    #User-feedback .ukg-feedback-aligned {
+        width: 100%;
+        max-width: var(--measure-cs-ja-body, 55rem);
+        margin-inline: auto;
+        min-width: 0;
+        text-align: left;
+    }
+    #User-feedback .ukg-feedback-aligned > :is(h2, h3, h4, p),
+    #User-feedback .ukg-feedback-aligned .caption-pill {
+        margin-inline: 0;
+        max-inline-size: none;
+    }
+    #User-feedback .ukg-feedback-aligned p { max-inline-size: none; }
+    #User-feedback .ukg-feedback-aligned > .caption-pill { width: fit-content; }
+</style>
+
+<style>
+    .ukg-blog-update { margin: 3rem auto 0; padding: clamp(1.25rem, 3vw, 2rem); width: 100%; max-width: var(--ukg-section-width, 60rem); border: 1px solid color-mix(in srgb, currentColor 15%, transparent); border-radius: .5rem; }
+    .ukg-blog-update > .ukg-blog-update-date { margin: 0; max-inline-size: none; font-size: .875rem; opacity: .6; }
+    .ukg-blog-update > .ukg-blog-update-intro { margin: .75rem 0 1.5rem; max-inline-size: none; font-size: 1rem; line-height: 1.7; }
+    .ukg-blog-mini-card { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto; align-items: center; gap: 1rem; color: inherit; text-decoration: none; }
+    .ukg-blog-mini-card video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: .25rem; }
+    .ukg-blog-mini-title { font-size: clamp(1rem, 1.5vw, 1.125rem); line-height: 1.65; }
+    .ukg-blog-mini-card:hover .ukg-blog-mini-title { text-decoration: underline; text-underline-offset: .2em; }
+    @media (max-width: 479px) { .ukg-blog-mini-card { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto; gap: .75rem; } .ukg-blog-mini-card video { width: 100%; } }
+</style>
+
+<style>
+    .ukg-prototype-content { width: 100%; max-width: 60rem; margin: 3rem auto 0; }
+    .ukg-prototype-content > .ukg-prototype-heading { max-inline-size: none; margin: 0; font-size: clamp(1.375rem, 2.1vw, 1.875rem); font-weight: 400; line-height: 1.5; }
+    .ukg-prototype-content > .ukg-prototype-copy { width: 100%; max-inline-size: none; margin: 1.5rem 0 0; font-size: 1rem; line-height: 1.9; }
+    .ukg-prototype-code { margin-top: 2rem; }
+    .ukg-prototype-code summary { cursor: pointer; font-size: .875rem; }
+</style>
+
+<style>
+    .ukg-prototype-source { margin-top: 1.5rem; }
+    .ukg-prototype-source a { display: inline-flex; align-items: center; gap: .5rem; font-size: .875rem; text-decoration: underline; text-underline-offset: .25em; }
+</style>
+
+
+
+<style>
+    /* Shared content measure across all case-study sections. */
+    main { --ukg-section-width: 60rem; }
+    :is(#Overview, #Research, #UI-design, #Prototype-dev, #User-feedback, #Reflection) > div:not(.h-px) {
+        width: 100%;
+        max-width: var(--ukg-section-width);
+        margin-inline: auto;
+        min-width: 0;
+    }
+    :is(#Overview, #Research, #UI-design, #Prototype-dev, #User-feedback, #Reflection) .cs-copy-block,
+    #User-feedback .ukg-feedback-aligned { max-width: var(--ukg-section-width); max-inline-size: var(--ukg-section-width); }
+    :is(#Overview, #Research, #UI-design, #Prototype-dev, #User-feedback, #Reflection) div:has(> .caption-pill) > :is(h2, h3, h4, p:not(.caption-pill)) {
+        max-inline-size: none;
+        margin-inline: 0;
+    }
+    :is(#Overview, #Research, #UI-design, #Prototype-dev, #User-feedback, #Reflection) div:has(> .caption-pill) > .caption-pill { margin-inline-start: 0; }
+    :is(#Overview, #Research, #UI-design, #Prototype-dev, #User-feedback, #Reflection) p { max-inline-size: none; }
+</style>
+
+<style>
+    .ukg-card-explorations { display: grid; gap: 2rem; margin-top: 2rem; }
+    .ukg-card-explorations figure { min-width: 0; margin: 0; }
+    .ukg-exploration-image { height: 17rem; display: flex; align-items: center; justify-content: center; }
+    .ukg-exploration-image img { display: block; width: auto; max-width: 100%; height: auto; max-height: 100%; object-fit: contain; }
+    .ukg-card-explorations figcaption { margin-top: 1rem; }
+    .ukg-card-explorations h4 { margin: 0; font-size: 1rem; font-weight: 500; }
+    #Reflection .ukg-card-explorations p { margin: .5rem 0 0; font-size: .875rem; line-height: 1.8; }
+    @media (min-width: 768px) { .ukg-card-explorations { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; } }
+</style>
+
+<style>
+    .ukg-card-reflection > .ukg-reflection-example { margin: 2rem 0 0; font-size: .875rem; opacity: .65; }
+    .ukg-card-reflection .ukg-card-explorations { margin-top: 1rem; }
+</style>
+
+<style>
+    .ukg-hover-example { width: 100%; max-width: 32rem; margin: 2rem auto 0; }
+    .ukg-hover-example img { display: block; width: 100%; height: auto; border-radius: .375rem; }
+    .ukg-hover-example figcaption { margin-top: .75rem; font-size: .875rem; line-height: 1.6; text-align: center; opacity: .65; }
+</style>
+
+<style>
+    .ukg-hover-reflection { display: grid; gap: 1.5rem; align-items: center; }
+    .ukg-hover-reflection .ukg-hover-example { width: 100%; max-width: 20rem; margin: 0; }
+    @media (min-width: 768px) { .ukg-hover-reflection { grid-template-columns: minmax(0, 1fr) 20rem; gap: 3rem; } }
+</style>
+
+<style>
+    .ukg-card-reflection .ukg-card-explorations { max-width: 44rem; margin-inline: auto; }
+    .ukg-card-reflection .ukg-exploration-image { height: 12rem; }
+    .ukg-card-reflection .ukg-card-explorations figcaption { text-align: center; margin-top: .75rem; }
+</style>
+
+
+
+<style>
+    .case-study-ja #hero .ukg-hero-title { font-size: clamp(1.75rem, 3.1vw, 2.75rem); line-height: 1.45; letter-spacing: -.025em; font-weight: 500; }
+    .case-study-ja #hero .ukg-hero-title-context { margin-bottom: .4em; font-size: .8em; font-weight: 400; color: var(--text-heading-default); opacity: 1; }
+</style>
+
+<style>
+    .ukg-figma-file summary { cursor: pointer; font-size: .875rem; }
+    .ukg-figma-file iframe { display: block; width: 100%; height: clamp(24rem, 65vh, 38rem); margin-top: 1rem; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); border-radius: .375rem; }
+    .ukg-figma-file > a { display: inline-flex; align-items: center; gap: .375rem; margin-top: 1rem; font-size: .875rem; text-decoration: underline; text-underline-offset: .25em; }
 </style>

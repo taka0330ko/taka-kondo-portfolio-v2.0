@@ -109,3 +109,17 @@
   }
 
 }
+
+@layer case-study {
+  .case-study-ja #case-study-sidebar :is(li, a) {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    letter-spacing: 0;
+  }
+
+  .case-study-ja nav[aria-label="Breadcrumb"] :is(ol, li, a, span) {
+    font-size: 0.75rem;
+    line-height: 1.6;
+    letter-spacing: 0;
+  }
+}

@@ -130,7 +130,13 @@ const cardHref = isReady ? href : undefined;
         font-weight: 400;
         line-height: 1.35;
         letter-spacing: 0;
-        text-wrap: balance;
+        width: 100%;
+        max-width: none;
+        max-inline-size: none;
+        text-wrap: wrap;
+        word-break: normal;
+        overflow-wrap: anywhere;
+        line-break: strict;
     }
 
     .project-card:lang(ja) .project-card-description {
