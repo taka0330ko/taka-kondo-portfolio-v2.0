@@ -1,4 +1,6 @@
 ---
+import GoToProjectsLinkBtn from "../ui/GoToProjectsLinkBtn.astro";
+
 interface Props {
   title: string;
   description: string;
@@ -31,6 +33,11 @@ const { title, description, lang = "en" } = Astro.props;
     <source src="/videos/hero/hero-video-v4-1080p-silent.mp4" type="video/mp4" />
     <p>{description}</p>
   </video>
+  <div class="hero-projects-link">
+    <GoToProjectsLinkBtn
+      label={lang === "ja" ? "プロジェクトを見る" : "Go to Projects"}
+    />
+  </div>
 </section>
 
 <style>
@@ -51,6 +58,13 @@ const { title, description, lang = "en" } = Astro.props;
     background: var(--hero-surface);
     /* Continue the hero backing beneath the offset bottom fade. */
     box-shadow: 0 4rem 0 var(--hero-surface);
+  }
+
+  .hero-projects-link {
+    position: absolute;
+    right: clamp(1.5rem, 5vw, 5rem);
+    bottom: clamp(2rem, 5vw, 5rem);
+    z-index: 2;
   }
 
   :global(html.light) .video-hero {
