@@ -1,35 +1,35 @@
 export const ukgJa: Record<string, string> = {
-  "For the testing prototype, I planned and built the CSS structure myself using Tailwind theme tokens as a foundation. I organized values by purpose so they could be used consistently across components.": "テスト用プロトタイプでは、Tailwindのテーマトークンをベースに、CSSの構造を自分で考えて組み立てました。値を用途ごとに整理し、コンポーネント間で一貫して使えるようにしました。",
+  "For the testing prototype, I planned and built the CSS structure myself using Tailwind theme tokens as a foundation. I organized values by purpose so they could be used consistently across components.": "実装では、TailwindのテーマトークンをもとにCSSの構造を設計しました。色や余白などの値を用途ごとに整理し、各コンポーネントで共通して使えるようにしました。",
 
   "For this testing prototype, I designed the tokens and built the code myself. I structured the CSS around Tailwind theme tokens, organizing values by their role so styles could be reused consistently across components.": "テスト用プロトタイプのトークン設計とコード構築は、自分で行いました。TailwindのテーマトークンをベースにCSSを設計し、値を用途ごとに整理することで、コンポーネント間で一貫して使えるスタイルにまとめました。",
 
-  "Younger participants quickly understood the card, while some older participants did not immediately recognize it as a way to check clock records.": "若い参加者はカードの役割をすぐに理解しましたが、年配の参加者には、打刻記録を確認できると伝わりにくい場面がありました。",
+  "Younger participants quickly understood the card, while some older participants did not immediately recognize it as a way to check clock records.": "一部の参加者はカードの役割をすぐに理解しましたが、ある参加者には、打刻記録を確認できると伝わりにくい場面がありました。",
   "I refined the card by reducing information and clarifying its hierarchy. The process taught me to revisit design assumptions by observing where users hesitate.": "カードの情報量と優先順位を見直し、現在のデザインに整理しました。自分の感覚だけで判断せず、ユーザーの戸惑いから設計を見直す大切さを学びました。",
 
   "There is still room for improvement": "わかりすさとは",
-  "Some participants did not realize that hovering over a shift revealed its clock records. The interaction needs rethinking, with clearer cues or a click-to-open alternative to test.": "一部の参加者は、ホバーで打刻記録が表示されることに気づきませんでした。操作の手がかりやクリックで開く方法など、表示方法自体を見直す必要があります。",
+  "Some participants did not realize that hovering over a shift revealed its clock records. The interaction needs rethinking, with clearer cues or a click-to-open alternative to test.": "また、一部の参加者は、ホバーで打刻記録が表示されることに気づきませんでした。操作の手がかりやクリックで開く方法など、表示方法自体を見直す必要があります。",
 
   "Hover interactions were not discoverable for everyone": "ホバーで詳細を開く操作が伝わらなかった",
   "Some participants did not discover that hovering over a shift cell revealed its detailed clock records. Even a clearer card is only useful if people can find and open it.": "一部の参加者は、勤務セルにカーソルを合わせると詳細カードが表示されることに気づかず、打刻記録を確認できませんでした。カード内の情報を整理しても、その表示方法が伝わらなければ、必要な情報にたどり着けません。",
   "The interaction itself needs to be reconsidered, including visible cues or an explicit action to open details, rather than relying on hover alone. These alternatives remain to be tested.": "ホバーを前提にした設計自体を見直し、詳細を確認できることを示す手がかりや、クリックで開く方法などを検討する必要があります。今後は、こうした操作方法も含めて検証したいと考えています。",
 
   "The challenge of designing for everyone": "誰にでも分かりやすい設計の難しさ",
-  "In these sessions, younger participants quickly understood that the work card showed detailed clock records, while some older participants took longer to recognize its purpose. This highlighted the challenge of making the same interface understandable to people of different ages and backgrounds.": "若い参加者はカードの役割をすぐに理解しましたが、年配の参加者には、打刻記録を確認できると伝わりにくい場面がありました。",
+  "In these sessions, younger participants quickly understood that the work card showed detailed clock records, while some older participants took longer to recognize its purpose. This highlighted the challenge of making the same interface understandable to people of different ages and backgrounds.": "一部のはカードの役割をすぐに理解しましたが、ある参加者には、打刻記録を確認できると伝わりにくい場面がありました。",
   "The card was one example of this broader challenge. I explored reducing information and adjusting its order and emphasis to make its purpose clearer, leading to the current design. The experience taught me to observe where people hesitate and revisit assumptions about what an interface communicates.": "カードの情報量と優先順位を見直し、現在のデザインに整理しました。自分の感覚だけで判断せず、ユーザーの戸惑いから設計を見直す大切さを学びました。",
 
   "Finding the right amount and order of information": "情報量と優先順位を見直し、伝わるカードへ",
   "Testing revealed that showing all the information did not necessarily make the card easy to understand. I explored reducing the amount of information and reorganizing its hierarchy to clarify what users should look at first.": "テストを通じて、必要な情報をすべて表示しても、カードの内容がすぐに伝わるとは限らないと気づきました。そこで、カード内の情報量を減らすことや、何を先に見せるかという優先順位を見直し、複数の案を検討しました。",
   "Initial design": "初期案",
   "Schedule and totals appeared first, alongside a prominent timeline.": "予定時間や合計時間を上部に配置。太いタイムラインも含め、複数の情報が目に入る構成でした。",
-  "Exploration B": "検討案 B",
+  "Exploration B": "改善案①",
   "Removed the heavy timeline and date, bringing clock records forward and moving the summary below.": "太いタイムラインや日付を省き、打刻記録を上部に。予定時間と合計時間は下部にまとめました。",
-  "Exploration C": "検討案 C",
+  "Exploration C": "改善案②",
   "Emphasized clock-in and clock-out times while reducing the visual weight of breaks.": "出勤・退勤時刻を大きく表示し、休憩の情報は控えめにして、情報の強弱を検討しました。",
   "These explorations led to the current card, with clock records shown first and scheduled time and total hours grouped below. I learned to consider both what information to include and the order and emphasis that help people read it.": "こうした試行錯誤を経て、打刻記録を先に見せ、予定時間と合計時間を下部にまとめる現在のカードUIに整理しました。情報を追加するだけでなく、必要な情報に目が向く順序や強弱まで設計することの大切さを学びました。",
 
-  "A prototype for checking changes to work hours": "勤務の変化を自分で確かめられるプロトタイプに",
-  "For user testing, I built a React prototype where participants could switch between weeks and hover over a shift to see its clock-in and clock-out records.": "ユーザーテストに向けて、週を切り替え、日ごとの勤務にカーソルを合わせると打刻記録が表示されるプロトタイプをReactで制作しました。",
-  "I prepared work data covering late arrivals, early departures, and overtime so participants could compare their scheduled and actual hours. By observing their interactions, I explored whether they could find the information they needed and understand the work cards.": "遅刻・早退・残業のある勤務データを用意し、予定と実際の勤務時間を照らし合わせられるようにしました。参加者が操作する様子を通じて、必要な情報を見つけられるか、カードの内容が伝わるかを確認しました。",
+  "A prototype for checking changes to work hours": "考えたデザインをユーザーに試してもらうために",
+  "For user testing, I built a React prototype where participants could switch between weeks and hover over a shift to see its clock-in and clock-out records.": "新しい機能やデザインへの反応を知るため、操作できるプロトタイプを制作しました。ユーザーに試してもらい、役立つ点や分かりにくい点を確かめることを目的としました。",
+  "I prepared work data covering late arrivals, early departures, and overtime so participants could compare their scheduled and actual hours. By observing their interactions, I explored whether they could find the information they needed and understand the work cards.": "環境構築やライブラリの選定、サイドバーなどの基本コンポーネントとファイル構成は自分で設計し、複雑な処理の実装にはCodexを活用し、試せる形へ素早く仕上げました。また、Tailwindのテーマトークンで色や余白を共通化し、画面全体の見た目を揃えています。",
 
   "Bringing the work-record journey to life": "勤務記録をたどる体験を、動くプロトタイプに",
   "I built a React prototype to test whether people could move naturally from total payroll hours to weekly hours and then to daily clock-in and clock-out records.": "給与の合計から週ごとの勤務時間を確認し、日ごとの打刻記録までたどる。この一連の操作が分かりやすくつながるかを確かめるため、Reactでプロトタイプを制作しました。",
@@ -42,8 +42,8 @@ export const ukgJa: Record<string, string> = {
   "It helps to see the clock-in and clock-out times. With just the total hours, I could not check when I actually worked.": "打刻が見えるのはありがたいです。合計時間だけだと分からなかったけど、これなら何時に出て、何時に帰ったか確認できます。",
   "I can check the clock-out time on a day I worked overtime to see whether that extra time is included.": "残業した日も、退勤時間を見れば、その分が入っているか確かめられますね。",
   "The card needed a clearer explanation": "カードの伝わりやすさには課題",
-  "At first, I could not tell what this card was showing.": "最初、このカードが何を示しているのか分かりませんでした。",
-  "The feedback highlighted a need to clarify what the card shows and how to read it.": "カードが示す内容と、どこを見ればよいかが伝わるよう、情報の整理が必要だと分かりました。",
+  "At first, I could not tell what this card was showing.": "このカードの示す内容を理解するのにやや時間がかかりました。",
+  "The feedback highlighted a need to clarify what the card shows and how to read it.": "カードが示す内容と、どこを見ればよいかが伝わるよう、情報の整理が必要だと痛感しました。",
 
   "What users found helpful—and what needed work": "ユーザーの反応から、良かった点と課題が見えた",
   "Participant feedback, summarized": "ユーザーの声（要約）",
@@ -53,11 +53,11 @@ export const ukgJa: Record<string, string> = {
   "The initial card was not immediately clear": "初期案のカードは、ひと目で意味が伝わらなかった",
   "I could not immediately tell what the card was showing.": "カードが何を伝えているのか、すぐには分からなかった。",
   "This feedback highlighted the need to make the purpose of the card and the relationship between its information clearer.": "この指摘から、内訳を表示するだけでなく、カードの役割や情報同士の関係がすぐに伝わる見せ方が必要だと分かりました。",
-  "Initial work record card": "初期案の勤務カード",
+  "Initial work record card": "初期のカードデザイン",
 
   "Participants reported greater confidence in checking payroll information with the redesign. Trust ratings also increased from 3.8 for the existing interface to 6.8 for the redesign.": "参加者は、リデザイン案のほうが自信を持って給与情報を確認できると評価しました。給与情報への信頼度も、既存画面の3.8からリデザイン案の6.8へ上がりました。",
 
-  "Five participants reviewed payroll information in the existing interface and the redesign using a shared work scenario involving a late arrival, an early departure, and overtime.": "参加者5名に、遅刻・早退・残業のある共通の勤務シナリオを提示し、既存画面とリデザイン案で給与情報を確認してもらいました。",
+  "Five participants reviewed payroll information in the existing interface and the redesign using a shared work scenario involving a late arrival, an early departure, and overtime.": "参加者5名に、遅刻・早退・残業のある共通の勤務シナリオを提示し、既存画面とプロトタイプで給与情報を確認してもらいました。",
 
   "How did users feel about the new payroll experience?": "新しい給与確認の体験を、ユーザーはどう感じたか？",
   "The original screen showed total hours without the daily detail needed to check them. I compared the existing interface with the redesign to explore whether access to work records supported payroll verification.": "既存画面の課題は、合計勤務時間が表示されても、その内訳を確認できないことでした。勤務実績をたどれる設計が給与確認を支えるか、既存画面とリデザイン案を比較しました。",
@@ -110,11 +110,11 @@ export const ukgJa: Record<string, string> = {
   "Users cannot verify how payroll hours are calculated, forcing them to rely on manual estimation instead of system transparency.": "例えば、今回の勤務時間は29.18333時間。同じシフトで働いたはずの前回は32時間でした。「どこかで打刻を忘れた？」と思っても、日ごとの打刻記録は確認できません。合計時間はわかっても、その差が生まれた理由を自分で確かめられないことが課題でした。",
   "Confirm that payroll hours were calculated accurately": "給与の勤務時間が正しく計算されているか確認する",
   "The user leaves without knowing the exact payroll calculation": "正確な計算方法が分からないまま確認を終える",
-  "Research Findings": "インタビューで見えた課題を、アンケートで掘り下げる",
+  "Research Findings": "同僚の話から見えた課題を、ほかの従業員にも聞いて掘り下げる",
   "Main findings": "主な調査結果",
   "Conducted a survey to further validate existing pain points and identify strong user demand for better visibility into payroll records.": "勤務時間の内訳を確認できないことに、ほかの従業員も困っているのか。また、給与を確かめるためにどんな情報が必要なのかを知るため、アンケートを実施しました。",
-  "80% of participants said they would not feel confident verifying payroll calculations if an error occurred.": "回答者の80％が、打刻漏れなどで勤務時間にずれがあっても、自分で気づける自信がないと回答しました。",
-  "90% of participants wanted access to actual clock-in and clock-out records.": "回答者の90％が、実際に何時に出勤・退勤したのかを確認したいと回答しました。",
+  "80% of participants said they would not feel confident verifying payroll calculations if an error occurred.": "給与を確かめるために、打刻記録や日別の労働時間を確認したいというニーズが見えた。",
+  "90% of participants wanted access to actual clock-in and clock-out records.": "勤務時間が正しく反映されていると、自信を持って答えた人は少なかった。",
   "Users lacked confidence in payroll calculations because the system did not provide enough visibility into payroll records and actual worked hours.": "給与記録と実際の勤務時間が十分に表示されないため、ユーザーは給与計算に確信を持てていませんでした。",
   "Improve payroll transparency by providing visibility into clock-in and clock-out records.": "出退勤記録を確認できるようにし、給与計算の根拠を分かりやすくする。",
   "As an employee, I want to review my clock-in and clock-out history so that I can verify how my payroll hours were calculated.": "従業員として、給与の勤務時間がどのように計算されたか確認するため、出退勤履歴を見たい。",

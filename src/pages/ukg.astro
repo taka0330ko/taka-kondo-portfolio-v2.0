@@ -374,11 +374,14 @@ const ukgSections = [
                                 <div
                                     class="bg-frame border-gray-100 p-4 rounded-lg max-w-150 mt-8 md:mt-0"
                                 >
-                                    <Image
-                                        src={Survey}
-                                        alt="User survey showing research findings about payroll transparency needs"
-                                        class="w-100 rounded-lg"
-                                    />
+                                    <button type="button" class="ukg-image-trigger ukg-survey-zoom" data-image-zoom aria-haspopup="dialog" aria-controls="ukg-image-dialog" aria-label={isJapanese ? "アンケート結果を拡大する" : "Enlarge survey results"}>
+                                        <Image
+                                            src={Survey}
+                                            alt="User survey showing research findings about payroll transparency needs"
+                                            class="w-100 rounded-lg"
+                                        />
+                                        <span class="ukg-image-zoom-icon"><ZoomIn class="size-5" aria-hidden="true" /></span>
+                                    </button>
                                 </div>
 
                                 <div class="bg-text-block p-4 rounded-lg max-w-100">
@@ -444,18 +447,15 @@ const ukgSections = [
                                 <div class="ukg-story-content">
                                     <Image src={GroceryStaff} alt="" class="ukg-story-person" />
                                     <div class="ukg-story-text">
-                                        <blockquote>{isJapanese ? "従業員として、出退勤の打刻履歴を確認したい。給与に反映された勤務時間が、どのように計算されたのかを自分で確かめるために。" : "As an employee, I want to review my clock-in and clock-out history so that I can verify how my payroll hours were calculated."}</blockquote>
-                                        {isJapanese && <p class="ukg-story-english" lang="en">As an employee, I want to review my clock-in and clock-out history so that I can verify how my payroll hours were calculated.</p>}
+                                        <blockquote lang="en">As an employee, I want to review my clock-in and clock-out history so that I can verify how my payroll hours were calculated.</blockquote>
+                                        {isJapanese && <p class="ukg-story-english" lang="ja">従業員として、出退勤の打刻履歴を確認したい。給与に反映された勤務時間が、どのように計算されたのかを自分で確かめるために。</p>}
                                     </div>
                                 </div>
                             </section>
                             <div class="ukg-direction-layout">
-                            <p class="ukg-direction-description">{isJapanese ? "給与確認画面に、出退勤時刻と日ごとの勤務時間を追加。予定されたシフトと実際の記録を照らし合わせ、勤務時間のずれや打刻漏れに気づける構成を目指しました。" : "The proposed screen adds daily worked hours and clock-in/out records, allowing employees to compare scheduled shifts with actual records."}</p>
+                            <p class="ukg-direction-description">{isJapanese ? "ここまでに整理した課題をもとに、画面の構成を検討。出退勤時刻や日ごとの勤務時間を並べ、シフトとの違いを自分で確かめられる形を目指しました。" : "The proposed screen adds daily worked hours and clock-in/out records, allowing employees to compare scheduled shifts with actual records."}</p>
                             <figure class="ukg-direction-figure">
-                                <button type="button" class="ukg-image-trigger ukg-direction-zoom" data-image-zoom aria-haspopup="dialog" aria-controls="ukg-image-dialog" aria-label={isJapanese ? "画面案を拡大する" : "Enlarge wireframe"}>
-                                    <Image src={MidFide} alt={isJapanese ? "日ごとの勤務時間と打刻記録を追加した給与確認画面のワイヤーフレーム" : "Payroll wireframe with daily hours and punch records"} class="ukg-direction-image" />
-                                    <span class="ukg-image-zoom-icon"><ZoomIn class="size-5" aria-hidden="true" /></span>
-                                </button>
+                                <Image src={MidFide} alt={isJapanese ? "日ごとの勤務時間と打刻記録を追加した給与確認画面のワイヤーフレーム" : "Payroll wireframe with daily hours and punch records"} class="ukg-direction-image" />
 
                             </figure>
                             </div>
@@ -599,18 +599,19 @@ const ukgSections = [
                             <p class="ukg-prototype-copy">{t("For user testing, I built a React prototype where participants could switch between weeks and hover over a shift to see its clock-in and clock-out records.")}</p>
                             <p class="ukg-prototype-copy">{t("I prepared work data covering late arrivals, early departures, and overtime so participants could compare their scheduled and actual hours. By observing their interactions, I explored whether they could find the information they needed and understand the work cards.")}</p>
                             <div class="ukg-prototype-source">
+                                <a href="https://ukg-pay-overview-design-md.vercel.app/v3/" target="_blank" rel="noopener noreferrer">{isJapanese ? "プロトタイプを試す" : "Try the prototype"}<ArrowUpRight size={16} aria-hidden="true" /></a>
                                 <a href="https://github.com/taka0330ko/ukg-pro-redesign" target="_blank" rel="noopener noreferrer">{isJapanese ? "テスト時のプロトタイプのコード" : "View the prototype code used for testing"}<ArrowUpRight size={16} aria-hidden="true" /></a>
                             </div>
-                            <p class="ukg-prototype-copy">{t("For the testing prototype, I planned and built the CSS structure myself using Tailwind theme tokens as a foundation. I organized values by purpose so they could be used consistently across components.")}</p>
+                            {!isJapanese && <p class="ukg-prototype-copy">{t("For the testing prototype, I planned and built the CSS structure myself using Tailwind theme tokens as a foundation. I organized values by purpose so they could be used consistently across components.")}</p>}
                             <details class="ukg-prototype-code">
-                                <summary>{t("View implementation example")}</summary>
+                                <summary>{isJapanese ? "Tailwind theme tokenの使用例" : t("View implementation example")}</summary>
                                 <div class="mt-6">
                                     <CodeWindow code={postsDataCode} lang="css" showExpand={false} />
                                 </div>
                             </details>
                             <aside class="ukg-blog-update" aria-label={isJapanese ? "追記・関連記事" : "Additional reading"}>
                                 <p class="ukg-blog-update-date"><time datetime="2026-10-20">2026/10/20</time> {isJapanese ? "追記" : "Update"}</p>
-                                <p class="ukg-blog-update-intro">{isJapanese ? "テスト後、デザインを見直し、Design.mdの記述や追加の指示で実装の再現度がどう変わるかを比較しました。" : "After testing, I revisited the design and compared how Design.md detail and follow-up instructions affected implementation fidelity."}</p>
+                                <p class="ukg-blog-update-intro">{isJapanese ? "後日、Design.mdの記述や追加の指示で実装の再現度がどう変わるかを比較実験した話をまとめました。" : "After testing, I revisited the design and compared how Design.md detail and follow-up instructions affected implementation fidelity."}</p>
                                 <a class="ukg-blog-mini-card" href={isJapanese ? "/jp/blog/design-md-05" : "/blog/design-md-05"}>
                                     <video src="/videos/blog/design-md-05-thumbnail.mp4" poster={DesignMdCover.src} autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
                                     <span class="ukg-blog-mini-title">{isJapanese ? "Design.mdでFigmaの忠実度100%を目指した話" : "Aiming for 100% Figma Fidelity with Design.md"}</span>
@@ -639,16 +640,15 @@ const ukgSections = [
                         </div>
 
                         <div class="ukg-feedback-aligned mx-auto mt-12 max-w-220">
-                            <p class="caption-pill">Verification</p>
+                            {!isJapanese && <p class="caption-pill">Verification</p>}
                             <h2 class="text-cs-h2 mt-5">
                                 {t("How did users feel about the new payroll experience?")}
                             </h2>
                             <p class="text-cs-body mt-5">
-                                {t("Five participants reviewed payroll information in the existing interface and the redesign using a shared work scenario involving a late arrival, an early departure, and overtime.")}
+                                {isJapanese ? "参加者5名に、遅刻・早退・残業のある共通の勤務シナリオを提示し、既存画面とプロトタイプで給与情報を確認したうえで、給与情報への理解と信頼、正確さを確かめる自信を評価してもらいました。" : t("Five participants reviewed payroll information in the existing interface and the redesign using a shared work scenario involving a late arrival, an early departure, and overtime.")}
                             </p>
-                            <p class="text-cs-body mt-5">
-                                {t("After the tasks, participants rated their understanding of payroll information, trust, and confidence in checking its accuracy.")}
-                            </p>
+                            {!isJapanese && <p class="text-cs-body mt-5">
+                                {t("After the tasks, participants rated their understanding of payroll information, trust, and confidence in checking its accuracy.")}</p>}
                         </div>
 
                         <div
@@ -699,20 +699,19 @@ const ukgSections = [
                         </div>
 
                         <div class="ukg-feedback-aligned ukg-feedback-summary mx-auto mt-16 max-w-220">
-                            <p class="caption-pill">Findings</p>
+                            {!isJapanese && <p class="caption-pill">Findings</p>}
                             <h3 class="text-cs-h2 mt-6">{t("Feedback from testing")}</h3>
-                            <p class="ukg-feedback-note">{t("Participant feedback, summarized")}</p>
                             <div class="ukg-feedback-group">
-                                <h4>{t("Checking work records")}</h4>
+                                <h4 class="ukg-feedback-heading"><span class="ukg-feedback-mark ukg-feedback-mark--positive" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8" /></svg></span><span>{t("Checking work records")}</span></h4>
                                 <div class="ukg-feedback-voices">
-                                    <p>{t("It helps to see the clock-in and clock-out times. With just the total hours, I could not check when I actually worked.")}</p>
-                                    <p>{t("I can check the clock-out time on a day I worked overtime to see whether that extra time is included.")}</p>
+                                    <p>&quot;{t("It helps to see the clock-in and clock-out times. With just the total hours, I could not check when I actually worked.")}&quot;</p>
+                                    <p>&quot;{t("I can check the clock-out time on a day I worked overtime to see whether that extra time is included.")}&quot;</p>
                                 </div>
                             </div>
                             <div class="ukg-feedback-group ukg-card-feedback">
                                 <div>
-                                    <h4>{t("The card needed a clearer explanation")}</h4>
-                                    <p class="ukg-feedback-concern">{t("At first, I could not tell what this card was showing.")}</p>
+                                    <h4 class="ukg-feedback-heading"><span class="ukg-feedback-mark ukg-feedback-mark--negative" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18" /></svg></span><span>{t("The card needed a clearer explanation")}</span></h4>
+                                    <p class="ukg-feedback-concern">&quot;{t("At first, I could not tell what this card was showing.")}&quot;</p>
                                     <p class="ukg-feedback-takeaway">{t("The feedback highlighted a need to clarify what the card shows and how to read it.")}</p>
                                 </div>
                                 <figure>
@@ -731,36 +730,39 @@ const ukgSections = [
                         >
                         </div>
                         <div class="ukg-card-reflection mt-20">
-                            <h3 class="text-cs-h2 font-normal">{t("The challenge of designing for everyone")}</h3>
-                            <p class="mt-4 text-cs-body">{t("Younger participants quickly understood the card, while some older participants did not immediately recognize it as a way to check clock records.")}</p>
-                            <p class="ukg-reflection-example">{isJapanese ? "改善を検討した例：打刻記録のカード" : "One design exploration: the work-record card"}</p>
+                            <h3 class="text-cs-h2 font-normal">{isJapanese ? "ユーザーから学んだこと" : t("The challenge of designing for everyone")}</h3>
+                            <p class="mt-4 text-cs-body">{isJapanese ? "「何を示すカードか分かりにくい」という声を受け、出退勤時刻と勤務時間がひと目で分かるよう、情報の配置や文字の大きさを変えた案を検討しました。" : t("Younger participants quickly understood the card, while some older participants did not immediately recognize it as a way to check clock records.")}</p>
                             <div class="ukg-card-explorations">
                                 <figure>
                                     <div class="ukg-exploration-image"><Image src={ReflectionInitialCard} alt={t("Initial design")} loading="lazy" /></div>
                                     <figcaption><h4>{t("Initial design")}</h4></figcaption>
                                 </figure>
                                 <figure>
-                                    <div class="ukg-exploration-image"><Image src={ShiftCardOptionB} alt={t("Exploration B")} loading="lazy" /></div>
+                                    <div class="ukg-exploration-image"><Image src={ShiftCardOptionC} alt={t("Exploration B")} loading="lazy" /></div>
                                     <figcaption><h4>{t("Exploration B")}</h4></figcaption>
                                 </figure>
                                 <figure>
-                                    <div class="ukg-exploration-image"><Image src={ShiftCardOptionC} alt={t("Exploration C")} loading="lazy" /></div>
+                                    <div class="ukg-exploration-image"><Image src={ShiftCardOptionB} alt={t("Exploration C")} loading="lazy" /></div>
                                     <figcaption><h4>{t("Exploration C")}</h4></figcaption>
                                 </figure>
                             </div>
-                            <p class="text-cs-body mt-6">{t("I refined the card by reducing information and clarifying its hierarchy. The process taught me to revisit design assumptions by observing where users hesitate.")}</p>
+                            {!isJapanese && <p class="text-cs-body mt-6">{t("I refined the card by reducing information and clarifying its hierarchy. The process taught me to revisit design assumptions by observing where users hesitate.")}</p>}
                         </div>
                         <div class="ukg-hover-reflection mt-12">
                             <div>
-                                <h3 class="text-cs-h2 font-normal">{t("There is still room for improvement")}</h3>
+                                {!isJapanese && <h3 class="text-cs-h2 font-normal">{t("There is still room for improvement")}</h3>}
                                 <p class="text-cs-body mt-4">{t("Some participants did not realize that hovering over a shift revealed its clock records. The interaction needs rethinking, with clearer cues or a click-to-open alternative to test.")}</p>
                             </div>
                             <figure class="ukg-hover-example">
                                 <Image src={HoverCardInteraction} alt={isJapanese ? "ホバーで打刻記録を表示する画面" : "Clock records displayed on hover"} loading="lazy" />
                             </figure>
                         </div>
+                        {isJapanese && <div class="mt-32">
+                            <h2 class="text-cs-h2">プロジェクトを通じて</h2>
+                            <p class="text-cs-body mt-4">ユーザーとの対話から必要な機能を見つけ、自分なりにデザイン・実装し、試してもらった声をもとに磨いていく。小規模ながら、この一連の過程にUXを追求する楽しさを実感しました。また、AIを活用することでアイデアを素早く形にでき、ユーザーに試してもらう機会を作りやすくなったことも、大きな発見でした。今後はより多くのユーザーと関わりながら、改善を重ねる経験をしていきたいです。</p>
+                        </div>}
                         <div class="ukg-final-design mt-32 mx-auto w-full">
-                            <h2 class="mb-4 text-cs-h2">{isJapanese ? "最終デザイン" : "Final Design"}</h2>
+                            {!isJapanese && <h2 class="mb-4 text-cs-h2">Final Design</h2>}
                             <BeforeAfterToggle
                                 class="flex flex-col items-center h-150"
                             >
@@ -1115,6 +1117,7 @@ const ukgSections = [
 
 <style>
     .ukg-image-trigger { position: relative; display: block; width: 100%; max-width: 24rem; justify-self: center; padding: 0; cursor: pointer; border-radius: 0.25rem; }
+    .ukg-image-trigger.ukg-survey-zoom { max-width: none; }
     .ukg-image-zoom-icon { position: absolute; bottom: 0.75rem; right: 0.75rem; display: grid; place-items: center; width: 2.5rem; height: 2.5rem; background: rgb(255 255 255 / 92%); color: #171717; border-radius: 50%; box-shadow: 0 2px 12px #0002; opacity: 0; transform: translateY(4px); transition: opacity 200ms, transform 200ms; }
     .ukg-image-trigger:hover .ukg-image-zoom-icon, .ukg-image-trigger:focus-visible .ukg-image-zoom-icon { opacity: 1; transform: none; }
     .ukg-image-trigger:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
@@ -1192,14 +1195,14 @@ const ukgSections = [
 </style>
 
 <style>
-    .ukg-pain-flow { display: grid; gap: 1.5rem; width: 100%; max-width: 60rem; margin: 2.5rem auto 0; padding: 0; list-style: none; }
-    .ukg-pain-step { position: relative; padding: 1.25rem 0 0; border-top: 2px solid color-mix(in srgb, currentColor 20%, transparent); }
+    .ukg-pain-flow { display: grid; gap: 1.5rem; width: 100%; max-width: 60rem; margin: 4rem auto 0; padding: 0; list-style: none; }
+    .ukg-pain-step { position: relative; padding: 1.25rem; background: var(--color-text-block); border-radius: 0.5rem; }
     .ukg-pain-number { font-size: 0.75rem; opacity: 0.65; font-variant-numeric: tabular-nums; }
     .ukg-pain-step > h3 { margin: 0.75rem 0; font-size: 1.0625rem; font-weight: 500; line-height: 1.6; }
     .ukg-pain-step > p { max-inline-size: none; margin: 0; font-size: 0.9375rem; line-height: 1.8; }
     @media (min-width: 768px) {
         .ukg-pain-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; }
-        .ukg-pain-step:not(:last-child)::after { content: "→"; position: absolute; right: -1.75rem; top: 2.75rem; opacity: 0.5; }
+        .ukg-pain-step:not(:last-child)::after { content: "→"; position: absolute; right: -1.75rem; top: 50%; transform: translateY(-50%); opacity: 0.5; }
     }
 </style>
 
@@ -1228,7 +1231,6 @@ const ukgSections = [
     .ukg-story-person { width: 4.5rem; height: auto; flex-shrink: 0; }
     .ukg-story-content blockquote { margin: 0; font-size: 1rem; line-height: 1.9; }
     .ukg-direction-figure { margin: 2.5rem auto 0; width: 100%; max-width: 38rem; }
-    .ukg-image-trigger.ukg-direction-zoom { max-width: none; }
     .ukg-direction-image { display: block; width: 100%; height: auto; border-radius: 0.375rem; }
     .ukg-direction-figure figcaption { margin-top: 0.75rem; font-size: 0.75rem; line-height: 1.8; text-align: center; }
 </style>
@@ -1286,14 +1288,15 @@ const ukgSections = [
     .ukg-feedback-summary .ukg-feedback-note { margin: 1rem 0 0; font-size: .875rem; opacity: .65; }
     .ukg-feedback-summary .ukg-feedback-group { margin-top: 2rem; }
     .ukg-feedback-summary h4 { margin: 0; font-size: 1.125rem; font-weight: 500; line-height: 1.6; }
-    .ukg-feedback-summary .ukg-feedback-voices { display: grid; gap: 1rem; margin-top: 1rem; }
+    .ukg-feedback-summary .ukg-feedback-voices { display: grid; gap: 1.25rem; max-width: 46rem; margin: 1.25rem 0 0 1.625rem; }
     .ukg-feedback-summary .ukg-feedback-voices p,
-    .ukg-feedback-summary .ukg-feedback-concern { margin: 0; padding-left: 1rem; border-left: 2px solid #6478ee; font-size: 1rem; line-height: 1.9; }
-    .ukg-feedback-summary .ukg-feedback-concern { margin-top: 1rem; }
-    .ukg-feedback-summary .ukg-feedback-takeaway { margin: 1rem 0 0; font-size: 1rem; line-height: 1.9; }
-    .ukg-feedback-summary .ukg-card-feedback { display: grid; gap: 1.5rem; align-items: start; padding-top: 2rem; border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
+    .ukg-feedback-summary .ukg-feedback-concern { margin: 0; padding-left: 1rem; border-left: 2px solid #9ca3af; font-size: 1rem; line-height: 1.9; }
+    .ukg-feedback-summary .ukg-feedback-concern { margin: 1.25rem 0 0 1.625rem; max-width: 46rem; }
+    .ukg-feedback-summary .ukg-feedback-takeaway { max-width: 42rem; margin: 1.25rem 0 0 1.625rem; font-size: 1rem; line-height: 1.9; }
+    .ukg-feedback-summary .ukg-card-feedback { display: grid; gap: 1.5rem; align-items: start; padding-top: 2rem; }
     .ukg-feedback-summary figure { width: 100%; max-width: 13rem; margin: 0; }
     .ukg-feedback-summary figure img { display: block; width: 100%; height: auto; }
+    @media (max-width: 767px) { .ukg-feedback-summary figure { margin-inline: auto; text-align: center; } }
     .ukg-feedback-summary figcaption { margin-top: .5rem; font-size: .75rem; line-height: 1.6; opacity: .65; }
     @media (min-width: 768px) { .ukg-feedback-summary .ukg-card-feedback { grid-template-columns: minmax(0, 1fr) 13rem; gap: 2rem; } }
 </style>
@@ -1335,7 +1338,7 @@ const ukgSections = [
 </style>
 
 <style>
-    .ukg-prototype-source { margin-top: 1.5rem; }
+    .ukg-prototype-source { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; margin-top: 1.5rem; }
     .ukg-prototype-source a { display: inline-flex; align-items: center; gap: .5rem; font-size: .875rem; text-decoration: underline; text-underline-offset: .25em; }
 </style>
 
@@ -1361,7 +1364,7 @@ const ukgSections = [
 </style>
 
 <style>
-    .ukg-card-explorations { display: grid; gap: 2rem; margin-top: 2rem; }
+    .ukg-card-explorations { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin-top: 2rem; }
     .ukg-card-explorations figure { min-width: 0; margin: 0; }
     .ukg-exploration-image { height: 17rem; display: flex; align-items: center; justify-content: center; }
     .ukg-exploration-image img { display: block; width: auto; max-width: 100%; height: auto; max-height: 100%; object-fit: contain; }
@@ -1405,4 +1408,31 @@ const ukgSections = [
     .ukg-figma-file summary { cursor: pointer; font-size: .875rem; }
     .ukg-figma-file iframe { display: block; width: 100%; height: clamp(24rem, 65vh, 38rem); margin-top: 1rem; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); border-radius: .375rem; }
     .ukg-figma-file > a { display: inline-flex; align-items: center; gap: .375rem; margin-top: 1rem; font-size: .875rem; text-decoration: underline; text-underline-offset: .25em; }
+</style>
+
+<style>
+    .ukg-feedback-heading { display: flex; align-items: center; gap: 0.5rem; }
+    .ukg-feedback-mark { display: grid; place-items: center; flex: 0 0 1.125rem; width: 1.125rem; height: 1.125rem; }
+    .ukg-feedback-mark svg { display: block; width: 1.125rem; height: 1.125rem; }
+    .ukg-feedback-mark--positive { color: #16803c; }
+    .ukg-feedback-mark--negative { color: #c93636; }
+</style>
+
+<style>
+    @media (max-width: 767px) {
+        .ukg-card-reflection .ukg-exploration-image { height: auto; aspect-ratio: 1 / 1; }
+        .ukg-card-explorations h4 { font-size: .8125rem; }
+    }
+</style>
+
+<style>
+    .ukg-card-explorations { column-gap: 1.5rem; }
+    .ukg-card-explorations .ukg-exploration-image { position: relative; }
+    .ukg-card-explorations figure:not(:last-child) .ukg-exploration-image::after {
+        content: ""; position: absolute; left: calc(100% + .375rem); top: 50%;
+        width: .75rem; height: .75rem; transform: translateY(-50%);
+        background: currentColor; opacity: .5;
+        clip-path: polygon(0 43%, 73% 43%, 43% 13%, 53% 3%, 100% 50%, 53% 97%, 43% 87%, 73% 57%, 0 57%);
+        pointer-events: none;
+    }
 </style>
