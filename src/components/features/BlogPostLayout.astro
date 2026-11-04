@@ -181,6 +181,18 @@ const { title, date, tags, cover, coverAlt, coverVideo, coverVideoFallback, tran
         margin-top: 1em;
     }
 
+    .blog-post-content :global(figure + figure) {
+        margin-top: 2rem;
+    }
+
+    .blog-post-content :global(p:has(img) + p:has(> em:only-child)),
+    .blog-post-content :global(figcaption) {
+        margin-top: 0.5rem;
+        padding-bottom: 0.75rem;
+        font-size: 0.8125rem;
+        line-height: 1.7;
+    }
+
     .blog-post-content :global(ul),
     .blog-post-content :global(ol) {
         margin-top: 1em;
