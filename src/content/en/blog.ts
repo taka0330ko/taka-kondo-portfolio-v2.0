@@ -11,5 +11,6 @@ export const blogEn = {
     introLines: ["Notes on design,", "code, and process."],
     imageAlt: "An illustrated object representing the blog",
   },
+  contact: { copiedLabel: "Copied!", emailAriaLabel: "Send an email" },
   list: { emptyLabel: "No posts yet — check back soon.", backLabel: "Back to Blog" },
 } satisfies BlogContent;

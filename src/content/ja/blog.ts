@@ -10,5 +10,6 @@ export const blogJa = {
     introLines: ["デザインと開発", "制作の記録"],
     imageAlt: "ブログを象徴するイラストオブジェクト",
   },
+  contact: { copiedLabel: "コピーしました！", emailAriaLabel: "メールを送る" },
   list: { emptyLabel: "まだ投稿はありません。近日公開予定です。", backLabel: "ブログ一覧に戻る" },
 } satisfies BlogContent;
