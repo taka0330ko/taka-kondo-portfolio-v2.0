@@ -22,7 +22,7 @@ export const aboutJa = {
       company: "Burst Creative Group",
       role: "Product Designer",
       type: "インターンシップ",
-      period: "2026年9月 – 現在",
+      period: "2026年9月 – 11月",
     },
     education: {
       title: "学歴",

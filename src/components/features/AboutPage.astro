@@ -64,8 +64,8 @@ const { content } = Astro.props;
       <section class="col-start-4 col-span-6 mt-32" aria-labelledby="about-experience-title">
         <h2 id="about-experience-title" class="text-about-heading mb-8">{content.sections.experience.title}</h2>
         {[
-          { ...content.sections.experience, logo: BurstLogo, logoClass: "" },
           { ...content.sections.experience.additional, logo: VkdsLogo, logoClass: "education-logo-frame", type: undefined },
+          { ...content.sections.experience, logo: BurstLogo, logoClass: "" },
         ].map((experience) => (
           <div class="experience-entry">
             <div class:list={["experience-logo-frame", experience.logoClass]}>
