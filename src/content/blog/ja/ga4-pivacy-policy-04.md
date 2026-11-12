@@ -10,7 +10,7 @@ tags: ["Development", "Google Analytics", "Privacy"]
 draft: false
 ---
 
-<small>この記事は自分で書いた英語版をそのままAIに投げて翻訳したものです。</small>
+<small>この記事は自分で書いた英語版をAIで翻訳したものです。</small>
 ### Webサイトのデータから利用者の行動を知る
 
 先日、GA4（Google Analytics 4）で収集したデータをまとめたレポートを作成しました。また、WordPressサイトへのGA4の導入も行いました。
