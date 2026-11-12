@@ -8,9 +8,10 @@ interface Props {
     cover: ImageMetadata;
     coverType?: "image" | "green-blob";
     title: string;
+    coverVideo?: string;
 }
 
-const { cover, coverType, title } = Astro.props;
+const { cover, coverType, title, coverVideo } = Astro.props;
 ---
 
 <div class="archive-image-wrap">
@@ -35,9 +36,61 @@ const { cover, coverType, title } = Astro.props;
             </>
         )
     }
+    {coverVideo && <video class="archive-hover-video" style="position:absolute;inset:0;z-index:2;box-sizing:border-box;width:100%;height:100%;padding:var(--card-padding);object-fit:contain;opacity:0;pointer-events:none" data-archive-hover-video data-src={coverVideo} muted loop playsinline preload="none" aria-hidden="true" />}
 </div>
 
+<script>
+    function initArchiveHoverVideos() {
+        document.querySelectorAll<HTMLVideoElement>("[data-archive-hover-video]").forEach((video) => {
+            if (video.dataset.initialized) return;
+            video.dataset.initialized = "true";
+            const trigger = video.closest<HTMLButtonElement>("button");
+            if (!trigger) return;
+            let active = false;
+            const start = () => {
+                if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+                active = true;
+                if (!video.getAttribute("src")) video.src = video.dataset.src!;
+                video.currentTime = 0;
+                video.play().then(() => {
+                    if (active) { video.classList.add("is-playing"); video.style.opacity = "1"; }
+                    else video.pause();
+                }).catch(() => {});
+            };
+            const stop = () => {
+                active = false;
+                video.classList.remove("is-playing");
+                video.style.opacity = "0";
+                video.pause();
+                video.currentTime = 0;
+            };
+            trigger.addEventListener("mouseenter", start);
+            trigger.addEventListener("mouseleave", stop);
+            trigger.addEventListener("focus", start);
+            trigger.addEventListener("blur", stop);
+            trigger.addEventListener("click", stop);
+            document.addEventListener("astro:before-swap", stop, { once: true });
+        });
+    }
+    document.addEventListener("astro:page-load", initArchiveHoverVideos);
+    initArchiveHoverVideos();
+</script>
+
 <style>
+    .archive-hover-video {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        padding: var(--card-padding);
+        object-fit: contain;
+        opacity: 0;
+        pointer-events: none;
+    }
+    .archive-hover-video.is-playing { opacity: 1; }
+
     .archive-image-wrap {
         position: relative;
         display: flex;

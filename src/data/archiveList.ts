@@ -1,4 +1,5 @@
 import type { ImageMetadata } from "astro";
+import CitizenCover from "../assets/images/archive/works/citizen/citizen-cover.jpg";
 import EnevoCover from "../assets/images/archive/works/enevo/enevo-cover.png";
 import GreenSabonCover from "../assets/images/archive/works/green-sbon/green-sabon-cover.png";
 import MeltCover from "../assets/images/archive/works/melt/melt-cover.png";
@@ -17,6 +18,9 @@ type ArchiveItem = {
     coverType?: "image" | "green-blob",
     coverVideo: string,
     modalVideo?: string,
+    modalImage?: boolean,
+    modalPdf?: string,
+    modalProject?: "stone-and-honey" | "xeno",
     title: string,
     placeholder: boolean,
     height: number
@@ -28,8 +32,9 @@ export const archive: ArchiveItem[] = [
         id: 1,
         href: "/stone-and-honey",
         cover: StoneHoneyCover,
+        modalProject: "stone-and-honey",
         coverVideo: "",
-        title: "",
+        title: "Stone & Honey — School Project",
         placeholder: false,
         height: 480
     },
@@ -40,34 +45,37 @@ export const archive: ArchiveItem[] = [
         coverType: "green-blob",
         modalVideo: "/videos/archive/green-sabon-demo-v2.mp4",
         coverVideo: "",
-        title: "Green Sabon",
+        title: "Green Sabon — School Project",
         placeholder: false,
         height: 320
+    },
+    {
+        id: 10,
+        href: "",
+        cover: CitizenCover,
+        modalVideo: "/videos/archive/citizen-full.mp4",
+        coverVideo: "/videos/archive/citizen-logo-intro.mp4",
+        title: "Citizen — Motion Graphics (Internship)",
+        placeholder: false,
+        height: 280
     },
     {
         id: 3,
         href: "",
         cover: MeltCover,
+        modalPdf: "/documents/archive/melt-brand-sprint.pdf",
         coverVideo: "",
-        title: "",
+        title: "Melt. — School Project",
         placeholder: false,
         height: 220
-    },
-    {
-        id: 4,
-        href: "",
-        cover: UntitleCover,
-        coverVideo: "",
-        title: "",
-        placeholder: false,
-        height: 280
     },
     {
         id: 5,
         href: "/xeno",
         cover: XenoCover,
+        modalProject: "xeno",
         coverVideo: "",
-        title: "",
+        title: "XENO — School Project",
         placeholder: false,
         height: 330
     },
@@ -75,8 +83,9 @@ export const archive: ArchiveItem[] = [
         id: 6,
         href: "",
         cover: PsCollageCover,
+        modalImage: true,
         coverVideo: "",
-        title: "",
+        title: "Photoshop Collage — School Project",
         placeholder: false,
         height: 480
     },
@@ -85,7 +94,7 @@ export const archive: ArchiveItem[] = [
         href: "",
         cover: EnevoCover,
         coverVideo: "",
-        title: "",
+        title: "ENEVO — School Project",
         placeholder: false,
         height: 480
     },
@@ -94,7 +103,7 @@ export const archive: ArchiveItem[] = [
         href: "",
         cover: NebutaCover,
         coverVideo: "",
-        title: "",
+        title: "Nebuta Festival — School Project",
         placeholder: false,
         height: 480
     },
@@ -103,10 +112,18 @@ export const archive: ArchiveItem[] = [
         href: "",
         cover: NutralisCover,
         coverVideo: "",
-        title: "",
+        title: "Nutralis — School Project",
         placeholder: false,
         height: 480
     },
-
+    {
+        id: 4,
+        href: "",
+        cover: UntitleCover,
+        coverVideo: "",
+        title: "Untitled — School Project",
+        placeholder: false,
+        height: 280
+    },
 
 ]

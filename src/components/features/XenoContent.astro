@@ -1,0 +1,142 @@
+---
+
+import { xenoJa, xenoJaMeta } from "../../content/ja/xeno";
+
+//Images
+import HeroImage from "../../assets/images/projects/xeno/Hero-image.jpg";
+import ShowcaseRecommendation from "../../assets/images/projects/xeno/showcase-recommendation.png";
+import ShowcaseScan from "../../assets/images/projects/xeno/showcase-scan.png";
+import ShowcaseProfile from "../../assets/images/projects/xeno/showcase-profile.png";
+import ShowcaseWishlist from "../../assets/images/projects/xeno/showcase-wishlist.png";
+import ShowcaseCheckout from "../../assets/images/projects/xeno/showcase-checkout.png";
+import ShowcaseHome from "../../assets/images/projects/xeno/showcase-home.png";
+import TypoColor from "../../assets/images/projects/xeno/Typiography-Color.jpg";
+import XenoThumbnail from "../../assets/images/projects/xeno/xeno-thumbnail.jpg";
+import { Image } from "astro:assets";
+
+const { isJapanese = false } = Astro.props;
+const t = (text: string) => isJapanese ? (xenoJa[text] ?? text) : text;
+
+---
+<div class:list={["case-study-content", {"case-study-ja": isJapanese}]} lang={isJapanese ? "ja" : "en"}>
+        <section class="mx-auto flex max-w-360 flex-col gap-20 md:gap-28">
+            <Image
+                src={HeroImage}
+                alt="XENO activewear ecommerce app hero image"
+                class="aspect-video w-full max-w-none pointer-events-none"
+            />
+
+            <div class="grid gap-10 md:grid-cols-12 md:items-start">
+                <div class="md:col-span-8">
+                    <h1 class="max-w-220">
+                        {isJapanese ? <>XENO<br />スポーツウェア専門ECアプリのコンセプト</> : t("XENO redefines activewear shopping with AI personalization and seamless recommendations.")}
+                    </h1>
+                </div>
+                <div class="md:col-span-4 md:flex md:justify-end">
+                    <dl lang="en" class="xeno-project-meta grid gap-3 border-l border-accent pl-5 md:min-w-64">
+                        <div class="grid gap-2">
+                            <dt class="text-caption text-body-default">My role</dt>
+                            <dd class="text-title font-medium text-heading-default flex flex-col gap-1">
+                                <span>Brand design</span>
+                                <span>UI design</span>
+                                <span>Frontend development</span>
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+
+
+            <div class="grid gap-8 md:grid-cols-2 md:items-start">
+                <div class="flex flex-col gap-6">
+                    <h2>{t("Designed for smarter movement.")}</h2>
+                    <p>
+                        {t("Discover, match, and shop activewear through a smarter, more personalized experience designed to fit your movement, preferences, and lifestyle.")}
+                    </p>
+                </div>
+                <Image
+                    src={XenoThumbnail}
+                    alt="XENO project thumbnail"
+                    class="w-full rounded-lg"
+                />
+            </div>
+
+            <Image
+                src={TypoColor}
+                alt="XENO typography and color system"
+                class="w-full rounded-lg"
+            />
+
+            <section class="xeno-display" aria-label={isJapanese ? "アプリ画面" : "App screens"}>
+                <p class="xeno-display-intro" lang="en">Discover sportswear <span>that fits you.</span> Explore, find your favorites, and shop <span>with confidence.</span></p>
+                <div class="xeno-display-column xeno-display-left">
+                    <Image src={ShowcaseRecommendation} alt="Personalized recommendation" loading="lazy" />
+                    <Image src={ShowcaseProfile} alt="Profile" loading="lazy" />
+                </div>
+                <div class="xeno-display-column xeno-display-middle">
+                    <Image src={ShowcaseScan} alt="Body scan" loading="lazy" />
+                    <Image src={ShowcaseCheckout} alt="Checkout" loading="lazy" />
+                </div>
+                <div class="xeno-display-column xeno-display-right">
+                    <Image src={ShowcaseHome} alt="Home" loading="lazy" />
+                    <Image src={ShowcaseWishlist} alt="Wishlist" loading="lazy" />
+                </div>
+            </section>
+            <section aria-labelledby="xeno-prototype-heading" class="flex flex-col gap-6">
+                <h2 id="xeno-prototype-heading">{isJapanese ? "操作デモ" : "Prototype video"}</h2>
+                <video controls playsinline preload="metadata" class="mx-auto block max-h-[80vh] w-full rounded-lg bg-black" aria-label={isJapanese ? "XENOの試作品ビデオ" : "XENO prototype video"}>
+                    <source src="/videos/xeno/prototype.mp4" type="video/mp4" />
+                    <a href="/videos/xeno/prototype.mp4">{isJapanese ? "動画を開く" : "Open video"}</a>
+                </video>
+            </section>
+        </section>
+</div>
+<style>
+
+    .xeno-project-meta, .xeno-project-meta :is(dt, dd, span) { font-family: var(--font-satoshi), sans-serif; }
+    .xeno-project-meta { border-color: color-mix(in srgb, currentColor 20%, transparent); }
+    .xeno-project-meta dt { font-size: .6875rem; opacity: .65; letter-spacing: .04em; }
+    .xeno-project-meta dd { font-size: .9375rem; font-weight: 400; line-height: 1.8; gap: .125rem; color: var(--text-body-default); }
+
+
+    .case-study-content.case-study-ja h1 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); line-height: 1.5; }
+    .case-study-content.case-study-ja h2 { font-size: clamp(1.375rem, 2.5vw, 1.875rem); line-height: 1.6; }
+    .case-study-content.case-study-ja p { font-size: .9375rem; line-height: 1.9; }
+
+
+    .xeno-display { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: clamp(.75rem, 4vw, 3rem); width: 100%; max-width: 56rem; margin-inline: auto; }
+    .case-study-content.case-study-ja .xeno-display-intro, .xeno-display-intro { position: absolute; top: 1rem; left: 0; width: 56%; margin: 0; font-size: .875rem; line-height: 1.8; }
+    .xeno-display-column { display: grid; gap: clamp(1rem, 3vw, 2rem); min-width: 0; }
+    .xeno-display-left { padding-top: 20rem; }
+    .xeno-display-middle { padding-top: 13rem; }
+    .xeno-display img { display: block; width: 100%; height: auto; clip-path: inset(1.4% 2% round 12% / 6%); }
+    @media (max-width: 639px) {
+        .case-study-content.case-study-ja .xeno-display-intro, .xeno-display-intro { top: 0; width: 61%; font-size: .75rem; line-height: 1.8; }
+        .xeno-display-left { padding-top: 13rem; }
+        .xeno-display-middle { padding-top: 9rem; }
+    }
+
+</style>
+
+<style>
+    .case-study-content.case-study-ja .xeno-display-intro, .xeno-display-intro { font-family: var(--font-satoshi), sans-serif; font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.2; letter-spacing: -.025em; }
+</style>
+
+<style>
+    .xeno-display-intro span { opacity: .48; }
+</style>
+
+<style>
+    @media (min-width: 768px) {
+        .xeno-display-middle { padding-top: 15rem; }
+        .xeno-display-left { padding-top: 22rem; }
+    }
+</style>
+
+<style>
+    .case-study-content { padding: clamp(1rem, 4vw, 3rem); }
+    .case-study-content > section { gap: clamp(2.5rem, 5vw, 4.5rem); }
+    .case-study-content h1 { font-size: clamp(1.75rem, 3.5vw, 3rem); line-height: 1.25; }
+    .case-study-content h2 { font-size: clamp(1.375rem, 2.5vw, 2rem); line-height: 1.4; }
+    .case-study-content p { font-size: 1rem; line-height: 1.8; }
+</style>

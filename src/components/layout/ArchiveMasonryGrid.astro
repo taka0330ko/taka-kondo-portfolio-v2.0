@@ -1,7 +1,10 @@
 ---
 import type { ImageMetadata } from "astro";
+import PhotoshopCollage from "../ui/PhotoshopCollage.astro";
 import { Masonry } from "astro-masonry";
 import ArchiveCover from "../ui/ArchiveCover.astro";
+import StoneAndHoneyContent from "../features/StoneAndHoneyContent.astro";
+import XenoContent from "../features/XenoContent.astro";
 
 interface Props {
     archive: {
@@ -11,6 +14,9 @@ interface Props {
         coverType?: "image" | "green-blob";
         coverVideo: string;
         modalVideo?: string;
+        modalImage?: boolean;
+        modalPdf?: string;
+        modalProject?: "stone-and-honey" | "xeno";
         title: string;
         placeholder?: boolean;
         height?: number;
@@ -44,14 +50,34 @@ const isExternalLink = (href: string) => /^https?:\/\//.test(href);
                             aria-hidden="true"
                         />
                     ) : (
-                        item.modalVideo ? (
+                        item.modalProject ? (
+                            <button type="button" class="archive-link archive-video-trigger"
+                                data-archive-project={item.modalProject} aria-haspopup="dialog"
+                                aria-controls={`archive-project-${item.modalProject}`}
+                                aria-label={ja ? `${item.title}の詳細を見る` : `View ${item.title} project`}>
+                                <ArchiveCover cover={item.cover} title={item.title} />
+                            </button>
+                        ) : item.modalVideo ? (
                             <button type="button" class="archive-link archive-video-trigger"
                                 data-archive-video={item.modalVideo}
                                 data-video-title={item.title}
                                 data-prototype-href={item.href}
                                 aria-label={ja ? `${item.title}の動画を再生` : `Play ${item.title} video`}
                                 aria-haspopup="dialog" aria-controls="archive-video-dialog">
+                                <ArchiveCover cover={item.cover} coverType={item.coverType} coverVideo={item.coverVideo} title={item.title} />
+                            </button>
+                        ) : item.modalPdf ? (
+                            <button type="button" class="archive-link archive-video-trigger"
+                                data-archive-pdf={item.modalPdf} data-pdf-title={item.title}
+                                aria-haspopup="dialog" aria-controls="archive-pdf-dialog"
+                                aria-label={ja ? `${item.title}のPDFを見る` : `View ${item.title} PDF`}>
                                 <ArchiveCover cover={item.cover} coverType={item.coverType} title={item.title} />
+                            </button>
+                        ) : item.modalImage ? (
+                            <button type="button" class="archive-link archive-video-trigger archive-image-trigger"
+                                data-archive-image aria-haspopup="dialog" aria-controls="archive-image-dialog"
+                                aria-label={ja ? `${item.title}を拡大` : `Enlarge ${item.title}`}>
+                                <ArchiveCover cover={item.cover} coverType={item.coverType} coverVideo={item.coverVideo} title={item.title} />
                             </button>
                         ) : item.href ? (
                             <a
@@ -85,8 +111,8 @@ const isExternalLink = (href: string) => /^https?:\/\//.test(href);
 
 <dialog id="archive-video-dialog" aria-labelledby="archive-video-title">
     <div class="video-modal-header">
-        <h2 id="archive-video-title">Green Sabon</h2>
-        <button type="button" data-video-close aria-label={ja ? "閉じる" : "Close"}>×</button>
+        <h2 id="archive-video-title">Green Sabon — School Project</h2>
+        <button type="button" data-video-close aria-label={ja ? "閉じる" : "Close"}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" /></svg></button>
     </div>
     <div class="video-modal-body">
         <div class="video-modal-media">
@@ -109,7 +135,115 @@ const isExternalLink = (href: string) => /^https?:\/\//.test(href);
     </div>
 </dialog>
 
+<dialog id="archive-image-dialog" aria-labelledby="archive-image-title">
+    <div class="video-modal-header">
+        <h2 id="archive-image-title">Photoshop Collage — School Project</h2>
+        <button type="button" data-image-close aria-label={ja ? "閉じる" : "Close"}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" /></svg></button>
+    </div>
+    <div class="image-modal-media">
+        <PhotoshopCollage />
+    </div>
+</dialog>
+
+<dialog id="archive-pdf-dialog" aria-labelledby="archive-pdf-title">
+    <div class="video-modal-header">
+        <h2 id="archive-pdf-title">Melt. — School Project</h2>
+        <div class="pdf-header-actions">
+            <a data-pdf-link href="/documents/archive/melt-brand-sprint.pdf" target="_blank" rel="noopener noreferrer">{ja ? "PDFを別タブで開く ↗" : "Open PDF in new tab ↗"}</a>
+            <button type="button" data-pdf-close aria-label={ja ? "閉じる" : "Close"}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" /></svg></button>
+        </div>
+    </div>
+    <div class="pdf-pages" tabindex="0" role="region" aria-label={ja ? "Melt. ブランド資料（スクロールして閲覧）" : "Melt. brand presentation (scroll to read)"}>
+        {Array.from({ length: 8 }, (_, index) => (
+            <img src={`/images/archive/melt/page-${index + 1}.jpg`} alt={ja ? `Melt. ブランド資料 ${index + 1}ページ` : `Melt. brand presentation, page ${index + 1}`} loading="lazy" width="1800" height="1273" />
+        ))}
+    </div>
+</dialog>
+
+{archive.filter((item) => item.modalProject).map((item) => (
+    <dialog class="archive-project-dialog" id={`archive-project-${item.modalProject}`} aria-labelledby={`project-title-${item.modalProject}`}>
+        <div class="video-modal-header">
+            <h2 id={`project-title-${item.modalProject}`}>{item.title}</h2>
+            <button type="button" data-project-close aria-label={ja ? "閉じる" : "Close"}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" /></svg></button>
+        </div>
+        <div class="project-modal-scroll" tabindex="0" role="region" aria-label={ja ? `${item.title}の作品詳細` : `${item.title} project details`}>
+            {item.modalProject === "stone-and-honey" ? <StoneAndHoneyContent isJapanese={ja} /> : <XenoContent isJapanese={ja} />}
+        </div>
+    </dialog>
+))}
+
 <script>
+    let projectController: AbortController | undefined;
+    function initArchiveProjects() {
+        projectController?.abort();
+        projectController = new AbortController();
+        const { signal } = projectController;
+        document.querySelectorAll<HTMLButtonElement>("[data-archive-project]").forEach((button) => {
+            const dialog = document.getElementById(`archive-project-${button.dataset.archiveProject}`) as HTMLDialogElement | null;
+            const scroll = dialog?.querySelector<HTMLElement>(".project-modal-scroll");
+            if (!dialog || !scroll) return;
+            let previousOverflow = "";
+            const cleanup = () => {
+                document.documentElement.style.overflow = previousOverflow;
+                dialog.querySelectorAll("video").forEach((video) => video.pause());
+            };
+            button.addEventListener("click", () => {
+                previousOverflow = document.documentElement.style.overflow;
+                document.documentElement.style.overflow = "hidden";
+                dialog.showModal();
+                scroll.scrollTop = 0;
+            }, { signal });
+            dialog.querySelector("[data-project-close]")?.addEventListener("click", () => dialog.close(), { signal });
+            dialog.addEventListener("click", (event) => {
+                if (event.target !== dialog) return;
+                const rect = dialog.getBoundingClientRect();
+                if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+            }, { signal });
+            dialog.addEventListener("close", () => { cleanup(); button.focus(); }, { signal });
+            document.addEventListener("astro:before-swap", () => { if (dialog.open) { cleanup(); dialog.close(); } }, { once: true, signal });
+        });
+    }
+    document.addEventListener("astro:page-load", initArchiveProjects);
+    initArchiveProjects();
+    let pdfController: AbortController | undefined;
+    function initArchivePdf() {
+        pdfController?.abort();
+        pdfController = new AbortController();
+        const { signal } = pdfController;
+        const dialog = document.querySelector<HTMLDialogElement>("#archive-pdf-dialog");
+        const pages = dialog?.querySelector<HTMLElement>(".pdf-pages");
+        if (!dialog || !pages) return;
+        let previousOverflow = "";
+        let trigger: HTMLButtonElement | null = null;
+        const restoreScroll = () => { document.documentElement.style.overflow = previousOverflow; };
+        document.querySelectorAll<HTMLButtonElement>("[data-archive-pdf]").forEach((button) => {
+            button.addEventListener("click", () => {
+                trigger = button;
+                const src = button.dataset.archivePdf!;
+                const title = dialog.querySelector("h2");
+                if (title) title.textContent = button.dataset.pdfTitle || "PDF";
+                const link = dialog.querySelector<HTMLAnchorElement>("[data-pdf-link]");
+                if (link) link.href = src;
+                previousOverflow = document.documentElement.style.overflow;
+                document.documentElement.style.overflow = "hidden";
+                dialog.showModal();
+                pages.scrollTop = 0;
+            }, { signal });
+        });
+        dialog.querySelector("[data-pdf-close]")?.addEventListener("click", () => dialog.close(), { signal });
+        dialog.addEventListener("click", (event) => {
+            if (event.target !== dialog) return;
+            const rect = dialog.getBoundingClientRect();
+            if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+        }, { signal });
+        dialog.addEventListener("close", () => { restoreScroll(); trigger?.focus(); }, { signal });
+        document.addEventListener("astro:before-swap", () => {
+            if (dialog.open) { restoreScroll(); dialog.close(); }
+            pdfController?.abort();
+        }, { once: true, signal });
+    }
+    document.addEventListener("astro:page-load", initArchivePdf);
+    initArchivePdf();
     let controller: AbortController | undefined;
     function initArchiveVideo() {
         controller?.abort();
@@ -131,6 +265,12 @@ const isExternalLink = (href: string) => /^https?:\/\//.test(href);
             button.addEventListener("click", () => {
                 trigger = button;
                 title.textContent = button.dataset.videoTitle || "Project video";
+                const videoOnly = !button.dataset.prototypeHref;
+                dialog.classList.toggle("is-video-only", videoOnly);
+                const info = dialog.querySelector<HTMLElement>(".video-modal-info");
+                if (info) info.hidden = videoOnly;
+                video.controls = videoOnly;
+                video.loop = !videoOnly;
                 video.muted = true;
                 video.src = button.dataset.archiveVideo!;
                 const prototypeLink = dialog.querySelector<HTMLAnchorElement>("[data-prototype-link]");
@@ -153,11 +293,56 @@ const isExternalLink = (href: string) => /^https?:\/\//.test(href);
             controller?.abort();
         }, { once: true, signal });
     }
+    let imageController: AbortController | undefined;
+    function initArchiveImage() {
+        imageController?.abort();
+        imageController = new AbortController();
+        const { signal } = imageController;
+        const dialog = document.querySelector<HTMLDialogElement>("#archive-image-dialog");
+        if (!dialog) return;
+        let previousOverflow = "";
+        let trigger: HTMLButtonElement | null = null;
+        const restoreScroll = () => { document.documentElement.style.overflow = previousOverflow; };
+        document.querySelectorAll<HTMLButtonElement>("[data-archive-image]").forEach((button) => {
+            button.addEventListener("click", () => {
+                trigger = button;
+                previousOverflow = document.documentElement.style.overflow;
+                document.documentElement.style.overflow = "hidden";
+                dialog.showModal();
+            }, { signal });
+        });
+        dialog.querySelector("[data-image-close]")?.addEventListener("click", () => dialog.close(), { signal });
+        dialog.addEventListener("click", (event) => {
+            if (event.target !== dialog) return;
+            const rect = dialog.getBoundingClientRect();
+            if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+        }, { signal });
+        dialog.addEventListener("close", () => { restoreScroll(); trigger?.focus(); }, { signal });
+        document.addEventListener("astro:before-swap", () => {
+            if (dialog.open) { restoreScroll(); dialog.close(); }
+            imageController?.abort();
+        }, { once: true, signal });
+    }
+    document.addEventListener("astro:page-load", initArchiveImage);
+    initArchiveImage();
     document.addEventListener("astro:page-load", initArchiveVideo);
     initArchiveVideo();
 </script>
 
 <style>
+    .archive-project-dialog { width: min(80rem, calc(100vw - 2rem)); }
+    .project-modal-scroll { height: calc(100dvh - 8rem); overflow-y: auto; overscroll-behavior: contain; background: var(--bg-default, var(--modal-bg)); color: var(--text-body-default); }
+
+    #archive-pdf-dialog { width: min(75rem, calc(100vw - 2rem)); }
+    #archive-pdf-dialog .pdf-pages { height: calc(100dvh - 8rem); overflow-y: auto; overscroll-behavior: contain; background: #282828; padding: clamp(.5rem, 2vw, 1.5rem); }
+    .pdf-pages img { display: block; width: 100%; height: auto; margin: 0 auto 1rem; }
+    .pdf-pages img:last-child { margin-bottom: 0; }
+    .pdf-header-actions { display: flex; align-items: center; gap: 1rem; }
+    .pdf-header-actions a { font-size: .8125rem; text-decoration: underline; text-underline-offset: .2em; }
+
+    #archive-image-dialog { width: min(100rem, calc(100vw - 2rem), calc((100dvh - 7rem) * 1618 / 910)); max-width: calc(100vw - 2rem); }
+    .archive-image-trigger { cursor: zoom-in; }
+    .image-modal-media { width: 100%; }
     .archive-video-trigger { width: 100%; padding: 0; border: 0; background: transparent; text-align: inherit; cursor: pointer; }
     .archive-video-trigger:focus-visible { outline: 2px solid var(--text-accent); outline-offset: 4px; border-radius: 8px; }
     dialog {
@@ -192,7 +377,11 @@ const isExternalLink = (href: string) => /^https?:\/\//.test(href);
     .video-modal-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 1.25rem; }
     .video-modal-header h2 { font-family: var(--font-satoshi), sans-serif; font-size: 1rem; font-weight: 400; color: var(--modal-heading); letter-spacing: 0; }
     .video-modal-header h2::first-letter { font-size: inherit; }
-    .video-modal-header button { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: color-mix(in srgb, var(--modal-heading) 7%, transparent); color: var(--modal-heading); font-size: 1.75rem; line-height: 1; cursor: pointer; }
+    .video-modal-header button { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; flex-shrink: 0; padding: 0; border: 0; border-radius: 50%; background: color-mix(in srgb, var(--modal-heading) 7%, transparent); color: var(--modal-heading); font-size: 1.75rem; line-height: 1; cursor: pointer; }
+    .is-video-only .video-modal-body { grid-template-columns: 1fr; }
+    .video-modal-info[hidden] { display: none; }
+    .is-video-only .video-modal-media { padding: 0; }
+    .is-video-only video { max-height: calc(100dvh - 7rem); }
     .video-modal-body { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(22rem, 1fr); align-items: stretch; }
     .video-modal-media { display: flex; align-items: center; justify-content: center; min-width: 0; padding: clamp(1rem, 2vw, 2rem); background: var(--modal-media-bg); }
     .video-modal-info { display: flex; flex-direction: column; padding: clamp(1.5rem, 2.5vw, 2.5rem); border-left: 1px solid var(--modal-border); }

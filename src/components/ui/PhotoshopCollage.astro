@@ -1,0 +1,43 @@
+---
+import { Image } from "astro:assets";
+import paper from "../../assets/images/archive/works/ps-collage/details/paper.jpg";
+import finished from "../../assets/images/archive/works/ps-collage/details/finished.jpg";
+import reader from "../../assets/images/archive/works/ps-collage/details/reader.jpg";
+import room from "../../assets/images/archive/works/ps-collage/details/room.jpg";
+import grass from "../../assets/images/archive/works/ps-collage/details/grass.jpg";
+import tree from "../../assets/images/archive/works/ps-collage/details/tree.jpg";
+import stack from "../../assets/images/archive/works/ps-collage/details/stack.jpg";
+import books from "../../assets/images/archive/works/ps-collage/details/books.jpg";
+import tray from "../../assets/images/archive/works/ps-collage/details/tray.jpg";
+import bulb from "../../assets/images/archive/works/ps-collage/details/bulb.jpg";
+import glasses from "../../assets/images/archive/works/ps-collage/details/glasses.jpg";
+import chocolate from "../../assets/images/archive/works/ps-collage/details/chocolate.jpg";
+import planetsRed from "../../assets/images/archive/works/ps-collage/details/planetsRed.jpg";
+import planetsPurple from "../../assets/images/archive/works/ps-collage/details/planetsPurple.jpg";
+import bottle from "../../assets/images/archive/works/ps-collage/details/bottle.jpg";
+const photos = [
+    { src: finished, alt: "Finished artwork: Sam in a bottle", x: 108, y: 40, width: 850 * finished.width / finished.height, height: 850 },
+    { src: planetsPurple, alt: "Purple planet installation", x: 744, y: 40, width: 288, height: 192 },
+    { src: planetsRed, alt: "Colorful planet installation", x: 1056, y: 40, width: 288, height: 192 },
+    { src: glasses, alt: "Glasses on a table", x: 1396, y: 40, width: 157, height: 233 },
+    { src: bulb, alt: "Light bulb", x: 744, y: 264, width: 102, height: 160 },
+    { src: chocolate, alt: "Chocolate on a cutting board", x: 870, y: 264, width: 232, height: 160 },
+    { src: grass, alt: "Grass texture", x: 1126, y: 264, width: 218, height: 160 },
+    { src: tree, alt: "Tree beside a street", x: 744, y: 456, width: 140, height: 210 },
+    { src: reader, alt: "Person reading by a window", x: 908, y: 456, width: 140, height: 210 },
+    { src: books, alt: "Books standing on a table", x: 1072, y: 456, width: 272, height: 210 },
+    { src: stack, alt: "Stack of books", x: 744, y: 698, width: 288, height: 192 },
+    { src: room, alt: "Person in a colorful room", x: 1056, y: 698, width: 288, height: 192 },
+    { src: tray, alt: "White tray", x: 1396, y: 348, width: 157, height: 236 },
+    { src: bottle, alt: "Empty glass bottle", x: 1396, y: 657, width: 157, height: 233 },
+];
+---
+<section class="collage" aria-label="Sam in a bottle artwork and source photographs" style={`background-image: url(${paper.src})`}>
+    {photos.map((photo) => (
+        <Image src={photo.src} alt={photo.alt} loading="lazy" style={`left:${photo.x / 1618 * 100}%;top:${photo.y / 910 * 100}%;width:${photo.width / 1618 * 100}%;height:${photo.src === finished ? "auto" : `${photo.height / 910 * 100}%`};`} />
+    ))}
+</section>
+<style>
+    .collage { position: relative; width: 100%; aspect-ratio: 1618 / 910; background-size: cover; background-position: center; }
+    .collage img { position: absolute; display: block; object-fit: contain; object-position: center; }
+</style>
